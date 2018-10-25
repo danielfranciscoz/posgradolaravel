@@ -78,7 +78,7 @@ UNI-DEPEC</title>
           </div>
         </div>
    <a class="nav-item nav-link waves-light waves-effect" style="min-width: 70px" ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
-    <button type="button" class="btn btn-sm btn-outline-primary   waves-effect " style="min-width: 150px">Iniciar sesion</button>
+    <button type="button" class="btn btn-sm text-white  waves-effect " style="min-width: 150px; background: #424242">Iniciar sesion</button>
      <button type="button" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
   </div>
   <!-- Collapsible content -->

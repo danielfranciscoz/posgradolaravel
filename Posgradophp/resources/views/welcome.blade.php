@@ -23,16 +23,16 @@
                 <!--Mask-->
                 <div class="view">
                   <!--Video source-->
-                  <video autoplay="" loop="" playsinline="">
+                  <!-- <video autoplay="" loop="" playsinline="">
                       <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4">
-                  </video>
+                  </video> -->
                   <!-- Carousel content -->
                   <div class=" d-flex justify-content-start align-items-center mask rgba-indigo-light white-text">
                         <div class="col-lg-4 col-md-12">
 
             <!--Panel-->
                             <div class="card card-body" style="">  
-                                <h4 class="card-text black-text" > "La enseñanza que deja huella no es la que se hace de cabeza a cabeza, sino de corazón a corazón" </h4>                          
+                                <h4 class="card-text black-text text-justify" > "La enseñanza que deja huella no es la que se hace de cabeza a cabeza, sino de corazón a corazón" </h4>                          
                               <p class="card-text black-text"> 
                                   Howard G. Hendricks
                               </p>
@@ -57,10 +57,10 @@
             <div class="carousel-item">
                 <!--Mask color-->
                 <div class="view">
-                    <!--Video source-->
+                    <!--Video source--><!--
                     <video autoplay="" loop="" playsinline="">
                         <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4">
-                    </video>
+                    </video> -->
                     <!-- Carousel content -->
                     <div class="full-bg-img flex-center mask rgba-purple-light white-text">
                       <ul class="animated fadeInUp col-md-12 list-unstyled">
@@ -84,10 +84,11 @@
             <div class="carousel-item">
                 <!--Mask color-->
                 <div class="view">
-                    <!--Video source-->
+                    <!--Video source--><!--
                     <video autoplay="" loop="" playsinline="">
                         <source src="https://mdbootstrap.com/images/video/Tropical.mp4" type="video/mp4">
-                    </video>
+                    </video>-->
+
                     <!-- Carousel content -->
                     <div class="full-bg-img flex-center mask rgba-blue-light white-text">
                       <ul class="animated fadeInUp col-md-12 list-unstyled">
