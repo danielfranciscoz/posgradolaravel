@@ -44,7 +44,6 @@
 
 .mdb-color.lighten-1 {
   background-color: #59698d !important; }
-
 .mdb-color {
   background-color: #45526e !important; }
 
@@ -1673,7 +1672,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #33b5e5 !important; }
 
 .text-primary {
-  color: #4285f4 !important; }
+  color: #0d47a1 !important; }
 
 a.text-primary:hover, a.text-primary:focus {
   color: #1266f1 !important; }
@@ -4611,7 +4610,7 @@ a.waves-effect, a.waves-light {
   font-size: 5em !important; }
 
 .btn-primary {
-  background-color: #4285f4 !important;
+  background-color: #0d47a1 !important;
   color: #fff !important; }
   .btn-primary:hover {
     background-color: #5a95f5; }

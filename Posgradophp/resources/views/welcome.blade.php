@@ -27,22 +27,27 @@
                       <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4">
                   </video>
                   <!-- Carousel content -->
-                  <div class="full-bg-img flex-center mask rgba-indigo-light white-text">
-                    <ul class="animated fadeInUp col-md-12 list-unstyled list-inline">
-                      <li>
-                        <h1 class="font-weight-bold text-uppercase">Material Design for Bootstrap 4</h1>
-                      </li>
-                      <li>
-                        <p class="font-weight-bold text-uppercase py-4">The most powerful and free UI KIT for Bootstrap</p>
-                      </li>
-                      <li class="list-inline-item">
-                        <a target="_blank" href="https://mdbootstrap.com/getting-started/" class="btn btn-unique btn-lg btn-rounded mr-0 waves-effect waves-light">Sign up!</a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a target="_blank" href="https://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-cyan btn-lg btn-rounded ml-0 waves-effect waves-light">Learn more</a>
-                      </li>
-                    </ul>
+                  <div class=" d-flex justify-content-start align-items-center mask rgba-indigo-light white-text">
+                        <div class="col-lg-4 col-md-12">
+
+            <!--Panel-->
+                            <div class="card card-body" style="">  
+                                <h4 class="card-text black-text" > "La enseñanza que deja huella no es la que se hace de cabeza a cabeza, sino de corazón a corazón" </h4>                          
+                              <p class="card-text black-text"> 
+                                  Howard G. Hendricks
+                              </p>
+                              <div class="input-group md-form form-sm form-2 pl-0">
+                              <input class="form-control my-0 py-1 red-border" type="text" placeholder="¿Que deseas Aprender?" aria-label="Search">
+                              <div class="input-group-append">
+                                <span class="input-group-text btn-primary text-grey " id="basic-text1"><i class="fa fa-search white-text" aria-hidden="true"></i></span>
+                              </div>
+                            </div>
+                            </div>
+                            <!--/.Panel-->
+
+                          </div>
                   </div>
+
                 </div>
                 <!--/Mask-->
             </div>

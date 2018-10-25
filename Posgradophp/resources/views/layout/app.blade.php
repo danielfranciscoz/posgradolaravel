@@ -77,7 +77,7 @@ UNI-DEPEC</title>
             <span class="input-group-text btn-primary waves-effect " id="basic-text1"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>
-   <a class="nav-item nav-link waves-light" style="min-width: 70px" ><i class="fa fa-cart-plus blue-text fa-2x text-muted " aria-hidden="true"></i></a>
+   <a class="nav-item nav-link waves-light waves-effect" style="min-width: 70px" ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
     <button type="button" class="btn btn-sm btn-outline-primary   waves-effect " style="min-width: 150px">Iniciar sesion</button>
      <button type="button" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
   </div>
