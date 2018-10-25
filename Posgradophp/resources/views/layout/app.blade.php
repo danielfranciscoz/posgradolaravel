@@ -3,7 +3,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universidad Nacional de ingenieria</title>
+    <title>@yield('title') - Dirección de Estudios de Posgrado y Educación Continua
+UNI-DEPEC</title>
    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
@@ -12,66 +13,76 @@
 
 <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
 <link href="{{ URL::asset('css/mdb.css') }}" rel="stylesheet" type="text/css" >
+<link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+
 
 </head>
 <body>
    
 
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-        <div class="container">
-            <!-- Brand -->
-            <a class="navbar-brand" href="https://mdbootstrap.com/material-design-for-bootstrap/" target="_blank">
-                <strong>MDB</strong>
-            </a>
-            <!-- Collapse -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Links -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://mdbootstrap.com/material-design-for-bootstrap/" target="_blank">About MDB</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://mdbootstrap.com/getting-started/" target="_blank">Free download</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://mdbootstrap.com/bootstrap-tutorial/" target="_blank">Free tutorials</a>
-                    </li>
-                </ul>
-                <!-- Right -->
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                        <a href="https://www.facebook.com/mdbootstrap" class="nav-link" target="_blank">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://twitter.com/MDBootstrap" class="nav-link" target="_blank">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded"
-                           target="_blank">
-                            <i class="fa fa-github mr-2"></i>MDB GitHub
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-light blue-grey lighten-5">
 
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#">Navbar</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse text-nav" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item dropdown">
+       <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false"><i class="fa fa-folder-open-o" aria-hidden="true"></i> Categorías</a>
+         <div class="dropdown">
+            
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                <li class="dropdown-item text-white"><a href="#"> <i class="fa fa-flask" aria-hidden="true"> </i> Quimica</a></li>
+                <li class="dropdown-item"><a href="#">Some other action</a></li>
+                <li class="dropdown-divider"></li>
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
+                    <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>                    
+                    <li class="dropdown-item"><a href="#">3th level</a></li>
+                    <li class="dropdown-item"><a href="#">3th level</a></li>
+                  </ul>
+                </li>                    
+                    <li class="dropdown-item"><a href="#">Second level</a></li>
+                    <li class="dropdown-item"><a href="#">Second level</a></li>
+                  </ul>
+                </li>
+              </ul>
+        </div>
+      </li>
+
+    </ul>
+    <!-- Links -->
+
+    
+      <div class="input-group md-form form-sm form-1 pl-0">
+  <div class="input-group-prepend">
+    <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fa fa-search text-white"
+        aria-hidden="true"></i></span>
+  </div>
+  <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+</div>
+    
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
   
 
     
@@ -212,7 +223,11 @@
     <script>
         $(function () {
             $('[data-toggle="popover"]').popover();
+
         });
+      
+      
+
     </script>
 </body>
 </html>

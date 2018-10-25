@@ -2,10 +2,10 @@
 
 
 @extends('layout.app')
+@section('title', 'Inicio')
+@section('content')
 
-
-
-<img src="http://www.posgrado.uni.edu.ni/wp-content/uploads/2018/06/docentes.jpg" class="img-fluid"/>
+   <img src="https://www.posgrado.uni.edu.ni/wp-content/uploads/2018/06/docentes.jpg" class="img-fluid"/>
 <main>
     <div class="container">
         <!--Section: Main info-->
@@ -395,3 +395,5 @@
         <!--Section: More-->
     </div>
 </main>
+@endsection
+
