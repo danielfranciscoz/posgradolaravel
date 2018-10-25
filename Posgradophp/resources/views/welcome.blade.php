@@ -5,7 +5,115 @@
 @section('title', 'Inicio')
 @section('content')
 
-   <img src="https://www.posgrado.uni.edu.ni/wp-content/uploads/2018/06/docentes.jpg" class="img-fluid"/>
+   <!-- <img src="https://www.posgrado.uni.edu.ni/wp-content/uploads/2018/06/docentes.jpg" class="img-fluid"/> -->
+   <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+        <!--Indicators-->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-2" data-slide-to="1"></li>
+            <li data-target="#carousel-example-2" data-slide-to="2"></li>
+        </ol>
+        <!--/.Indicators-->
+
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+
+            <!--First slide-->
+            <div class="carousel-item active">
+                <!--Mask-->
+                <div class="view">
+                  <!--Video source-->
+                  <video autoplay="" loop="" playsinline="">
+                      <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4">
+                  </video>
+                  <!-- Carousel content -->
+                  <div class="full-bg-img flex-center mask rgba-indigo-light white-text">
+                    <ul class="animated fadeInUp col-md-12 list-unstyled list-inline">
+                      <li>
+                        <h1 class="font-weight-bold text-uppercase">Material Design for Bootstrap 4</h1>
+                      </li>
+                      <li>
+                        <p class="font-weight-bold text-uppercase py-4">The most powerful and free UI KIT for Bootstrap</p>
+                      </li>
+                      <li class="list-inline-item">
+                        <a target="_blank" href="https://mdbootstrap.com/getting-started/" class="btn btn-unique btn-lg btn-rounded mr-0 waves-effect waves-light">Sign up!</a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a target="_blank" href="https://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-cyan btn-lg btn-rounded ml-0 waves-effect waves-light">Learn more</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!--/Mask-->
+            </div>
+            <!--/First slide-->
+
+            <!--Second slide-->
+            <div class="carousel-item">
+                <!--Mask color-->
+                <div class="view">
+                    <!--Video source-->
+                    <video autoplay="" loop="" playsinline="">
+                        <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4">
+                    </video>
+                    <!-- Carousel content -->
+                    <div class="full-bg-img flex-center mask rgba-purple-light white-text">
+                      <ul class="animated fadeInUp col-md-12 list-unstyled">
+                        <li>
+                          <h1 class="font-weight-bold text-uppercase">Lots of tutorials at your disposal</h1>
+                        </li>
+                        <li>
+                          <p class="font-weight-bold text-uppercase py-4">And all of them are FREE!</p>
+                        </li>
+                        <li>
+                          <a target="_blank" href="https://mdbootstrap.com/bootstrap-tutorial/" class="btn btn-pink btn-rounded btn-lg waves-effect waves-light">Start learning</a>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+                <!--/Mask color-->
+            </div>
+            <!--/Second slide-->
+
+            <!--Third slide-->
+            <div class="carousel-item">
+                <!--Mask color-->
+                <div class="view">
+                    <!--Video source-->
+                    <video autoplay="" loop="" playsinline="">
+                        <source src="https://mdbootstrap.com/images/video/Tropical.mp4" type="video/mp4">
+                    </video>
+                    <!-- Carousel content -->
+                    <div class="full-bg-img flex-center mask rgba-blue-light white-text">
+                      <ul class="animated fadeInUp col-md-12 list-unstyled">
+                        <li>
+                          <h1 class="font-weight-bold text-uppercase">Visit our support forum</h1></li>
+                        <li>
+                          <p class="font-weight-bold text-uppercase py-4">Our community can help you with any question</p>
+                        </li>
+                        <li>
+                          <a target="_blank" href="https://mdbootstrap.com/forums/forum/support/" class="btn btn-lg btn-indigo btn-rounded waves-effect waves-light">Support forum</a>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+                <!--/Mask color-->
+            </div>
+            <!--/Third slide-->
+        </div>
+        <!--/.Slides-->
+
+        <!--Controls-->
+        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <!--/.Controls-->
+    </div>
 <main>
     <div class="container">
         <!--Section: Main info-->

@@ -21,10 +21,10 @@ UNI-DEPEC</title>
    
 
 
-  <nav class="navbar navbar-expand-lg navbar-light blue-grey lighten-5">
+  <nav class="navbar navbar-expand-lg navbar-light white lighten-5 h-auto" >
 
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Posgrado</a>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -33,14 +33,14 @@ UNI-DEPEC</title>
   </button>
 
   <!-- Collapsible content -->
-  <div class="collapse navbar-collapse text-nav" id="basicExampleNav">
+  <div class="collapse navbar-collapse text-nav" style="height: 50px" id="basicExampleNav">
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       
-      <li class="nav-item dropdown">
-       <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false"><i class="fa fa-folder-open-o" aria-hidden="true"></i> Categorías</a>
+      <li class="nav-item dropdown" style="min-width: 150px">
+       <a class="nav-link dropdown-toggle text-muted " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false" ><i class="fa fa-folder-open-o fa-1x text-muted" aria-hidden="true"></i> Categorías</a>
          <div class="dropdown">
             
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -70,15 +70,16 @@ UNI-DEPEC</title>
     </ul>
     <!-- Links -->
 
-    
-      <div class="input-group md-form form-sm form-1 pl-0">
-  <div class="input-group-prepend">
-    <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fa fa-search text-white"
-        aria-hidden="true"></i></span>
-  </div>
-  <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
-</div>
-    
+  
+       <div class="input-group md-form form-sm form-2 pl-0 ">
+          <input class="form-control my-0 py-1  waves-effect" type="text" placeholder="Buscar cursos..." aria-label="Search">
+          <div class="input-group-append ">
+            <span class="input-group-text btn-primary waves-effect " id="basic-text1"><i class="fa fa-search " aria-hidden="true"></i></span>
+          </div>
+        </div>
+   <a class="nav-item nav-link waves-light" style="min-width: 70px" ><i class="fa fa-cart-plus blue-text fa-2x text-muted " aria-hidden="true"></i></a>
+    <button type="button" class="btn btn-sm btn-outline-primary   waves-effect " style="min-width: 150px">Iniciar sesion</button>
+     <button type="button" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
   </div>
   <!-- Collapsible content -->
 
