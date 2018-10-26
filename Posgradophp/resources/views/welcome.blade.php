@@ -120,6 +120,7 @@
         </a>
         <!--/.Controls-->
     </div>
+
 <main>
     <div class="container">
         <!--Section: Main info-->
@@ -127,36 +128,138 @@
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
-                <div class="col-md-6 mb-4">
-                    <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-main.jpg" class="img-fluid z-depth-1-half" alt="">
+                <div class="col-md-4 mb-4  d-flex align-items-center ">
+
+                 <div>  
+                                <p class="font-weight-bold">La selección de cursos más amplia del pais </p>                     
+                              <p> 
+                                Elige entre más de 300 cursos con nuevo contenido cada mes
+                              </p>
+                             
+                </div>
+
+                    
                 </div>
                 <!--Grid column-->
                 <!--Grid column-->
-                <div class="col-md-6 mb-4">
-                    <!-- Main heading -->
-                    <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
-                    <p>
-                        This template is created with Material Design for Bootstrap (
-                        <strong>MDB</strong> ) framework.
-                    </p>
-                    <p>Read details below to learn more about MDB.</p>
-                    <!-- Main heading -->
-                    <hr>
-                    <p>
-                        <strong>400+</strong> material UI elements,
-                        <strong>600+</strong> material icons,
-                        <strong>74</strong> CSS animations, SASS files, templates, tutorials and many more.
-                        <strong>Free for personal and commercial use.</strong>
-                    </p>
-                    <!-- CTA -->
-                    <a target="_blank" href="https://mdbootstrap.com/getting-started/" class="btn btn-grey btn-md">
-                        Download
-                        <i class="fa fa-download ml-1"></i>
-                    </a>
-                    <a target="_blank" href="https://mdbootstrap.com/components/" class="btn btn-grey btn-md">
-                        Live demo
-                        <i class="fa fa-image ml-1"></i>
-                    </a>
+                <div class="col-md-8 mb-4">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="Desarrollo-tab" data-toggle="tab" href="#Desarrollo-panel" role="tab" aria-controls="Desarrollo" aria-selected="true">Desarrollo</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="Diseño-tab" data-toggle="tab" href="#Diseño-panel" role="tab" aria-controls="Diseño" aria-selected="false">Diseño</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="Negocios-tab" data-toggle="tab" href="#Negocios-panel" role="tab" aria-controls="Negocios" aria-selected="false">Negocios</a>
+                      </li>
+                       <li class="nav-item">
+                        <a class="nav-link" id="Informatica-tab" data-toggle="tab" href="#Informatica-panel" role="tab" aria-controls="Informatica" aria-selected="false">Informatica</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="Desarrollo-panel" role="tabpanel" aria-labelledby="home-tab">
+                            <section class="carousel slide" data-ride="carousel" id="carousel-cursos">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 text-md-right lead">
+                                        <a class="btn btn-outline-primary prev-cursos" href="" title="Atras"><i class="fa fa-lg fa-chevron-left"></i></a>
+                                        <a class="btn btn-outline-primary  next-cursos" href="" title="Adelante"><i class="fa fa-lg fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container pt-0 mt-2">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="card-deck">
+                                        <div class="card h-100">
+                                            <div class="card-img-top card-img-top-250">
+                                                <img class="img-fluid" src="http://i.imgur.com/EW5FgJM.png" alt="Carousel 1">
+                                            </div>
+                                             <div class="card-body pt-2" >
+            <!--Title-->
+                                                <a
+                                                 class="card-title font-weight-bold">Node: De Cero a Experto
+                                                </a> <br></br>
+                                                <!--Text-->
+                                                <p class="card-text">Anna Fernanda</p>
+                                                <hr>
+                                                <a class="card-meta"></a>
+                                                <p class="card-meta float-right"><strike> $2500 </strike>  <strong>$ 110 </strong></p>
+                                              </div>
+          <!--Card content-->
+                                        </div>
+                                        <div class="card h-100">
+                                            <div class="card-img-top card-img-top-250">
+                                                <img class="img-fluid" src="http://i.imgur.com/Hw7sWGU.png" alt="Carousel 2">
+                                            </div>
+                                            <div class="card-body pt-2">
+                                                <h6 class="small text-wide p-b-2">Development</h6>
+                                                <h2>
+                                                    <a href="">How to Make Every Line Count.</a>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="card h-100">
+                                            <div class="card-img-top card-img-top-250">
+                                                <img class="img-fluid" src="http://i.imgur.com/g27lAMl.png" alt="Carousel 3">
+                                            </div>
+                                            <div class="card-body pt-2">
+                                                <h6 class="small text-wide p-b-2">Design</h6>
+                                                <h2>
+                                                    <a href="">Responsive is Essential.</a>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="card-deck">
+                                        <div class="card">
+                                            <div class="card-img-top card-img-top-250">
+                                                <img class="img-fluid" src="//visualhunt.com/photos/l/1/office-student-work-study.jpg" alt="Carousel 4">
+                                            </div>
+                                            <div class="card-body pt-2">
+                                                <h6 class="small text-wide p-b-2">Another</h6>
+                                                <h2>
+                                                    <a href="">Tagline or Call-to-action.</a>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-img-top card-img-top-250">
+                                                <img class="img-fluid" src="//visualhunt.com/photos/l/1/working-woman-technology-computer.jpg" alt="Carousel 5">
+                                            </div>
+                                            <div class="card-body pt-2">
+                                                <h6 class="small text-wide p-b-2"><span class="pull-xs-right">12.04</span> Category 1</h6>
+                                                <h2>
+                                                    <a href="">This is a Blog Title.</a>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-img-top card-img-top-250">
+                                                <img class="img-fluid" src="//visualhunt.com/photos/l/1/people-office-team-collaboration.jpg" alt="Carousel 6">
+                                            </div>
+                                            <div class="card-body pt-2">
+                                                <h6 class="small text-wide p-b-2">Category 3</h6>
+                                                <h2>
+                                                    <a href="">Catchy Title of a Blog Post.</a>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                     
+                     </div>
+                      <div class="tab-pane fade" id="Diseño-panel" role="tabpanel" aria-labelledby="profile-tab">Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</div>
+                      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</div>
+                    </div>
+                  
                 </div>
                 <!--Grid column-->
             </div>

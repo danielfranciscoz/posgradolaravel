@@ -90,7 +90,7 @@ UNI-DEPEC</title>
             @yield('content')
    
 
-    <footer class="page-footer font-small stylish-color-dark pt-4">
+    <footer class="page-footer font-small stylish-color-dark pt-4 wow fadeIn    ">
 
         <!-- Footer Links -->
         <div class="container text-center text-md-left">
@@ -203,7 +203,7 @@ UNI-DEPEC</title>
             <div class="footer-copyright text-center py-3">
 
 
-                Dirección De Estudios de Posgrado y Educación Continua © @DateTime.Now.Year
+                Dirección De Estudios de Posgrado y Educación Continua© 
 
             </div>
             <!-- Copyright -->
@@ -228,7 +228,15 @@ UNI-DEPEC</title>
         });
       
       
+        $(function() {
+   
 
+            $('.next-cursos').click(function(){ $('#carousel-cursos').carousel('next');return false; });
+            $('.prev-cursos').click(function(){ $('#carousel-cursos').carousel('prev');return false; });
+    
+        });
     </script>
+
+
 </body>
 </html>
