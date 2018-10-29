@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('/prueba',function(){
 return "Esta es una ruta de prueba 2";
 });
+
+Route::get('/search/{ss}', 'SearchController@search');
+

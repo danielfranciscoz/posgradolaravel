@@ -70,15 +70,16 @@ UNI-DEPEC</title>
     </ul>
     <!-- Links -->
 
-  
+        
        <div class="input-group md-form form-sm form-2 pl-0 ">
-          <input class="form-control my-0 py-1  waves-effect" type="text" placeholder="Buscar cursos..." aria-label="Search">
+          <input class="form-control my-0 py-1  waves-effect" type="text" placeholder="Buscar cursos..." aria-label="Search" id="searchinput" >
           <div class="input-group-append ">
-            <span class="input-group-text btn-primary waves-effect " id="basic-text1"><i class="fa fa-search " aria-hidden="true"></i></span>
+            <span class="input-group-text btn-primary waves-effect " id="buttonsearch"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>
+       
    <a class="nav-item nav-link waves-light waves-effect" style="min-width: 70px" ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
-    <button type="button" class="btn btn-sm text-white  waves-effect " style="min-width: 150px; background: #424242">Iniciar sesion</button>
+    <button type="button" class="btn btn-sm text-white  waves-effect " style="min-width: 150px; background: #424242" data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
      <button type="button" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
   </div>
   <!-- Collapsible content -->
@@ -203,7 +204,7 @@ UNI-DEPEC</title>
             <div class="footer-copyright text-center py-3">
 
 
-                Dirección De Estudios de Posgrado y Educación Continua© 
+                Dirección De Estudios de Posgrado y Educación Continua ©
 
             </div>
             <!-- Copyright -->
@@ -214,7 +215,47 @@ UNI-DEPEC</title>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mdb.js') }}"></script>
   
-   
+   <!-- Modals -->
+   <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100 font-weight-bold">¡Inicia sesión en tu cuenta de posgrado! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    <input type="email" id="defaultForm-email" class="form-control validate">
+                    <label data-error="Incorrecto" data-success="Correcto" for="defaultForm-email">Tu Correo</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type="password" id="defaultForm-pass" class="form-control validate">
+                    <label data-error="Incorrecto" data-success="Correcto" for="defaultForm-pass">Tu contraseña</label>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                
+                <div class="row">
+                <button class="btn btn-sm btn-danger col-md-12">Iniciar Sesíon</button>
+                        <!--Grid column-->
+                        <div class="col-md-12">
+                            <p class="font-small  d-flex justify-content-end">¿No tienes una cuenta?  <a href="#" class="green-text ml-1 font-weight-bold"> Regístrate</a></p>
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
     <script type="text/javascript">
@@ -222,18 +263,22 @@ UNI-DEPEC</title>
         new WOW().init();
     </script>
     <script>
-        $(function () {
+      $(document).ready(function() {
+          
             $('[data-toggle="popover"]').popover();
-
-        });
-      
-      
-        $(function() {
-   
 
             $('.next-cursos').click(function(){ $('#carousel-cursos').carousel('next');return false; });
             $('.prev-cursos').click(function(){ $('#carousel-cursos').carousel('prev');return false; });
-    
+
+            $('#buttonsearch').click(function(){
+               
+                var search = $( "#searchinput").val();
+                if( search.length > 0){
+                    window.location.replace("../search/"+search);
+                }
+            });
+            
+            $('.mdb-select').materialSelect();
         });
     </script>
 
