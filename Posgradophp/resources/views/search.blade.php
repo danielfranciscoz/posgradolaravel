@@ -62,25 +62,46 @@
 
 
                     </div>
-
+                    
                     <div class="card col-12">
 
-<!-- Card content -->
-<div class="card-body row">
-    <div class="col-4 " >
-    <img src="https://udemy-images.udemy.com/course/240x135/120058_cdc5_7.jpg" class="img-responsive"/>
-    </div>
-    <div class="col-8">
-        <h4>Cisco CCNA 200-125 </h4>
-        <p>74 Clases - 14 Horas - Principiante</p> 
-        <span>
-        <span>Aprende sobre <strong>redes</strong> con equipos Cisco de forma fácil. Curso CCNA 200-125</span></span> 
-    </div>
+                    <!-- Card content -->
+                                        <div class="card-body row">
+                                            <div class="col-4 " >
+                                            <img src="https://udemy-images.udemy.com/course/240x135/120058_cdc5_7.jpg" class="img-responsive"/>
+                                            </div>
+                                            <div class="col-8">
+                                                <h4>Cisco CCNA 200-125 </h4>
+                                                <p>74 Clases - 14 Horas - Principiante</p> 
+                                                <span>
+                                                <span>Aprende sobre <strong>redes</strong> con equipos Cisco de forma fácil. Curso CCNA 200-125</span></span> 
+                                            </div>
 
-</div>
+                                </div>
 
 
-</div>
+                    </div>
+
+                    <div class="col-12">
+                   </br>
+                    <div class="d-flex justify-content-center">
+                        <nav aria-label="Page navigation container">
+                                <ul class="pagination pg-blue">
+                                    <li class="page-item disabled">
+                                    <a class="page-link" tabindex="-1">Anterior</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link">1</a></li>
+                                    <li class="page-item active">
+                                    <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link">3</a></li>
+                                    <li class="page-item">
+                                    <a class="page-link">Siguiente</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                    </div>
+                    </div>
                 </div>
 
                 </div>
@@ -89,6 +110,10 @@
                
 
                 </div>
+                
+
+
+                    
 
     </div>
 </main>
