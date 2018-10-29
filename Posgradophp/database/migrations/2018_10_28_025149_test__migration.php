@@ -13,17 +13,17 @@ class TestMigration extends Migration
      */
     public function up()
     {
-        schema::create('cursos',function(Blueprint $table){
-        $table->increments('IdCurso');
-        $table->string('NombreCurso');
-        $table->string('Image_URL');
-        $table->string('Descripcion');
-        $table->integer('HorasClase');
-        $table->enum('Nivel',['Principiante','Intermedio','Avanzado']);
-        $table->timestamps(); //Agrega automaticamente fecha de creacion y actualizacion
-        $table->softDeletes(); //Agrega automaticamente fecha de eliminacion de la fila
-        $table->charset = 'utf8';
-        $table->collation = 'utf8_unicode_ci';
+        schema::create('cursos', function (Blueprint $table) {
+            $table->increments('IdCurso');
+            $table->string('NombreCurso');
+            $table->string('Image_URL');
+            $table->string('Descripcion');
+            $table->integer('HorasClase');
+            $table->enum('Nivel', ['Principiante','Intermedio','Avanzado']);
+            $table->timestamps(); //Agrega automaticamente fecha de creacion y actualizacion
+            $table->softDeletes(); //Agrega automaticamente fecha de eliminacion de la fila
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';            
         });
     }
 
@@ -36,5 +36,6 @@ class TestMigration extends Migration
     {
         //Siempre que se cree una tabla, tambien se debe crear su forma de eliminacion para el rollback
         schema::dropIfExists('Cursos');
+   
     }
 }
