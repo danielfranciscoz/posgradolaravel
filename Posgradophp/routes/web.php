@@ -17,3 +17,8 @@ Route::get('/{curso}','CursosController@search');
 // Route::get('/prueba',function(){
 // return "Esta es una ruta de prueba 2";
 // });
+
+
+Route::get('/search/{ss}', 'SearchController@search');
+
+Route::get('/account/registro', 'AccountController@registro');
