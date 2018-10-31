@@ -78,9 +78,9 @@ UNI-DEPEC</title>
           </div>
         </div>
        
-   <a class="nav-item nav-link waves-light waves-effect" style="min-width: 70px" ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
+   <a id="carrito" class="nav-item nav-link waves-light waves-effect" style="min-width: 70px" class="btn btn-primary"  ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
     <button type="button" class="btn btn-sm text-white  waves-effect " style="min-width: 150px; background: #424242" data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
-     <button type="button" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
+     <button type="button" onclick="window.location.href='../account/registro'" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
   </div>
   <!-- Collapsible content -->
 
@@ -173,7 +173,7 @@ UNI-DEPEC</title>
                     <h5 class="mb-1">Registrarse es gratis</h5>
                 </li>
                 <li class="list-inline-item">
-                    <a href="#!" class="btn btn-danger btn-rounded">Registrate!</a>
+                    <a href="../account/registro" class="btn btn-danger btn-rounded">Registrate!</a>
                 </li>
             </ul>
             <!-- Call to action -->
@@ -182,13 +182,13 @@ UNI-DEPEC</title>
 
             <!-- Social buttons -->
             <ul class="list-unstyled list-inline text-center">
-                <li class="list-inline-item">
-                    <a class="btn-floating btn-fb mx-1">
+                <li class="list-inline-item" >
+                    <a class="btn-floating btn-fb mx-1" href="https://www.facebook.com/UNI.Direccion.Posgrados">
                         <i class="fa fa-facebook"> </i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-tw mx-1">
+                    <a class="btn-floating btn-tw mx-1" href="https://twitter.com/UNI_POSGRADO">
                         <i class="fa fa-twitter"> </i>
                     </a>
                 </li>
@@ -217,7 +217,7 @@ UNI-DEPEC</title>
   
    <!-- Modals -->
    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h5 class="modal-title w-100 font-weight-bold">¡Inicia sesión en tu cuenta de posgrado! </h5>
@@ -228,7 +228,7 @@ UNI-DEPEC</title>
             <div class="modal-body mx-3">
                 <div class="md-form mb-5">
                     <i class="fa fa-envelope prefix grey-text"></i>
-                    <input type="email" id="defaultForm-email" class="form-control validate">
+                    <input type="email" id="defaultForm-email" class="form-control validate" >
                     <label data-error="Incorrecto" data-success="Correcto" for="defaultForm-email">Tu Correo</label>
                 </div>
 
@@ -241,11 +241,11 @@ UNI-DEPEC</title>
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 
-                <div class="row">
-                <button class="btn btn-sm btn-danger col-md-12">Iniciar Sesíon</button>
+                <div class="row d-flex justify-content-center">
+                <button class="btn btn-sm btn-primary ">Iniciar Sesíon</button>
                         <!--Grid column-->
                         <div class="col-md-12">
-                            <p class="font-small  d-flex justify-content-end">¿No tienes una cuenta?  <a href="#" class="green-text ml-1 font-weight-bold"> Regístrate</a></p>
+                            <p class="font-small  d-flex justify-content-center">¿No tienes una cuenta?  <a href="../account/registro" class="green-text ml-1 font-weight-bold"> Regístrate</a></p>
                         </div>
                         <!--Grid column-->
 
@@ -266,6 +266,8 @@ UNI-DEPEC</title>
       $(document).ready(function() {
           
             $('[data-toggle="popover"]').popover();
+            
+            $("#carrito").popover({ title: 'Carrito de Compras',content:'Tu cesta esta Vacia',trigger: 'hover focus',placement : 'bottom' });
 
             $('.next-cursos').click(function(){ $('#carousel-cursos').carousel('next');return false; });
             $('.prev-cursos').click(function(){ $('#carousel-cursos').carousel('prev');return false; });

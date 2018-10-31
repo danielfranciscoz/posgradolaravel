@@ -4,13 +4,13 @@
 @extends('layout.app')
 @section('title', 'Inicio')
 @section('content')
-<main>
-    <div class="container">
+<main class="grey lighten-4">
+    <div class="container" >
     <section class="mt-5 wow fadeIn">
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
-                <div class="col-md-9 mb-9 d-flex align-items-center ">
+                <div class="col-md-9 mb-9 d-flex align-items-center  ">
                 <div class="row">
                 <h5 class="col-12">22 resultados para  <strong> {{$busquedas}}</strong></h5>
                 <div class="col-12">

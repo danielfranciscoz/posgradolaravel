@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class searchController extends Controller
 {
     public function search($ss){
-        return view("search")->with('busquedas', $ss);;
+        return view("search/search")->with('busquedas', $ss);;
 
 
     }
