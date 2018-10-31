@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'CursosController@index');
 
-Route::get('/prueba',function(){
-return "Esta es una ruta de prueba 2";
-});
+Route::get('/{curso}','CursosController@search');
+// Route::get('/prueba',function(){
+// return "Esta es una ruta de prueba 2";
+// });

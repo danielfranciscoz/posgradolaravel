@@ -14,16 +14,38 @@ class TestMigration extends Migration
     public function up()
     {
         schema::create('cursos', function (Blueprint $table) {
-            $table->increments('IdCurso');
+            $table->increments('id');
             $table->string('NombreCurso');
             $table->string('Image_URL');
             $table->string('Descripcion');
             $table->integer('HorasClase');
-            $table->enum('Nivel', ['Principiante','Intermedio','Avanzado']);
+            $table->string('Nivel');
             $table->timestamps(); //Agrega automaticamente fecha de creacion y actualizacion
             $table->softDeletes(); //Agrega automaticamente fecha de eliminacion de la fila
+           
             $table->charset = 'utf8';
-            $table->collation = 'utf8_unicode_ci';            
+            $table->collation = 'utf8_unicode_ci';
+        });
+
+        schema::create('etiquetas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('Etiqueta');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
+        });
+
+        schema::create('curso_etiqueta',function(Blueprint $table){
+            $table->increments('id');
+            $table->unsignedInteger('curso_id'); //Para la relacion, no funciona si le pongo Integer, tiene que ser unsignedInteger porque el atributo de la otra tabla es auto incrementable
+            $table->unsignedInteger('etiqueta_id');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->foreign('etiqueta_id')->references('id')->on('etiquetas');
         });
     }
 
@@ -34,8 +56,14 @@ class TestMigration extends Migration
      */
     public function down()
     {
+        //Para eliminar la tabla primero se deben eliminar sus relaciones
+        schema::table('curso_etiqueta',function(Blueprint $table){
+            $table->dropForeign(['curso_id','etiqueta_id']);
+        });
+
         //Siempre que se cree una tabla, tambien se debe crear su forma de eliminacion para el rollback
-        schema::dropIfExists('Cursos');
-   
+        schema::dropIfExists('cursos');
+        schema::dropIfExists('etiquetas');
+        schema::dropIfExists('curso_etiqueta');
     }
 }

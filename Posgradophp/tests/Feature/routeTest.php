@@ -18,11 +18,16 @@ class routeTest extends TestCase
         $this->assertTrue(true);
     }
 
-    //Estoy ejecutando una prueba a la ruta especificada
-    public function testRoute(){
-        $this->get('/prueba')
-        ->assertStatus(200)
-        //La ruta retorna el texto: "Esta es una ruta de prueba 2"
-        ->assertSee('sta es una ruta de prueba'); //esta linea verifica que la ruta contenga el texto que estoy especificando
+    public function testIndex(){
+        $this->get('/')
+        ->assertStatus(200); //Comprueba que la pagina se cargue correctamente
     }   
+
+    //Estoy ejecutando una prueba a la ruta especificada
+    // public function testRoute(){
+    //     $this->get('/prueba')
+    //     ->assertStatus(200)
+    //     //La ruta retorna el texto: "Esta es una ruta de prueba 2"
+    //     ->assertSee('sta es una ruta de prueba'); //esta linea verifica que la ruta contenga el texto que estoy especificando
+    // }   
 }
