@@ -4,7 +4,7 @@
 @extends('layout.app')
 @section('title', 'Inicio')
 @section('content')
-{{$data}}
+
    <!-- <img src="https://www.posgrado.uni.edu.ni/wp-content/uploads/2018/06/docentes.jpg" class="img-fluid"/> -->
    <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
         <!--Indicators-->
