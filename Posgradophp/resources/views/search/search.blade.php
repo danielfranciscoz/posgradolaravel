@@ -2,9 +2,9 @@
 
 
 @extends('layout.app')
-@section('title', 'Inicio')
+@section('title', 'Buscando '.$busquedas)
 @section('content')
-<main class="grey lighten-4">
+<main >
     <div class="container" >
     <section class="mt-5 wow fadeIn">
             <!--Grid row-->
