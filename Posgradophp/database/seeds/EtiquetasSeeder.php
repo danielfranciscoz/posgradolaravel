@@ -17,5 +17,6 @@ class EtiquetasSeeder extends Seeder
         Etiqueta::create(['Etiqueta'=>'Desarrollo']);
         Etiqueta::create(['Etiqueta'=>'Desktop']);
         Etiqueta::create(['Etiqueta'=>'Escritorio']);
+
     }
 }

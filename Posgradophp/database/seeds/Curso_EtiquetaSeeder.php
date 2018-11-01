@@ -22,6 +22,14 @@ class Curso_EtiquetaSeeder extends Seeder
         $cursos = [1,2];
         $etiqueta->cursos()
         ->attach($cursos);
+
+        $curso = Curso::find(3);
+        $etiquetas = [1,4];
+        $curso->etiquetas()->attach($etiquetas);
+        
+        $curso = Curso::find(4);
+        $etiquetas = [2,3,4];
+        $curso->etiquetas()->attach($etiquetas);
         
         
     }

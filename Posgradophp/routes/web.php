@@ -11,12 +11,17 @@
 |
 */
 
-Route::get('/', 'CursosController@index');
-// Route::get('/',function(){
-//     return view("welcome");
-// });
+Route::get('/', 'CursosController@index')
+->name('cursos.index');
 
-Route::get('/{curso}','CursosController@search');
+Route::get('/Cursos', function(){
+    redirect()->route('cursos.index');
+});
+
+
+Route::get('cursos/{curso}','CursosController@search')
+->name('cursos.search');
+
 // Route::get('/prueba',function(){
 // return "Esta es una ruta de prueba 2";
 // });
