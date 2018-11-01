@@ -9,7 +9,7 @@ class CursosController extends Controller
 {
     public function index()
     {
-        $data = Curso::paginate(5);
+        $data = Curso::orderBy('created_at','DESC')->take(10)->get();
         // dd($data);
         
         //  $data = Etiqueta::all();
@@ -31,7 +31,7 @@ class CursosController extends Controller
         $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($data) {
              $sql->WhereIn('Etiqueta', $data);
         });
-      $cursos=  $cursos->paginate(2);
+      $cursos=  $cursos->paginate(5);
            //dd($cursos);
         return view("search/search",compact('cursos'),compact('search_value'));
     }
