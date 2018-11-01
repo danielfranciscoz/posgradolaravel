@@ -90,7 +90,7 @@
                     </video>-->
 
                     <!-- Carousel content -->
-                    <div class="full-bg-img flex-center mask rgba-blue-light white-text">
+                    <div class="full-bg-img flex-center mask rgba-blue-light white-text">                  
                       <ul class="animated fadeInUp col-md-12 list-unstyled">
                         <li>
                           <h1 class="font-weight-bold text-uppercase">Visit our support forum</h1></li>

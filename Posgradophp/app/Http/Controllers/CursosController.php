@@ -14,7 +14,7 @@ class CursosController extends Controller
         
         //  $data = Etiqueta::all();
         // dd($data->find(4)->cursos()->get());
-// dd(json_encode($data));
+//dd(json_encode($data));
 // ['data',json_encode($data)]
 
         return view('welcome',compact('data'));    
