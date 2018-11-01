@@ -9,7 +9,7 @@ class CursosController extends Controller
 {
     public function index(){
         
-         $data = Curso::all();
+         $data = Curso::paginate(5);
         // dd($data);
         
         //  $data = Etiqueta::all();

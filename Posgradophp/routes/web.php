@@ -11,10 +11,10 @@
 |
 */
 
-//Route::get('/', 'CursosController@index');
-Route::get('/',function(){
-    return view("welcome");
-});
+Route::get('/', 'CursosController@index');
+// Route::get('/',function(){
+//     return view("welcome");
+// });
 
 Route::get('/{curso}','CursosController@search');
 // Route::get('/prueba',function(){

@@ -30,7 +30,7 @@
                         <!-- Card content -->
                         <div class="card-body row">
                             <div class="col-4 " >
-                            <img src="https://udemy-images.udemy.com/course/240x135/120058_cdc5_7.jpg" class="img-responsive"/>
+                            <img src="/img/Resources/test_img_0.png" class="img-responsive"/>
                             </div>
                             <div class="col-8">
                                 <h4>Cisco CCNA 200-125 </h4>
@@ -49,7 +49,7 @@
                         <!-- Card content -->
                         <div class="card-body row">
                             <div class="col-4 " >
-                            <img src="https://udemy-images.udemy.com/course/240x135/120058_cdc5_7.jpg" class="img-responsive"/>
+                            <img src="/img/Resources/test_img_1.png" class="img-responsive"/>
                             </div>
                             <div class="col-8">
                                 <h4>Cisco CCNA 200-125 </h4>
@@ -68,7 +68,7 @@
                     <!-- Card content -->
                                         <div class="card-body row">
                                             <div class="col-4 " >
-                                            <img src="https://udemy-images.udemy.com/course/240x135/120058_cdc5_7.jpg" class="img-responsive"/>
+                                            <img src="/img/Resources/test_img_2.png" class="img-responsive"/>
                                             </div>
                                             <div class="col-8">
                                                 <h4>Cisco CCNA 200-125 </h4>
