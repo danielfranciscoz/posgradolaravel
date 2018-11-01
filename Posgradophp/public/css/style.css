@@ -76,3 +76,13 @@ body,
 	font-size: 15px;
 }
 
+@media (max-width:576px) {
+    .w-sm-100 {width: 100% !important;}
+     .w-sm-80 {width: 80% !important;}
+      .w-sm-75 {width: 75% !important;} 
+      .w-sm-60 {width: 60% !important;} 
+      .w-sm-50 {width: 50% !important;} 
+      .w-sm-40 {width: 40% !important;}
+       .w-sm-25 {width: 25% !important;}
+        .w-sm-20 {width: 20% !important;} 
+   }

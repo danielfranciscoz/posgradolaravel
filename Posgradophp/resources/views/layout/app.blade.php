@@ -80,10 +80,11 @@ UNI-DEPEC</title>
             <span class="input-group-text btn-primary waves-effect " id="buttonsearch"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>
-       
-   <a id="carrito" class="nav-item nav-link waves-light waves-effect" style="min-width: 70px" class="btn btn-primary"  ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
-    <button type="button" class="btn btn-sm text-white  waves-effect " style="min-width: 150px; background: #424242" data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
-     <button type="button" onclick="window.location.href='../account/registro'" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
+        
+            <a id="carrito" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100" style="min-width: 70px; " class="btn btn-primary"  ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
+            <button type="button" class="btn btn-sm text-white  waves-effect " style="min-width: 150px; background: #424242" data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
+            <button type="button" onclick="window.location.href='../account/registro'" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
+        
   </div>
   <!-- Collapsible content -->
 
@@ -176,7 +177,7 @@ UNI-DEPEC</title>
                     <h5 class="mb-1">Registrarse es gratis</h5>
                 </li>
                 <li class="list-inline-item">
-                    <a href="../account/registro" class="btn btn-danger btn-rounded">Registrate!</a>
+                    <a href="{{route('registro')}}" class="btn btn-danger btn-rounded">Registrate!</a>
                 </li>
             </ul>
             <!-- Call to action -->
@@ -240,7 +241,7 @@ UNI-DEPEC</title>
                
                 var search = $( "#searchinput").val();
                 if( search.length > 0){
-                    window.location.replace("../search/"+search);
+                    window.location.replace("../cursos/"+search);
                 }
             });
             

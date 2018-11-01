@@ -2,7 +2,7 @@
 
 
 @extends('layout.app')
-@section('title', 'Buscando '.$busquedas)
+@section('title', 'Buscando ')
 @section('content')
 <main >
     <div class="container" >
@@ -12,7 +12,7 @@
                 <!--Grid column-->
                 <div class="col-md-9 mb-9 d-flex align-items-center  ">
                 <div class="row">
-                <h5 class="col-12">22 resultados para  <strong> {{$data->$Etiqueta}}</strong></h5>
+                <h5 class="col-12">22 resultados para  <strong> </strong></h5>
                 <div class="col-12">
                 <label>Ordenar por: </label>
                 <select class="mdb-select md-form colorful-select dropdown-primary">
