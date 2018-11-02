@@ -20,19 +20,19 @@ class CursosController extends Controller
         return view('welcome', compact('data'));
     }
 
-    public function search($value)
+    public function search($search_value)
     {
  
         // divide la frase mediante cualquier número de comas o caracteres de espacio,
         // lo que incluye " ", \r, \t, \n y \f
         
-        $data = preg_split("/[\s,]+/", $value);
+        $data = preg_split("/[\s,]+/", $search_value);
         
-        $data = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($data) {
-            $sql->WhereIn('Etiqueta', $data);
-        })
-        ->get()->toArray();
-
-        return view("search/search",compact('data'));
+        $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($data) {
+             $sql->WhereIn('Etiqueta', $data);
+        });
+      $cursos=  $cursos->paginate(2);
+           //dd($cursos);
+        return view("search/search",compact('cursos'),compact('search_value'));
     }
 }

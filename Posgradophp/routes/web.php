@@ -14,7 +14,7 @@
 Route::get('/', 'CursosController@index')
 ->name('cursos.index');
 
-Route::get('/Cursos', function(){
+Route::get('/cursos', function(){
     redirect()->route('cursos.index');
 });
 

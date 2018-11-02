@@ -27,7 +27,7 @@ UNI-DEPEC</title>
   <nav class="navbar navbar-expand-lg navbar-light white lighten-5 h-auto" >
 
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">Posgrado</a>
+  <a class="navbar-brand" href="{{route('cursos.index')}}">Posgrado</a>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -83,7 +83,7 @@ UNI-DEPEC</title>
         
             <a id="carrito" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100" style="min-width: 70px; " class="btn btn-primary"  ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
             <button type="button" class="btn btn-sm text-white  waves-effect " style="min-width: 150px; background: #424242" data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
-            <button type="button" onclick="window.location.href='../account/registro'" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
+            <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect " style="min-width: 150px">Registrate</button>
         
   </div>
   <!-- Collapsible content -->
