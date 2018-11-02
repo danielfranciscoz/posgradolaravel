@@ -20,6 +20,10 @@ class Curso extends Model
             // ,'etiqueta_id' //Llave foranea de curso_etiqueta
             // ,'id' //Llave primaria de la tabla curso_etiqueta 
             // ,'id' //Llave primaria de Etiqueta
-        )->withTimestamps();
+        )->withTimestamps();        
+    }
+
+    public function categoria(){
+        return $this->belongsTo(Categoria::Class);
     }
 }

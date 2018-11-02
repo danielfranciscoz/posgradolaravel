@@ -18,8 +18,8 @@ Route::get('/cursos', function(){
     redirect()->route('cursos.index');
 });
 
-Route::get('categories/{categoria}','CursosController@categories')
-->name('cursos.search');
+Route::get('categorias/{categoria}','CursosController@categories')
+->name('cursos.categorias');
 
 
 Route::get('cursos/{curso}','CursosController@search')
@@ -30,7 +30,7 @@ Route::get('cursos/{curso}','CursosController@search')
 // });
 
 
-Route::get('/search/{ss}', 'SearchController@search');
+// Route::get('/search/{ss}', 'SearchController@search');
 
 Route::get('/account/registro', 'AccountController@registro')
 ->name('registro');

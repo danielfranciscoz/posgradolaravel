@@ -12,7 +12,7 @@ class CursosController extends Controller
     {
         $data = Curso::orderBy('created_at','DESC')->take(10)->get();
         $categorias = Categoria::all();
-        // dd($data);
+        //dd($data->first()->categoria()->get());
         
         //  $data = Etiqueta::all();
         // dd($data->find(4)->cursos()->get());
@@ -26,24 +26,31 @@ class CursosController extends Controller
     { 
         // divide la frase mediante cualquier número de comas o caracteres de espacio,
         // lo que incluye " ", \r, \t, \n y \f
-      
         $data = preg_split("/[\s,]+/", $search_value);      
         $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($data) {
-             $sql->WhereIn('Etiqueta', $data);
+            $sql->WhereIn('Etiqueta', $data);
         });
-      $cursos=  $cursos->paginate(5);
-           //dd($cursos);
-        return view("search/search",compact('cursos'),compact('search_value'));
+        $cursos=  $cursos->paginate(5);
+        //dd($cursos);
+        $categorias = Categoria::all();
+        
+        return view("cursos.search",compact('categorias'))
+        ->with('search_value',$search_value)
+        ->with('cursos',$cursos);
     }
+
     public function categories($categoria)
     { 
-        
-        $data = preg_split("/[\s,]+/", $search_value);      
-        $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($data) {
-             $sql->WhereIn('Etiqueta', $data);
+
+        $cursos = Curso::with('categoria')->wherehas('categoria', function ($sql) use ($categoria) {
+             $sql->Where('Categoria', $categoria);
         });
-      $cursos=  $cursos->paginate(5);
-           //dd($cursos);
-        return view("search/search",compact('cursos'),compact('search_value'));
+        
+        $categorias = Categoria::all();
+      $cursos=  $cursos->paginate(10);
+        //    dd($cursos);
+        return view("cursos.cursoscategoria",compact('categorias'))
+        ->with('categoria',$categoria)
+        ->with('cursos',$cursos);
     }
 }
