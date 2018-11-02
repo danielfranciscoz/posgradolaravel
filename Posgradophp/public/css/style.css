@@ -86,3 +86,29 @@ body,
        .w-sm-25 {width: 25% !important;}
         .w-sm-20 {width: 20% !important;} 
    }
+
+
+   .text-carrousel-cursos{
+    color: rgb(41, 48, 59);
+    font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 27.9333px;
+   }
+
+   .btn-circle {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.42;
+    -webkit-border-radius: 50%;
+    border-radius: 50%; 
+    margin-bottom: 2px;
+  }
+
+  .center-ico-button {
+    margin-top: 8px
+    
+  }

@@ -96,7 +96,13 @@ UNI-DEPEC</title>
 
     
             @yield('content')
-   
+
+            
+      <!--   <div class="fixed-action-btn smooth-scroll" style="bottom: 45px; right: 24px;">
+            <a href="#top-section" class="btn-floating btn-large red">
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </div> -->
 
     <footer class="page-footer font-small stylish-color-dark pt-4 wow fadeIn    ">
 
@@ -214,6 +220,8 @@ UNI-DEPEC</title>
                 Dirección De Estudios de Posgrado y Educación Continua ©
 
             </div>
+
+            
             <!-- Copyright -->
 
     </footer>
