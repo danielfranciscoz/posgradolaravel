@@ -13,6 +13,14 @@ class TestMigration extends Migration
      */
     public function up()
     {
+
+        schema::create('categorias', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('Categoria');
+            $table->timestamps(); 
+            $table->softDeletes();
+        });
+
         schema::create('cursos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('NombreCurso');
@@ -20,9 +28,12 @@ class TestMigration extends Migration
             $table->string('Descripcion');
             $table->integer('HorasClase');
             $table->string('Nivel');
+            $table->unsignedInteger('categoria_id');
             $table->timestamps(); //Agrega automaticamente fecha de creacion y actualizacion
             $table->softDeletes(); //Agrega automaticamente fecha de eliminacion de la fila
-           
+            
+            $table->foreign('categoria_id')->references('id')->on('categorias');
+
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
         });
@@ -47,6 +58,8 @@ class TestMigration extends Migration
             $table->foreign('curso_id')->references('id')->on('cursos');
             $table->foreign('etiqueta_id')->references('id')->on('etiquetas');
         });
+
+
     }
 
     /**

@@ -19,6 +19,7 @@ class CursosSeeder extends Seeder
             'Descripcion'=>'Con este curso el estudiante podra realizar un sinnumero de estudios',
             'HorasClase'=>'6',
             'Nivel'=>'Principiante',
+            'categoria_id'=>'1'
             
         ]);
 
@@ -28,7 +29,7 @@ class CursosSeeder extends Seeder
             'Descripcion'=>'Esta es una descripcion de prueba',
             'HorasClase'=>'25',
             'Nivel'=>'Intermedio',
-            
+            'categoria_id'=>'1'
         ]);
         
         Curso::create([
@@ -37,7 +38,7 @@ class CursosSeeder extends Seeder
             'Descripcion'=>'Esta es una descripcion de prueba para el curso de laravel',
             'HorasClase'=>'12',
             'Nivel'=>'Avanzado',
-            
+            'categoria_id'=>'1'
         ]);
         
         Curso::create([
@@ -46,7 +47,7 @@ class CursosSeeder extends Seeder
             'Descripcion'=>'Angular, como el futuro de la web',
             'HorasClase'=>'38',
             'Nivel'=>'Avanzado',
-            
+            'categoria_id'=>'2'
         ]);
         
         Curso::create([
@@ -55,7 +56,7 @@ class CursosSeeder extends Seeder
             'Descripcion'=>'Implementacion de nuevas tecnologias TIC para impartir clases',
             'HorasClase'=>'12',
             'Nivel'=>'Intermedio',
-            
+            'categoria_id'=>'1'
         ]);
         
         Curso::create([
@@ -64,7 +65,7 @@ class CursosSeeder extends Seeder
             'Descripcion'=>'Esta es una descripcion de prueba',
             'HorasClase'=>'18',
             'Nivel'=>'Principiante',
-            
+            'categoria_id'=>'2'
         ]);
         
         Curso::create([
@@ -73,7 +74,7 @@ class CursosSeeder extends Seeder
             'Descripcion'=>'Esta es una descripcion de prueba',
             'HorasClase'=>'50',
             'Nivel'=>'Avanzado',
-            
+            'categoria_id'=>'1'
         ]);
         
         Curso::create([
@@ -82,7 +83,7 @@ class CursosSeeder extends Seeder
             'Descripcion'=>'Esta es una descripcion de prueba',
             'HorasClase'=>'15',
             'Nivel'=>'Intermedio',
-            
+            'categoria_id'=>'2'
         ]);
         
         Curso::create([
@@ -91,7 +92,7 @@ class CursosSeeder extends Seeder
             'Descripcion'=>'Esta es una descripcion de prueba',
             'HorasClase'=>'10',
             'Nivel'=>'Avanzado',
-            
+            'categoria_id'=>'2'
         ]);
     }
 }

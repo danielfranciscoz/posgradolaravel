@@ -47,7 +47,10 @@ UNI-DEPEC</title>
          <div class="dropdown">
             
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                <li class="dropdown-item text-white"><a href="#"> <i class="fa fa-flask" aria-hidden="true"> </i> Quimica</a></li>
+               @foreach($categorias as $categoria)
+               <li class="dropdown-item"><a href="#">{{$categoria->Categoria}}</a></li>
+               @endforeach
+                <!-- <li class="dropdown-item text-white"><a href="#"> <i class="fa fa-flask" aria-hidden="true"> </i> Quimica</a></li>
                 <li class="dropdown-item"><a href="#">Some other action</a></li>
                 <li class="dropdown-divider"></li>
                 <li class="dropdown-submenu">
@@ -65,7 +68,7 @@ UNI-DEPEC</title>
                     <li class="dropdown-item"><a href="#">Second level</a></li>
                     <li class="dropdown-item"><a href="#">Second level</a></li>
                   </ul>
-                </li>
+                </li> -->
               </ul>
         </div>
       </li>

@@ -18,6 +18,9 @@ Route::get('/cursos', function(){
     redirect()->route('cursos.index');
 });
 
+Route::get('categories/{categoria}','CursosController@categories')
+->name('cursos.search');
+
 
 Route::get('cursos/{curso}','CursosController@search')
 ->name('cursos.search');
