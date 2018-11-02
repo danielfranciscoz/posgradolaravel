@@ -47,7 +47,7 @@ UNI-DEPEC</title>
          <div class="dropdown">
             
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-               @foreach($categorias as $categoria)
+               @foreach($categorias as $categoria) 
                <li class="dropdown-item"><a href="#">{{$categoria->Categoria}}</a></li>
                @endforeach
                 <!-- <li class="dropdown-item text-white"><a href="#"> <i class="fa fa-flask" aria-hidden="true"> </i> Quimica</a></li>
