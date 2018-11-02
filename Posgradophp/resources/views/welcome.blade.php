@@ -127,13 +127,13 @@
         <!--Section: Main info-->
         <section class="mt-5 wow fadeIn">
             <!--Grid row-->
-            <div class="row">
+            <div class="row grey lighten-4">
                 <!--Grid column-->
-                <div class="col-md-4 mb-4  d-flex align-items-center ">
+                <div class="col-md-4 mb-4  d-flex justify-content-center  align-items-center">
 
                  <div>  
-                                <p class="font-weight-bold">La selección de cursos más amplia del pais </p>                     
-                              <p> 
+                                <p class="font-weight-bold text-carrousel-cursos">La selección de cursos más amplia del pais </p>                     
+                              <p class="grey-text">  
                                 Elige entre más de 300 cursos con nuevo contenido cada mes
                               </p>
                              
@@ -146,26 +146,32 @@
                 <div class="col-md-8 mb-4">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="Desarrollo-tab" data-toggle="tab" href="#Desarrollo-panel" role="tab" aria-controls="Desarrollo" aria-selected="true">Desarrollo</a>
+                        <a class="nav-link grey-text active" id="Desarrollo-tab" data-toggle="tab" href="#Desarrollo-panel" role="tab" aria-controls="Desarrollo" aria-selected="true">Desarrollo</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="Diseño-tab" data-toggle="tab" href="#Diseño-panel" role="tab" aria-controls="Diseño" aria-selected="false">Diseño</a>
+                        <a class="nav-link grey-text" id="Diseño-tab" data-toggle="tab" href="#Diseño-panel" role="tab" aria-controls="Diseño" aria-selected="false">Diseño</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="Negocios-tab" data-toggle="tab" href="#Negocios-panel" role="tab" aria-controls="Negocios" aria-selected="false">Negocios</a>
+                      <li class="nav-item ">
+                        <a class="nav-link grey-text" id="Negocios-tab" data-toggle="tab" href="#Negocios-panel" role="tab" aria-controls="Negocios" aria-selected="false">Negocios</a>
                       </li>
-                       <li class="nav-item">
-                        <a class="nav-link" id="Informatica-tab" data-toggle="tab" href="#Informatica-panel" role="tab" aria-controls="Informatica" aria-selected="false">Informatica</a>
+                       <li class="nav-item ">
+                        <a class="nav-link grey-text" id="Informatica-tab" data-toggle="tab" href="#Informatica-panel" role="tab" aria-controls="Informatica" aria-selected="false">Informatica</a>
                       </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="Desarrollo-panel" role="tabpanel" aria-labelledby="home-tab">
                             <section class="carousel slide" data-ride="carousel" id="carousel-cursos">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 text-md-right lead">
-                                        <a class="btn btn-outline-primary prev-cursos" href="" title="Atras"><i class="fa fa-lg fa-chevron-left"></i></a>
-                                        <a class="btn btn-outline-primary  next-cursos" href="" title="Adelante"><i class="fa fa-lg fa-chevron-right"></i></a>
+                            <div class="container" style="position: absolute; z-index: 99998; margin-top:23%">
+                                <div class="d-flex " >
+                                    <div class="mr-auto" style="margin-left:-30" >
+                                            <a class="btn white btn-circle" href="#carousel-cursos" role="button" data-slide="prev">
+                                            <i class="fa fa-chevron-left center-ico-button grey-text " aria-hidden="true"></i>                                            
+                                        </a>
+                                    </div>
+                                    <div class="ml-auto " style="margin-right:-30">
+                                        <a class="btn white btn-circle" href="#carousel-cursos" role="button" data-slide="next">
+                                        <i class="fa fa-chevron-right center-ico-button grey-text" aria-hidden="true"></i> 
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -173,82 +179,116 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <div class="card-deck">
-                                        <div class="card h-100">
+                                        <div class="card h-100" >
                                             <div class="card-img-top card-img-top-250">
-                                                <img class="img-fluid" src="http://i.imgur.com/EW5FgJM.png" alt="Carousel 1">
+                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
                                              <div class="card-body pt-2" >
             <!--Title-->
                                                 <a
-                                                 class="card-title font-weight-bold">Node: De Cero a Experto
+                                                 class="card-title font-weight-bold" >Node: De Cero a Experto
                                                 </a> <br></br>
                                                 <!--Text-->
                                                 <p class="card-text">Anna Fernanda</p>
                                                 <hr>
                                                 <a class="card-meta"></a>
-                                                <p class="card-meta float-right"><strike> $2500 </strike>  <strong>$ 110 </strong></p>
+                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
                                               </div>
           <!--Card content-->
                                         </div>
-                                        <div class="card h-100">
+                                        <div class="card h-100" >
                                             <div class="card-img-top card-img-top-250">
-                                                <img class="img-fluid" src="http://i.imgur.com/Hw7sWGU.png" alt="Carousel 2">
+                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
-                                            <div class="card-body pt-2">
-                                                <h6 class="small text-wide p-b-2">Development</h6>
-                                                <h2>
-                                                    <a href="">How to Make Every Line Count.</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                        <div class="card h-100">
+                                             <div class="card-body pt-2" >
+            <!--Title-->
+                                                <a
+                                                 class="card-title font-weight-bold"  >Node: De Cero a Experto
+                                                </a> <br></br>
+                                                <!--Text-->
+                                                <p class="card-text">Anna Fernanda</p>
+                                                <hr>
+                                                <a class="card-meta"></a>
+                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
+                                              </div>
+          <!--Card content-->
+                                        </div> <div class="card h-100" >
                                             <div class="card-img-top card-img-top-250">
-                                                <img class="img-fluid" src="http://i.imgur.com/g27lAMl.png" alt="Carousel 3">
+                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
-                                            <div class="card-body pt-2">
-                                                <h6 class="small text-wide p-b-2">Design</h6>
-                                                <h2>
-                                                    <a href="">Responsive is Essential.</a>
-                                                </h2>
-                                            </div>
+                                             <div class="card-body pt-2" >
+            <!--Title-->
+                                                <a
+                                                 class="card-title font-weight-bold"  >Node: De Cero a Experto
+                                                </a> <br></br>
+                                                <!--Text-->
+                                                <p class="card-text">Anna Fernanda</p>
+                                                <hr>
+                                                <a class="card-meta"></a>
+                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
+                                              </div>
+          <!--Card content-->
                                         </div>
                                     </div>
                                     </div>
                                     <div class="carousel-item">
                                         <div class="card-deck">
-                                        <div class="card">
+                                        <div class="card h-100" >
                                             <div class="card-img-top card-img-top-250">
-                                                <img class="img-fluid" src="//visualhunt.com/photos/l/1/office-student-work-study.jpg" alt="Carousel 4">
+                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
-                                            <div class="card-body pt-2">
-                                                <h6 class="small text-wide p-b-2">Another</h6>
-                                                <h2>
-                                                    <a href="">Tagline or Call-to-action.</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                        <div class="card">
+                                             <div class="card-body pt-2" >
+            <!--Title-->
+                                                <a
+                                                 class="card-title font-weight-bold"  >Node: De Cero a Experto
+                                                </a> <br></br>
+                                                <!--Text-->
+                                                <p class="card-text">Anna Fernanda</p>
+                                                <hr>
+                                                <a class="card-meta"></a>
+                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
+                                              </div>
+          <!--Card content-->
+                                        </div> 
+                                        <div class="card h-100" >
                                             <div class="card-img-top card-img-top-250">
-                                                <img class="img-fluid" src="//visualhunt.com/photos/l/1/working-woman-technology-computer.jpg" alt="Carousel 5">
+                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
-                                            <div class="card-body pt-2">
-                                                <h6 class="small text-wide p-b-2"><span class="pull-xs-right">12.04</span> Category 1</h6>
-                                                <h2>
-                                                    <a href="">This is a Blog Title.</a>
-                                                </h2>
-                                            </div>
+                                             <div class="card-body pt-2" >
+            <!--Title-->
+                                                <a
+                                                 class="card-title font-weight-bold" >Node: De Cero a Experto
+                                                </a> <br></br>
+                                                <!--Text-->
+                                                <p class="card-text">Anna Fernanda</p>
+                                                <hr>
+                                                <a class="card-meta"></a>
+                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
+                                              </div>
+          <!--Card content-->                   
+          
                                         </div>
-                                        <div class="card">
+
+                                        <div class="card h-100" >
                                             <div class="card-img-top card-img-top-250">
-                                                <img class="img-fluid" src="//visualhunt.com/photos/l/1/people-office-team-collaboration.jpg" alt="Carousel 6">
+                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
-                                            <div class="card-body pt-2">
-                                                <h6 class="small text-wide p-b-2">Category 3</h6>
-                                                <h2>
-                                                    <a href="">Catchy Title of a Blog Post.</a>
-                                                </h2>
-                                            </div>
+                                             <div class="card-body pt-2" >
+            <!--Title-->
+                                                <a
+                                                 class="card-title font-weight-bold"  >Node: De Cero a Experto
+                                                </a> <br></br>
+                                                <!--Text-->
+                                                <p class="card-text">Msc.Anna Fernanda</p>                                               
+                                                <hr>
+                                                <a class="card-meta"></a>
+                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
+                                              </div>
+          <!--Card content-->                   
+          
                                         </div>
+
+                                        
                                     </div>
                                     </div>
                                 </div>
@@ -615,3 +655,6 @@
 </main>
 @endsection
 
+<script>
+$('.carousel-example-2').carousel()
+    </script>
