@@ -12,13 +12,13 @@ class CategoriasSeeder extends Seeder
      */
     public function run()
     {
-        Categoria::create(['Categoria'=>'Desarrollador Web']);
-        Categoria::create(['Categoria'=>'Inteligencia de Negocios']);
-        Categoria::create(['Categoria'=>'Arte y Diseño']);
-        Categoria::create(['Categoria'=>'Medicina']);
-        Categoria::create(['Categoria'=>'Proyectos varios']);
-        Categoria::create(['Categoria'=>'Desarrollador Full Stack']);
-        Categoria::create(['Categoria'=>'Docente']);
-        Categoria::create(['Categoria'=>'Finanzas']);
+        Categoria::create(['Categoria'=>'Desarrollador Web', 'Image_URL'=>'/img/Resources/cat0.png','Descripcion'=>'La descripcion es de prueba']);
+        Categoria::create(['Categoria'=>'Inteligencia de Negocios', 'Image_URL'=>'/img/Resources/cat1.png','Descripcion'=>'Probando']);
+        Categoria::create(['Categoria'=>'Arte y Diseño', 'Image_URL'=>'/img/Resources/cat2.png','Descripcion'=>'Texto que se muestra en la categoria']);
+        Categoria::create(['Categoria'=>'Medicina', 'Image_URL'=>'/img/Resources/cat3.png','Descripcion'=>'Informacion y mas']);
+        Categoria::create(['Categoria'=>'Proyectos varios' , 'Image_URL'=>'/img/Resources/cat4.png','Descripcion'=>'Terminos a ver en la descripcion']);
+        Categoria::create(['Categoria'=>'Desarrollador Full Stack', 'Image_URL'=>'/img/Resources/cat5.png','Descripcion'=>'No seguir viendo mas']);
+        Categoria::create(['Categoria'=>'Docente' , 'Image_URL'=>'/img/Resources/cat6.png','Descripcion'=>'Ultima de las descripciones de prueba']);
+        Categoria::create(['Categoria'=>'Finanzas', 'Image_URL'=>'/img/Resources/cat7.png','Descripcion'=>'Aqui no hay texto, SI LO HAY']);
     }
 }

@@ -17,6 +17,8 @@ class TestMigration extends Migration
         schema::create('categorias', function(Blueprint $table){
             $table->increments('id');
             $table->string('Categoria');
+            $table->string('Image_URL');     
+            $table->string('Descripcion');       
             $table->timestamps(); 
             $table->softDeletes();
         });
