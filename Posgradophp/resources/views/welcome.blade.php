@@ -125,38 +125,44 @@
 <main>
     <div class="container">
         <!--Section: Main info-->
-        <section class="mt-5 wow fadeIn">
-            <!--Grid row-->
+       <!--  <section class="mt-5 wow fadeIn">
+           
             <div class="row grey lighten-4">
-                <!--Grid column-->
+               
                 <div class="col-md-4 mb-4  d-flex justify-content-center  align-items-center">
 
                  <div>  
                                 <p class="font-weight-bold text-carrousel-cursos">La selección de cursos más amplia del pais </p>                     
                               <p class="grey-text">  
                                 Elige entre más de 300 cursos con nuevo contenido cada mes
+
+                               
+
                               </p>
                              
                 </div>
 
                     
                 </div>
-                <!--Grid column-->
-                <!--Grid column-->
+              
                 <div class="col-md-8 mb-4">
+                
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                      <li class="nav-item">
-                        <a class="nav-link grey-text active" id="Desarrollo-tab" data-toggle="tab" href="#Desarrollo-panel" role="tab" aria-controls="Desarrollo" aria-selected="true">Desarrollo</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link grey-text" id="Diseño-tab" data-toggle="tab" href="#Diseño-panel" role="tab" aria-controls="Diseño" aria-selected="false">Diseño</a>
-                      </li>
-                      <li class="nav-item ">
-                        <a class="nav-link grey-text" id="Negocios-tab" data-toggle="tab" href="#Negocios-panel" role="tab" aria-controls="Negocios" aria-selected="false">Negocios</a>
-                      </li>
-                       <li class="nav-item ">
-                        <a class="nav-link grey-text" id="Informatica-tab" data-toggle="tab" href="#Informatica-panel" role="tab" aria-controls="Informatica" aria-selected="false">Informatica</a>
-                      </li>
+                    @for ($i = 0; $i < count($categorias); $i++)
+                        @if ($i === 0)
+                        <li class="nav-item">
+                            <a class="nav-link grey-text active" id="{{$categorias[$i]['Categoria']}}-tab" data-toggle="tab" href="#{{$categorias[$i]['Categoria']}}-panel" role="tab" aria-controls="{{$categorias[$i]['Categoria']}}" aria-selected="true">{{$categorias[$i]['Categoria']}}</a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link grey-text" id="{{$categorias[$i]['Categoria']}}-tab" data-toggle="tab" href="#{{$categorias[$i]['Categoria']}}-panel" role="tab" aria-controls="{{$categorias[$i]['Categoria']}}" aria-selected="true">{{$categorias[$i]['Categoria']}}</a>
+                        </li>
+                        @endif
+                       
+                                    
+                      @endfor
+                      
+                     
                     </ul>
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="Desarrollo-panel" role="tabpanel" aria-labelledby="home-tab">
@@ -184,50 +190,50 @@
                                                 <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
                                              <div class="card-body pt-2" >
-            <!--Title-->
+          
                                                 <a
                                                  class="card-title font-weight-bold" >Node: De Cero a Experto
                                                 </a> <br></br>
-                                                <!--Text-->
+                                                
                                                 <p class="card-text">Anna Fernanda</p>
                                                 <hr>
                                                 <a class="card-meta"></a>
                                                 <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
                                               </div>
-          <!--Card content-->
+        
                                         </div>
                                         <div class="card h-100" >
                                             <div class="card-img-top card-img-top-250">
                                                 <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
                                              <div class="card-body pt-2" >
-            <!--Title-->
+           
                                                 <a
                                                  class="card-title font-weight-bold"  >Node: De Cero a Experto
                                                 </a> <br></br>
-                                                <!--Text-->
+                                                
                                                 <p class="card-text">Anna Fernanda</p>
                                                 <hr>
                                                 <a class="card-meta"></a>
                                                 <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
                                               </div>
-          <!--Card content-->
+         
                                         </div> <div class="card h-100" >
                                             <div class="card-img-top card-img-top-250">
                                                 <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
                                              <div class="card-body pt-2" >
-            <!--Title-->
+            
                                                 <a
                                                  class="card-title font-weight-bold"  >Node: De Cero a Experto
                                                 </a> <br></br>
-                                                <!--Text-->
+                                                
                                                 <p class="card-text">Anna Fernanda</p>
                                                 <hr>
                                                 <a class="card-meta"></a>
                                                 <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
                                               </div>
-          <!--Card content-->
+          
                                         </div>
                                     </div>
                                     </div>
@@ -238,34 +244,34 @@
                                                 <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
                                              <div class="card-body pt-2" >
-            <!--Title-->
+            
                                                 <a
                                                  class="card-title font-weight-bold"  >Node: De Cero a Experto
                                                 </a> <br></br>
-                                                <!--Text-->
+                                                
                                                 <p class="card-text">Anna Fernanda</p>
                                                 <hr>
                                                 <a class="card-meta"></a>
                                                 <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
                                               </div>
-          <!--Card content-->
+          
                                         </div> 
                                         <div class="card h-100" >
                                             <div class="card-img-top card-img-top-250">
                                                 <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
                                              <div class="card-body pt-2" >
-            <!--Title-->
+            
                                                 <a
                                                  class="card-title font-weight-bold" >Node: De Cero a Experto
                                                 </a> <br></br>
-                                                <!--Text-->
+                                                
                                                 <p class="card-text">Anna Fernanda</p>
                                                 <hr>
                                                 <a class="card-meta"></a>
                                                 <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
                                               </div>
-          <!--Card content-->                   
+                            
           
                                         </div>
 
@@ -274,17 +280,17 @@
                                                 <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
                                             </div>
                                              <div class="card-body pt-2" >
-            <!--Title-->
+            
                                                 <a
                                                  class="card-title font-weight-bold"  >Node: De Cero a Experto
                                                 </a> <br></br>
-                                                <!--Text-->
+                                                
                                                 <p class="card-text">Msc.Anna Fernanda</p>                                               
                                                 <hr>
                                                 <a class="card-meta"></a>
                                                 <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
                                               </div>
-          <!--Card content-->                   
+                            
           
                                         </div>
 
@@ -302,15 +308,40 @@
                     </div>
                   
                 </div>
-                <!--Grid column-->
+               
             </div>
-            <!--Grid row-->
-        </section>
-        <!--Section: Main info-->
+           
+        </section> -->
         <hr class="my-5">
-        <!--Section: Main features & Quick Start-->
         <section>
-            <h3 class="h3 text-center mb-5">About MDB</h3>
+            <h3 class="h3 text-center mb-5">Nuestras Categorias de Cursos</h3>
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+               
+            @for ($i = 0; $i < count($categorias); $i++)
+                    
+                       <div class="col-md-3 col-sm-12 mt-5">
+                           <div class="card h-100 ">
+                               <img class="card-img-top" src="{{$categorias[$i]['Image_URL']}}" alt="Card image cap">
+                               <div class="card-body">
+                                   <h5 class="card-title">{{$categorias[$i]['Categoria']}}</h5>
+                                   <p class="card-text">{{$categorias[$i]['Descripcion']}}</p>
+                                   <a class="card-text float-right" href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}" >Conoce más></a>
+                                  
+                               </div>
+                           </div>
+                       </div>
+                                           
+            @endfor               
+             </div>
+
+               
+
+        </section>
+        <hr class="my-5">
+      
+        <section>
+            <h3 class="h3 text-center mb-5">¿Por qué estudiar con nosotros?</h3>
             <!--Grid row-->
             <div class="row wow fadeIn">
                 <!--Grid column-->
@@ -318,11 +349,11 @@
                     <!--First row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-code fa-2x indigo-text"></i>
+                            <i class="fa fa-calendar fa-2x indigo-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title">Bootstrap 4</h5>
-                            <p class="grey-text">Thanks to MDB you can take advantage of all feature of newest Bootstrap 4.</p>
+                            <h5 class="feature-title">Conveniencia</h5>
+                            <p class="grey-text">Acceso 24 horas al día para que aprendas a tu propio ritmo y en español</p>
                         </div>
                     </div>
                     <!--/First row-->
@@ -330,13 +361,12 @@
                     <!--Second row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-book fa-2x blue-text"></i>
+                            <i class="fa fa-users fa-2x blue-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title">Detailed documentation</h5>
+                            <h5 class="feature-title">Confianza</h5>
                             <p class="grey-text">
-                                We give you detailed user-friendly documentation at your disposal. It will help you to implement your ideas
-                                easily.
+                            Apoyo privado de tutores online y videochat ‘Tutor Café’ para debatir temas en grupo
                             </p>
                         </div>
                     </div>
@@ -345,27 +375,59 @@
                     <!--Third row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-graduation-cap fa-2x cyan-text"></i>
+                            <i class="fa fa-line-chart fa-2x cyan-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title">Lots of tutorials</h5>
+                            <h5 class="feature-title">Calidad</h5>
                             <p class="grey-text">
-                                We care about the development of our users. We have prepared numerous tutorials, which allow you to learn
-                                how to use MDB as well as other technologies.
+                            Cursos online desarrollados por líderes de la industria. 
                             </p>
                         </div>
                     </div>
                     <!--/Third row-->
                 </div>
-                <!--/Grid column-->
-                <!--Grid column-->
-                <div class="col-lg-6 col-md-12">
-                    <p class="h5 text-center mb-4">Watch our "5 min Quick Start" tutorial</p>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cXTThxoywNQ" allowfullscreen></iframe>
+                <div class="col-lg-6 col-md-12 px-4">
+                    <!--First row-->
+                    <div class="row">
+                        <div class="col-1 mr-3">
+                            <i class="fa fa-map-o fa-2x indigo-text"></i>
+                        </div>
+                        <div class="col-10">
+                            <h5 class="feature-title">Experiencia</h5>
+                            <p class="grey-text">Cientos de horas de ejercicios reales con las que puedes crear o enriquecer tu portafolio. </p>
+                        </div>
                     </div>
+                    <!--/First row-->
+                    <div style="height:30px"></div>
+                    <!--Second row-->
+                    <div class="row">
+                        <div class="col-1 mr-3">
+                            <i class="fa fa-mortar-board fa-2x blue-text"></i>
+                        </div>
+                        <div class="col-10">
+                            <h5 class="feature-title">Respaldo</h5>
+                            <p class="grey-text">
+                                Certificados con aplicaciones internacionales y validez en LinkedIn. 
+                            </p>
+                        </div>
+                    </div>
+                    <!--/Second row-->
+                    <div style="height:30px"></div>
+                    <!--Third row-->
+                    <div class="row">
+                        <div class="col-1 mr-3">
+                            <i class="fa fa-thumbs-o-up fa-2x cyan-text"></i>
+                        </div>
+                        <div class="col-10">
+                            <h5 class="feature-title">Facilidad</h5>
+                            <p class="grey-text">
+                            Sin requisitos ni conocimiento previo. 
+                            </p>
+                        </div>
+                    </div>
+                    <!--/Third row-->
                 </div>
-                <!--/Grid column-->
+               
             </div>
             <!--/Grid row-->
         </section>
@@ -373,132 +435,44 @@
         <hr class="my-5">
         <!--Section: Not enough-->
         <section>
-            <h2 class="my-5 h3 text-center">Not enough?</h2>
+            <h2 class="my-5 h3 text-center">¿Que dicen nuestros Estudiantes?</h2>
             <!--First row-->
             <div class="row features-small mb-5 mt-3 wow fadeIn">
                 <!--First column-->
                 <div class="col-md-4">
-                    <!--First row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-check-circle fa-2x indigo-text"></i>
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></p>
+                                    <h4 class="card-title">Msc. Sara Valle</h4>
+                                    <p class="card-text">“Lo que más me gustó de Posgrado de la uni es que yo manejo mi propio tiempo; puedo estudiar en el momento que quiera, el tiempo que quiera. Y cuando tengo una duda, me la resuelven muy rápido”.</p>
+                                    <p class="card-text text-black">Marketing digital - Granada, Nicaragua</p>
                         </div>
-                        <div class="col-10">
-                            <h6 class="feature-title">Free for personal and commercial use</h6>
-                            <p class="grey-text">
-                                Our license is user-friendly. Feel free to use MDB for both private as well as commercial projects.
-                            </p>
-                            <div style="height:15px"></div>
-                        </div>
-                    </div>
-                    <!--/First row-->
-                    <!--Second row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-check-circle fa-2x indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h6 class="feature-title">400+ UI elements</h6>
-                            <p class="grey-text">
-                                An impressive collection of flexible components allows you to develop any project.
-                            </p>
-                            <div style="height:15px"></div>
-                        </div>
-                    </div>
-                    <!--/Second row-->
-                    <!--Third row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-check-circle fa-2x indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h6 class="feature-title">600+ icons</h6>
-                            <p class="grey-text">Hundreds of useful, scalable, vector icons at your disposal.</p>
-                            <div style="height:15px"></div>
-                        </div>
-                    </div>
-                    <!--/Third row-->
-                    <!--Fourth row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-check-circle fa-2x indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h6 class="feature-title">Fully responsive</h6>
-                            <p class="grey-text">
-                                It doesn't matter whether your project will be displayed on desktop, laptop, tablet or mobile phone. MDB
-                                looks great on each screen.
-                            </p>
-                            <div style="height:15px"></div>
-                        </div>
-                    </div>
-                    <!--/Fourth row-->
+                     </div>
+                   
                 </div>
-                <!--/First column-->
-                <!--Second column-->
-                <div class="col-md-4 flex-center">
-                    <img src="https://mdbootstrap.com/img/Others/screens.png" alt="MDB Magazine Template displayed on iPhone" class="z-depth-0 img-fluid">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                                    <p><img class="img-fluid z-depth-1 rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" alt="card image" style="height:120px"></p>
+                                    <h4 class="card-title">Ing. Alicia Sandoval</h4>
+                                    <p class="card-text">“Gracias a Posgrado ahora puedo realizar aplicaciones potentes, que resuelven las necesidades de mis clientes”.</p>
+                                    <p class="card-text text-black">Ingeniero de sistemas - Leon, Nicaragua</p>
+                        </div>
+                     </div>
+                   
                 </div>
-                <!--/Second column-->
-                <!--Third column-->
-                <div class="col-md-4 mt-2">
-                    <!--First row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-check-circle fa-2x indigo-text"></i>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                                    <p><img class="img-fluid z-depth-1 rounded-circle" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_02.png"  style="height:120px" alt="card image"></p>
+                                    <h4 class="card-title">Lic. Juan Carlos Trujillo</h4>
+                                    <p class="card-text">“Posgrado cumplió con todas mis expectativas. Realmente me gustó mucho el material que encontré, excelente calidad, un contenido muy bien estructurado y actualizado”.</p>
+                                    <p class="card-text text-black">Contador Publico Autorizado - Managua, Nicaragua</p>
                         </div>
-                        <div class="col-10">
-                            <h6 class="feature-title">70+ CSS animations</h6>
-                            <p class="grey-text">
-                                Neat and easy to use animations, which will increase the interactivity of your project and delight your visitors.
-                            </p>
-                            <div style="height:15px"></div>
-                        </div>
-                    </div>
-                    <!--/First row-->
-                    <!--Second row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-check-circle fa-2x indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h6 class="feature-title">Plenty of useful templates</h6>
-                            <p class="grey-text">Need inspiration? Use one of our predefined templates for free.</p>
-                            <div style="height:15px"></div>
-                        </div>
-                    </div>
-                    <!--/Second row-->
-                    <!--Third row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-check-circle fa-2x indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h6 class="feature-title">Easy installation</h6>
-                            <p class="grey-text">
-                                5 minutes, a few clicks and... done. You will be surprised at how easy it is.
-                            </p>
-                            <div style="height:15px"></div>
-                        </div>
-                    </div>
-                    <!--/Third row-->
-                    <!--Fourth row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-check-circle fa-2x indigo-text"></i>
-                        </div>
-                        <div class="col-10">
-                            <h6 class="feature-title">Easy to use and customize</h6>
-                            <p class="grey-text">
-                                Using MDB is straightforward and pleasant. Components flexibility allows you deep customization. You will
-                                easily adjust each component to suit your needs.
-                            </p>
-                            <div style="height:15px"></div>
-                        </div>
-                    </div>
-                    <!--/Fourth row-->
+                     </div>
+                   
                 </div>
-                <!--/Third column-->
+              
             </div>
             <!--/First row-->
         </section>
