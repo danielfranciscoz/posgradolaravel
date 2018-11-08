@@ -22,7 +22,9 @@ class CursosController extends Controller
         //dd(json_encode($data));
         // ['data',json_encode($data)]
 
-        return view('welcome', compact('data'),compact('categorias'),compact('comentarios'));
+        return view('welcome', compact('data'))
+        ->with(compact('categorias'))
+        ->with(compact('comentarios'));
     }
 
     public function search($search_value)

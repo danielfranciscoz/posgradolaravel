@@ -18,8 +18,9 @@ class TestMigration extends Migration
             $table->increments('id');
             $table->string('Categoria');
             $table->string('Image_URL');   
-            $table->string('Descripcion');   
-            $table->string('Descripcion_larga')->nullable();       
+            $table->string('BackColor',12);   
+            $table->string('Descripcion',300);   
+            $table->text('Descripcion_larga')->nullable();       
             $table->timestamps(); 
             $table->softDeletes();
         });
@@ -28,7 +29,7 @@ class TestMigration extends Migration
             $table->increments('id');
             $table->string('NombreCurso');
             $table->string('Image_URL');
-            $table->string('Descripcion');
+            $table->text('Descripcion');
             $table->integer('HorasClase');
             $table->string('Nivel');
             $table->unsignedInteger('categoria_id');
