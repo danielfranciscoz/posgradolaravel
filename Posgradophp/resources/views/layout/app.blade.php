@@ -109,44 +109,81 @@ UNI-DEPEC</title>
         <!-- Footer Links -->
         <div class="container text-center text-md-left">
 
+             <ul class="list-unstyled list-inline text-center">
+                <li class="list-inline-item" >
+                    <a class="btn-floating btn-fb mx-1" href="https://www.facebook.com/UNI.Direccion.Posgrados">
+                        <i class="fa fa-facebook  fa-2x"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-tw mx-1" href="https://twitter.com/UNI_POSGRADO">
+                        <i class="fa fa-twitter  fa-2x"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-gplus mx-1">
+                        <i class="fa fa-google-plus  fa-2x"> </i>
+                    </a>
+                </li>
+              
+            </ul>
             <!-- Grid row -->
             <div class="row">
 
+
+                    <div class="col-md-3 mx-auto">
+                        <h6 class="h6-responsive font-weight-bold">Top Categorias</h6>
+                   
+                         @for ($i = 0; $i < 5; $i++)
+                            <li ><a href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}">{{$categorias[$i]['Categoria']}}</a></li>
+                        @endfor
+                    </div>
+                    @if( count($categorias)>5)
+                <hr class="clearfix w-100 d-md-none">
+                     <div class="col-md-3 mx-auto">
+                        <h6 class="h6-responsive font-weight-bold ">&nbsp;</h6>
+                        
+                         @for ($i = 5; ($i < count($categorias) && $i < 10 ); $i++)
+                            <li ><a href="{{route('cursos.categorias', $categorias[$i]['Categoria'])}}">{{$categorias[$i]['Categoria']}}</a></li>
+                        @endfor
+                    </div>
+                    @endif
+
                 <!-- Grid column -->
-                <div class="col-md-3 mx-auto">
+               <!--  <div class="col-md-3 mx-auto"> -->
 
-                    <a class="twitter-timeline" data-lang="es" data-height="500" href="https://twitter.com/UNI_POSGRADO?ref_src=twsrc%5Etfw">Tweets by UNI_POSGRADO</a>
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <!-- <a class="twitter-timeline" data-lang="es" data-height="500" href="https://twitter.com/UNI_POSGRADO?ref_src=twsrc%5Etfw">Tweets by UNI_POSGRADO</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
 
-                </div>
+              <!--   </div> -->
                 <!-- Grid column -->
                 <!-- Grid column -->
 
                 <hr class="clearfix w-100 d-md-none">
 
                 <!-- Grid column -->
-                <div class="col-md-3 mx-auto">
+                <!-- <div class="col-md-3 mx-auto"> -->
 
-                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FUNI.Direccion.Posgrados%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="250" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                    <!-- iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FUNI.Direccion.Posgrados%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="250" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> -->
 
-                </div>
+               <!--  </div> -->
                 <!-- Grid column -->
 
-                <hr class="clearfix w-100 d-md-none">
+                <!-- <hr class="clearfix w-100 d-md-none"> -->
 
                 <!-- Grid column -->
                 <div class="col-md-3 mx-auto">
 
                     <!-- Links -->
 
-                    <h4>Dirección Posgrado</h4><div class="menu-menu-footer-container">
-                        <ul id="menu-menu-footer " class="menu navtex">
-                            <li><a href="http://www.posgrado.uni.edu.ni/cursos-de-especializacion/">CURSOS DE ESPECIALIZACIÓN</a></li>
-                            <li><a href="http://www.posgrado.uni.edu.ni/posgrado/">POSGRADO</a></li>
-                            <li><a href="http://www.posgrado.uni.edu.ni/maestria/">MAESTRIA</a></li>
-                            <li><a href="http://www.posgrado.uni.edu.ni/blog/">BLOG</a></li>
-                            <li><a href="http://www.posgrado.uni.edu.ni/contactenos/">CONTÁCTENOS</a></li>
-                        </ul>
+                    <h6 class="h6-responsive font-weight-bold">Dirección de Posgrado</h6><div class="menu-menu-footer-container">
+                       
+                            <li><a href="http://www.posgrado.uni.edu.ni/cursos-de-especializacion/">Cursos de Espelización</a></li>
+                            <li><a href="http://www.posgrado.uni.edu.ni/posgrado/">Posgrado</a></li>
+                            <li><a href="http://www.posgrado.uni.edu.ni/maestria/">Maestria</a></li>
+                            <li><a href="http://www.posgrado.uni.edu.ni/blog/">Blog</a></li>
+                            <li><a href="http://www.posgrado.uni.edu.ni/contactenos/">Contáctenos</a></li>
+                       
                     </div>
 
 
@@ -159,13 +196,17 @@ UNI-DEPEC</title>
 
                     <!-- Links -->
 
-                    <h4>Contacto</h4>
+                    <h6 class="h6-responsive font-weight-bold">Contacto</h6>
                     <p>
                         <strong>Universidad Nacional de Ingeniería</strong><br>
                         Dirección de Posgrado<br>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
                         2278-1457<br>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
                         2277-2728<br>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
                         <a href="mailto:dirposgrado@pstg.uni.edu.ni">dirposgrado@pstg.uni.edu.ni</a><br>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
                         <a href="mailto:dirposgrado@yahoo.com ">dirposgrado@yahoo.com</a>
                     </p>
 
@@ -183,10 +224,10 @@ UNI-DEPEC</title>
             <!-- Call to action -->
             <ul class="list-unstyled list-inline text-center py-2">
                 <li class="list-inline-item">
-                    <h5 class="mb-1">Registrarse es gratis</h5>
+                    <h6 class="mb-1">Registrarse es gratis</h6>
                 </li>
                 <li class="list-inline-item">
-                    <a href="{{route('registro')}}" class="btn btn-danger btn-rounded">Registrate!</a>
+                    <a href="{{route('registro')}}" class="btn btn-sm btn-danger btn-rounded ">Registrate!</a>
                 </li>
             </ul>
             <!-- Call to action -->
@@ -194,30 +235,13 @@ UNI-DEPEC</title>
             <hr>
 
             <!-- Social buttons -->
-            <ul class="list-unstyled list-inline text-center">
-                <li class="list-inline-item" >
-                    <a class="btn-floating btn-fb mx-1" href="https://www.facebook.com/UNI.Direccion.Posgrados">
-                        <i class="fa fa-facebook"> </i>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="btn-floating btn-tw mx-1" href="https://twitter.com/UNI_POSGRADO">
-                        <i class="fa fa-twitter"> </i>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="btn-floating btn-gplus mx-1">
-                        <i class="fa fa-google-plus"> </i>
-                    </a>
-                </li>
-              
-            </ul>
+           
             <!-- Social buttons -->
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">
 
 
-                Dirección De Estudios de Posgrado y Educación Continua ©
+                Dirección De Estudios de Posgrado y Educación Continua © {{date('Y')}}
 
             </div>
 

@@ -38,7 +38,7 @@
                                   Howard G. Hendricks
                               </p>
                               <div class="input-group md-form form-sm form-2 pl-0">
-                              <input class="form-control my-0 py-1 red-border" type="text" placeholder="¿Que deseas Aprender?" aria-label="Search">
+                              <input class="form-control my-0 py-1 red-border" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
                               <div class="input-group-append">
                                 <span class="input-group-text btn-primary white-text " id="basic-text1"><i class="fa fa-search white-text" aria-hidden="true"></i></span>
                               </div>
@@ -321,7 +321,7 @@
             @for ($i = 0; $i < count($categorias); $i++)
                     
                        <div class="col-md-3 col-sm-12 mt-5">
-                           <div class="card h-100 ">
+                           <div class="card h-100" style="max-height:400px">
                                <img class="card-img-top" src="{{$categorias[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title">{{$categorias[$i]['Categoria']}}</h5>
@@ -349,7 +349,7 @@
                     <!--First row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-calendar fa-2x indigo-text"></i>
+                            <i class="fa fa-calendar fa-2x primary-text"></i>
                         </div>
                         <div class="col-10">
                             <h5 class="feature-title">Conveniencia</h5>
@@ -361,7 +361,7 @@
                     <!--Second row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-users fa-2x blue-text"></i>
+                            <i class="fa fa-users fa-2x primary-text"></i>
                         </div>
                         <div class="col-10">
                             <h5 class="feature-title">Confianza</h5>
@@ -375,7 +375,7 @@
                     <!--Third row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-line-chart fa-2x cyan-text"></i>
+                            <i class="fa fa-line-chart fa-2x primary-text"></i>
                         </div>
                         <div class="col-10">
                             <h5 class="feature-title">Calidad</h5>
@@ -390,7 +390,7 @@
                     <!--First row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-map-o fa-2x indigo-text"></i>
+                            <i class="fa fa-map-o fa-2x primary-text"></i>
                         </div>
                         <div class="col-10">
                             <h5 class="feature-title">Experiencia</h5>
@@ -402,7 +402,7 @@
                     <!--Second row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-mortar-board fa-2x blue-text"></i>
+                            <i class="fa fa-mortar-board fa-2x primary-text"></i>
                         </div>
                         <div class="col-10">
                             <h5 class="feature-title">Respaldo</h5>
@@ -416,7 +416,7 @@
                     <!--Third row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-thumbs-o-up fa-2x cyan-text"></i>
+                            <i class="fa fa-thumbs-o-up fa-2x primary-text"></i>
                         </div>
                         <div class="col-10">
                             <h5 class="feature-title">Facilidad</h5>
@@ -435,43 +435,25 @@
         <hr class="my-5">
         <!--Section: Not enough-->
         <section>
-            <h2 class="my-5 h3 text-center">¿Que dicen nuestros Estudiantes?</h2>
+       
+            <h2 class="my-5 h3 text-center">¿Qué dicen nuestros Estudiantes?</h2>
             <!--First row-->
             <div class="row features-small mb-5 mt-3 wow fadeIn">
                 <!--First column-->
-                <div class="col-md-4">
-                    <div class="card h-100">
+                @for ($i = 0; $i < count($comentarios); $i++)
+                <div class="col-md-4 mt-4">
+                    <div class="card h-100 " style="max-height:400px">
                         <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></p>
-                                    <h4 class="card-title">Msc. Sara Valle</h4>
-                                    <p class="card-text">“Lo que más me gustó de Posgrado de la uni es que yo manejo mi propio tiempo; puedo estudiar en el momento que quiera, el tiempo que quiera. Y cuando tengo una duda, me la resuelven muy rápido”.</p>
-                                    <p class="card-text text-black">Marketing digital - Granada, Nicaragua</p>
+                                    <p><img class=" img-fluid rounded-circle" src="{{$comentarios[$i]['Image_URL']}}" alt="card image" style="height:100px"></p>
+                                    <h4 class="card-title">{{$comentarios[$i]['Nombre']}}</h4>
+                                    <p class="card-text">“{{$comentarios[$i]['Comentario']}}”.</p>
+                                    <p class="card-text text-black">{{$comentarios[$i]['Profesion']}} - {{$comentarios[$i]['Desc_Pais']}}</p>
                         </div>
                      </div>
                    
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                                    <p><img class="img-fluid z-depth-1 rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" alt="card image" style="height:120px"></p>
-                                    <h4 class="card-title">Ing. Alicia Sandoval</h4>
-                                    <p class="card-text">“Gracias a Posgrado ahora puedo realizar aplicaciones potentes, que resuelven las necesidades de mis clientes”.</p>
-                                    <p class="card-text text-black">Ingeniero de sistemas - Leon, Nicaragua</p>
-                        </div>
-                     </div>
-                   
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                                    <p><img class="img-fluid z-depth-1 rounded-circle" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_02.png"  style="height:120px" alt="card image"></p>
-                                    <h4 class="card-title">Lic. Juan Carlos Trujillo</h4>
-                                    <p class="card-text">“Posgrado cumplió con todas mis expectativas. Realmente me gustó mucho el material que encontré, excelente calidad, un contenido muy bien estructurado y actualizado”.</p>
-                                    <p class="card-text text-black">Contador Publico Autorizado - Managua, Nicaragua</p>
-                        </div>
-                     </div>
-                   
-                </div>
+                
+               @endfor
               
             </div>
             <!--/First row-->
@@ -479,151 +461,7 @@
         <!--Section: Not enough-->
         <hr class="mb-5">
         <!--Section: More-->
-        <section>
-            <h2 class="my-5 h3 text-center">...and even more</h2>
-            <!--First row-->
-            <div class="row features-small mt-5 wow fadeIn">
-                <!--Grid column-->
-                <div class="col-xl-3 col-lg-6">
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-firefox fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10 mb-2 pl-3">
-                            <h5 class="feature-title font-bold mb-1">Cross-browser compatibility</h5>
-                            <p class="grey-text mt-2">
-                                Chrome, Firefox, IE, Safari, Opera, Microsoft Edge - MDB loves all browsers; all browsers love MDB.
-                            </p>
-                        </div>
-                    </div>
-                    <!--/Grid row-->
-                </div>
-                <!--/Grid column-->
-                <!--Grid column-->
-                <div class="col-xl-3 col-lg-6">
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-level-up fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10 mb-2">
-                            <h5 class="feature-title font-bold mb-1">Frequent updates</h5>
-                            <p class="grey-text mt-2">
-                                MDB becomes better every month. We love the project and enhance as much as possible.
-                            </p>
-                        </div>
-                    </div>
-                    <!--/Grid row-->
-                </div>
-                <!--/Grid column-->
-                <!--Grid column-->
-                <div class="col-xl-3 col-lg-6">
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-comments-o fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10 mb-2">
-                            <h5 class="feature-title font-bold mb-1">Active community</h5>
-                            <p class="grey-text mt-2">
-                                Our society grows day by day. Visit our forum and check how it is to be a part of our family.
-                            </p>
-                        </div>
-                    </div>
-                    <!--/Grid row-->
-                </div>
-                <!--/Grid column-->
-                <!--Grid column-->
-                <div class="col-xl-3 col-lg-6">
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-code fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10 mb-2">
-                            <h5 class="feature-title font-bold mb-1">jQuery 3.x</h5>
-                            <p class="grey-text mt-2">
-                                MDB is integrated with newest jQuery. Therefore you can use all the latest features which come along with
-                                it.
-                            </p>
-                        </div>
-                    </div>
-                    <!--/Grid row-->
-                </div>
-                <!--/Grid column-->
-            </div>
-            <!--/First row-->
-            <!--Second row-->
-            <div class="row features-small mt-4 wow fadeIn">
-                <!--Grid column-->
-                <div class="col-xl-3 col-lg-6">
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-cubes fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10 mb-2">
-                            <h5 class="feature-title font-bold mb-1">Modularity</h5>
-                            <p class="grey-text mt-2">
-                                Material Design for Bootstrap comes with both, compiled, ready to use libraries including all features as
-                                well as modules for CSS (SASS files) and JS.
-                            </p>
-                        </div>
-                    </div>
-                    <!--/Grid row-->
-                </div>
-                <!--/Grid column-->
-                <!--Grid column-->
-                <div class="col-xl-3 col-lg-6">
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-question fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10 mb-2">
-                            <h5 class="feature-title font-bold mb-1">Technical support</h5>
-                            <p class="grey-text mt-2">
-                                We care about reliability. If you have any questions - do not hesitate to contact us.
-                            </p>
-                        </div>
-                    </div>
-                    <!--/Grid row-->
-                </div>
-                <!--/Grid column-->
-                <!--Grid column-->
-                <div class="col-xl-3 col-lg-6">
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-th fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10 mb-2">
-                            <h5 class="feature-title font-bold mb-1">Flexbox</h5>
-                            <p class="grey-text mt-2">MDB fully supports Flex Box. You can forget about alignment issues.</p>
-                        </div>
-                    </div>
-                    <!--/Grid row-->
-                </div>
-                <!--/Grid column-->
-                <!--Grid column-->
-                <div class="col-xl-3 col-lg-6">
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="fa fa-file-code-o fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10 mb-2">
-                            <h5 class="feature-title font-bold mb-1">SASS files</h5>
-                            <p class="grey-text mt-2">Arranged and well documented .scss files can't wait until you compile them.</p>
-                        </div>
-                    </div>
-                    <!--/Grid row-->
-                </div>
-                <!--/Grid column-->
-            </div>
-            <!--/Second row-->
-        </section>
+      
         <!--Section: More-->
     </div>
 </main>
