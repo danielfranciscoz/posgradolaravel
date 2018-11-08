@@ -123,7 +123,7 @@
     </div>
 
 <main>
-    <div class="container">
+  
         <!--Section: Main info-->
        <!--  <section class="mt-5 wow fadeIn">
            
@@ -312,16 +312,41 @@
             </div>
            
         </section> -->
-        <hr class="my-5">
-        <section>
-            <h3 class="h3 text-center mb-5">Nuestras Categorias de Cursos</h3>
+
+ <div class="d-flex align-items-center justify-content-center  mt-5 " style="min-height:100px; ">
+        <h3 class="h3  ">Nosotros somos Posgrado</h3>
+</div>
+<section class="container pt-5 pb-4">
+    <div class=row>
+        <div class="col-sm-12 col-md-6 text-justify text-body">
+        El Sistema de Estudios de Posgrado y Educación Continua tiene como objetivo la capacitación y formación de profesionales en el más alto nivel técnico y científico, en el ámbito de las diversas disciplinas para que sean capaces de desarrollar sus actividades de forma independiente y provechosa para el desarrollo del país. El sistema se integra por todos los programas y unidades académicas que ofrecen cursos especializados y de Maestría y Doctorado teniendo como instancia reguladora a la Dirección de Estudios de Posgrado y Educación Continua y como instancias ejecutoras a las facultades y a la Dirección de Estudios de Posgrado y Educación Continua 
+            
+        </div>
+        <div class="col-sm-12 col-md-6">
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Emlt4VmOFoI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+    </div>
+
+</section>
+        
+<div class="d-flex align-items-center justify-content-center  flex-column  banner-degradado-1  mt-5 " style="min-height:325px; ">
+        <h1 class="h1 text-white ">Nuestras Categorias de Cursos</h1>
+        <p class="text-white">  Conviértete en un experto en tu área de interés.</p>
+</div>
+
+<div >
+   
+        <section class="container pt-5 pb-4">
+      
             <!--Grid row-->
             <div class="row wow fadeIn">
                
             @for ($i = 0; $i < count($categorias); $i++)
                     
-                       <div class="col-md-3 col-sm-12 mt-5">
-                           <div class="card h-100" style="max-height:400px">
+                       <div class="col-md-3 col-sm-12 mb-4">
+                           <div class="card h-100 wow fadeIn" style="max-height:450px">
                                <img class="card-img-top" src="{{$categorias[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title">{{$categorias[$i]['Categoria']}}</h5>
@@ -338,12 +363,17 @@
                
 
         </section>
-        <hr class="my-5">
-      
-        <section>
-            <h3 class="h3 text-center mb-5">¿Por qué estudiar con nosotros?</h3>
+        
+</div>
+<div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1" style="min-height:325px; ">
+        <h1 class="h1 text-white ">¿Por qué estudiar con nosotros?</h1>
+        <p class="text-white">Somos tu mejor opción virtual</p>
+</div>
+<div >
+        <section class="container">
+           
             <!--Grid row-->
-            <div class="row wow fadeIn">
+            <div class="row wow fadeIn mt-5">
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 px-4">
                     <!--First row-->
@@ -432,17 +462,20 @@
             <!--/Grid row-->
         </section>
         <!--Section: Main features & Quick Start-->
-        <hr class="my-5">
-        <!--Section: Not enough-->
+        </div>
+<div class="d-flex align-items-center justify-content-center banner-degradado-1 mt-5" style="min-height:250px; ">
+        <h1 class="h1-responsive text-white mb-5">¿Qué dicen nuestros Estudiantes?</h1>
+</div>
+<div class="container">
         <section>
        
-            <h2 class="my-5 h3 text-center">¿Qué dicen nuestros Estudiantes?</h2>
+           
             <!--First row-->
             <div class="row features-small mb-5 mt-3 wow fadeIn">
                 <!--First column-->
                 @for ($i = 0; $i < count($comentarios); $i++)
                 <div class="col-md-4 mt-4">
-                    <div class="card h-100 " style="max-height:400px">
+                    <div class="card h-100 wow fadeIn" style="max-height:400px">
                         <div class="card-body text-center">
                                     <p><img class=" img-fluid rounded-circle" src="{{$comentarios[$i]['Image_URL']}}" alt="card image" style="height:100px"></p>
                                     <h4 class="card-title">{{$comentarios[$i]['Nombre']}}</h4>
@@ -459,7 +492,7 @@
             <!--/First row-->
         </section>
         <!--Section: Not enough-->
-        <hr class="mb-5">
+       
         <!--Section: More-->
       
         <!--Section: More-->
