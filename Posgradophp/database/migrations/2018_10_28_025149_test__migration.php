@@ -19,7 +19,7 @@ class TestMigration extends Migration
             $table->string('Categoria');
             $table->string('Image_URL');   
             $table->string('BackColor',12);   
-            $table->string('Descripcion',300);   
+            $table->string('Descripcion',150);   
             $table->text('Descripcion_larga')->nullable();       
             $table->timestamps(); 
             $table->softDeletes();

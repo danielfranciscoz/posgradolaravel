@@ -15,7 +15,7 @@ class CategoriasSeeder extends Seeder
         Categoria::create([
             'Categoria'=>'Desarrollador Web',
             'Image_URL'=>'/img/Resources/categorias/cat0.png',
-            'Descripcion'=>'Este es un ejemplo de la descripción de prueba corta, en donde, solo se pueden incluir, trescientos caracteres, en donde seguimos, mostrando la información, mas contenido, para mostrar, ahora veremos, como se muestra la información cuando llegamos al limite, por el momento esta descripción finaliza.',
+            'Descripcion'=>'Este es ejemplo de la descripción de prueba larga, en donde solo se pueden incluir trescientos caracteres en donde seguimos, mostrando la información.',
             'BackColor' => '#424242'
         ]);
         Categoria::create([
