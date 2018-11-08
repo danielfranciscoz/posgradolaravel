@@ -17,8 +17,9 @@ class TestMigration extends Migration
         schema::create('categorias', function(Blueprint $table){
             $table->increments('id');
             $table->string('Categoria');
-            $table->string('Image_URL');     
-            $table->string('Descripcion');       
+            $table->string('Image_URL');   
+            $table->string('Descripcion');   
+            $table->string('Descripcion_larga')->nullable();       
             $table->timestamps(); 
             $table->softDeletes();
         });
@@ -61,6 +62,18 @@ class TestMigration extends Migration
             $table->foreign('etiqueta_id')->references('id')->on('etiquetas');
         });
 
+        schema::create('comentarios', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('Nombre');
+            $table->string('Profesion');
+            $table->string('Desc_Pais');
+            $table->string('Comentario',2000);
+            $table->string('Image_URL');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
+        });
 
     }
 
@@ -77,8 +90,10 @@ class TestMigration extends Migration
         });
 
         //Siempre que se cree una tabla, tambien se debe crear su forma de eliminacion para el rollback
+        schema::dropIfExists('categorias');
         schema::dropIfExists('cursos');
         schema::dropIfExists('etiquetas');
         schema::dropIfExists('curso_etiqueta');
+        schema::dropIfExists('comentarios');
     }
 }

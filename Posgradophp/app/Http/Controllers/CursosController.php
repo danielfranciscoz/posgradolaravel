@@ -5,13 +5,16 @@ use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
+use App\Models\Comentario;
 
 class CursosController extends Controller
 {
     public function index()
     {
         $data = Curso::orderBy('created_at','DESC')->take(10)->get();
-        $categorias = Categoria::all();
+        $categorias = Categoria::all()->where('deleted_at',null);
+        $comentarios = Comentario::all()->where('deleted_at',null);
+
         //dd($data->first()->categoria()->get());
         
         //  $data = Etiqueta::all();
@@ -19,7 +22,7 @@ class CursosController extends Controller
         //dd(json_encode($data));
         // ['data',json_encode($data)]
 
-        return view('welcome', compact('data'),compact('categorias'));
+        return view('welcome', compact('data'),compact('categorias'),compact('comentarios'));
     }
 
     public function search($search_value)
@@ -46,8 +49,8 @@ class CursosController extends Controller
              $sql->Where('Categoria', $categoria);
         });
         
-        $categorias = Categoria::all();
-      $cursos=  $cursos->paginate(10);
+        $categorias = Categoria::all()->where('deleted_at',null);
+        $cursos=  $cursos->paginate(10);
         //    dd($cursos);
         return view("cursos.cursoscategoria",compact('categorias'))
         ->with('categoria',$categoria)

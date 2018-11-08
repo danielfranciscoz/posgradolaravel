@@ -17,9 +17,11 @@ class DatabaseSeeder extends Seeder
         DB::table('cursos')->truncate(); //Elimina todos los registros de la tabla
         DB::table('etiquetas')->truncate(); 
         DB::table('curso_etiqueta')->truncate(); 
+        DB::table('comentarios')->truncate(); 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1'); //Reactivo la verificacion de llaves foraneas
         
         // $this->call(UsersTableSeeder::class);
+        $this->call(ComentariosSeeder::class);
         $this->call(CategoriasSeeder::class);
         $this->call(CursosSeeder::class);
         $this->call(EtiquetasSeeder::class);
