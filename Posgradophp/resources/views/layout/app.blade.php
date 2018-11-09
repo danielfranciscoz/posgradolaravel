@@ -48,7 +48,7 @@ UNI-DEPEC</title>
             
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                @foreach($categorias as $categoria) 
-               <li class="dropdown-item"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
+               <li class="dropdown-item" style="max-height:30px"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
                @endforeach
                 <!-- <li class="dropdown-item text-white"><a href="#"> <i class="fa fa-flask" aria-hidden="true"> </i> Quimica</a></li>
                 <li class="dropdown-item"><a href="#">Some other action</a></li>
@@ -77,8 +77,8 @@ UNI-DEPEC</title>
     <!-- Links -->
 
         
-       <div class="input-group md-form form-sm form-2 pl-0 ">
-          <input class="form-control my-0 py-1  waves-effect" type="text" placeholder="Buscar cursos..." aria-label="Search" id="searchinput" >
+       <div class="input-group md-form form-sm form-2 pl-0 "  >
+          <input class="form-control my-0 py-1  waves-effect" type="text" placeholder="Buscar cursos..." aria-label="Search" id="searchinput" style="cursor: text;" >
           <div class="input-group-append ">
             <span class="input-group-text btn-primary waves-effect " id="buttonsearch"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
@@ -282,8 +282,35 @@ UNI-DEPEC</title>
                     window.location.replace("../cursos/"+search);
                 }
             });
+
+            var inputenter = document.getElementById("searchinput");
+                inputenter.addEventListener("keyup", function(event) {
+                    event.preventDefault();
+                    if (event.keyCode === 13) {
+                        document.getElementById("buttonsearch").click();
+                    }
+                });
             
-            $('.mdb-select').materialSelect();
+            
+
+            $('.carousel-example-2').carousel();
+
+            $('#btnsearchcarrusel').click(function(){
+                console.log("dasdsad");
+                    
+                    var searchcarrusel = $( "#searchcarruselinput").val();
+                    if( searchcarrusel.length > 0){
+                        window.location.replace("../cursos/"+searchcarrusel);
+                    }
+                });
+
+           var inputentercarrusel = document.getElementById("searchcarruselinput");
+           inputentercarrusel.addEventListener("keyup", function(event) {
+                   event.preventDefault();
+                   if (event.keyCode === 13) {
+                       document.getElementById("btnsearchcarrusel").click();
+                   }
+               });
         });
     </script>
 

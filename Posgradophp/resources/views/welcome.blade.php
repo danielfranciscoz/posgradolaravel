@@ -38,9 +38,9 @@
                                   Howard G. Hendricks
                               </p>
                               <div class="input-group md-form form-sm form-2 pl-0">
-                              <input class="form-control my-0 py-1 red-border" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
-                              <div class="input-group-append">
-                                <span class="input-group-text btn-primary white-text " id="basic-text1"><i class="fa fa-search white-text" aria-hidden="true"></i></span>
+                              <input class="form-control my-0 py-1 red-border" id="searchcarruselinput" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
+                              <div class="input-group-append" id="btnsearchcarrusel"  onclick="console.log('asds')">
+                                <a class="input-group-text btn-primary white-text"  ><i class="fa fa-search white-text"  aria-hidden="true"></i></a>
                               </div>
                             </div>
                             </div>
@@ -111,14 +111,14 @@
         <!--/.Slides-->
 
         <!--Controls-->
-        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+        <!-- <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
         <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
-        </a>
+        </a> -->
         <!--/.Controls-->
     </div>
 
@@ -314,17 +314,20 @@
         </section> -->
 
  <div class="d-flex align-items-center justify-content-center  mt-5 " style="min-height:100px; ">
-        <h3 class="h3  ">Nosotros somos Posgrado</h3>
+        <h1 class="h1-responsive text-center ">Nosotros somos Posgrado</h1>
 </div>
 <section class="container pt-5 pb-4">
     <div class=row>
-        <div class="col-sm-12 col-md-6 text-justify text-body">
+        <div class="col-sm-12 col-md-6 text-justify text-body mb-4">
         El Sistema de Estudios de Posgrado y Educación Continua tiene como objetivo la capacitación y formación de profesionales en el más alto nivel técnico y científico, en el ámbito de las diversas disciplinas para que sean capaces de desarrollar sus actividades de forma independiente y provechosa para el desarrollo del país. El sistema se integra por todos los programas y unidades académicas que ofrecen cursos especializados y de Maestría y Doctorado teniendo como instancia reguladora a la Dirección de Estudios de Posgrado y Educación Continua y como instancias ejecutoras a las facultades y a la Dirección de Estudios de Posgrado y Educación Continua 
             
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 ">
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Emlt4VmOFoI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Emlt4VmOFoI" allowfullscreen></iframe>
+            </div>
+                  
         </div>
 
     </div>
@@ -332,7 +335,7 @@
 </section>
         
 <div class="d-flex align-items-center justify-content-center  flex-column  banner-degradado-1  mt-5 " style="min-height:325px; ">
-        <h1 class="h1 text-white ">Nuestras Categorias de Cursos</h1>
+        <h1 class="h1-responsive text-white text-center">Nuestras Categorias de Cursos</h1>
         <p class="text-white">  Conviértete en un experto en tu área de interés.</p>
 </div>
 
@@ -349,10 +352,12 @@
                            <div class="card h-100 wow fadeIn" style="max-height:450px">
                                <img class="card-img-top" src="{{$categorias[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title">{{$categorias[$i]['Categoria']}}</h5>
+                                   <h5 class="card-title primary-text">{{$categorias[$i]['Categoria']}}</h5>
                                    <p class="card-text">{{$categorias[$i]['Descripcion']}}</p>
-                                   <a class="card-text float-right" href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}" >Conoce más></a>
+                                   <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}" >SABER MAS</a>
                                   
+
+                                   <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
                                </div>
                            </div>
                        </div>
@@ -366,7 +371,7 @@
         
 </div>
 <div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1" style="min-height:325px; ">
-        <h1 class="h1 text-white ">¿Por qué estudiar con nosotros?</h1>
+        <h1 class="h1-responsive text-white text-center">¿Por qué estudiar con nosotros?</h1>
         <p class="text-white">Somos tu mejor opción virtual</p>
 </div>
 <div >
@@ -411,6 +416,7 @@
                             <h5 class="feature-title">Calidad</h5>
                             <p class="grey-text">
                             Cursos online desarrollados por líderes de la industria. 
+                            <br>
                             </p>
                         </div>
                     </div>
@@ -463,8 +469,9 @@
         </section>
         <!--Section: Main features & Quick Start-->
         </div>
-<div class="d-flex align-items-center justify-content-center banner-degradado-1 mt-5" style="min-height:250px; ">
-        <h1 class="h1-responsive text-white mb-5">¿Qué dicen nuestros Estudiantes?</h1>
+<div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1 mt-5" style="min-height:250px; ">
+        <h1 class="h1-responsive text-white text-center ">¿Qué dicen nuestros Estudiantes?</h1>
+        <p class="text-white">Docencia de Calidad </p>
 </div>
 <div class="container">
         <section>
@@ -480,7 +487,7 @@
                                     <p><img class=" img-fluid rounded-circle" src="{{$comentarios[$i]['Image_URL']}}" alt="card image" style="height:100px"></p>
                                     <h4 class="card-title">{{$comentarios[$i]['Nombre']}}</h4>
                                     <p class="card-text">“{{$comentarios[$i]['Comentario']}}”.</p>
-                                    <p class="card-text text-black">{{$comentarios[$i]['Profesion']}} - {{$comentarios[$i]['Desc_Pais']}}</p>
+                                    <p class="card-text text-black" style="font-size: 0.7em">{{$comentarios[$i]['Profesion']}} - {{$comentarios[$i]['Desc_Pais']}}</p>
                         </div>
                      </div>
                    
@@ -500,6 +507,3 @@
 </main>
 @endsection
 
-<script>
-$('.carousel-example-2').carousel()
-    </script>
