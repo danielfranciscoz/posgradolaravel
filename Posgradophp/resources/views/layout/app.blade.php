@@ -48,7 +48,7 @@ UNI-DEPEC</title>
             
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                @foreach($categorias as $categoria) 
-               <li class="dropdown-item" style="max-height:30px"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
+               <li class="dropdown-item" style="max-height:50px"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
                @endforeach
                 <!-- <li class="dropdown-item text-white"><a href="#"> <i class="fa fa-flask" aria-hidden="true"> </i> Quimica</a></li>
                 <li class="dropdown-item"><a href="#">Some other action</a></li>
