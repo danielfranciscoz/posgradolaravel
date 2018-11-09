@@ -106,7 +106,7 @@ UNI-DEPEC</title>
 
  <div class="banner-degradado-1 wow fadeIn" style="height:10px">
 </div>
-    <footer class="page-footer font-small stylish-color-dark pt-4 wow fadeIn    ">
+    <footer class="page-footer font-small stylish-color-dark pt-4    ">
 
         <!-- Footer Links -->
         <div class="container text-center text-md-left">
