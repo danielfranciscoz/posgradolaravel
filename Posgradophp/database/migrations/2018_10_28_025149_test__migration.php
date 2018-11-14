@@ -14,8 +14,18 @@ class TestMigration extends Migration
     public function up()
     {
 
+        //La oferta serán Maestrías, Cursos de Especialización, Posgrados
+        schema::create('ofertas', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('Oferta');       
+            $table->timestamps(); 
+            $table->softDeletes();
+        });
+
+        //Ejemplo, para los cursos de especializacion serán: Computacion y Sistemas, Industria, Mantenimiento Equipos, etc.
         schema::create('categorias', function(Blueprint $table){
             $table->increments('id');
+            $table->unsignedInteger('oferta_id'); //Si esta categoria pertenece a un Cursos, Posgrado o Maestria
             $table->string('Categoria');
             $table->string('Image_URL');   
             $table->string('BackColor',12);   
@@ -23,16 +33,18 @@ class TestMigration extends Migration
             $table->text('Descripcion_larga')->nullable();       
             $table->timestamps(); 
             $table->softDeletes();
+
+            $table->foreign('oferta_id')->references('id')->on('ofertas');
         });
 
         schema::create('cursos', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('categoria_id')->nullable(); //Cuando sea NULL se referirá a una Maestría 
             $table->string('NombreCurso');
             $table->string('Image_URL');
             $table->text('Descripcion');
             $table->integer('HorasClase');
             $table->string('Nivel');
-            $table->unsignedInteger('categoria_id');
             $table->timestamps(); //Agrega automaticamente fecha de creacion y actualizacion
             $table->softDeletes(); //Agrega automaticamente fecha de eliminacion de la fila
             
