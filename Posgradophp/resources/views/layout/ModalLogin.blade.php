@@ -33,7 +33,8 @@
                         <br><br><br>
                          
                             <div class="flex-column">
-                                <p href="../account/registro" class="font-small d-flex justify-content-center float-md-left primary-text  float-sm-none">¿No tienes una cuenta?  </p>
+                                <p href="../account/registro" class="
+                                font-small d-flex justify-content-center float-md-left primary-text  float-sm-none">¿No tienes una cuenta?  </p>
                                 <p href="../account/recuperacion" class="font-small  d-flex justify-content-center primary-text float-md-right float-sm-none">¿Olvido su Contraseña?  </p>
                             
                             </div>
