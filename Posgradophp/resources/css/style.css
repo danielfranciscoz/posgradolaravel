@@ -2,7 +2,10 @@
 html,
 body,
 .view {
-  height: 100%; }
+  height: 100%; 
+
+  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
 
 /* Navbar animation */
 .navbar {

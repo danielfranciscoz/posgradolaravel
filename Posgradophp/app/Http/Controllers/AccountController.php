@@ -13,5 +13,13 @@ class AccountController extends Controller
         $categorias = Categoria::all()->where('deleted_at',null);
         return view("Account/registro",compact('categorias'));
 
+    
     }
+    public function carrito(){
+
+        $categorias = Categoria::all()->where('deleted_at',null);
+        return view("Account/carrito",compact('categorias'));
+
+    }
+
 }

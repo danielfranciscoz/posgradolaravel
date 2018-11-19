@@ -34,3 +34,9 @@ Route::get('cursos/{curso}','CursosController@search')
 
 Route::get('/account/registro', 'AccountController@registro')
 ->name('registro');
+
+Route::get('curso/{curso}','CursosController@curso')
+->name('cursos.curso');
+
+Route::get('account/carrito','AccountController@carrito');
+

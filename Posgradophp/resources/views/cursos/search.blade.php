@@ -27,10 +27,10 @@
                         </div>
                 @endif
                         @forelse($cursos as $curso)                        
-                 <div class="card col-12">
+                 <div class="card col-12 mt-4">
                         <!-- Card content -->
                             <div class="card-body row">
-                                <div class="col-4 " >
+                                <div class="col-4" >
                                 <img src={{$curso->Image_URL}} class="img-responsive"/>
                                 </div>
                                 <div class="col-8">
@@ -44,11 +44,11 @@
                         </div>
                         
                         @Empty
-                        <h6 class="col-12">Lamentablemente no hemos encontrado un curso con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
+                        <h6 class="col-12 mt-4">Lamentablemente no hemos encontrado un curso con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
                         @endforelse
 
                        @if($cursos->isNotEmpty())
-                       <div class="col-12">
+                       <div class="col-12 mt-4">
                         <div class="d-flex justify-content-center">
                             <nav aria-label="Page navigation container">
                                     <ul class="pagination pg-blue">
