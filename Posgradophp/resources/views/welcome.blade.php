@@ -343,7 +343,7 @@
 
                                     <div class="carousel-item active">
                                         <div class="card-deck h-100 mb-2">
-                                        @for ($i = 0; $i < 3; $i++)
+                                        @for ($i = 0; $i < count($comentarios) && $i<3; $i++)
                                             <div class="card h-100" >
                                                 <div class="card-img-top d-flex justify-content-center">
                                                     <img class="img-fluid rounded-circle w-50 " src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
@@ -362,6 +362,13 @@
             
                                             </div>
                                         @endfor
+                                        @if(count($comentarios)%3!=0)
+                                                
+                                                @for($j=0;$j<(3-count($comentarios));$j++)
+                                                    <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent" >                        
+                                                    </div>
+                                                @endfor    
+                                            @endif
                                         </div>
                                     </div>
                                     @if(count($comentarios)>3)
@@ -393,7 +400,7 @@
                                                     <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent" >                        
                                                     </div>
                                                 @endfor    
-                                       @endif
+                                            @endif
                                         </div>
                                    
                                     </div>

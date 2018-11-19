@@ -1,10 +1,14 @@
 @extends('layout.app')
 @section('title', $curso)
 @section('content')
+@php 
+session(['key' => 'value']); 
+
+@endphp
 <main class="white">
 
 <div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1 " style="min-height:325px; ">
-        <h1 class="h1-responsive text-white text-center ">{{$curso}}</h1>
+        <h1 class="h1-responsive text-white text-center ">{{$curso}}{{ session('key')}} </h1>
         <p class="text-white text-justify">Aprende PHP desde cero, bases de datos, SQL, MySQL, POO, MVC, Librerías, Laravel 5, Symfony4, WordPress y más. +56 horas </p>
 </div>
 <h5 class="">  </strong></h5>
@@ -142,7 +146,26 @@
                      <h4 class="h4-responsive mx-4 col-12 mt-4 "><strong>Descripción</strong></h4> 
                      </br>
                      <div class="text-justify ml-5 mb-4">Bienvenido al Máster en PHP, en el que aprenderemos todo lo necesario para dominar el lenguaje de programación del lado del servidor(backend) más popular en la actualidad y todas las tecnologías a su alrededor con más futuro y demanda laboral.</div>
-                    
+                     <h4 class="h4-responsive mx-4 col-12 mt-4 "><strong>Acerca del instructor</strong></h4> 
+                     </br>
+                     <div class="row ml-4">
+                        <div class="col-md-3 col-sm-12">
+                            <img src="https://udemy-images.udemy.com/user/200_H/16661812_b24c.jpg" class="img-fluid  rounded-circle" />
+                        </div>
+                        <div class="col-md-9 col-sm-12">
+                        <div class="font-weight-bold blue-text mb-2">
+                               Victor Robleto 
+                            </div>
+                            <div class="font-weight-bold mb-2">
+                                Desarrollador web
+                            </div>
+                            <div class="text-justify mb-5">
+                            Soy desarrollador web en una empresa y llevo inmerso en el mundo de la programación y la informática desde los 15 años. Me encanta programar y todo lo relacionado con Internet y las nuevas tecnologías, crear cosas y enseñar a los demás. Soy casi completamente autodidacta, por eso voy a ofrecerte muchos de mis conocimientos para que tú puedas aprender más fácilmente y más rápido de lo que yo lo hice y hago cada día. Puedes saber más de mí en mi blog victorroblesweb y en mis perfiles en las diferentes redes sociales ;) .
+
+                            </div>
+                         
+                         </div>
+                     </div>
 
 
 
