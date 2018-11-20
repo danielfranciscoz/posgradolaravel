@@ -1,16 +1,15 @@
 @extends('layout.app')
 @section('title', $curso)
 @section('content')
-@php 
-session(['key' => 'value']); 
 
-@endphp
 <main class="white">
 
 <div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1 " style="min-height:325px; ">
-        <h1 class="h1-responsive text-white text-center ">{{$curso}}{{ session('key')}} </h1>
+        <h1 class="h1-responsive text-white text-center ">{{$curso}} </h1>
         <p class="text-white text-justify">Aprende PHP desde cero, bases de datos, SQL, MySQL, POO, MVC, Librerías, Laravel 5, Symfony4, WordPress y más. +56 horas </p>
 </div>
+@php 
+@endphp
 <h5 class="">  </strong></h5>
     <div class="container" >
     <section class="mt-3 wow fadeIn">
