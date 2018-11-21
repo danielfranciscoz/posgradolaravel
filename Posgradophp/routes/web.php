@@ -34,3 +34,16 @@ Route::get('cursos/{curso}','CursosController@search')
 
 Route::get('/account/registro', 'AccountController@registro')
 ->name('registro');
+
+Route::get('curso/{curso}','CursosController@curso')
+->name('cursos.curso');
+
+Route::get('account/carrito','AccountController@carrito');
+
+
+Route::get('curso/addcarrito', function () {
+    Session::push('cartItems', [
+        'curso' = > 'Curso laravel',    
+        'cantidad' = > 1  ]);
+    return 'Creating a note';
+});

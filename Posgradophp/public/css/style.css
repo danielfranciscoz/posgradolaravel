@@ -2,6 +2,8 @@
 html,
 body,
 .view {
+    
+    font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   height: 100%; }
 
 /* Navbar animation */

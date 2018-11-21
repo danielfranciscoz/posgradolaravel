@@ -38,9 +38,9 @@
                                   Howard G. Hendricks
                               </p>
                               <div class="input-group md-form form-sm form-2 pl-0">
-                              <input class="form-control my-0 py-1 red-border" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
-                              <div class="input-group-append">
-                                <span class="input-group-text btn-primary white-text " id="basic-text1"><i class="fa fa-search white-text" aria-hidden="true"></i></span>
+                              <input class="form-control my-0 py-1 red-border" id="searchcarruselinput" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
+                              <div class="input-group-append" id="btnsearchcarrusel"  onclick="console.log('asds')">
+                                <a class="input-group-text btn-primary white-text"  ><i class="fa fa-search white-text"  aria-hidden="true"></i></a>
                               </div>
                             </div>
                             </div>
@@ -111,14 +111,14 @@
         <!--/.Slides-->
 
         <!--Controls-->
-        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+        <!-- <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
         <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
-        </a>
+        </a> -->
         <!--/.Controls-->
     </div>
 
@@ -147,165 +147,7 @@
               
                 <div class="col-md-8 mb-4">
                 
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    @for ($i = 0; $i < count($categorias); $i++)
-                        @if ($i === 0)
-                        <li class="nav-item">
-                            <a class="nav-link grey-text active" id="{{$categorias[$i]['Categoria']}}-tab" data-toggle="tab" href="#{{$categorias[$i]['Categoria']}}-panel" role="tab" aria-controls="{{$categorias[$i]['Categoria']}}" aria-selected="true">{{$categorias[$i]['Categoria']}}</a>
-                        </li>
-                        @else
-                        <li class="nav-item">
-                            <a class="nav-link grey-text" id="{{$categorias[$i]['Categoria']}}-tab" data-toggle="tab" href="#{{$categorias[$i]['Categoria']}}-panel" role="tab" aria-controls="{{$categorias[$i]['Categoria']}}" aria-selected="true">{{$categorias[$i]['Categoria']}}</a>
-                        </li>
-                        @endif
-                       
-                                    
-                      @endfor
-                      
-                     
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active" id="Desarrollo-panel" role="tabpanel" aria-labelledby="home-tab">
-                            <section class="carousel slide" data-ride="carousel" id="carousel-cursos">
-                            <div class="container" style="position: absolute; z-index: 99998; margin-top:23%">
-                                <div class="d-flex " >
-                                    <div class="mr-auto" style="margin-left:-30" >
-                                            <a class="btn white btn-circle" href="#carousel-cursos" role="button" data-slide="prev">
-                                            <i class="fa fa-chevron-left center-ico-button grey-text " aria-hidden="true"></i>                                            
-                                        </a>
-                                    </div>
-                                    <div class="ml-auto " style="margin-right:-30">
-                                        <a class="btn white btn-circle" href="#carousel-cursos" role="button" data-slide="next">
-                                        <i class="fa fa-chevron-right center-ico-button grey-text" aria-hidden="true"></i> 
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container pt-0 mt-2">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <div class="card-deck">
-                                        <div class="card h-100" >
-                                            <div class="card-img-top card-img-top-250">
-                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
-                                            </div>
-                                             <div class="card-body pt-2" >
-          
-                                                <a
-                                                 class="card-title font-weight-bold" >Node: De Cero a Experto
-                                                </a> <br></br>
-                                                
-                                                <p class="card-text">Anna Fernanda</p>
-                                                <hr>
-                                                <a class="card-meta"></a>
-                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
-                                              </div>
-        
-                                        </div>
-                                        <div class="card h-100" >
-                                            <div class="card-img-top card-img-top-250">
-                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
-                                            </div>
-                                             <div class="card-body pt-2" >
-           
-                                                <a
-                                                 class="card-title font-weight-bold"  >Node: De Cero a Experto
-                                                </a> <br></br>
-                                                
-                                                <p class="card-text">Anna Fernanda</p>
-                                                <hr>
-                                                <a class="card-meta"></a>
-                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
-                                              </div>
-         
-                                        </div> <div class="card h-100" >
-                                            <div class="card-img-top card-img-top-250">
-                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
-                                            </div>
-                                             <div class="card-body pt-2" >
-            
-                                                <a
-                                                 class="card-title font-weight-bold"  >Node: De Cero a Experto
-                                                </a> <br></br>
-                                                
-                                                <p class="card-text">Anna Fernanda</p>
-                                                <hr>
-                                                <a class="card-meta"></a>
-                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
-                                              </div>
-          
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="card-deck">
-                                        <div class="card h-100" >
-                                            <div class="card-img-top card-img-top-250">
-                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
-                                            </div>
-                                             <div class="card-body pt-2" >
-            
-                                                <a
-                                                 class="card-title font-weight-bold"  >Node: De Cero a Experto
-                                                </a> <br></br>
-                                                
-                                                <p class="card-text">Anna Fernanda</p>
-                                                <hr>
-                                                <a class="card-meta"></a>
-                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
-                                              </div>
-          
-                                        </div> 
-                                        <div class="card h-100" >
-                                            <div class="card-img-top card-img-top-250">
-                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
-                                            </div>
-                                             <div class="card-body pt-2" >
-            
-                                                <a
-                                                 class="card-title font-weight-bold" >Node: De Cero a Experto
-                                                </a> <br></br>
-                                                
-                                                <p class="card-text">Anna Fernanda</p>
-                                                <hr>
-                                                <a class="card-meta"></a>
-                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
-                                              </div>
-                            
-          
-                                        </div>
-
-                                        <div class="card h-100" >
-                                            <div class="card-img-top card-img-top-250">
-                                                <img class="w-100" src="/img/Resources/test_img_0.png" alt="Carousel 1">
-                                            </div>
-                                             <div class="card-body pt-2" >
-            
-                                                <a
-                                                 class="card-title font-weight-bold"  >Node: De Cero a Experto
-                                                </a> <br></br>
-                                                
-                                                <p class="card-text">Msc.Anna Fernanda</p>                                               
-                                                <hr>
-                                                <a class="card-meta"></a>
-                                                <p class="card-meta float-right"><strike style="font-size:12"> $2500 </strike>  <strong>$ 110 </strong></p>
-                                              </div>
-                            
-          
-                                        </div>
-
-                                        
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                     
-                     </div>
-                      <div class="tab-pane fade" id="Diseño-panel" role="tabpanel" aria-labelledby="profile-tab">Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</div>
-                      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</div>
-                    </div>
+                   
                   
                 </div>
                
@@ -314,17 +156,20 @@
         </section> -->
 
  <div class="d-flex align-items-center justify-content-center  mt-5 " style="min-height:100px; ">
-        <h3 class="h3  ">Nosotros somos Posgrado</h3>
+        <h1 class="h1-responsive text-center ">Nosotros somos Posgrado</h1>
 </div>
 <section class="container pt-5 pb-4">
     <div class=row>
-        <div class="col-sm-12 col-md-6 text-justify text-body">
+        <div class="col-sm-12 col-md-6 text-justify text-body mb-4">
         El Sistema de Estudios de Posgrado y Educación Continua tiene como objetivo la capacitación y formación de profesionales en el más alto nivel técnico y científico, en el ámbito de las diversas disciplinas para que sean capaces de desarrollar sus actividades de forma independiente y provechosa para el desarrollo del país. El sistema se integra por todos los programas y unidades académicas que ofrecen cursos especializados y de Maestría y Doctorado teniendo como instancia reguladora a la Dirección de Estudios de Posgrado y Educación Continua y como instancias ejecutoras a las facultades y a la Dirección de Estudios de Posgrado y Educación Continua 
             
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 ">
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Emlt4VmOFoI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Emlt4VmOFoI" allowfullscreen></iframe>
+            </div>
+                  
         </div>
 
     </div>
@@ -332,7 +177,7 @@
 </section>
         
 <div class="d-flex align-items-center justify-content-center  flex-column  banner-degradado-1  mt-5 " style="min-height:325px; ">
-        <h1 class="h1 text-white ">Nuestras Categorias de Cursos</h1>
+        <h1 class="h1-responsive text-white text-center">Nuestras Categorias de Cursos</h1>
         <p class="text-white">  Conviértete en un experto en tu área de interés.</p>
 </div>
 
@@ -349,10 +194,12 @@
                            <div class="card h-100 wow fadeIn" style="max-height:450px">
                                <img class="card-img-top" src="{{$categorias[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title">{{$categorias[$i]['Categoria']}}</h5>
+                                   <h5 class="card-title primary-text">{{$categorias[$i]['Categoria']}}</h5>
                                    <p class="card-text">{{$categorias[$i]['Descripcion']}}</p>
-                                   <a class="card-text float-right" href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}" >Conoce más></a>
+                                   <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}" >SABER MAS</a>
                                   
+
+                                   <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
                                </div>
                            </div>
                        </div>
@@ -366,7 +213,7 @@
         
 </div>
 <div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1" style="min-height:325px; ">
-        <h1 class="h1 text-white ">¿Por qué estudiar con nosotros?</h1>
+        <h1 class="h1-responsive text-white text-center">¿Por qué estudiar con nosotros?</h1>
         <p class="text-white">Somos tu mejor opción virtual</p>
 </div>
 <div >
@@ -411,6 +258,7 @@
                             <h5 class="feature-title">Calidad</h5>
                             <p class="grey-text">
                             Cursos online desarrollados por líderes de la industria. 
+                            <br>
                             </p>
                         </div>
                     </div>
@@ -463,8 +311,9 @@
         </section>
         <!--Section: Main features & Quick Start-->
         </div>
-<div class="d-flex align-items-center justify-content-center banner-degradado-1 mt-5" style="min-height:250px; ">
-        <h1 class="h1-responsive text-white mb-5">¿Qué dicen nuestros Estudiantes?</h1>
+<div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1 mt-5" style="min-height:325px; ">
+        <h1 class="h1-responsive text-white text-center ">¿Qué dicen nuestros Estudiantes?</h1>
+        <p class="text-white">Docencia de Calidad </p>
 </div>
 <div class="container">
         <section>
@@ -472,21 +321,99 @@
            
             <!--First row-->
             <div class="row features-small mb-5 mt-3 wow fadeIn">
-                <!--First column-->
-                @for ($i = 0; $i < count($comentarios); $i++)
-                <div class="col-md-4 mt-4">
-                    <div class="card h-100 wow fadeIn" style="max-height:400px">
-                        <div class="card-body text-center">
-                                    <p><img class=" img-fluid rounded-circle" src="{{$comentarios[$i]['Image_URL']}}" alt="card image" style="height:100px"></p>
-                                    <h4 class="card-title">{{$comentarios[$i]['Nombre']}}</h4>
-                                    <p class="card-text">“{{$comentarios[$i]['Comentario']}}”.</p>
-                                    <p class="card-text text-black">{{$comentarios[$i]['Profesion']}} - {{$comentarios[$i]['Desc_Pais']}}</p>
-                        </div>
-                     </div>
-                   
-                </div>
-                
-               @endfor
+
+             
+                            <section class="carousel slide col-12" data-ride="carousel" id="carousel-cursos">
+                            <div class="container" style="position: absolute; z-index: 99998; margin-top:23%">
+                                <div class="d-flex " >
+                                    <div class="mr-auto" style="margin-left:-30px" >
+                                            <a class="btn white btn-circle" href="#carousel-cursos" role="button" data-slide="prev">
+                                            <i class="fa fa-chevron-left center-ico-button grey-text " aria-hidden="true"></i>                                            
+                                        </a>
+                                    </div>
+                                    <div class="ml-auto " style="margin-right:10px">
+                                        <a class="btn white btn-circle" href="#carousel-cursos" role="button" data-slide="next">
+                                        <i class="fa fa-chevron-right center-ico-button grey-text" aria-hidden="true"></i> 
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container pt-0 mt-2">
+                                <div class="carousel-inner">
+
+                                    <div class="carousel-item active">
+                                        <div class="card-deck h-100 mb-2">
+                                        @for ($i = 0; $i < count($comentarios) && $i<3; $i++)
+                                            <div class="card h-100" >
+                                                <div class="card-img-top d-flex justify-content-center">
+                                                    <img class="img-fluid rounded-circle w-50 " src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
+                                                </div>
+                                                <div class="card-body pt-2" >
+            
+                                                    <a
+                                                    class="card-title text-center" >{{$comentarios[$i]['Nombre']}}
+                                                    </a> <br></br>
+                                                    
+                                                    <p class="card-text font-italic ">"{{$comentarios[$i]['Comentario']}}"</p>
+                                                    <hr>
+                                                    <a class="card-meta"></a>
+                                                    <p class="card-meta float-right" style="font-size:12">{{$comentarios[$i]['Profesion']}} - {{$comentarios[$i]['Desc_Pais']}}</p>
+                                                </div>
+            
+                                            </div>
+                                        @endfor
+                                        @if(count($comentarios)%3!=0)
+                                                
+                                                @for($j=0;$j<(3-count($comentarios));$j++)
+                                                    <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent" >                        
+                                                    </div>
+                                                @endfor    
+                                            @endif
+                                        </div>
+                                    </div>
+                                    @if(count($comentarios)>3)
+
+                                    <div class="carousel-item">
+                                    <div class="card-deck h-100 mb-2">
+                                        @for ($i = 3; $i < count($comentarios) && $i < 6; $i++)
+                                            <div class="card h-100" >
+                                                <div class="card-img-top d-flex justify-content-center">
+                                                    <img class="img-fluid rounded-circle w-50 " src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
+                                                </div>
+                                                <div class="card-body pt-2" >
+            
+                                                    <a
+                                                    class="card-title " >{{$comentarios[$i]['Nombre']}}
+                                                    </a> <br></br>
+                                                    
+                                                    <p class="card-text font-italic">"{{$comentarios[$i]['Comentario']}}"</p>
+                                                    <hr>
+                                                    <a class="card-meta"></a>
+                                                    <p class="card-meta float-right" style="font-size:12">{{$comentarios[$i]['Profesion']}} - {{$comentarios[$i]['Desc_Pais']}}</p>
+                                                </div>
+            
+                                            </div>
+                                        @endfor
+                                            @if(count($comentarios)%3!=0)
+                                                @php $al = round(count($comentarios)/3) @endphp
+                                                @for($j=0;$j<(3-$al);$j++)
+                                                    <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent" >                        
+                                                    </div>
+                                                @endfor    
+                                            @endif
+                                        </div>
+                                   
+                                    </div>
+                                    @endif
+                            </div>
+                            </section>
+
+                     
+              
+            
+
+                    
+
               
             </div>
             <!--/First row-->
@@ -500,6 +427,3 @@
 </main>
 @endsection
 
-<script>
-$('.carousel-example-2').carousel()
-    </script>

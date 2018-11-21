@@ -2,7 +2,7 @@
 @section('carrito')
 
 var contentcarrito = ['<p >Tu Carrito de Compras está vacía</p>',
-        '<a href="">Seguir Comprando</a>',
+        '<a class="text-center" href="../account/carrito">Ver Carrito</a>',
        , ].join('');
 
     $("#carrito").popover({ 

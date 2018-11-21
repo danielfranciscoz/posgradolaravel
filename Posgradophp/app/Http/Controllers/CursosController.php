@@ -58,4 +58,11 @@ class CursosController extends Controller
         ->with('categoria',$categoria)
         ->with('cursos',$cursos);
     }
+    public function curso($curso)
+    { 
+        $categorias = Categoria::all()->where('deleted_at',null);
+        return view("cursos.curso",compact('categorias'))
+        
+        ->with('curso',$curso);
+    }
 }
