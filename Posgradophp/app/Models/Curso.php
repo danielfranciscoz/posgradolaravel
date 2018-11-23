@@ -23,6 +23,12 @@ class Curso extends Model
         )->withTimestamps();        
     }
 
+    public function docentes(){        
+        return $this->belongsToMany(
+            Docente::Class            
+        )->withTimestamps();        
+    }
+
     public function categoria(){
         return $this->belongsTo(Categoria::Class);
     }

@@ -14,44 +14,101 @@ class TestMigration extends Migration
     public function up()
     {
 
-        //La oferta serán Maestrías, Cursos de Especialización, Posgrados
-        schema::create('ofertas', function(Blueprint $table){
-            $table->increments('id');
-            $table->string('Oferta');       
-            $table->timestamps(); 
-            $table->softDeletes();
-        });
-
         //Ejemplo, para los cursos de especializacion serán: Computacion y Sistemas, Industria, Mantenimiento Equipos, etc.
         schema::create('categorias', function(Blueprint $table){
             $table->increments('id');
-            $table->unsignedInteger('oferta_id'); //Si esta categoria pertenece a un Cursos, Posgrado o Maestria
+            $table->boolean('isCursoPosgrado'); //Si esta categoria pertenece a un Cursos o Posgrado
             $table->string('Categoria');
-            $table->string('Image_URL');   
-            $table->string('BackColor',12);   
+            $table->string('Image_URL');    
             $table->string('Descripcion',150);   
             $table->text('Descripcion_larga')->nullable();       
             $table->timestamps(); 
             $table->softDeletes();
-
-            $table->foreign('oferta_id')->references('id')->on('ofertas');
         });
 
         schema::create('cursos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('categoria_id')->nullable(); //Cuando sea NULL se referirá a una Maestría 
+            $table->unsignedInteger('categoria_id')->nullable(); //Si es null entonces se refiere a una Maestría
             $table->string('NombreCurso');
             $table->string('Image_URL');
-            $table->text('Descripcion');
-            $table->integer('HorasClase');
-            $table->string('Nivel');
+            $table->string('Temario_URL');
+            $table->text('Desc_Publicidad');
+            $table->text('Desc_Introduccion');
+            $table->text('InfoAdicional');
             $table->timestamps(); //Agrega automaticamente fecha de creacion y actualizacion
-            $table->softDeletes(); //Agrega automaticamente fecha de eliminacion de la fila
-            
+            $table->softDeletes(); //Agrega automaticamente fecha de eliminacion de la fila            
             $table->foreign('categoria_id')->references('id')->on('categorias');
-
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
+        });
+
+        schema::create('preciocursos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('curso_id');
+            $table->float('Precio');
+            $table->timestamps(); 
+            $table->softDeletes();           
+            $table->foreign('curso_id')->references('id')->on('cursos');
+   
+        });
+
+        schema::create('competenciacursos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('curso_id');
+            $table->string('competencia');
+            $table->timestamps(); 
+            $table->softDeletes();           
+            $table->foreign('curso_id')->references('id')->on('cursos');
+        });
+
+        schema::create('tematicacursos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('curso_id');
+            $table->string('Tematica');
+            $table->unsignedInteger('Duracion');
+            $table->timestamps(); 
+            $table->softDeletes();           
+            $table->foreign('curso_id')->references('id')->on('cursos');
+        });
+
+        schema::create('modalidadcursos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('curso_id');
+            $table->string('Modalidad');
+            $table->string('Horario');
+            $table->timestamps(); 
+            $table->softDeletes();           
+            $table->foreign('curso_id')->references('id')->on('cursos');
+        });
+
+        schema::create('requisitocursos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('curso_id');
+            $table->string('Requisito');
+            $table->timestamps(); 
+            $table->softDeletes();           
+            $table->foreign('curso_id')->references('id')->on('cursos');
+        });
+        
+        schema::create('docentes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('Nombre');
+            $table->string('Apellidos');
+            $table->string('Profesion');
+            $table->string('Descripcion');
+            $table->string('Image_URL');
+            $table->timestamps(); 
+            $table->softDeletes();           
+        });
+
+        schema::create('curso_docente',function(Blueprint $table){
+            $table->increments('id');
+            $table->unsignedInteger('curso_id'); 
+            $table->unsignedInteger('docente_id');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->foreign('docente_id')->references('id')->on('docentes');
         });
 
         schema::create('etiquetas', function (Blueprint $table) {
