@@ -6,6 +6,7 @@ use App\Models\Curso;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
+use Session;
 
 class CursosController extends Controller
 {
@@ -64,5 +65,22 @@ class CursosController extends Controller
         return view("cursos.curso",compact('categorias'))
         
         ->with('curso',$curso);
+    }
+       public function addcarrito(Request $curso)
+    { 
+        /* if (Request::has('cartItems')) { */
+            Session::push('cartItems', [
+                'id' => $curso,
+               'curso' => 'Curso laravel',    
+                 'cantidad' => 1 ]);
+             
+      
+        /* } */
+       
+        return response()->json([
+            'message' => 'sucess',
+            ]);
+        
+        
     }
 }
