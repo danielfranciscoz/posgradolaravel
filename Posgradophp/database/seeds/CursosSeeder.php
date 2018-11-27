@@ -83,13 +83,12 @@ class CursosSeeder extends Seeder
         RequisitoCurso::create(['curso_id'=>'2','Requisito'=>'Tener en cuenta las labores que se le piden']);
 
         Curso::create([
-            'NombreCurso'=>'Cuso Intensivo Laravel',
+            'NombreCurso'=>'Mestria en Laravel',
             'Image_URL'=>'/img/Resources/cursos/test_img_3.png',
             'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba para el curso de laravel',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-              'categoria_id'=>'1'
         ]);
 
         PrecioCurso::create(['curso_id'=>'3','Precio'=>'10.2']);
@@ -183,7 +182,6 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-            'categoria_id'=>'3'
         ]);
         
         PrecioCurso::create(['curso_id'=>'6','Precio'=>'10.2']);

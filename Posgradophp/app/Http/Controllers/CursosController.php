@@ -12,7 +12,6 @@ class CursosController extends Controller
     public function index()
     {
         $data = Curso::orderBy('created_at','DESC')->take(10)->get();
-        $categorias = Categoria::all()->where('deleted_at',null);
         $comentarios = Comentario::all()->where('deleted_at',null);
 
         //dd($data->first()->categoria()->get());
@@ -23,7 +22,6 @@ class CursosController extends Controller
         // ['data',json_encode($data)]
 
         return view('welcome', compact('data'))
-        ->with(compact('categorias'))
         ->with(compact('comentarios'));
     }
 
@@ -37,9 +35,8 @@ class CursosController extends Controller
         });
         $cursos=  $cursos->paginate(5);
         //dd($cursos);
-        $categorias = Categoria::all();
         
-        return view("cursos.search",compact('categorias'))
+        return view("cursos.search")
         ->with('search_value',$search_value)
         ->with('cursos',$cursos);
     }
@@ -51,17 +48,17 @@ class CursosController extends Controller
              $sql->Where('Categoria', $categoria);
         });
         
-        $categorias = Categoria::all()->where('deleted_at',null);
+        
         $cursos=  $cursos->paginate(10);
         //    dd($cursos);
-        return view("cursos.cursoscategoria",compact('categorias'))
+        return view("cursos.cursoscategoria")
         ->with('categoria',$categoria)
         ->with('cursos',$cursos);
     }
     public function curso($curso)
     { 
         $categorias = Categoria::all()->where('deleted_at',null);
-        return view("cursos.curso",compact('categorias'))
+        return view("cursos.curso")
         
         ->with('curso',$curso);
     }
