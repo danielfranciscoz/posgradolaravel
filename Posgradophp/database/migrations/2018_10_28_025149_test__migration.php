@@ -42,7 +42,7 @@ class TestMigration extends Migration
             $table->collation = 'utf8_unicode_ci';
         });
 
-        schema::create('preciocursos', function (Blueprint $table) {
+        schema::create('precio_cursos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->float('Precio');
@@ -52,7 +52,7 @@ class TestMigration extends Migration
    
         });
 
-        schema::create('competenciacursos', function (Blueprint $table) {
+        schema::create('competencia_cursos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->string('competencia');
@@ -61,7 +61,7 @@ class TestMigration extends Migration
             $table->foreign('curso_id')->references('id')->on('cursos');
         });
 
-        schema::create('tematicacursos', function (Blueprint $table) {
+        schema::create('tematica_cursos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->string('Tematica');
@@ -71,7 +71,7 @@ class TestMigration extends Migration
             $table->foreign('curso_id')->references('id')->on('cursos');
         });
 
-        schema::create('modalidadcursos', function (Blueprint $table) {
+        schema::create('modalidad_cursos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->string('Modalidad');
@@ -81,7 +81,7 @@ class TestMigration extends Migration
             $table->foreign('curso_id')->references('id')->on('cursos');
         });
 
-        schema::create('requisitocursos', function (Blueprint $table) {
+        schema::create('requisito_cursos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->string('Requisito');
@@ -92,8 +92,7 @@ class TestMigration extends Migration
         
         schema::create('docentes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Nombre');
-            $table->string('Apellidos');
+            $table->string('Nombres');
             $table->string('Profesion');
             $table->string('Descripcion');
             $table->string('Image_URL');
