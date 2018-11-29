@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Models\PrecioCurso;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
@@ -63,21 +64,53 @@ class CursosController extends Controller
         
         ->with('curso',$curso);
     }
-       public function addcarrito(Request $curso)
+
+       public function addcarrito(Request $request)
     { 
-        /* if (Request::has('cartItems')) { */
-            Session::push('cartItems', [
-                'id' => $curso,
-               'curso' => 'Curso laravel',    
-                 'cantidad' => 1 ]);
-             
-      
-        /* } */
-       
-        return response()->json([
-            'message' => 'sucess',
-            ]);
+    //  $request->session()->flush();
+
+       $id= $request->input('curso');
+        $curso = PrecioCurso::with('curso')->where('id',$id)->get();
         
+        if(count($curso) == 0)
+        {
+            return response()->json([
+                'error' => 'Se encuentra intentando agregar un curso que no existe',
+                'message' => 'error'
+                ]);
+        }
+
+
+            $existid = false;
+            for($i=0;$i<count(Session::get('cartItems'));$i++)
+            {
+               if(Session::get('cartItems')[$i]['id']== $id){
+                return response()->json([
+                    'error' => 'Ya fue agregado al carrito',
+                    'message' => 'error'
+                    ]);
+                        $existid = true;
+                    }
+                    
+            }
+
+        //  dd($curso->get(0));
+           if($existid == false){
+            Session::push('cartItems', [
+                'id' => $curso->get(0)->id, //Tabla precioCurso
+                'curso' => $curso->get(0)->Curso()->get()[0]->NombreCurso, //tabla curso
+                'Image_URL'=> $curso->get(0)->Curso()->get()[0]->Image_URL,
+                'Precio' => $curso->get(0)->Precio
+                ]); 
+           }
+
+        return response()->json([
+            'message' => Session::get('cartItems')]);
+       
+      
+        
+/* 
+        return Input::get(); */
         
     }
 }

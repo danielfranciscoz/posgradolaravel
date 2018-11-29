@@ -45,12 +45,6 @@ Route::get('account/carrito','AccountController@carrito');
 
 
 
-// Route::get('curso/addcarrito', function () {
-//     Session::push('cartItems', [
-//         'curso' = > 'Curso laravel',    
-//         'cantidad' = > 1  ]);
-//     return 'Creating a note';
-// });
 
 
 ?>
