@@ -5,7 +5,7 @@
 session(['key' => 'value']); 
 
 @endphp
-<main class="white">
+
 
 <div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1 " style="min-height:325px; ">
         <h1 class="h1-responsive text-white text-center ">{{$curso}}{{session('key')}} </h1>
@@ -214,17 +214,17 @@ session(['key' => 'value']);
 <div class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 <!-- Add class .modal-frame and then add class .modal-bottom (or other classes from list above) to set a position to the modal -->
-<div class="modal-dialog modal-frame modal-top" role="document">
+    <div class="modal-dialog modal-frame modal-top" role="document">
 
 
   <div class="modal-content">
     <div class="modal-body">
       <div class="row d-flex justify-content-center align-items-center">
 
-        <p class="pt-3 pr-2" id="textaddcarrito">
+        <p class="pt-2 col-12 text-center" id="textaddcarrito">
         </p>
 
-        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-sm btn-primary " data-dismiss="modal">Cerrar</button>
         
       </div>
     </div>
@@ -240,16 +240,18 @@ function addcarrito(){
     url: "../process/addcarrito",
     type : 'GET',
     data: {
-        "curso" : "5"
+        "curso" : "3"
     },
     success: function(data) {  
       if (data.message == "error") {
-        $( "#textaddcarrito" ).append( "<p>"+data.error+"</p>" );
+        $( "#textaddcarrito" ).html( "<p>"+data.error+"</p>" );
         $('#frameModalBottom').modal('show');
       }else{
-        $( "#textaddcarrito" ).append( "<p>Estudio Agregado exitosamente al carrito</p>" );
+        
+        
+        $("#textaddcarrito").html( "<p>Estudio Agregado exitosamente al carrito</p>" );
         $('#frameModalBottom').modal('show');
-
+        setTimeout(function(){ location.reload(); }, 3000);
       }
     }
    

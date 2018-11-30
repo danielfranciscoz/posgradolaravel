@@ -1,7 +1,7 @@
 
 @section('carrito')
         @if(Session::has('cartItems'))
-        var contentcarrito = '<div class="d-flex align-items-center row">';
+        var contentcarrito = '<div class="d-flex align-items-center row" id="carritodiv">';
                 contentcarrito = [contentcarrito,'<p class="col-12"> Hay {{count(Session::get('cartItems'))}} estudios en tu carrito  </p>', ].join('');
                 @php
                                 $totalcarrito = 0;
@@ -23,9 +23,9 @@
 
        @else
         
-
-                var contentcarrito = ['<p >Tu Carrito de Compras está vacía</p>',
-                        '<a class="text-center" href="../account/carrito">Ver Carrito</a>',
+       var contentcarrito = '<div class="" id="carritodiv">';
+                contentcarrito = contentcarrito + ['<p >Tu Carrito de Compras está vacía</p>',
+                        '<a class="text-center" href="../account/carrito">Ver Carrito</a></div>',
                 , ].join('');
 
                 $("#carrito").popover({ 

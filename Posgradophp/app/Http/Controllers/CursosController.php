@@ -67,7 +67,7 @@ class CursosController extends Controller
 
        public function addcarrito(Request $request)
     { 
-    //  $request->session()->flush();
+    // $request->session()->flush();
 
        $id= $request->input('curso');
         $curso = PrecioCurso::with('curso')->where('id',$id)->get();
@@ -101,6 +101,7 @@ class CursosController extends Controller
                 'curso' => $curso->get(0)->Curso()->get()[0]->NombreCurso, //tabla curso
                 'Image_URL'=> $curso->get(0)->Curso()->get()[0]->Image_URL,
                 'Precio' => $curso->get(0)->Precio
+                
                 ]); 
            }
 
@@ -113,4 +114,43 @@ class CursosController extends Controller
         return Input::get(); */
         
     }
+
+
+    public function delcarrito(Request $request)
+    {  $id= $request->input('curso');
+        $existid = false;
+        if(count(Session::get('cartItems'))>0){
+            for($i=0;$i<count(Session::get('cartItems'));$i++){
+                    if(Session::get('cartItems')[$i]['id']== $id){
+                        $existid == true;
+                        
+                        $arraysession = Session::get('cartItems');
+                        Session::forget('cartItems');
+                        unset($arraysession[$i]); 
+                        
+                        foreach( $arraysession as $data ){
+                            // dd($data['id']);
+                            Session::push('cartItems', $data);
+                        }
+
+                      
+                        return response()->json([
+                            
+                            'message' => Session::get('cartItems')
+                            ]);
+                    }
+                }
+            }  
+        if($existid==false){
+            return response()->json([
+                'error' => 'Elemento del carrito no existe o ya fue eliminado',
+                'message' => 'error'
+                ]);
+                    $existid = true;
+                }
+        }
+
+    
+
+    
 }

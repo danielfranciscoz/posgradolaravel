@@ -37,6 +37,8 @@ Route::get('/account/registro', 'AccountController@registro')
 
 Route::get('process/addcarrito','CursosController@addcarrito')
 ->name('process.addcarrito');
+Route::get('process/delcarrito','CursosController@delcarrito')
+->name('process.delcarrito');
 
 Route::get('curso/{curso}','CursosController@curso')
 ->name('cursos.curso');
