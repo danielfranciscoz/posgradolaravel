@@ -3,7 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
-use App\Models\PrecioCurso;
+use App\Models\Cursoprecio;
+use App\Models\Cursotematica;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
@@ -13,6 +14,7 @@ class CursosController extends Controller
 {
     public function index()
     {
+        dd(Curso::find(1)->horasclase());
         $data = Curso::orderBy('created_at','DESC')->take(10)->get();
         $comentarios = Comentario::all()->where('deleted_at',null);
 

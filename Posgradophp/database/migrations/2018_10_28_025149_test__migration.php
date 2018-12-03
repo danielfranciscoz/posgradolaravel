@@ -42,7 +42,7 @@ class TestMigration extends Migration
             $table->collation = 'utf8_unicode_ci';
         });
 
-        schema::create('precio_cursos', function (Blueprint $table) {
+        schema::create('cursoprecios', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->float('Precio');
@@ -52,7 +52,7 @@ class TestMigration extends Migration
    
         });
 
-        schema::create('competencia_cursos', function (Blueprint $table) {
+        schema::create('competenciacursos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->string('competencia');
@@ -61,7 +61,7 @@ class TestMigration extends Migration
             $table->foreign('curso_id')->references('id')->on('cursos');
         });
 
-        schema::create('tematica_cursos', function (Blueprint $table) {
+        schema::create('cursotematicas', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->string('Tematica');
@@ -71,7 +71,7 @@ class TestMigration extends Migration
             $table->foreign('curso_id')->references('id')->on('cursos');
         });
 
-        schema::create('modalidad_cursos', function (Blueprint $table) {
+        schema::create('cursomodalidads', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->string('Modalidad');
@@ -81,7 +81,7 @@ class TestMigration extends Migration
             $table->foreign('curso_id')->references('id')->on('cursos');
         });
 
-        schema::create('requisito_cursos', function (Blueprint $table) {
+        schema::create('cursorequisitos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('curso_id');
             $table->string('Requisito');

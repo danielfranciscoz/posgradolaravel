@@ -32,4 +32,13 @@ class Curso extends Model
     public function categoria(){
         return $this->belongsTo(Categoria::Class);
     }
+
+    public function tematicas(){
+        return $this->hasMany(Cursotematica::Class);
+    }
+
+    public function horasClase(){
+        $a=$this-> tematicas()->sum('Duracion');
+        return $a;
+    }
 }

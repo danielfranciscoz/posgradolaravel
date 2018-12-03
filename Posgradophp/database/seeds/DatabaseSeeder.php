@@ -15,16 +15,16 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS = 0'); //Desactivo la verificacion de llaves foraneas para poder eliminar en caso de que exista relacion entre tablas
         DB::table('categorias')->truncate(); 
         DB::table('comentarios')->truncate(); 
-        DB::table('competencia_cursos')->truncate(); 
+        DB::table('competenciacursos')->truncate(); 
         DB::table('curso_docente')->truncate(); 
         DB::table('curso_etiqueta')->truncate(); 
         DB::table('cursos')->truncate(); //Elimina todos los registros de la tabla
         DB::table('docentes')->truncate(); 
         DB::table('etiquetas')->truncate(); 
-        DB::table('modalidad_cursos')->truncate(); 
-        DB::table('precio_cursos')->truncate(); 
-        DB::table('requisito_cursos')->truncate(); 
-        DB::table('tematica_cursos')->truncate(); 
+        DB::table('cursomodalidads')->truncate(); 
+        DB::table('cursoprecios')->truncate(); 
+        DB::table('cursorequisitos')->truncate(); 
+        DB::table('cursotematicas')->truncate(); 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1'); //Reactivo la verificacion de llaves foraneas
         
         // $this->call(UsersTableSeeder::class);
