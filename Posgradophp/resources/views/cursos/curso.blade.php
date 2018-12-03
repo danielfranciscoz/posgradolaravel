@@ -1,17 +1,15 @@
 @extends('layout.app')
 @section('title', $curso)
 @section('content')
-@php 
-session(['key' => 'value']); 
 
-@endphp
-
+<main class="white">
 
 <div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1 " style="min-height:325px; ">
-        <h1 class="h1-responsive text-white text-center ">{{$curso}}{{session('key')}} </h1>
+        <h1 class="h1-responsive text-white text-center ">{{$curso}} </h1>
         <p class="text-white text-justify">Aprende PHP desde cero, bases de datos, SQL, MySQL, POO, MVC, Librerías, Laravel 5, Symfony4, WordPress y más. +56 horas </p>
 </div>
-<h5 class="">  </strong></h5> 
+
+<h5 class="">  </strong></h5>
     <div class="container" >
     <section class="mt-3 wow fadeIn">
             <!--Grid row-->
@@ -177,7 +175,7 @@ session(['key' => 'value']);
                             <span><strong  style="font-size:2em"> $ 9,99 </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
                             <span class="grey-text"></br> 95 % de descuento</span>
 
-                            <a class="btn btn-primary mt-4 w-100 mb-2"  onclick="addcarrito()" >Añadir al carrito</a>
+                            <a class="btn btn-primary mt-4 w-100 mb-2">Añadir al carrito</a>
                             <span class="black-text font-weight-bold"></br> Incluye</span>
                             <span class=""></br> 
                                 <i class="fa fa-eye grey-text" aria-hidden="true"></i>
@@ -210,58 +208,7 @@ session(['key' => 'value']);
                 </div>
     </div>
 </main>
-
-<div class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-<!-- Add class .modal-frame and then add class .modal-bottom (or other classes from list above) to set a position to the modal -->
-    <div class="modal-dialog modal-frame modal-top" role="document">
-
-
-  <div class="modal-content">
-    <div class="modal-body">
-      <div class="row d-flex justify-content-center align-items-center">
-
-        <p class="pt-2 col-12 text-center" id="textaddcarrito">
-        </p>
-
-        <button type="button" class="btn btn-sm btn-primary " data-dismiss="modal">Cerrar</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 @endsection
-
-<script>
-function addcarrito(){
-
-    $.ajax({
-    url: "../process/addcarrito",
-    type : 'GET',
-    data: {
-        "curso" : "3"
-    },
-    success: function(data) {  
-      if (data.message == "error") {
-        $( "#textaddcarrito" ).html( "<p>"+data.error+"</p>" );
-        $('#frameModalBottom').modal('show');
-      }else{
-        
-        
-        $("#textaddcarrito").html( "<p>Estudio Agregado exitosamente al carrito</p>" );
-        $('#frameModalBottom').modal('show');
-        setTimeout(function(){ location.reload(); }, 3000);
-      }
-    }
-   
-    });
-    
-}
-</script>
-
-
-
 
 
 

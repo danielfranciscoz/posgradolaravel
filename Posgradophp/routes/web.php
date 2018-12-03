@@ -46,7 +46,8 @@ Route::get('curso/{curso}','CursosController@curso')
 Route::get('account/carrito','AccountController@carrito');
 
 
-
+Route::get('process/login','AccountController@login')
+->name('process.login');
 
 
 ?>

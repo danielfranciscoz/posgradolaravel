@@ -83,11 +83,15 @@ UNI-DEPEC</title>
             <span class="input-group-text btn-primary waves-effect " id="buttonsearch"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>
-        
+
             <a id="carrito" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100" style="min-width: 70px; " class="btn btn-primary"  ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
+            @if(Session::has('login'))
+                <a style="min-width: 250px;" class="float-right">Bienvenid@  <i class="fa fa-user-o" aria-hidden="true"></i> {{Session::get('login')[0]['Nombre']}}</a>
+
+            @else
             <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold" style="min-width: 150px; background: #424242; " data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
             <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect font-weight-bold" style="min-width: 150px">Registrate</button>
-        
+            @endif
   </div>
   <!-- Collapsible content -->
 
@@ -256,6 +260,7 @@ UNI-DEPEC</title>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mdb.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
   
    <!-- Modals -->
    @include('layout.ModalLogin')
