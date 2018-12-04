@@ -26,21 +26,31 @@
                         </div>
                 @endif
                         @forelse($cursos as $curso)                        
-                 <div class="card col-12">
+                 <div class="col-12">
                         <!-- Card content -->
+                        <div class="card mb-4 mt-2">
                             <div class="card-body row">
                                 <div class="col-4 " >
-                                <img src={{$curso->Image_URL}} class="img-responsive"/>
+                                   
+                                    <img src= {{ $curso->curso()->first()->Image_URL}} class="img-responsive" class="w-100"/>
                                 </div>
+
                                 <div class="col-8">
-                                    <h4>{{$curso->NombreCurso}} </h4>
-                                    <p>Horas Clase - {{$curso->HorasClase}} Horas - {{$curso->Nivel}}</p> 
-                                    <span>
-                                    <span>{{$curso->Descripcion}}</span> 
+                                        <p style="margin-bottom:0"> 
+                                            <p class="h4-responsive font-weight-bold" style="margin-bottom:0"> {{$curso->curso()->first()->NombreCurso}}</p>
+                                            <p class="h6-responsive" style="color:#616161; margin-bottom:0">Horas Clase - {{$curso->curso()->first()->HorasClase}} Horas</p>
+                                        </p>
+                                        <p><span>{{$curso->curso()->first()->Desc_Publicidad}}</p>
+                                        <h5 class="font-weight-bold float-left "  style="color:#b71c1c "> 
+                                            $ {{$curso->Precio}}
+                                        </h5> 
                                 </div>
 
                             </div>
                         </div>
+
+                    </div>
+                      
                         
                         @Empty
                         <h6 class="col-12">Lamentablemente no hemos encontrado un curso con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        

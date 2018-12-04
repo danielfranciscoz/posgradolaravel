@@ -1,12 +1,12 @@
 @extends('layout.app')
-@section('title', $curso)
+@section('title', $curso->NombreCurso)
 @section('content')
 
 <main class="white">
 
 <div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1 " style="min-height:325px; ">
-        <h1 class="h1-responsive text-white text-center ">{{$curso}} </h1>
-        <p class="text-white text-justify">Aprende PHP desde cero, bases de datos, SQL, MySQL, POO, MVC, Librerías, Laravel 5, Symfony4, WordPress y más. +56 horas </p>
+        <h1 class="h1-responsive text-white text-center ">{{$curso->NombreCurso}} </h1>
+        <p class="text-white text-justify">{{$curso->Desc_Publicidad}} </p>
 </div>
 
 <h5 class="">  </strong></h5>
@@ -172,7 +172,7 @@
                 <div class="col-md-4  container mb-4 ">
                     <div class="card pt-2 ">
                         <div class="card-body  px-4 pt-2">
-                            <span><strong  style="font-size:2em"> $ 9,99 </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
+                            <span><strong  style="font-size:2em">$ {{$precio->Precio}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
                             <span class="grey-text"></br> 95 % de descuento</span>
 
                             <a class="btn btn-primary mt-4 w-100 mb-2">Añadir al carrito</a>

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Cursoprecio;
 use App\Models\Cursotematica;
+use App\Models\Cursomodalidad;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
@@ -14,16 +15,9 @@ class CursosController extends Controller
 {
     public function index()
     {
-        dd(Curso::find(1)->horasclase());
+        // dd(Curso::find(1));
         $data = Curso::orderBy('created_at','DESC')->take(10)->get();
         $comentarios = Comentario::all()->where('deleted_at',null);
-
-        //dd($data->first()->categoria()->get());
-        
-        //  $data = Etiqueta::all();
-        // dd($data->find(4)->cursos()->get());
-        //dd(json_encode($data));
-        // ['data',json_encode($data)]
 
         return view('welcome', compact('data'))
         ->with(compact('comentarios'));
@@ -48,23 +42,42 @@ class CursosController extends Controller
     public function categories($categoria)
     { 
 
-        $cursos = Curso::with('categoria')->wherehas('categoria', function ($sql) use ($categoria) {
-             $sql->Where('Categoria', $categoria);
-        });
+        $categoria_id = Categoria::where('Categoria', $categoria)->first();
+        $cursos_id = Curso::where('Categoria_Id', $categoria_id->id)->pluck('id')->toArray();
         
+        $cursos = Cursoprecio::with('curso')
+        ->where('deleted_at','=',null)
+        ->whereIn('curso_id',$cursos_id);
+             
         
         $cursos=  $cursos->paginate(10);
-        //    dd($cursos);
+
+        //  dd($cursos->first()->Curso()->first()->id);
+
         return view("cursos.cursoscategoria")
-        ->with('categoria',$categoria)
+         ->with('categoria',$categoria)
         ->with('cursos',$cursos);
     }
-    public function curso($curso)
+    public function curso($curso_name)
     { 
-        $categorias = Categoria::all()->where('deleted_at',null);
-        return view("cursos.curso")
+        $precio = Cursoprecio::with('curso')          
+        ->where('deleted_at','=',null)
+        ->wherehas('curso', function ($sql) use ($curso_name) {
+            $sql ->where('NombreCurso','like',$curso_name);
+        })->first();
         
-        ->with('curso',$curso);
+        $curso =  $precio->curso()
+            ->with('competencias')
+            ->with('tematicas')
+            ->with('modalidades')            
+            ->with('requisitos')      
+            ->with('docentes')      
+            ->first();
+            
+
+        return view("cursos.curso")        
+        ->with(compact('curso'))
+        ->with(compact('precio'));
     }
 
        public function addcarrito(Request $request)
@@ -72,7 +85,7 @@ class CursosController extends Controller
     // $request->session()->flush();
 
        $id= $request->input('curso');
-        $curso = PrecioCurso::with('curso')->where('id',$id)->get();
+        $curso = Cursoprecio::with('curso')->where('id',$id)->get();
         
         if(count($curso) == 0)
         {
@@ -119,23 +132,27 @@ class CursosController extends Controller
 
 
     public function delcarrito(Request $request)
-    {  $id= $request->input('curso');
+    {  
+        $id= $request->input('curso');
         $existid = false;
+        
         if(count(Session::get('cartItems'))>0){
+
             for($i=0;$i<count(Session::get('cartItems'));$i++){
+
                     if(Session::get('cartItems')[$i]['id']== $id){
+                        
                         $existid == true;
                         
                         $arraysession = Session::get('cartItems');
                         Session::forget('cartItems');
+                        
                         unset($arraysession[$i]); 
                         
-                        foreach( $arraysession as $data ){
-                            // dd($data['id']);
+                        foreach($arraysession as $data ){
                             Session::push('cartItems', $data);
                         }
-
-                      
+       
                         return response()->json([
                             
                             'message' => Session::get('cartItems')

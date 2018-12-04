@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curso extends Model
 {
+
+    protected $appends = ['horas_clase']; //Debe estar en snake_case y su metodo debe estar en CamellCase iniciando con Get, y terminando con Attribute
+
     //
     public function etiquetas(){        
         /*
@@ -33,12 +36,27 @@ class Curso extends Model
         return $this->belongsTo(Categoria::Class);
     }
 
+    public function competencias(){
+        return $this->hasMany(CompetenciaCurso::Class);
+    }
+
     public function tematicas(){
         return $this->hasMany(Cursotematica::Class);
     }
 
-    public function horasClase(){
-        $a=$this-> tematicas()->sum('Duracion');
+    public function modalidades(){
+        return $this->hasMany(Cursomodalidad::Class);
+    }
+    
+    public function requisitos(){
+        return $this->hasMany(Cursorequisito::Class);
+    }
+
+
+    
+
+    public function getHorasClaseAttribute(){
+        $a= $this-> tematicas()->sum('Duracion');
         return $a;
     }
 }

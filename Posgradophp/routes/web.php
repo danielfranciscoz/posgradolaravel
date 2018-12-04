@@ -14,21 +14,22 @@
 Route::get('/', 'CursosController@index')
 ->name('cursos.index');
 
-Route::get('/cursos', function(){
-    redirect()->route('cursos.index');
+Route::get('/curso', function(){
+    return redirect()->route('cursos.index');
 });
 
+
+//Todos los cursos de la categoria
 Route::get('categorias/{categoria}','CursosController@categories')
 ->name('cursos.categorias');
 
-
-Route::get('cursos/{curso}','CursosController@search')
+//Todos los cursos que cumplen con el criterio de busqueda
+Route::get('curso/find/{curso}','CursosController@search')
 ->name('cursos.search');
 
-// Route::get('/prueba',function(){
-// return "Esta es una ruta de prueba 2";
-// });
-
+//Informacion del curso
+Route::get('curso/{curso_name}','CursosController@curso')
+->name('cursos.curso');
 
 // Route::get('/search/{ss}', 'SearchController@search');
 
@@ -37,11 +38,9 @@ Route::get('/account/registro', 'AccountController@registro')
 
 Route::get('process/addcarrito','CursosController@addcarrito')
 ->name('process.addcarrito');
+
 Route::get('process/delcarrito','CursosController@delcarrito')
 ->name('process.delcarrito');
-
-Route::get('curso/{curso}','CursosController@curso')
-->name('cursos.curso');
 
 Route::get('account/carrito','AccountController@carrito');
 

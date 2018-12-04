@@ -284,7 +284,7 @@ UNI-DEPEC</title>
                
                 var search = $( "#searchinput").val();
                 if( search.length > 0){
-                    window.location.replace("../cursos/"+search);
+                    window.location.replace("../curso/find/"+search);
                 }
             });
 
@@ -305,7 +305,7 @@ UNI-DEPEC</title>
                     
                     var searchcarrusel = $( "#searchcarruselinput").val();
                     if( searchcarrusel.length > 0){
-                        window.location.replace("../cursos/"+searchcarrusel);
+                        window.location.replace("../curso/find/"+searchcarrusel);
                     }
                 });
 
