@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Registro')
+@section('title', 'Registro nuevo usuario')
 @section('content')
 <main class="grey lighten-4">
     <div class="container wow fadein">
