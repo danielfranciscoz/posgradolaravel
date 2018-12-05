@@ -15,7 +15,18 @@ class AccountController extends Controller
     
     }
     public function carrito(){
-        return view("Account/carrito");
+ 
+            return view("Account/carrito");
+        
+    }
+
+    public function pagarcarrito(){
+       /*  if(Session::has('login') && Session::has('login')){ */
+            return view("Account/pagarcarrito");
+       /*  }
+        else{
+            abort(404);
+        } */
 
     }
 
