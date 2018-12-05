@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('title', 'Carrito de Compras')
 @section('content')
-
+ 
 
 <main class="white mx-4">
 @if(Session::has('cartItems'))

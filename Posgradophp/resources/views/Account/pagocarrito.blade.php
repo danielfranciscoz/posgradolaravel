@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Carrito de Compras')
+@section('title', 'Pago de Carrito de compra')
 @section('content')
 
 @endsection
