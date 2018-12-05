@@ -35,7 +35,7 @@ class AccountController extends Controller
        
         // dd(Auth::user());
 
-         if(Session::has('cartItems') && guard(null)->check()){
+         if(Session::has('cartItems') && Auth::guard(null)->check()){
             return view("Account/pagarcarrito");
         }
         else{
