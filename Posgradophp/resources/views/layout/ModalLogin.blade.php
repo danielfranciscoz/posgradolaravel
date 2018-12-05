@@ -31,8 +31,10 @@
                         <!--Grid column-->
                         <div class="col-12 ">
                         
+                        <div class="d-flex justify-content-center text-justify">
                         
-                        <button class="btn btn-sm btn-primary float-right " style="margin-left:50px">Iniciar Sesíon</button>
+                            <button class="btn btn-sm btn-primary ">Iniciar Sesíon</button>
+                        </div>
                         <br><br><br>
                          
                             <div class="flex-column">

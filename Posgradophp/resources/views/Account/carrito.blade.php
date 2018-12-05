@@ -1,6 +1,8 @@
 @extends('layout.app')
 @section('title', 'Carrito de Compras')
 @section('content')
+
+
 <main class="white mx-4">
 @if(Session::has('cartItems'))
 <h3 class="h3-responsive mt-4 font-weight-bold">Estudios agregados al carrito</h3>
@@ -34,9 +36,18 @@
             
          @endfor
             </div>
-            <div class="card col-md-4 col-sm-12 grey lighten-4 mb-4 mt-2 " style="height:200px">
+            <div class="card col-md-4 col-sm-12 grey lighten-4 mb-4 mt-2 " style="height:300px">
                 <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
-                <a class="btn btn-primary mt-4 w-95 mb-2"  onclick="proceder()" >Proceder al Pago</a>
+                @if(Session::has('login'))
+                <a class="btn btn-primary mt-4 w-95 mb-2"  onclick="proceder()">Proceder al Pago</a>
+                
+               @else
+               <a class="btn btn-primary mt-4 w-95 mb-2 disabled"> Proceder al Pago</a>
+                <a class="text-center">Debe Iniciar Sesíon para proceder al pago</a>
+                <a class="btn text-white " data-toggle="modal" data-target="#modalLoginForm" style="background: #424242;"> Iniciar Sesíon</a>
+                
+               
+                @endif
                 <div class="mt-2 d-flex justify-content-center grey-text">
                                 <i class="fa fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
                                 <i class="fa fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
