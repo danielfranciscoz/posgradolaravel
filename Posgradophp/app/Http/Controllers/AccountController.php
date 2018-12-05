@@ -44,5 +44,19 @@ class AccountController extends Controller
 
     }
 
+    public function loginUser(Request $request){
+        try {
+
+            $this->login($request);
+
+            return response()->json([
+                'message'=>'success'
+            ]);
+
+
+        } catch (Exception $e) {
+            return report($e);
+        }
+    }
    
     }
