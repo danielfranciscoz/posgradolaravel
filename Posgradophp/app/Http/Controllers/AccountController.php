@@ -7,10 +7,17 @@ use App\Models\Categoria;
 use Session;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
     use AuthenticatesUsers;
+    
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+        // dd('Auth::user()');
+    }
 
     public function registro(){
         // dd(Auth::user());
@@ -25,12 +32,15 @@ class AccountController extends Controller
     }
 
     public function pagarcarrito(){
-       /*  if(Session::has('login') && Session::has('login')){ */
+       
+        // dd(Auth::user());
+
+         if(Session::has('cartItems') && guard(null)->check()){
             return view("Account/pagarcarrito");
-       /*  }
+        }
         else{
-            abort(404);
-        } */
+            return view("Account/carrito");
+        } 
 
     }
 

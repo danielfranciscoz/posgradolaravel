@@ -83,23 +83,20 @@ UNI-DEPEC</title>
             <span class="input-group-text btn-primary waves-effect " id="buttonsearch"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>
-
             <a id="carrito" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100" style="min-width: 70px; " class="btn btn-primary"  ><i class="fa fa-cart-plus text-primary fa-2x  " aria-hidden="true"></i></a>
-            @if(Session::has('login'))
-                <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{Session::get('login')[0]['Nombre']}} &nbsp;</a> 
-                <a class="" style="width:80px" onclick="logout()">  <i class="fa fa-sign-out fa-1x red-text text-right" aria-hidden="true"></i> </a>
-
-            @else
+            @guest        
                 <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold" style="min-width: 150px; background: #424242; " data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
                 <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect font-weight-bold" style="min-width: 150px">Registrate</button>
-            @endif
+            @else
+                <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{ Auth::user()->email }} &nbsp;</a> 
+                <a class="" style="width:80px" onclick="logout()">  <i class="fa fa-sign-out fa-1x red-text text-right" aria-hidden="true"></i> </a>
+
+        @endguest
   </div>
   <!-- Collapsible content -->
 
 </nav>
-  
 
-    
             @yield('content')
 
             
