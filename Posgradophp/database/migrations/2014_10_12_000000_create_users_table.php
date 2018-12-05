@@ -19,8 +19,20 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('isAdmin');
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::create('estudiantes', function (Blueprint $table) {
+            $table->unsignedInteger('user_id')->primary();
+            $table->string('Nombres');
+            $table->string('Apellidos');
+            $table->string('Telefono');
+            $table->boolean('isSuscript');
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

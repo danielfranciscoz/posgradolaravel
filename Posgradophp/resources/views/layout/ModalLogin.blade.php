@@ -72,8 +72,8 @@
                     $.ajax(
                         {
                             data: {
-                                "user": user,
-                                "pass":pass
+                                "email": user,
+                                "password":pass
                             },
                             url: "../process/login",
                             type: 'get',

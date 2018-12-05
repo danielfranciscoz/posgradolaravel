@@ -27,4 +27,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // public function login($user){
+        
+    //     for($i=0;$i<count(Session::get('login'));$i++)
+    //     {
+    //        if(Session::get('login')[$i]['user']== $user->email && Session::get('login')[$i]['password']== bcrypt($user->password)){
+    //             return true;                    
+    //         }
+
+            
+                
+    //     }
+    // }
+
+    
+
 }

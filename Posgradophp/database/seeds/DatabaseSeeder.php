@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         DB::table('cursotematicas')->truncate(); 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1'); //Reactivo la verificacion de llaves foraneas
         
-        // $this->call(UsersTableSeeder::class);
+        $this->call(UsersSeeder::class);
         $this->call(CategoriasSeeder::class);
         $this->call(ComentariosSeeder::class);
         $this->call(CursosSeeder::class);

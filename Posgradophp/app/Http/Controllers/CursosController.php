@@ -10,12 +10,14 @@ use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class CursosController extends Controller
 {
     public function index()
     {
-        // dd(Curso::find(1));
+      
+
         $data = Curso::orderBy('created_at','DESC')->take(10)->get();
         $comentarios = Comentario::all()->where('deleted_at',null);
 
