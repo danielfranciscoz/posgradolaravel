@@ -16,7 +16,8 @@
                      <div class="card-body row mx-5">
                      <h5 class="h5-responsive font-weight-bold col-12 mb-4">Introduzca sus datos</h5>
                 
-                  
+                  {{$estudiante[0]->Nombres}}
+                  {{$estudiante[0]->Apellidos}}
                         <input type="text" id="nombres" class="form-control mb-3 col-12" placeholder="Nombres*" required />
                    
                         <!-- Last name -->

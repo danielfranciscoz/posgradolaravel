@@ -28,6 +28,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function estudiante(){
+        return $this->hasOne(\App\Models\Estudiante::class);
+    }
+
     // public function login($user){
         
     //     for($i=0;$i<count(Session::get('login'));$i++)

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class AccountController extends Controller
 {
     use AuthenticatesUsers;
-    
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -23,24 +23,25 @@ class AccountController extends Controller
         // dd(Auth::user());
         return view("Account/registro");
 
-    
+
     }
     public function carrito(){
- 
+
             return view("Account/carrito");
-        
+
     }
 
     public function pagarcarrito(){
-       
-        // dd(Auth::user());
 
-         if(Session::has('cartItems') && Auth::guard(null)->check()){
-            return view("Account/pagarcarrito");
+        $user= Auth::user()->with('estudiante')->first();
+        $estudiante = $user->estudiante()->get();
+    //   dd($estudiante[0]->Nombres);
+        if(Session::has('cartItems') && Auth::guard(null)->check()){
+            return view("Account/pagarcarrito")->with(compact('estudiante'));
         }
         else{
             return view("Account/carrito");
-        } 
+        }
 
     }
 
@@ -58,5 +59,5 @@ class AccountController extends Controller
             return report($e);
         }
     }
-   
+
     }
