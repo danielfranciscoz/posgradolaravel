@@ -32,7 +32,9 @@
                         <div class="col-12 ">
                         
                         <div class="d-flex justify-content-center text-justify">
-                        
+                            <div class="alert alert-danger" role="alert" id="alertlogin">
+                            
+                            </div>
                             <button class="btn btn-sm btn-primary ">Iniciar Sesíon</button>
                         </div>
                         <br><br><br>
@@ -80,10 +82,12 @@
                             url: "../process/login",
                             type: 'get',
                             success: function(response){
-                                if(response.message =="sucess"){
+                                if(response.message =="success"){
                                     location.reload();
                                 }else{
-                                    
+                                    console.log(response.errors.email[0]);
+                                    $("#alertlogin").append("<b>"+response.errors.email[0]+"</b>");
+                                   
                                 }
                             }
                         }
