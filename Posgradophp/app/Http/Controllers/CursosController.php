@@ -52,9 +52,9 @@ class CursosController extends Controller
         ->whereIn('curso_id',$cursos_id);
              
         
-        $cursos=  $cursos->paginate(10);
+        $cursos=  $cursos->paginate(3);
 
-        //  dd($cursos->first()->Curso()->first()->id);
+        // dd($cursos);
 
         return view("cursos.cursoscategoria")
          ->with('categoria',$categoria)

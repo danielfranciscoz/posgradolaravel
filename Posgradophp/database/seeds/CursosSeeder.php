@@ -300,5 +300,159 @@ class CursosSeeder extends Seeder
         CursoRequisito::create(['curso_id'=>'9','Requisito'=>'Informar de cualquier cosa con el superior']);
         CursoRequisito::create(['curso_id'=>'9','Requisito'=>'Tener en cuenta las labores que se le piden']);
 
+        Curso::create([
+            'NombreCurso'=>'Diseños',
+            'Image_URL'=>'/img/Resources/cursos/test_img_6.png',
+            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Desc_Publicidad'=>'Esta es una descripcion de prueba',
+            'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
+            'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
+            'categoria_id'=>'1'
+        ]);
+
+        CursoPrecio::create(['curso_id'=>'10','Precio'=>'10.2']);
+
+        CompetenciaCurso::create(['curso_id'=>'10','Competencia'=>'Prodra hacer una cosa']);
+        CompetenciaCurso::create(['curso_id'=>'10','Competencia'=>'Prodra hacer otra cosa']);
+        CompetenciaCurso::create(['curso_id'=>'10','Competencia'=>'Prodra blablabla']);
+        CompetenciaCurso::create(['curso_id'=>'10','Competencia'=>'Prodra lo que sea']);
+
+        CursoTematica::create(['curso_id'=>'10','Tematica'=>'Creando','Duracion'=>'5']);
+        CursoTematica::create(['curso_id'=>'10','Tematica'=>'Introduccion','Duracion'=>'7']);
+        CursoTematica::create(['curso_id'=>'10','Tematica'=>'Desarrollo','Duracion'=>'15']);
+
+        CursoModalidad::create(['curso_id'=>'10','Modalidad'=>'Diurno','Horario'=>'12pm-8pm']);
+        CursoModalidad::create(['curso_id'=>'10','Modalidad'=>'Nocturno','Horario'=>'11pm-12pm']);
+        CursoModalidad::create(['curso_id'=>'10','Modalidad'=>'Sabatino','Horario'=>'1pm-6pm']);
+        CursoModalidad::create(['curso_id'=>'10','Modalidad'=>'Dominical','Horario'=>'3pm-7pm']);
+
+        CursoRequisito::create(['curso_id'=>'10','Requisito'=>'Tener toda la documentacion']);
+        CursoRequisito::create(['curso_id'=>'10','Requisito'=>'Buscar todas las cosas que se le piden']);
+        CursoRequisito::create(['curso_id'=>'10','Requisito'=>'Informar de cualquier cosa con el superior']);
+        CursoRequisito::create(['curso_id'=>'10','Requisito'=>'Tener en cuenta las labores que se le piden']);
+
+        Curso::create([
+            'NombreCurso'=>'Diseños Prueba',
+            'Image_URL'=>'/img/Resources/cursos/test_img_3.png',
+            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Desc_Publicidad'=>'Esta es una descripcion de prueba',
+            'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
+            'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
+            'categoria_id'=>'1'
+        ]);
+
+        CursoPrecio::create(['curso_id'=>'11','Precio'=>'10.2']);
+
+        CompetenciaCurso::create(['curso_id'=>'11','Competencia'=>'Prodra hacer una cosa']);
+        CompetenciaCurso::create(['curso_id'=>'11','Competencia'=>'Prodra hacer otra cosa']);
+        CompetenciaCurso::create(['curso_id'=>'11','Competencia'=>'Prodra blablabla']);
+        CompetenciaCurso::create(['curso_id'=>'11','Competencia'=>'Prodra lo que sea']);
+
+        CursoTematica::create(['curso_id'=>'11','Tematica'=>'Creando','Duracion'=>'5']);
+        CursoTematica::create(['curso_id'=>'11','Tematica'=>'Introduccion','Duracion'=>'7']);
+        CursoTematica::create(['curso_id'=>'11','Tematica'=>'Desarrollo','Duracion'=>'15']);
+
+        CursoModalidad::create(['curso_id'=>'11','Modalidad'=>'Diurno','Horario'=>'12pm-8pm']);
+        CursoModalidad::create(['curso_id'=>'11','Modalidad'=>'Nocturno','Horario'=>'11pm-12pm']);
+        CursoModalidad::create(['curso_id'=>'11','Modalidad'=>'Sabatino','Horario'=>'1pm-6pm']);
+        CursoModalidad::create(['curso_id'=>'11','Modalidad'=>'Dominical','Horario'=>'3pm-7pm']);
+
+        CursoRequisito::create(['curso_id'=>'11','Requisito'=>'Tener toda la documentacion']);
+        CursoRequisito::create(['curso_id'=>'11','Requisito'=>'Buscar todas las cosas que se le piden']);
+        CursoRequisito::create(['curso_id'=>'11','Requisito'=>'Informar de cualquier cosa con el superior']);
+        CursoRequisito::create(['curso_id'=>'11','Requisito'=>'Tener en cuenta las labores que se le piden']);
+
+        Curso::create([
+            'NombreCurso'=>'Diseños 2',
+            'Image_URL'=>'/img/Resources/cursos/test_img_1.png',
+            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Desc_Publicidad'=>'Esta es una descripcion de prueba',
+            'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
+            'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
+            'categoria_id'=>'1'
+        ]);
+
+        CursoPrecio::create(['curso_id'=>'12','Precio'=>'10.2']);
+
+        CompetenciaCurso::create(['curso_id'=>'12','Competencia'=>'Prodra hacer una cosa']);
+        CompetenciaCurso::create(['curso_id'=>'12','Competencia'=>'Prodra hacer otra cosa']);
+        CompetenciaCurso::create(['curso_id'=>'12','Competencia'=>'Prodra blablabla']);
+        CompetenciaCurso::create(['curso_id'=>'12','Competencia'=>'Prodra lo que sea']);
+
+        CursoTematica::create(['curso_id'=>'12','Tematica'=>'Creando','Duracion'=>'5']);
+        CursoTematica::create(['curso_id'=>'12','Tematica'=>'Introduccion','Duracion'=>'7']);
+        CursoTematica::create(['curso_id'=>'12','Tematica'=>'Desarrollo','Duracion'=>'15']);
+
+        CursoModalidad::create(['curso_id'=>'12','Modalidad'=>'Diurno','Horario'=>'1pm-8pm']);
+        CursoModalidad::create(['curso_id'=>'12','Modalidad'=>'Nocturno','Horario'=>'1pm-1pm']);
+        CursoModalidad::create(['curso_id'=>'12','Modalidad'=>'Sabatino','Horario'=>'1pm-6pm']);
+        CursoModalidad::create(['curso_id'=>'12','Modalidad'=>'Dominical','Horario'=>'3pm-7pm']);
+
+        CursoRequisito::create(['curso_id'=>'12','Requisito'=>'Tener toda la documentacion']);
+        CursoRequisito::create(['curso_id'=>'12','Requisito'=>'Buscar todas las cosas que se le piden']);
+        CursoRequisito::create(['curso_id'=>'12','Requisito'=>'Informar de cualquier cosa con el superior']);
+        CursoRequisito::create(['curso_id'=>'12','Requisito'=>'Tener en cuenta las labores que se le piden']);
+
+        Curso::create([
+            'NombreCurso'=>'Diseños 1',
+            'Image_URL'=>'/img/Resources/cursos/test_img_5.png',
+            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Desc_Publicidad'=>'Esta es una descripcion de prueba',
+            'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
+            'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
+            'categoria_id'=>'1'
+        ]);
+
+        CursoPrecio::create(['curso_id'=>'13','Precio'=>'10.2']);
+
+        CompetenciaCurso::create(['curso_id'=>'13','Competencia'=>'Prodra hacer una cosa']);
+        CompetenciaCurso::create(['curso_id'=>'13','Competencia'=>'Prodra hacer otra cosa']);
+        CompetenciaCurso::create(['curso_id'=>'13','Competencia'=>'Prodra blablabla']);
+        CompetenciaCurso::create(['curso_id'=>'13','Competencia'=>'Prodra lo que sea']);
+
+        CursoTematica::create(['curso_id'=>'13','Tematica'=>'Creando','Duracion'=>'5']);
+        CursoTematica::create(['curso_id'=>'13','Tematica'=>'Introduccion','Duracion'=>'7']);
+        CursoTematica::create(['curso_id'=>'13','Tematica'=>'Desarrollo','Duracion'=>'15']);
+
+        CursoModalidad::create(['curso_id'=>'13','Modalidad'=>'Diurno','Horario'=>'12pm-8pm']);
+        CursoModalidad::create(['curso_id'=>'13','Modalidad'=>'Nocturno','Horario'=>'13pm-12pm']);
+        CursoModalidad::create(['curso_id'=>'13','Modalidad'=>'Sabatino','Horario'=>'1pm-6pm']);
+        CursoModalidad::create(['curso_id'=>'13','Modalidad'=>'Dominical','Horario'=>'3pm-7pm']);
+
+        CursoRequisito::create(['curso_id'=>'13','Requisito'=>'Tener toda la documentacion']);
+        CursoRequisito::create(['curso_id'=>'13','Requisito'=>'Buscar todas las cosas que se le piden']);
+        CursoRequisito::create(['curso_id'=>'13','Requisito'=>'Informar de cualquier cosa con el superior']);
+        CursoRequisito::create(['curso_id'=>'13','Requisito'=>'Tener en cuenta las labores que se le piden']);
+
+        Curso::create([
+            'NombreCurso'=>'arquitectonicos',
+            'Image_URL'=>'/img/Resources/cursos/test_img_2.png',
+            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Desc_Publicidad'=>'Esta es una descripcion de prueba',
+            'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
+            'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
+            'categoria_id'=>'1'
+        ]);
+
+        CursoPrecio::create(['curso_id'=>'14','Precio'=>'10.2']);
+
+        CompetenciaCurso::create(['curso_id'=>'14','Competencia'=>'Prodra hacer una cosa']);
+        CompetenciaCurso::create(['curso_id'=>'14','Competencia'=>'Prodra hacer otra cosa']);
+        CompetenciaCurso::create(['curso_id'=>'14','Competencia'=>'Prodra blablabla']);
+        CompetenciaCurso::create(['curso_id'=>'14','Competencia'=>'Prodra lo que sea']);
+
+        CursoTematica::create(['curso_id'=>'14','Tematica'=>'Creando','Duracion'=>'5']);
+        CursoTematica::create(['curso_id'=>'14','Tematica'=>'Introduccion','Duracion'=>'7']);
+        CursoTematica::create(['curso_id'=>'14','Tematica'=>'Desarrollo','Duracion'=>'15']);
+
+        CursoModalidad::create(['curso_id'=>'14','Modalidad'=>'Diurno','Horario'=>'12pm-8pm']);
+        CursoModalidad::create(['curso_id'=>'14','Modalidad'=>'Nocturno','Horario'=>'14pm-12pm']);
+        CursoModalidad::create(['curso_id'=>'14','Modalidad'=>'Sabatino','Horario'=>'1pm-6pm']);
+        CursoModalidad::create(['curso_id'=>'14','Modalidad'=>'Dominical','Horario'=>'3pm-7pm']);
+
+        CursoRequisito::create(['curso_id'=>'14','Requisito'=>'Tener toda la documentacion']);
+        CursoRequisito::create(['curso_id'=>'14','Requisito'=>'Buscar todas las cosas que se le piden']);
+        CursoRequisito::create(['curso_id'=>'14','Requisito'=>'Informar de cualquier cosa con el superior']);
+        CursoRequisito::create(['curso_id'=>'14','Requisito'=>'Tener en cuenta las labores que se le piden']);
 }
 }
