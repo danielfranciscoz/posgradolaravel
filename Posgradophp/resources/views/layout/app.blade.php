@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') - Dirección de Estudios de Posgrado y Educación Continua
 UNI-DEPEC</title>
    
@@ -89,8 +90,10 @@ UNI-DEPEC</title>
                 <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect font-weight-bold" style="min-width: 150px">Registrate</button>
             @else
                 <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{ Auth::user()->email }} &nbsp;</a> 
-                <a class="" style="width:80px" onclick="logout()">  <i class="fa fa-sign-out fa-1x red-text text-right" aria-hidden="true"></i> </a>
-
+                <a class="" style="width:80px" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  <i class="fa fa-sign-out fa-1x red-text text-right" aria-hidden="true"></i> </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                 </form>
         @endguest
   </div>
   <!-- Collapsible content -->
@@ -227,6 +230,7 @@ UNI-DEPEC</title>
             <hr>
 
             <!-- Call to action -->
+            @guest
             <ul class="list-unstyled list-inline text-center py-2">
                 <li class="list-inline-item">
                     <h6 class="mb-1">Registrarse es gratis</h6>
@@ -235,6 +239,7 @@ UNI-DEPEC</title>
                     <a href="{{route('registro')}}" class="btn btn-sm btn-danger btn-rounded ">Registrate!</a>
                 </li>
             </ul>
+            @endguest
             <!-- Call to action -->
 
            
@@ -274,6 +279,10 @@ UNI-DEPEC</title>
             $('[data-toggle="popover"]').popover();
            
            @yield('carrito');
+
+           function logout(){
+
+           }
 
             $('.next-cursos').click(function(){ $('#carousel-cursos').carousel('next');return false; });
             $('.prev-cursos').click(function(){ $('#carousel-cursos').carousel('prev');return false; });

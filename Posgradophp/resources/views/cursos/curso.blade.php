@@ -23,30 +23,16 @@
                             <div class="card-body">
                              <h4 class="h4-responsive"><strong>Lo que aprenderás</strong></h4> </br>
                                 <div class="row">
-                                    <div class="col-md-6 mt-2  ">
-                                        <i class="fa fa-check grey-text" aria-hidden="true"></i>
-                                        
-                                        Desarrollar aplicaciones web con Laravel                                    
-                                    </div>
+                            
 
+                                     @for($i=0;$i<count($curso->requisitos()->get());$i++)  
+                                 
                                     <div class="col-md-6 mt-2  ">
                                         <i class="fa fa-check grey-text" aria-hidden="true"></i>
                                         
-                                        Desarrollar aplicaciones web con Laravel                                    
-                                    </div>
-
-                                    <div class="col-md-6 mt-2  ">
-                                        <i class="fa fa-check grey-text" aria-hidden="true"></i>
-                                        
-                                        Desarrollar aplicaciones web con Laravel                                    
-                                    </div>
-
-                                    <div class="col-md-6 mt-2  ">
-                                        <i class="fa fa-check grey-text" aria-hidden="true"></i>
-                                        
-                                        Desarrollar aplicaciones web con Laravel                                    
-                                    </div>
-                                    
+                                        {{$curso->requisitos()->get()[$i]->Requisito}}                           
+                                    </div>                                    
+                                    @endfor
                                 </div>
 
                             </div>
@@ -175,7 +161,9 @@
                             <span><strong  style="font-size:2em">$ {{$precio->Precio}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
                             <span class="grey-text"></br> 95 % de descuento</span>
 
-                            <a class="btn btn-primary mt-4 w-100 mb-2">Añadir al carrito</a>
+                            <a class="btn btn-primary mt-4 w-100 mb-2" onclick="addcarrito({{$curso->id}})">Añadir al carrito</a>
+                            <div class="alert alert-danger col-12" role="alert" id="alertaddcarrito">                            
+                            </div>
                             <span class="black-text font-weight-bold"></br> Incluye</span>
                             <span class=""></br> 
                                 <i class="fa fa-eye grey-text" aria-hidden="true"></i>
@@ -212,3 +200,30 @@
 
 
 
+<script>
+
+$("#alertaddcarrito").hide();      
+
+    function addcarrito(id){
+        $.ajax({
+            url: "../process/addcarrito",
+            type : 'GET',
+            data: {
+                "curso" : id
+            },
+            success: function(data) {  
+                if (data.message == "error") {
+                    $( "#alertaddcarrito").show();
+                    $( "#alertaddcarrito").html( "<p class='text-center'>"+data.error+"</p>" );
+                   
+                }else{
+                   
+                    setTimeout(function(){ location.reload(); }, 00);
+                }
+            }
+        });
+
+    }
+
+    
+</script>

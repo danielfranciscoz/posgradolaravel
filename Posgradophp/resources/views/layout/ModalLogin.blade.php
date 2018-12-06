@@ -31,11 +31,11 @@
                         <!--Grid column-->
                         <div class="col-12 ">
                         
-                        <div class="d-flex justify-content-center text-justify">
-                            <div class="alert alert-danger" role="alert" id="alertlogin">
+                        <div class="d-flex justify-content-center align-items-center text-justify row container ml-1">
+                            <div class="alert alert-danger col-12" role="alert" id="alertlogin">
                             
                             </div>
-                            <button class="btn btn-sm btn-primary ">Iniciar Sesíon</button>
+                            <button class="btn btn-sm btn-primary " id="btnsesion">Iniciar Sesíon</button>
                         </div>
                         <br><br><br>
                          
@@ -57,8 +57,11 @@
 
 <script>
 
+    $("#alertlogin").hide();
  $("#loginForm").submit(function(e){
                 e.preventDefault();
+                $("#alertlogin").hide();
+               
                 var user = $("#defaultForm-email").val();
                 var pass = $("#defaultForm-pass").val();
                 
@@ -85,11 +88,26 @@
                                 if(response.message =="success"){
                                     location.reload();
                                 }else{
-                                    console.log(response.errors.email[0]);
+                                    $("#alertlogin").remove();
+                                    $("#alertlogin").show();
                                     $("#alertlogin").append("<b>"+response.errors.email[0]+"</b>");
                                    
                                 }
+                            },
+                            error: function(response){
+                                var str = "";
+                                $("#alertlogin").show();
+                                $("#alertlogin").remove();
+                              
+                                for(var i=0;i<response.responseJSON.errors.email.length;i++){
+                                    
+                                    str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
+                                }
+                                
+                                $("#alertlogin").append(str);
                             }
+                            
+                        
                         }
                     );
                 }
@@ -98,8 +116,9 @@
 
             });
             
+            
+$('#modalLoginForm').on('hidden.bs.modal', function (e) {
+    $("#alertlogin").hide();
+})
 
-    
-
-    
 </script>
