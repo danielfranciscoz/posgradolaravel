@@ -22,8 +22,9 @@ class UsersSeeder extends Seeder
 
        Estudiante::create([
            'user_id'=>'1',
-           'Nombres'=>'Administrador',
-           'Apellidos'=>'Apellidos adm',
+           'Nombres'=>'Primer Nombre',
+           'Apellidos'=>'Segundo Nombre',
+           'DNI'=>'0000000000000A',
            'Telefono'=>'2252-2252',
             'isSuscript'=>true
        ]);

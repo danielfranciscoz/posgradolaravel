@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('user_id')->primary();
             $table->string('Nombres');
             $table->string('Apellidos');
+            $table->string('DNI');
             $table->string('Telefono');
             $table->boolean('isSuscript');
             $table->timestamps();
