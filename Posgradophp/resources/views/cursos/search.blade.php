@@ -33,7 +33,7 @@
                                 <div class="col-4" >
                                 <img src={{$curso->Image_URL}} class="img-responsive"/>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-8 ">
                                     <h4>{{$curso->NombreCurso}} </h4>
                                     <p>Horas Clase - {{$curso->HorasClase}} Horas - {{$curso->Nivel}}</p> 
                                     <span>

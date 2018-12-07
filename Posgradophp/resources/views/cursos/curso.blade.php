@@ -166,7 +166,7 @@
                             </div>
                             <span class="black-text font-weight-bold"></br> Incluye</span>
                             <span class=""></br> 
-                                <i class="fa fa-eye grey-text" aria-hidden="true"></i>
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
                                 56 horas de Estudio
                             </span>
                             <span class=""></br> 
@@ -183,7 +183,7 @@
                             </span>
                             <span class=" "></br> 
                                 <i class="fa fa-certificate grey-text" aria-hidden="true"></i>
-                                Certificado de finalización
+                                Certificado
                                 </br>
                             </span>
                             <div class="mt-4 d-flex justify-content-center grey-text">

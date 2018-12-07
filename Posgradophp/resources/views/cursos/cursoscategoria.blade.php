@@ -1,49 +1,74 @@
 
 
 @extends('layout.app')
-@section('title', 'Categoria '.$categoria)
+@section('title', 'Categoria '.$categoria->Categoria)
 @section('content')
-<main >
+<main class="">
     <div class="container" >
-    <section class="mt-5 wow fadeIn">
+    
+    <section class="mt-4 wow fadeIn">
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
-                <div class="col-md-9 mb-9 d-flex align-items-center  ">
+               
+                <div class="col-md-9 col-sm-12 d-flex align-items-center  ">
                 <div class="row">
-                <h5 class="col-12">Categoría > {{$categoria}} <strong> </strong></h5>
-             <h6 class="col-12">Disponemos de {{$cursos->total()}} cursos para ti.</h6>
-               
-               
+                <nav aria-label="breadcrumb" class="col-12">
+                    <ol class="breadcrumb ">
+                    <li class="breadcrumb-item"><a class="black-text" href="#">Categoría</a></li>
+                    <li class="breadcrumb-item black-text"><a class="black-text" href="#">{{$categoria->Categoria}}</a></li>
+                    
+                    </ol>
+                </nav>
                 @if($cursos->isNotEmpty())
-                <div class="col-12">
-                        <label>Ordenar por: </label>
+                <div class="col-6 mt-4">
+                    <h6 class="h6-responsive">Disponemos de {{$cursos->total()}}  
+                                        @if($categoria->isCursoPosgrado)
+                                            Curso(s) de especialización
+                                        @else
+                                            Posgrado(s)
+                                        @endif 
+                                        para ti.
+                    </h6>
+                    </div>
+              
+                <div class="col-6 d-flex justify-content-end  align-items-center">
+                        <label>Ordenar por:</label> &nbsp
                         <select class="mdb-select md-form colorful-select dropdown-primary">
                             <option value="1">Más reciente</option>
                             <option value="2">Precio más bajo</option>
                             <option value="3">Precio más alto</option>            
                         </select>             
-                        </div>
+                </div>
                 @endif
                         @forelse($cursos as $curso)                        
                  <div class="col-12">
                         <!-- Card content -->
-                        <div class="card mb-4 mt-2">
-                            <div class="card-body row" onclick='curso("{{$curso->curso()->first()->NombreCurso}}");' >
-                                <div class="col-4 " >
+                        <div class="card mb-2 mt-2 ">
+                            <div class="card-body row"  >
+                                <div class="col-md-4 col-sm-6 d-flex justify-content-center  align-items-center " >
                                    
-                                    <img src= {{ $curso->curso()->first()->Image_URL}} class="img-responsive" class="w-100"/>
+                                    <img src= {{$curso->curso()->first()->Image_URL}} class="img-responsive" class="img-fluid"/>
                                 </div>
 
-                                <div class="col-8">
-                                        <p style="margin-bottom:0"> 
-                                            <p class="h4-responsive font-weight-bold" style="margin-bottom:0" > {{$curso->curso()->first()->NombreCurso}}</p>
-                                            <p class="h6-responsive" style="color:#616161; margin-bottom:0">Horas Clase - {{$curso->curso()->first()->HorasClase}} Horas</p>
+                                <div class="col-md-8 col-sm-6 ">
+                                        <p style="margin-bottom:0" class="mt-2"> 
+                                        <p class="float-right " onclick='addcart({{$curso->curso()->first()->id}})' style="cursor: pointer;" ><i class="fa  fa-cart-plus  fa-2x" aria-hidden="true"></i></p> 
+                                            <p class="h4-responsive font-weight-bold"  onclick='curso("{{$curso->curso()->first()->NombreCurso}}");' style="cursor: pointer; margin-bottom:0;"> {{$curso->curso()->first()->NombreCurso}}</p>
+                                            
+                                            <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$curso->curso()->first()->HorasClase}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
+                                Certificación &nbsp <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>
+                                Recursos Descargables</p> 
                                         </p>
                                         <p><span>{{$curso->curso()->first()->Desc_Publicidad}}</p>
-                                        <h5 class="font-weight-bold float-left "  style="color:#b71c1c "> 
+                                        <hr>
+                                       
+                                        <span class="font-weight-bold float-right"  style="color:#b71c1c "> 
                                             $ {{$curso->Precio}}
-                                        </h5> 
+                                        </span> 
+                                        
+                                    
+                                
                                 </div>
 
                             </div>
@@ -53,7 +78,15 @@
                       
                         
                         @Empty
-                        <h6 class="col-12">Lamentablemente no hemos encontrado un curso con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
+                        <div class="container" >
+                        
+                            <div class="card  d-flex align-items-center justify-content-center grey lighten-4 mb-5 mt-2 text-center " style="height:300px">
+                            <h6 class="h6-responsive col-12">No tenemos una oferta académica disponible en esta categoría</h6>
+                            <h6 class="h6-responsive ">Lamentablemente no hemos encontrado un curso con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
+                            </div>
+                        </div>
+
+                        
                         @endforelse
 
                        @if($cursos->isNotEmpty())
@@ -61,24 +94,39 @@
                         <div class="d-flex justify-content-center">
                             <nav aria-label="Page navigation container">
                                     <ul class="pagination pg-blue">
-                                        <li class="page-item disabled">
-                                        <a class="page-link" tabindex="-1" onclick="redirect({{$cursos->currentPage()-1}});">Anterior</a>
+                                    @if($cursos->currentPage()==1)
+                                    <li class="page-item disabled">
+                                            <a class="page-link" tabindex="-1" onclick="redirect({{$cursos->currentPage()-1}});">Anterior</a>
                                         </li>
-                                        
+                                    @else
+                                    <li class="page-item ">
+                                            <a class="page-link" tabindex="-1" onclick="redirect({{$cursos->currentPage()-1}});">Anterior</a>
+                                        </li>
+                                    @endif
+                                       
                                         @for($i=1;$i<=$cursos->lastPage();$i++)
                                         @if($i == $cursos->currentPage())
+                                        @if($i == 0)
+
+                                        @endif
                                         <li class="page-item active" onclick="redirect({{$i}});"><a class="page-link ">{{$i}}</a></li>
                                         @else
                                         <li class="page-item" onclick="redirect({{$i}});"><a class="page-link">{{$i}}</a></li>
                                         @endif
                                         @endfor
-                                        <!-- <li class="page-item active">
-                                        <a class="page-link">2 <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link">3</a></li> -->
-                                        <li class="page-item">
-                                        <a class="page-link" onclick="redirect({{$cursos->currentPage()+1}});">Siguiente</a>
-                                        </li>
+                                        @if($cursos->currentPage()==$cursos->lastPage())
+                                            <li class="page-item disabled">
+                                                    <a class="page-link" onclick="redirect({{$cursos->currentPage()+1}});">Siguiente</a>
+                                                </li>
+                                            @else
+                                            <li class="page-item ">
+                                                    <a class="page-link" onclick="redirect({{$cursos->currentPage()+1}});">Siguiente</a>
+                                                </li>
+                                         @endif
+                                       
+
+
+                                       
                                     </ul>
                                 </nav>
                         </div>
@@ -91,16 +139,60 @@
                 <div class="col-md-3 mb-3  d-flex align-items-center ">
                 </div>
     </div>
+
+
+    <div class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+
+<!-- Add class .modal-frame and then add class .modal-bottom (or other classes from list above) to set a position to the modal -->
+<div class="modal-dialog modal-frame modal-bottom" role="document">
+
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="row d-flex justify-content-center align-items-center">
+
+        <p class="mt-4 pt-1 mr-4" id="alertaddcarrito">
+        </p>
+
+        <button type="button" class="btn btn-sm red darken-4 font-weight-bold" data-dismiss="modal">CERRAR</button>       
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 </main>
 @endsection
 
 <script>
+ 
     function redirect(page)
     {
-        window.location.href ="../categorias/{{$categoria}}?page="+page;
+        window.location.href ="../categorias/{{$categoria->Categoria}}?page="+page;
     }
     function curso(page)
     {
         window.location.href = "../curso/"+page;
     }
+
+      function addcart(id){
+        $.ajax({
+            url: "../process/addcarrito",
+            type : 'GET',
+            data: {
+                "curso" : id
+            },
+            success: function(data) {  
+                if (data.message == "error") {
+                   
+                    $( "#alertaddcarrito").html( "<p class='text-center'>"+data.error+"</p>" );
+                    $("#frameModalBottom").modal('show');
+                   
+                }else{
+                   
+                    setTimeout(function(){ location.reload(); }, 00);
+                }
+            }
+        });
+
+    }
+
 </script>

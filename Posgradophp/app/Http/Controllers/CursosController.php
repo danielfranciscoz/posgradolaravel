@@ -57,7 +57,7 @@ class CursosController extends Controller
         // dd($cursos);
 
         return view("cursos.cursoscategoria")
-         ->with('categoria',$categoria)
+         ->with('categoria',$categoria_id)
         ->with('cursos',$cursos);
     }
     public function curso($curso_name)

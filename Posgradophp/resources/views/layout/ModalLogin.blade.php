@@ -57,7 +57,7 @@
 
 <script>
 
-    $("#alertlogin").hide();
+$("#alertlogin").hide();
  $("#loginForm").submit(function(e){
                 e.preventDefault();
                 $("#alertlogin").hide();
@@ -88,23 +88,23 @@
                                 if(response.message =="success"){
                                     location.reload();
                                 }else{
-                                    $("#alertlogin").remove();
+                                   
                                     $("#alertlogin").show();
-                                    $("#alertlogin").append("<b>"+response.errors.email[0]+"</b>");
+                                    $("#alertlogin").html("<b>"+response.errors.email[0]+"</b>");
                                    
                                 }
                             },
                             error: function(response){
                                 var str = "";
                                 $("#alertlogin").show();
-                                $("#alertlogin").remove();
+                            
                               
                                 for(var i=0;i<response.responseJSON.errors.email.length;i++){
                                     
                                     str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
                                 }
                                 
-                                $("#alertlogin").append(str);
+                                $("#alertlogin").html(str);
                             }
                             
                         
