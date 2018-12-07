@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Categoria;
 use Session;
 use App\User;
+use App\Models\Estudiante;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
@@ -22,9 +24,44 @@ class AccountController extends Controller
     public function registro(){
         // dd(Auth::user());
         return view("Account/registro");
-
-
     }
+
+    public function registrar(){
+       DB::beginTransaction();   
+       try {
+            $user = new User();
+            $estudent = new Estudiante();
+    
+            $user->name = 'dfzamora';
+            $user->email = 'danielfranciscoz@hotmail.com';
+            $user->password = bcrypt('123456Aa');
+            $user->isAdmin = false;     
+            
+            // $user->save();
+    
+            $estudent->user_id = 1;
+            $estudent->Nombres  = 'Daniel Francisco';
+            $estudent->Apellidos = 'Zamora Muñoz';
+            $estudent->DNI = '0012112950023A';
+            $estudent->Telefono = '87715274';
+            $estudent->isSuscript =true;
+    
+            // $estudent->save();
+
+            
+
+            Mail('emails.confirmation',$estudent,function($message) use ($estudent,$user){
+                $message->to($user->email,($estudent->Nombres))->subject('UNI Posgrado - Confirmación de cuenta');
+            });
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return report($e);
+        }
+  
+    }    
+
     public function carrito(){
 
             return view("Account/carrito");
