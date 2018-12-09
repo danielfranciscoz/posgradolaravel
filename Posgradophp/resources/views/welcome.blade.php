@@ -39,7 +39,7 @@
                               </p>
                               <div class="input-group md-form form-sm form-2 pl-0">
                               <input class="form-control my-0 py-1 red-border" id="searchcarruselinput" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
-                              <div class="input-group-append" id="btnsearchcarrusel"  onclick="console.log('asds')">
+                              <div class="input-group-append" id="btnsearchcarrusel" >
                                 <a class="input-group-text btn-primary white-text"  ><i class="fa fa-search white-text"  aria-hidden="true"></i></a>
                               </div>
                             </div>
@@ -408,8 +408,25 @@
                             </div>
                             </section>
 
-                     
-              
+             <script>
+                     $('#btnsearchcarrusel').click(function(){
+               
+                                
+                        var searchcarrusel = $( "#searchcarruselinput").val();
+                        if( searchcarrusel.length > 0){
+                            window.location.href  = "/curso/find/"+searchcarrusel;
+                        }
+                    });
+
+                var inputentercarrusel = document.getElementById("searchcarruselinput");
+                inputentercarrusel.addEventListener("keyup", function(event) {
+                        event.preventDefault();
+                        if (event.keyCode === 13) {
+                            document.getElementById("btnsearchcarrusel").click();
+                        }
+                    });
+             </script>
+        
             
 
                     

@@ -11,7 +11,7 @@
             <div class="row">
                 <!--Grid column-->
                
-                <div class="col-md-9 col-sm-12 d-flex align-items-center  ">
+                <div class="col-md-9 col-sm-12 d-flex align-items-center font-weight-bold  ">
                 <div class="row">
                 <nav aria-label="breadcrumb" class="col-12">
                     <ol class="breadcrumb ">
@@ -22,7 +22,7 @@
                 </nav>
                 @if($cursos->isNotEmpty())
                 <div class="col-6 mt-4">
-                    <h6 class="h6-responsive">Disponemos de {{$cursos->total()}}  
+                    <h6 class="h6-responsive font-weight-bold">Disponemos de {{$cursos->total()}}  
                                         @if($categoria->isCursoPosgrado)
                                             Curso(s) de especialización
                                         @else
@@ -42,7 +42,7 @@
                 </div>
                 @endif
                         @forelse($cursos as $curso)                        
-                 <div class="col-12">
+                 <div class="col-12 ">
                         <!-- Card content -->
                         <div class="card mb-2 mt-2 ">
                             <div class="card-body row"  >
@@ -78,13 +78,15 @@
                       
                         
                         @Empty
-                        <div class="container" >
-                        
-                            <div class="card  d-flex align-items-center justify-content-center grey lighten-4 mb-5 mt-2 text-center " style="height:300px">
-                            <h6 class="h6-responsive col-12">No tenemos una oferta académica disponible en esta categoría</h6>
-                            <h6 class="h6-responsive ">Lamentablemente no hemos encontrado un curso con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
-                            </div>
-                        </div>
+                        <div class="container row" >
+                       
+                       <div class="card   white  mb-4 px-4 " >
+                           <h6 class="h6-responsive font-weight-bold ml-4 mt-4">No tenemos una oferta académica disponible para esta categoria {{$categoria->Categoria}}</h6>
+                           <div class="d-flex align-items-center justify-content-center text-center " style="height:300px">
+                               <h6 class="h6-responsive ">Lamentablemente no hemos encontrado un Oferta académica con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
+                           </div>
+                       </div>
+                   </div>
 
                         
                         @endforelse
@@ -150,7 +152,7 @@
     <div class="modal-body">
       <div class="row d-flex justify-content-center align-items-center">
 
-        <p class="mt-4 pt-1 mr-4" id="alertaddcarrito">
+        <p class="mt-4 pt-1 mr-4 font-weight-bold" id="alertaddcarrito">
         </p>
 
         <button type="button" class="btn btn-sm red darken-4 font-weight-bold" data-dismiss="modal">CERRAR</button>       
@@ -166,16 +168,16 @@
  
     function redirect(page)
     {
-        window.location.href ="../categorias/{{$categoria->Categoria}}?page="+page;
+        window.location.href ="/categorias/{{$categoria->Categoria}}?page="+page;
     }
     function curso(page)
     {
-        window.location.href = "../curso/"+page;
+        window.location.href = "/curso/"+page;
     }
 
       function addcart(id){
         $.ajax({
-            url: "../process/addcarrito",
+            url: "/process/addcarrito",
             type : 'GET',
             data: {
                 "curso" : id

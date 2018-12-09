@@ -52,7 +52,7 @@ class CursosController extends Controller
         ->whereIn('curso_id',$cursos_id);
              
         
-        $cursos=  $cursos->paginate(3);
+        $cursos=  $cursos->paginate(5);
 
         // dd($cursos);
 
@@ -117,6 +117,7 @@ class CursosController extends Controller
                 'id' => $curso->get(0)->id, //Tabla precioCurso
                 'curso' => $curso->get(0)->Curso()->get()[0]->NombreCurso, //tabla curso
                 'Image_URL'=> $curso->get(0)->Curso()->get()[0]->Image_URL,
+                'horas' =>  $curso->get(0)->Curso()->get()[0]->HorasClase,
                 'Precio' => $curso->get(0)->Precio
                 
                 ]); 

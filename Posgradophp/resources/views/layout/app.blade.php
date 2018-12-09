@@ -81,7 +81,7 @@ UNI-DEPEC</title>
        <div class="input-group md-form form-sm form-2 pl-0 "  >
           <input class="form-control my-0 py-1  waves-effect" type="text" placeholder="Buscar cursos..." aria-label="Search" id="searchinput" style="cursor: text;" >
           <div class="input-group-append ">
-            <span class="input-group-text btn-primary waves-effect " id="buttonsearch"><i class="fa fa-search " aria-hidden="true"></i></span>
+            <span class="input-group-text btn-primary waves-effect " id="buttonsearch" onclick="searchnav();"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>
             <a id="carrito" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100" style="min-width: 70px; " class="btn btn-primary"  ><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i></a>
@@ -278,19 +278,18 @@ UNI-DEPEC</title>
                 
             $('[data-toggle="popover"]').popover();
            
-           @yield('carrito');
-
+           
+        });
           
-            $('.next-cursos').click(function(){ $('#carousel-cursos').carousel('next');return false; });
-            $('.prev-cursos').click(function(){ $('#carousel-cursos').carousel('prev');return false; });
+            
 
-            $('#buttonsearch').click(function(){
+         function searchnav(){
                
-                var search = $( "#searchinput").val();
+                var search = $("#searchinput").val();
                 if( search.length > 0){
-                    window.location.redirect = "../curso/find/"+search;
+                    window.location.href  = "/curso/find/"+search;
                 }
-            });
+            };
 
             var inputenter = document.getElementById("searchinput");
                 inputenter.addEventListener("keyup", function(event) {
@@ -301,30 +300,10 @@ UNI-DEPEC</title>
                 });
             
             
-                function logout(){
-                    
-                }
-            $('.carousel-example-2').carousel();
-
-            $('#btnsearchcarrusel').click(function(){
-               
-                    
-                    var searchcarrusel = $( "#searchcarruselinput").val();
-                    if( searchcarrusel.length > 0){
-                        window.location.redirect = "../curso/find/"+searchcarrusel;
-                    }
-                });
-
-           var inputentercarrusel = document.getElementById("searchcarruselinput");
-           inputentercarrusel.addEventListener("keyup", function(event) {
-                   event.preventDefault();
-                   if (event.keyCode === 13) {
-                       document.getElementById("btnsearchcarrusel").click();
-                   }
-               });
-        });
+      
+        @yield('carrito');
     </script>
 
-
+         @yield('endscript');
 </body>
 </html>
