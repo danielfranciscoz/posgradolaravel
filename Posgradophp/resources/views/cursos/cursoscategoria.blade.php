@@ -1,5 +1,3 @@
-
-
 @extends('layout.app')
 @section('title', 'Categoria '.$categoria->Categoria)
 @section('content')
@@ -87,7 +85,7 @@
                            </div>
                        </div>
                    </div>
-
+ 
                         
                         @endforelse
 

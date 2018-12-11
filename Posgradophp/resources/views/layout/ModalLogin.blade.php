@@ -58,6 +58,7 @@
 <script>
 
 $("#alertlogin").hide();
+
  $("#loginForm").submit(function(e){
                 e.preventDefault();
                 $("#alertlogin").hide();
@@ -105,11 +106,11 @@ $("#alertlogin").hide();
                                 }
                                 
                                 $("#alertlogin").html(str);
-                            }
-                            
+                            }                            
                         
                         }
                     );
+
                 }
               
               

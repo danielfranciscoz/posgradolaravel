@@ -8,7 +8,9 @@
             }
             
 @endphp
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<style>
+</style>
 <main class=" mx-4">
     <div class="container ">
     <ul class="stepper stepper-horizontal">
@@ -42,24 +44,20 @@
                 <div class="card grey lighten-5 mb-4 mt-2 col-12 ">
                      <div class="card-body row mx-5">
                      <h5 class="h5-responsive font-weight-bold col-12 mb-4">Introduzca sus datos</h5>
-                
+                     <label class="col-12">Nombres:</label>
                         <input type="text" id="nombres" class="form-control mb-3 col-12" placeholder="Nombres*" value="{{$estudiante[0]->Nombres}}" required />
                    
-                        <!-- Last name -->
+                        <label class="col-12">Apellidos:</label>
                         <input type="text" id="apellidos" class="form-control mb-3 col-12" placeholder="Apellidos*" value="{{$estudiante[0]->Apellidos}}"  required /> 
-                    
+                        <label class="col-12">DNI / Cédula:</label>
                
                 <input type="text" id="dni" class="form-control mb-3 col-12" placeholder="DNI/Cédula*" value="{{$estudiante[0]->DNI}}" aria-describedby="defaultRegisterFormPhoneHelpBlock" required/>
                 </br>
 
-                <!-- E-mail -->
+                <label class="col-12">Correo Electrónico:</label>
                 <input type="email" id="email" class="form-control mb-3 col-12" placeholder="Correo Electrónico*" value="{{Auth::user()->email}}" required/>
 
-                <!-- Password -->
-                
-                
-
-                <!-- Phone number -->
+                <label class="col-12">Número Telefónico:</label>
                 <input type="tel" id="telefono" class="form-control" placeholder="Número Telefónico*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required value="{{$estudiante[0]->Telefono}}" />
                
 
@@ -71,6 +69,18 @@
             <div class="card grey lighten-5 mb-4 mt-2 col-12 ">
                      <div class="card-body row mx-5">
                      <h5 class="h5-responsive font-weight-bold col-12 mb-4">Datos de Pago</h5>
+                     <label class="col-12">Tarjeta de Credito:</label>
+                     <input type="text" id="tarjeta" class="form-control col-12" placeholder="Numero de Tarjeta*"  required />
+                     <label class="col-12">Nombre del Titular:</label>
+                     <input type="text" id="nombre" class="form-control col-12" placeholder="Nombres y apellidos*"  required />
+                     <label class="col-12">Fecha de Vencimiento:</label>
+                     <input type="text" id="mes" class="form-control col-6" placeholder="Mes de vencimiento/MM*"  required />
+                     
+                     <input type="text" id="año" class="form-control col-6" placeholder="Año de vencimiento/YYYY*"  required />
+                     <label class="col-12">CVC:</label>
+                     <input type="text" id="tarjeta" class="form-control  col-12" placeholder="Numero de Tarjeta*"  required />
+
+
                      </div>
              </div>
             
@@ -91,7 +101,8 @@
                     <hr >
 
                 <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
-                
+                <div class="g-recaptcha ml-4" data-sitekey="6LfAV4AUAAAAAA0JcDDbpWbV68GfyCeLMNi6aQFf"></div>
+                <a class="btn btn-primary mt-2 w-95 mb-2 mx-4" >Realizar Pago</a>
                            
             </div>
             </div>

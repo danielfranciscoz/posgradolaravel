@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('title', 'Registro nuevo usuario')
 @section('content')
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <main class="grey lighten-4">
     <div class="container wow fadein">
          <div class="row d-flex justify-content-center">
@@ -28,7 +29,7 @@
 
                 <!-- Password -->
                 <input type="password" id="contraseña" class="form-control" placeholder="Contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock" required/>
-                <input type="password" id="contraseña2" class="form-control" placeholder="Repetir contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock" required />
+                <input type="password" id="contraseña2" class="form-control mt-4" placeholder="Repetir contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock" required />
                 <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
                     Al menos 8 caracteres y 1 dígito
                 </small>
@@ -45,7 +46,16 @@
                 </div>
 
                 <!-- Sign up button -->
-                <button class="btn btn-primary my-4 btn-block" type="submit">Regístrate</button>
+
+                 <button
+                                class="g-recaptcha btn btn-primary my-4 btn-block"
+                                data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq"
+                                data-callback="submite">
+                                Regístrate
+                            </button>
+
+                               <div class="alert alert-danger col-12" role="alert" id="alertregistro">
+                                </div>
 
                 <!-- Social register -->
                <!--  <p>or sign up with:</p>
@@ -76,4 +86,56 @@
          </div>
     </div>
 </main>
+@endsection
+
+
+@section('endscript')
+<script>
+$("#alertregistro").hide();
+    function submite(e){
+        $("#alertregistro").hide();
+        $.ajax( {
+                            data: {
+                                "nombres": $("#nombres").val(),
+                                "apellidos":$("#apellidos").val(),
+                                "dni" : $("#dni").val(),
+                                "email": $("#email").val(),
+                                "password": $("#password").val(),
+                                "telefono":$("#telefono").val(),
+                                "boletin" : $("#boletin").val(),
+                                "token": e
+                                
+                            },
+                            url: "../account/registrar",
+                            type: 'post',
+                            success: function(response){
+                                if(response.message =="success"){
+                                   //
+                                }else{
+                                   
+                                   
+                                   
+                                }
+                            },
+                            error: function(response){
+                                $("#alertregistro").show();
+                                var str = "";
+                               
+                            
+                              
+                                for(var i=0;i<response.responseJSON.errors.email.length;i++){
+                                    
+                                    str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
+                                }
+                                
+                                 $("#alertregistro").html(str);
+                            }
+                            
+                        
+                        }
+                    );
+       
+    }
+
+</script>
 @endsection
