@@ -11,48 +11,44 @@
 |
 */
 
-Route::get('/', 'CursosController@index')
-->name('cursos.index');
+Route::get('/', 'CursosController@index')->name('cursos.index');
 
 Route::get('/curso', function(){
     return redirect()->route('cursos.index');
 });
 
-
 //Todos los cursos de la categoria
-Route::get('categorias/{categoria}','CursosController@categories')
-->name('cursos.categorias');
+Route::get('categorias/{categoria}','CursosController@categories')->name('cursos.categorias');
 
-//Todos los cursos que cumplen con el criterio de busqueda
-Route::get('curso/find/{curso}','CursosController@search')
-->name('cursos.search');
+Route::group(['prefix' => 'curso'], function() {
+    //Todos los cursos que cumplen con el criterio de busqueda
+    Route::get('/find/{curso}','CursosController@search')->name('cursos.search');
 
-//Informacion del curso
-Route::get('curso/{curso_name}','CursosController@curso')
-->name('cursos.curso');
+    //Informacion del curso
+    Route::get('/{curso_name}','CursosController@curso')->name('cursos.curso');
+});
 
-// Route::get('/search/{ss}', 'SearchController@search');
+Route::group(['prefix' => 'account'], function() {
 
-Route::get('/account/registro', 'AccountController@registro')
-->name('registro');
+    Route::get('/registro', 'AccountController@registro')->name('registro');
+    Route::post('/registro', 'AccountController@registrar')->name('registro');
+    Route::get('/verificar/{token}', 'AccountController@verificar')->name('verificar');
+    Route::get('/carrito','AccountController@carrito');
+    Route::get('/pagarcarrito','AccountController@pagarcarrito');
+    Route::get('/login','AccountController@loginUser')->name('process.login');
+});
 
-Route::get('/account/registrar', 'AccountController@registrar')
-->name('registrar');
+Route::group(['prefix' => 'process'],function(){
 
-Route::get('process/addcarrito','CursosController@addcarrito')
-->name('process.addcarrito');
-
-Route::get('process/delcarrito','CursosController@delcarrito')
-->name('process.delcarrito');
-
-Route::get('account/carrito','AccountController@carrito');
-
-Route::get('account/pagarcarrito','AccountController@pagarcarrito');
+    Route::get('/addcarrito','CursosController@addcarrito')->name('process.addcarrito');
+    Route::get('/delcarrito','CursosController@delcarrito')->name('process.delcarrito');
+});
 
 
-Route::get('process/login','AccountController@loginuser')
-->name('process.login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+
+/*
 
  // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -78,5 +74,6 @@ Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('ver
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');*/
+
 ?>

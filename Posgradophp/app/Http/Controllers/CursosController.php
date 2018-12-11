@@ -17,7 +17,7 @@ class CursosController extends Controller
     public function index()
     {
       
-
+// dd(Auth::user()->with('estudiante')->first()->estudiante()->first()->Nombres);
         $data = Curso::orderBy('created_at','DESC')->take(10)->get();
         $comentarios = Comentario::all()->where('deleted_at',null);
 
@@ -32,20 +32,26 @@ class CursosController extends Controller
         $data = preg_split("/[\s,]+/", $search_value);      
         $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($data) {
             $sql->WhereIn('Etiqueta', $data);
-        });
-        $cursos=  $cursos->paginate(5);
-        //dd($cursos);
+        })->pluck('id')->toArray();
+        $cursos=  $cursos;
+
+
+        $c = Cursoprecio::with('curso')
+        ->where('deleted_at','=',null)
+        ->whereIn('curso_id',$cursos)->paginate(5);
         
+        // dd($c->first()->curso()->get() );
+
         return view("cursos.search")
         ->with('search_value',$search_value)
-        ->with('cursos',$cursos);
+        ->with('cursos',$c);
     }
 
     public function categories($categoria)
     { 
 
         $categoria_id = Categoria::where('Categoria', $categoria)->first();
-        $cursos_id = Curso::where('Categoria_Id', $categoria_id->id)->pluck('id')->toArray();
+        $cursos_id = Curso::where('Categoria_Id', $categoria_id->id)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
         
         $cursos = Cursoprecio::with('curso')
         ->where('deleted_at','=',null)

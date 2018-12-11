@@ -18,6 +18,7 @@ class UsersSeeder extends Seeder
         'email' => 'admin@admin.com',
         'password' => bcrypt('123456Aa'),
         'isAdmin' => true,
+        'token' => str_random(50)
        ]);
 
        Estudiante::create([

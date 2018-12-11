@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\Estudiante;
+use App\User;
 
 class ConfirmationUser extends Mailable
 {
@@ -16,9 +18,15 @@ class ConfirmationUser extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $user;
+    public $estudiante;
+    
+    public function __construct(User $user,Estudiante $estudiante)
     {
         //
+        $this->user = $user;
+        $this->estudiante = $estudiante;
     }
 
     /**
@@ -28,7 +36,10 @@ class ConfirmationUser extends Mailable
      */
     public function build()
     {
-        return $this->from('daniel.zamora@dtic.uni.edu.ni')
-                    ->view('emails.confirmation');
+
+        return $this
+            ->view('emails.confirmation')->with(compact('user'))->with(compact('estudiante'))
+            ->subject('Verifica tu cuenta');
+      
     }
 }

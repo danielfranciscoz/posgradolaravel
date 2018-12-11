@@ -10,6 +10,9 @@ use App\Models\Estudiante;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\RegisterRequest;
+use App\Mail\ConfirmationUser;
+use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
 {
@@ -26,41 +29,72 @@ class AccountController extends Controller
         return view("Account/registro");
     }
 
-    public function registrar(){
-       DB::beginTransaction();   
+    public function registrar(RegisterRequest $request){
+       //Poner como parametro RegisterRequest $request
+       
+         DB::beginTransaction();   
        try {
             $user = new User();
             $estudent = new Estudiante();
     
-            $user->name = 'dfzamora';
-            $user->email = 'danielfranciscoz@hotmail.com';
-            $user->password = bcrypt('123456Aa');
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('password'));
             $user->isAdmin = false;     
+            $user->token = str_random(50);
             
-            // $user->save();
+            $user->save();
     
-            $estudent->user_id = 1;
-            $estudent->Nombres  = 'Daniel Francisco';
-            $estudent->Apellidos = 'Zamora Muñoz';
-            $estudent->DNI = '0012112950023A';
-            $estudent->Telefono = '87715274';
-            $estudent->isSuscript =true;
+            $estudent->user_id = $user->id;
+            $estudent->Nombres  = $request->input('Nombres');
+            $estudent->Apellidos = $request->input('Apellidos');
+            $estudent->DNI = $request->input('DNI');
+            $estudent->Telefono = $request->input('Telefono');
+            $estudent->isSuscript =$request->input('isSuscript');
     
-            // $estudent->save();
+             $estudent->save();
 
+           
+            Mail::to($user->email)
+                    ->send((new ConfirmationUser($user,$estudent))->locale('es'));
             
-
-            Mail('emails.confirmation',$estudent,function($message) use ($estudent,$user){
-                $message->to($user->email,($estudent->Nombres))->subject('UNI Posgrado - Confirmación de cuenta');
-            });
-
-            DB::commit();
-        } catch (\Exception $e) {
+            //La línea de abajo funciona para visualizar lo que será enviado por correo
+            //  return (new ConfirmationUser($user,$estudent))->render();
+        
+             DB::commit();
+              
+             return response()->json([
+                'message'=>'Te hemos enviado un correo, por favor revisa tu bandeja de entrada para verificar tu cuenta, sino lo encuentras prueba buscar en los correos no deseados.'
+            ]);
+        } catch (Exception $e) {
             DB::rollback();
             return report($e);
         }
   
     }    
+
+    public function verificar($token){
+
+        try{
+            $user = User::where('token',$token)->first();
+            
+            if($user->email_verified_at == null){
+                $user->email_verified_at=date('Y-m-d H:i:s');                
+                $user->save();
+                
+                return response()->json([
+                    'message'=>'Muchas gracias por verificar tu cuenta, ahora estamos listos, ya puedes empezar a aprender con nosotros.'
+                ]);
+            }else{
+                return response()->json([
+                    'message'=>'Esta cuenta ya se encuentra verificada.'
+                ]);
+            }
+
+        } catch (Exception $e) {
+            return report($e);
+        }
+    }
 
     public function carrito(){
 
@@ -70,10 +104,10 @@ class AccountController extends Controller
 
     public function pagarcarrito(){
 
-        $user= Auth::user()->with('estudiante')->first();
-        $estudiante = $user->estudiante()->get();
-    //   dd($estudiante[0]->Nombres);
+        //   dd($estudiante[0]->Nombres);
         if(Session::has('cartItems') && Auth::guard(null)->check()){
+            $user= Auth::user()->with('estudiante')->first();
+            $estudiante = $user->estudiante()->get();
             return view("Account/pagarcarrito")->with(compact('estudiante'));
         }
         else{
