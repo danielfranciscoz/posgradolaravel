@@ -118,12 +118,25 @@ class AccountController extends Controller
 
     public function loginUser(Request $request){
         try {
-
-            $this->login($request);
-
-            return response()->json([
-                'message'=>'success'
-            ]);
+            $user = User::where('email',$request->input('email'))->first();
+            if (!empty($user)) {
+            
+                if($user->email_verified_at == null){
+                    return response()->json([
+                        'message'=>'Hemos detectado que el usuario aún no ha verificado su cuenta, por favor revise su correo y verifique su cuenta para poder proceder al inicio de sesión'
+                        ]);
+                    }else{
+                        $this->login($request);
+            
+                        return response()->json([
+                            'message'=>'success'
+                        ]);
+                    }                   
+            }else{
+                return response()->json([
+                    'error'=>'El usuario no se encuentra registrado'
+                ]);
+            }
 
 
         } catch (Exception $e) {

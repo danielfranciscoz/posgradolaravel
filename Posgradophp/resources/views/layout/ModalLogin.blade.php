@@ -83,7 +83,7 @@ $("#alertlogin").hide();
                                 "email": user,
                                 "password":pass
                             },
-                            url: "../process/login",
+                            url: "../account/login",
                             type: 'get',
                             success: function(response){
                                 if(response.message =="success"){
