@@ -29,7 +29,7 @@ class CursosSeeder extends Seeder
             
         ]);
 
-        CursoPrecio::create(['curso_id'=>'1','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'1','Precio'=>'8.1']);
 
         CompetenciaCurso::create(['curso_id'=>'1','Competencia'=>'Prodra lalaa hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'1','Competencia'=>'Prodra luego hacer otra cosa']);
@@ -61,7 +61,7 @@ class CursosSeeder extends Seeder
             'categoria_id'=>'1'
         ]);
 
-        CursoPrecio::create(['curso_id'=>'2','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'2','Precio'=>'5.2']);
 
         CompetenciaCurso::create(['curso_id'=>'2','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'2','Competencia'=>'Prodra hacer otra cosa']);
@@ -91,7 +91,7 @@ class CursosSeeder extends Seeder
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
         ]);
 
-        CursoPrecio::create(['curso_id'=>'3','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'3','Precio'=>'11.5']);
 
         CompetenciaCurso::create(['curso_id'=>'3','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'3','Competencia'=>'Prodra hacer otra cosa']);
@@ -122,7 +122,7 @@ class CursosSeeder extends Seeder
              'categoria_id'=>'2'
         ]);
         
-        CursoPrecio::create(['curso_id'=>'4','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'4','Precio'=>'10']);
 
         CompetenciaCurso::create(['curso_id'=>'4','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'4','Competencia'=>'Prodra hacer otra cosa']);
@@ -154,7 +154,7 @@ class CursosSeeder extends Seeder
              'categoria_id'=>'1'
         ]);
 
-        CursoPrecio::create(['curso_id'=>'5','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'5','Precio'=>'1']);
 
         CompetenciaCurso::create(['curso_id'=>'5','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'5','Competencia'=>'Prodra hacer otra cosa']);
@@ -184,7 +184,7 @@ class CursosSeeder extends Seeder
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
         ]);
         
-        CursoPrecio::create(['curso_id'=>'6','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'6','Precio'=>'2']);
 
         CompetenciaCurso::create(['curso_id'=>'6','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'6','Competencia'=>'Prodra hacer otra cosa']);
@@ -216,7 +216,7 @@ class CursosSeeder extends Seeder
             'categoria_id'=>'1'
         ]);
 
-        CursoPrecio::create(['curso_id'=>'7','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'7','Precio'=>'6']);
 
         CompetenciaCurso::create(['curso_id'=>'7','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'7','Competencia'=>'Prodra hacer otra cosa']);
@@ -247,7 +247,7 @@ class CursosSeeder extends Seeder
              'categoria_id'=>'2'
         ]);
         
-        CursoPrecio::create(['curso_id'=>'8','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'8','Precio'=>'9.3']);
 
         CompetenciaCurso::create(['curso_id'=>'8','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'8','Competencia'=>'Prodra hacer otra cosa']);
@@ -279,7 +279,7 @@ class CursosSeeder extends Seeder
             'categoria_id'=>'2'
         ]);
 
-        CursoPrecio::create(['curso_id'=>'9','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'9','Precio'=>'12']);
 
         CompetenciaCurso::create(['curso_id'=>'9','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'9','Competencia'=>'Prodra hacer otra cosa']);
@@ -310,7 +310,7 @@ class CursosSeeder extends Seeder
             'categoria_id'=>'1'
         ]);
 
-        CursoPrecio::create(['curso_id'=>'10','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'10','Precio'=>'3']);
 
         CompetenciaCurso::create(['curso_id'=>'10','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'10','Competencia'=>'Prodra hacer otra cosa']);
@@ -341,7 +341,7 @@ class CursosSeeder extends Seeder
             'categoria_id'=>'1'
         ]);
 
-        CursoPrecio::create(['curso_id'=>'11','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'11','Precio'=>'1.2']);
 
         CompetenciaCurso::create(['curso_id'=>'11','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'11','Competencia'=>'Prodra hacer otra cosa']);
@@ -372,7 +372,7 @@ class CursosSeeder extends Seeder
             'categoria_id'=>'1'
         ]);
 
-        CursoPrecio::create(['curso_id'=>'12','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'12','Precio'=>'20.2']);
 
         CompetenciaCurso::create(['curso_id'=>'12','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'12','Competencia'=>'Prodra hacer otra cosa']);
@@ -403,7 +403,7 @@ class CursosSeeder extends Seeder
             'categoria_id'=>'1'
         ]);
 
-        CursoPrecio::create(['curso_id'=>'13','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'13','Precio'=>'16.4']);
 
         CompetenciaCurso::create(['curso_id'=>'13','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'13','Competencia'=>'Prodra hacer otra cosa']);
@@ -434,7 +434,7 @@ class CursosSeeder extends Seeder
             'categoria_id'=>'1'
         ]);
 
-        CursoPrecio::create(['curso_id'=>'14','Precio'=>'10.2']);
+        CursoPrecio::create(['curso_id'=>'14','Precio'=>'13']);
 
         CompetenciaCurso::create(['curso_id'=>'14','Competencia'=>'Prodra hacer una cosa']);
         CompetenciaCurso::create(['curso_id'=>'14','Competencia'=>'Prodra hacer otra cosa']);

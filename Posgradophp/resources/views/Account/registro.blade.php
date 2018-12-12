@@ -9,7 +9,8 @@
                         </br>
                 <form class="text-center border border-light p-5 white">
                 {{csrf_field()}}
-                <p class="h4 mb-4">Registro</p>
+                <h4 class="h4-responsive mb-4 text-primary">¡Inscribete y comienza a aprender con nosotros!</h4>
+                <h6 class="h6-responsive mb-4">Esto solo tomará un par de minutos, por favor ten paciencia y completa toda la información.</h6>
 
                 <div class="form-row mb-4">
                     <div class="col">

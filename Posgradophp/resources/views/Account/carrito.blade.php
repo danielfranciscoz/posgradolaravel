@@ -71,7 +71,7 @@
                 <div class="card col-md-4 col-sm-12 white mb-4 mt-2  sticky-top" style="height:300px ">
                 <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
                 <a class="btn btn-primary mt-2 w-95 mb-2 disabled"> Proceder al Pago</a>
-                <a class="text-center">Debe Iniciar Sesíon para proceder al pago</a>
+                <a class="text-center red-text">Inicie sesión para proceder al pago</a>
                 <a class="btn text-white " data-toggle="modal" data-target="#modalLoginForm" style="background: #424242;"> Iniciar Sesíon</a>
                 
                 <div class="mt-2 d-flex justify-content-center grey-text">

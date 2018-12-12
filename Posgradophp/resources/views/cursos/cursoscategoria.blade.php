@@ -33,9 +33,9 @@
                 <div class="col-6 d-flex justify-content-end  align-items-center">
                         <label>Ordenar por:</label> &nbsp
                         <select class="mdb-select md-form colorful-select dropdown-primary">
-                            <option value="1">Más reciente</option>
-                            <option value="2">Precio más bajo</option>
-                            <option value="3">Precio más alto</option>            
+                            <option value="1">Mas Reciente</option>
+                            <option value="2">Precio Descedente</option>
+                            <option value="3">Precio Ascendente</option>            
                         </select>             
                 </div>
                 @endif

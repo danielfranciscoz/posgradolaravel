@@ -47,14 +47,19 @@ class CursosController extends Controller
         ->with('cursos',$c);
     }
 
-    public function categories($categoria)
+    public function categories($categoria,$orden)
     { 
-
+        $sort=['created_at','DESC'];
+        // if($orden != null){
+        // }else{
+        //     $sort=['created_at','DESC'];
+        // }
         $categoria_id = Categoria::where('Categoria', $categoria)->first();
         $cursos_id = Curso::where('Categoria_Id', $categoria_id->id)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
         
         $cursos = Cursoprecio::where('deleted_at','=',null)
-        ->whereIn('curso_id',$cursos_id);
+        ->whereIn('curso_id',$cursos_id)
+        ->orderBy($sort[0],$sort[1]);
              
        
         $cursos=  $cursos->paginate(5);

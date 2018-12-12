@@ -37,7 +37,7 @@
                             </div>
                             <button class="btn btn-sm btn-primary " id="btnsesion">Iniciar Sesíon</button>
                         </div>
-                        <br><br><br>
+                        
                          
                             <div class="flex-column">
                                 <p href="../account/registro" class="

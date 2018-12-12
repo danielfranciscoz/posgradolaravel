@@ -18,7 +18,7 @@ Route::get('/curso', function(){
 });
 
 //Todos los cursos de la categoria
-Route::get('categorias/{categoria}','CursosController@categories')->name('cursos.categorias');
+Route::get('categorias/{categoria}/{orden}','CursosController@categories')->name('cursos.categorias');
 
 Route::group(['prefix' => 'curso'], function() {
     //Todos los cursos que cumplen con el criterio de busqueda
