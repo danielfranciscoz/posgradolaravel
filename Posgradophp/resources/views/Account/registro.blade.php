@@ -8,7 +8,7 @@
             <div class="col-md-8 col-sm-12">
                         </br>
                 <form class="text-center border border-light p-5 white">
-
+                {{csrf_field()}}
                 <p class="h4 mb-4">Registro</p>
 
                 <div class="form-row mb-4">
@@ -28,8 +28,8 @@
                 <input type="email" id="email" class="form-control mb-4" placeholder="Correo Electrónico" required/>
 
                 <!-- Password -->
-                <input type="password" id="contraseña" class="form-control" placeholder="Contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock" required/>
-                <input type="password" id="contraseña2" class="form-control mt-4" placeholder="Repetir contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock" required />
+                <input type="password" id="password" class="form-control" placeholder="Contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock" required/>
+                <input type="password" id="repassword" class="form-control mt-4" placeholder="Repetir contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock" required />
                 <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
                     Al menos 8 caracteres y 1 dígito
                 </small>
@@ -94,46 +94,54 @@
 $("#alertregistro").hide();
     function submite(e){
         $("#alertregistro").hide();
+        var b = 0;
+
+        if ($('#boletin').is(":checked"))
+            {
+                b = 1;
+            }
         $.ajax( {
-                            data: {
-                                "nombres": $("#nombres").val(),
-                                "apellidos":$("#apellidos").val(),
-                                "dni" : $("#dni").val(),
-                                "email": $("#email").val(),
-                                "password": $("#password").val(),
-                                "telefono":$("#telefono").val(),
-                                "boletin" : $("#boletin").val(),
-                                "token": e
-                                
-                            },
-                            url: "../account/registrar",
-                            type: 'post',
-                            success: function(response){
-                                if(response.message =="success"){
-                                   //
-                                }else{
-                                   
-                                   
-                                   
-                                }
-                            },
-                            error: function(response){
-                                $("#alertregistro").show();
-                                var str = "";
-                               
-                            
-                              
-                                for(var i=0;i<response.responseJSON.errors.email.length;i++){
-                                    
-                                    str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
-                                }
-                                
-                                 $("#alertregistro").html(str);
-                            }
-                            
+                data: {
+                    "Nombres": $("#nombres").val(),
+                    "Apellidos":$("#apellidos").val(),
+                    "DNI" : $("#dni").val(),
+                    "email": $("#email").val(),
+                    "password": $("#password").val(),
+                    "Telefono":$("#telefono").val(),
+                    "isSuscript" : b,
+                    "g-recaptcha-response": e,
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                    
+                },
+                // header: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "../account/registro",
+                type: 'POST',
+                success: function(response){
+                    if(response.message =="success"){
+                        //
+                    }else{
                         
-                        }
-                    );
+                        
+                        
+                    }
+                },
+                error: function(response){
+                    $("#alertregistro").show();
+                    var str = "";
+                    
+                
+                    
+                    for(var i=0;i<response.responseJSON.errors.email.length;i++){
+                        
+                        str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
+                    }
+                    
+                        $("#alertregistro").html(str);
+                }
+                
+            
+            }
+        );
        
     }
 

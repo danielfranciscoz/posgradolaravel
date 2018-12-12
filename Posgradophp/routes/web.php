@@ -34,7 +34,7 @@ Route::group(['prefix' => 'account'], function() {
     Route::post('/registro', 'AccountController@registrar')->name('registro');
     Route::get('/verificar/{token}', 'AccountController@verificar')->name('verificar');
     Route::get('/carrito','AccountController@carrito');
-    Route::get('/pagarcarrito','AccountController@pagarcarrito');
+    Route::get('/pagarcarrito','AccountController@resumencarrito');
     Route::get('/login','AccountController@loginUser')->name('process.login');
 });
 

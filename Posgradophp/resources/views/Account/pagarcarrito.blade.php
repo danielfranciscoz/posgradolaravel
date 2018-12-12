@@ -43,7 +43,7 @@
             <div class="col-md-8 col-sm-12 row">
                 <div class="card grey lighten-5 mb-4 mt-2 col-12 ">
                      <div class="card-body row mx-5">
-                     <h5 class="h5-responsive font-weight-bold col-12 mb-4">Introduzca sus datos</h5>
+                     <h5 class="h5-responsive font-weight-bold col-12 mb-4">Información de Facturación</h5>
                      <label class="col-12">Nombres:</label>
                         <input type="text" id="nombres" class="form-control mb-3 col-12" placeholder="Nombres*" value="{{$estudiante[0]->Nombres}}" required />
                    
@@ -68,15 +68,15 @@
             </div>
             <div class="card grey lighten-5 mb-4 mt-2 col-12 ">
                      <div class="card-body row mx-5">
-                     <h5 class="h5-responsive font-weight-bold col-12 mb-4">Datos de Pago</h5>
+                     <h5 class="h5-responsive font-weight-bold col-12 mb-4">Información de Pago</h5>
                      <label class="col-12">Tarjeta de Credito:</label>
-                     <input type="text" id="tarjeta" class="form-control col-12" placeholder="Numero de Tarjeta*"  required />
+                     <input type="text" autocomplete="cc-number" id="tarjeta" class="form-control col-12" placeholder="Numero de Tarjeta*"  required />
                      <label class="col-12">Nombre del Titular:</label>
-                     <input type="text" id="nombre" class="form-control col-12" placeholder="Nombres y apellidos*"  required />
+                     <input type="text" id="nombre"  autocomplete="cc-name" class="form-control col-12" placeholder="Nombres y apellidos*"  required />
                      <label class="col-12">Fecha de Vencimiento:</label>
-                     <input type="text" id="mes" class="form-control col-6" placeholder="Mes de vencimiento/MM*"  required />
-                     
-                     <input type="text" id="año" class="form-control col-6" placeholder="Año de vencimiento/YYYY*"  required />
+                     <input type="text" autocomplete="cc-exp-month" id="mes" class="form-control col-6" placeholder="Mes de vencimiento/MM*"  required />
+         
+                     <input type="text" autocomplete="cc-exp-year" id="año" class="form-control col-6" placeholder="Año de vencimiento/YYYY*"  required />
                      <label class="col-12">CVC:</label>
                      <input type="text" id="tarjeta" class="form-control  col-12" placeholder="Numero de Tarjeta*"  required />
 

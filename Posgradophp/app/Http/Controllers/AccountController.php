@@ -31,15 +31,16 @@ class AccountController extends Controller
 
     public function registrar(RegisterRequest $request){
        //Poner como parametro RegisterRequest $request
-       
+
          DB::beginTransaction();   
        try {
             $user = new User();
             $estudent = new Estudiante();
     
-            $user->name = $request->input('name');
+            $user->name = $request->input('email');
             $user->email = $request->input('email');
             $user->password = bcrypt($request->input('password'));
+
             $user->isAdmin = false;     
             $user->token = str_random(50);
             
@@ -102,7 +103,7 @@ class AccountController extends Controller
 
     }
 
-    public function pagarcarrito(){
+    public function resumencarrito(){
 
         //   dd($estudiante[0]->Nombres);
         if(Session::has('cartItems') && Auth::guard(null)->check()){
@@ -116,12 +117,17 @@ class AccountController extends Controller
 
     }
 
+    public function PagarCarrito(){
+    
+    }
+
     public function loginUser(Request $request){
         try {
             $user = User::where('email',$request->input('email'))->first();
+            // dd(Auth::user()->estudiante->Nombres);
             if (!empty($user)) {
             
-                if($user->email_verified_at == null){
+                if($user->email_verified_at == null && $user->isAdmin==false){
                     return response()->json([
                         'message'=>'Hemos detectado que el usuario aún no ha verificado su cuenta, por favor revise su correo y verifique su cuenta para poder proceder al inicio de sesión'
                         ]);
@@ -134,7 +140,7 @@ class AccountController extends Controller
                     }                   
             }else{
                 return response()->json([
-                    'error'=>'El usuario no se encuentra registrado'
+                    'message'=>'El usuario no se encuentra registrado'
                 ]);
             }
 

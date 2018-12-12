@@ -8,6 +8,6 @@ class Estudiante extends Model
 {
     //
     public function user(){
-        return $this->hasOne(\App\User::class);
+        return $this->belongsTo(\App\User::class);
     }
 }

@@ -18,7 +18,7 @@
 
                 <div class=" md-form">
                     <i class="fa fa-lock prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control validate" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="La contraseña debe contener al menos una minuscula, una mayuscula y 6 caracteres">
+                    <input type="password" id="defaultForm-pass" class="form-control validate">
                     <label data-error="Incorrecto" data-success="Correcto" for="defaultForm-pass">Contraseña</label>
                 </div>
 
@@ -91,7 +91,7 @@ $("#alertlogin").hide();
                                 }else{
                                    
                                     $("#alertlogin").show();
-                                    $("#alertlogin").html("<b>"+response.errors.email[0]+"</b>");
+                                    $("#alertlogin").html("<b>"+response.message+"</b>");
                                    
                                 }
                             },
