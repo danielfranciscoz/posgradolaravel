@@ -46,19 +46,19 @@
                             <div class="card-body row"  >
                                 <div class="col-md-4 col-sm-6 d-flex justify-content-center  align-items-center " >
                                    
-                                    <img src= {{$curso->curso()->first()->Image_URL}} class="img-responsive" class="img-fluid"/>
+                                    <img src= {{$curso->curso->Image_URL}} class="img-responsive" class="img-fluid"/>
                                 </div>
 
                                 <div class="col-md-8 col-sm-6 ">
                                         <p style="margin-bottom:0" class="mt-2"> 
-                                        <p class="float-right " onclick='addcart({{$curso->curso()->first()->id}})' style="cursor: pointer;" ><i class="fa  fa-cart-plus  fa-2x" aria-hidden="true"></i></p> 
-                                            <p class="h4-responsive font-weight-bold"  onclick='curso("{{$curso->curso()->first()->NombreCurso}}");' style="cursor: pointer; margin-bottom:0;"> {{$curso->curso()->first()->NombreCurso}}</p>
+                                        <p class="float-right " onclick='addcart({{$curso->id}})' style="cursor: pointer;" ><i class="fa  fa-cart-plus  fa-2x" aria-hidden="true"></i></p> 
+                                            <p class="h4-responsive font-weight-bold"  onclick='curso("{{$curso->curso->NombreCurso}}");' style="cursor: pointer; margin-bottom:0;"> {{$curso->curso->NombreCurso}}</p>
                                             
-                                            <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$curso->curso()->first()->HorasClase}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
+                                            <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$curso->curso->HorasClase}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
                                 Certificación &nbsp <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>
                                 Recursos Descargables</p> 
                                         </p>
-                                        <p><span>{{$curso->curso()->first()->Desc_Publicidad}}</p>
+                                        <p><span>{{$curso->curso->Desc_Publicidad}}</p>
                                         <hr>
                                        
                                         <span class="font-weight-bold float-right"  style="color:#b71c1c "> 

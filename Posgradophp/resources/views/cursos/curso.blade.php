@@ -114,10 +114,6 @@
                          
                          </div>
                      </div>
-
-
-
-
                 </div>
                 <div class="col-md-4  container mb-4 ">
                     <div class="card pt-2 white">

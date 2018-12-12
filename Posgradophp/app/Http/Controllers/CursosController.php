@@ -53,11 +53,10 @@ class CursosController extends Controller
         $categoria_id = Categoria::where('Categoria', $categoria)->first();
         $cursos_id = Curso::where('Categoria_Id', $categoria_id->id)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
         
-        $cursos = Cursoprecio::with('curso')
-        ->where('deleted_at','=',null)
+        $cursos = Cursoprecio::where('deleted_at','=',null)
         ->whereIn('curso_id',$cursos_id);
              
-        
+       
         $cursos=  $cursos->paginate(5);
 
         // dd($cursos);
@@ -66,20 +65,20 @@ class CursosController extends Controller
          ->with('categoria',$categoria_id)
         ->with('cursos',$cursos);
     }
+
     public function curso($curso_name)
     { 
-        $precio = Cursoprecio::with('curso')          
-        ->where('deleted_at','=',null)
+        $precio = Cursoprecio::where('deleted_at','=',null)
         ->wherehas('curso', function ($sql) use ($curso_name) {
             $sql ->where('NombreCurso','like',$curso_name);
         })->first();
         
         $curso =  $precio->curso()
-            ->with('competencias')
-            ->with('tematicas')
-            ->with('modalidades')            
-            ->with('requisitos')      
-            ->with('docentes')      
+            // ->with('competencias')
+            // ->with('tematicas')
+            // ->with('modalidades')            
+            // ->with('requisitos')      
+            // ->with('docentes')      
             ->first();
             
 
