@@ -42,35 +42,39 @@ UNI-DEPEC</title>
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       
-      <li class="nav-item dropdown" style="min-width: 150px">
+    <li class="nav-item dropdown" style="min-width: 150px">
        <a class="nav-link dropdown-toggle text-muted " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false" ><i class="fa fa-folder-open-o fa-1x text-muted" aria-hidden="true"></i> Categorías</a>
+          aria-expanded="false" ><i class="fa fa-folder-open-o fa-1x text-muted" aria-hidden="true"></i> Oferta Académica</a>
          <div class="dropdown">
-            
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+            <li class="dropdown-submenu">
+                <a  class="dropdown-item" tabindex="-1" href="#">Cursos Especializados</a>
+                <ul class="dropdown-menu">
+                    @foreach($categorias as $categoria) 
+                    @if($categoria->isCursoPosgrado)
+                        <li class="dropdown-item" style="max-height:50px"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
+                        @endif
+                    @endforeach        
+                </ul>
+                </li> 
+            <li class="dropdown-submenu">
+                <a  class="dropdown-item" tabindex="-1" href="#">Posgrados</a>
+                <ul class="dropdown-menu">
+                    @foreach($categorias as $categoria)
+                    @if($categoria->isCursoPosgrado == false) 
+                        <li class="dropdown-item" style="max-height:50px"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
+                    @endif
+                    @endforeach        
+                </ul>
+            </li> 
+            <a  class="dropdown-item" tabindex="-1" href="{{route('cursos.maestrias')}}"">Maestrías</a>
+            </li>  
+         </u>
+            <!-- <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                @foreach($categorias as $categoria) 
                <li class="dropdown-item" style="max-height:50px"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
-               @endforeach
-                <!-- <li class="dropdown-item text-white"><a href="#"> <i class="fa fa-flask" aria-hidden="true"> </i> Quimica</a></li>
-                <li class="dropdown-item"><a href="#">Some other action</a></li>
-                <li class="dropdown-divider"></li>
-                <li class="dropdown-submenu">
-                  <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
-                    <li class="dropdown-submenu">
-                  <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>                    
-                    <li class="dropdown-item"><a href="#">3th level</a></li>
-                    <li class="dropdown-item"><a href="#">3th level</a></li>
-                  </ul>
-                </li>                    
-                    <li class="dropdown-item"><a href="#">Second level</a></li>
-                    <li class="dropdown-item"><a href="#">Second level</a></li>
-                  </ul>
-                </li> -->
-              </ul>
+               @endforeach               
+            </ul> -->
         </div>
       </li>
 
@@ -89,7 +93,7 @@ UNI-DEPEC</title>
                 <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold" style="min-width: 150px; background: #424242; " data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
                 <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect font-weight-bold" style="min-width: 150px">Registrate</button>
             @else
-                <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{ Auth::user()->estudiante->Nombres }} &nbsp;</a> 
+                <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{ Auth::user()->estudiante->PrimerNombre . ' '. Auth::user()->estudiante->PrimerApellido}} &nbsp;</a> 
                 <a class="" style="width:80px" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  <i class="fa fa-sign-out fa-1x red-text text-right" aria-hidden="true"></i> </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -288,7 +292,7 @@ UNI-DEPEC</title>
                
                 var search = $("#searchinput").val();
                 if( search.length > 0){
-                    window.location.href  = "/curso/find/"+search;
+                    window.location.href  = "/oferta/estudio/find/"+search;
                 }
             };
 

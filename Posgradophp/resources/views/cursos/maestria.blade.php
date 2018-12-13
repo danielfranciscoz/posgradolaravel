@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Categoria '.$categoria->Categoria)
+@section('title', 'Maestrías')
 @section('content')
 <main class="">
     <div class="container" >
@@ -11,22 +11,11 @@
                
                 <div class="col-md-9 col-sm-12 d-flex align-items-center font-weight-bold  ">
                 <div class="row">
-                <nav aria-label="breadcrumb" class="col-12">
-                    <ol class="breadcrumb ">
-                    <li class="breadcrumb-item"><a class="black-text" href="#">Categoría</a></li>
-                    <li class="breadcrumb-item black-text"><a class="black-text" href="#">{{$categoria->Categoria}}</a></li>
-                    
-                    </ol>
-                </nav>
+            
                 @if($cursos->isNotEmpty())
                 <div class="col-6 mt-4">
                     <h6 class="h6-responsive font-weight-bold">Disponemos de {{$cursos->total()}}  
-                                        @if($categoria->isCursoPosgrado)
-                                            Curso(s) de especialización
-                                        @else
-                                            Posgrado(s)
-                                        @endif 
-                                        para ti.
+                                        Maestría(s) para ti.
                     </h6>
                     </div>
               
@@ -79,7 +68,7 @@
                         <div class="container row" >
                        
                        <div class="card   white  mb-4 px-4 " >
-                           <h6 class="h6-responsive font-weight-bold ml-4 mt-4">No tenemos una oferta académica disponible para esta categoria {{$categoria->Categoria}}</h6>
+                           <h6 class="h6-responsive font-weight-bold ml-4 mt-4">Aún no disponemos de una oferta académica disponible para maestrías</h6>
                            <div class="d-flex align-items-center justify-content-center text-center " style="height:300px">
                                <h6 class="h6-responsive ">Lamentablemente no hemos encontrado un Oferta académica con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
                            </div>
@@ -166,7 +155,7 @@
  
     function redirect(page)
     {
-        window.location.href ="/oferta/categorias/{{$categoria->Categoria}}?page="+page;
+        window.location.href ="/maestrias?page="+page;
     }
     function curso(page)
     {

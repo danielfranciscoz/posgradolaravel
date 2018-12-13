@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<h2><span style="color: #1565c0;">¡Hola <strong>{{$estudiante->Nombres . $estudiante->Apelidos}}</strong>!</span></h2>
+<h2><span style="color: #1565c0;">¡Hola <strong>{{$estudiante->PrimerNombre .' '. $estudiante->PrimerApellido}}</strong>!</span></h2>
 
 <p>Gracias por confiar en nosotros tu camino de aprendizaje.<br><br> Ya falta poco para terminar, por favor verifica tu cuenta dando click en el siguiente enlace:<br /><br />
 </p>

@@ -31,14 +31,20 @@ class AccountController extends Controller
 
     public function registrar(RegisterRequest $request){
        //Poner como parametro RegisterRequest $request
-
-         DB::beginTransaction();   
-       try {
-            $user = new User();
+       $user = new User();
+       $user->email = $request->input('email');
+       
+       if (User::where('email',$user->email)->count()>0) {
+        return response()->json([
+            'error'=>'No es posible crear la cuenta debido a que el correo que está ingresando ya se encuentra registrado en nuestra plataforma.'
+        ]);  
+        }
+        
+        DB::beginTransaction();   
+        try {
             $estudent = new Estudiante();
-    
-            $user->name = $request->input('email');
-            $user->email = $request->input('email');
+            
+            $user->name = $user->email;
             $user->password = bcrypt($request->input('password'));
 
             $user->isAdmin = false;     
@@ -47,8 +53,10 @@ class AccountController extends Controller
             $user->save();
     
             $estudent->user_id = $user->id;
-            $estudent->Nombres  = $request->input('Nombres');
-            $estudent->Apellidos = $request->input('Apellidos');
+            $estudent->PrimerNombre  = $request->input('PrimerNombre');
+            $estudent->SegundoNombre  = $request->input('SegundoNombre');
+            $estudent->PrimerApellido = $request->input('PrimerApellido');
+            $estudent->SegundoApellido = $request->input('SegundoApellido');
             $estudent->DNI = $request->input('DNI');
             $estudent->Telefono = $request->input('Telefono');
             $estudent->isSuscript =$request->input('isSuscript');
@@ -69,7 +77,9 @@ class AccountController extends Controller
             ]);
         } catch (Exception $e) {
             DB::rollback();
-            return report($e);
+            return response()->json([
+                'error'=>'Ocurrió un error y n o pudimos completar el registro, por favor intenta mas tarde.'
+            ]);        
         }
   
     }    

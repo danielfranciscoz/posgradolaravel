@@ -144,25 +144,26 @@ class TestMigration extends Migration
             $table->collation = 'utf8_unicode_ci';
         });
 
-        // schema::create('pagos',function(BluePrint $table){
-        //     $table->increments('id');
-        //     $table->Integer('user_id');
-        //     $table->timestamps();
-        //     $table->softDeletes();
+        schema::create('pagos',function(BluePrint $table){
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->Integer('trx_number');
+            $table->timestamps();
+            $table->softDeletes();
 
-        //     $table->foreign('user_id')->references('id')->on('users');
-        // });
+            $table->foreign('user_id')->references('id')->on('users');
+        });
 
-        // schema::create('detallepagos',function(BluePrint $table){
-        //     $table->increments('id');
-        //     $table->integer('pago_id');
-        //     $table->integer('cursoprecio_id');
-        //     $table->timestamps();
-        //     $table->softDeletes();
+        schema::create('detallepagos',function(BluePrint $table){
+            $table->increments('id');
+            $table->unsignedInteger('pago_id');
+            $table->unsignedInteger('cursoprecio_id');
+            $table->timestamps();
+            $table->softDeletes();
 
-        //     $table->foreign('pago_id')->references('id')->on('pagos');
-        //     $table->foreign('cursoprecio_id')->references('id')->on('cursoprecios');
-        // });
+            $table->foreign('pago_id')->references('id')->on('pagos');
+            $table->foreign('cursoprecio_id')->references('id')->on('cursoprecios');
+        });
 
         
 

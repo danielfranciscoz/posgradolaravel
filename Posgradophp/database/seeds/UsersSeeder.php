@@ -23,8 +23,10 @@ class UsersSeeder extends Seeder
 
        Estudiante::create([
            'user_id'=>'1',
-           'Nombres'=>'Primer Nombre',
-           'Apellidos'=>'Segundo Nombre',
+           'PrimerNombre'=>'Admin',
+           'SegundoNombre'=>'nistrador',
+           'PrimerApellido'=>'admin',
+           'SegundoApellido'=>'administra',
            'DNI'=>'0000000000000A',
            'Telefono'=>'2252-2252',
            'isSuscript'=>true
@@ -40,8 +42,10 @@ class UsersSeeder extends Seeder
 
        Estudiante::create([
            'user_id'=>'2',
-           'Nombres'=>'Daniel Francisco',
-           'Apellidos'=>'Zamora Muñoz',
+           'PrimerNombre'=>'Daniel',
+           'SegundoNombre'=>'Francisco',
+           'PrimerApellido'=>'Zamora',
+           'SegundoApellido'=>'Muñoz',
            'DNI'=>'0010000000000A',
            'Telefono'=>'2253-2252',
            'isSuscript'=>true

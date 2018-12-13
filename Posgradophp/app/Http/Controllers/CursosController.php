@@ -47,14 +47,33 @@ class CursosController extends Controller
         ->with('cursos',$c);
     }
 
-    public function categories($categoria,$orden)
+    public function categories($categoria,$orden=null)
     { 
         $sort=['created_at','DESC'];
-        // if($orden != null){
-        // }else{
-        //     $sort=['created_at','DESC'];
-        // }
+        
+        if($orden != null){
+            switch ($orden) {
+                case 'price_asc':
+                $sort=['Precio','ASC']; 
+                    break;
+
+                case 'price_desc':
+                $sort=['Precio','DESC']; 
+                    break;
+                
+                default:
+                // $sort=['created_at','DESC'];
+                    break;
+            }  
+        }
         $categoria_id = Categoria::where('Categoria', $categoria)->first();
+        
+        if($categoria_id==null){
+            return response()->json([
+                'message'=>'La categoría no existe'
+            ]);
+        }
+      //  dd($categoria_id);
         $cursos_id = Curso::where('Categoria_Id', $categoria_id->id)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
         
         $cursos = Cursoprecio::where('deleted_at','=',null)
@@ -69,6 +88,42 @@ class CursosController extends Controller
         return view("cursos.cursoscategoria")
          ->with('categoria',$categoria_id)
         ->with('cursos',$cursos);
+    }
+   
+    public function maestrias($orden=null)
+    { 
+        $sort=['created_at','DESC'];
+        
+        if($orden != null){
+            switch ($orden) {
+                case 'price_asc':
+                $sort=['Precio','ASC']; 
+                    break;
+
+                case 'price_desc':
+                $sort=['Precio','DESC']; 
+                    break;
+                
+                default:
+                // $sort=['created_at','DESC'];
+                    break;
+            }  
+        }
+              
+        $cursos_id = Curso::where('Categoria_Id', null)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
+        
+
+        $cursos = Cursoprecio::where('deleted_at','=',null)
+        ->whereIn('curso_id',$cursos_id)
+        ->orderBy($sort[0],$sort[1]);
+             
+       
+        $cursos=  $cursos->paginate(5);
+
+        // dd($cursos);
+
+        return view("cursos.maestria")
+         ->with('cursos',$cursos);
     }
 
     public function curso($curso_name)

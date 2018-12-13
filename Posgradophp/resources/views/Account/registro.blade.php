@@ -15,11 +15,21 @@
                 <div class="form-row mb-4">
                     <div class="col">
                         <!-- First name -->
-                        <input type="text" id="nombres" class="form-control" placeholder="Nombres" required />
+                        <input type="text" id="PrimerNombre" class="form-control" placeholder="Primer Nombre" required />
                     </div>
                     <div class="col">
                         <!-- Last name -->
-                        <input type="text" id="apellidos" class="form-control" placeholder="Apellidos" required /> 
+                        <input type="text" id="SegundoNombre" class="form-control" placeholder="Segundo Nombre"  /> 
+                    </div>
+                </div>
+                <div class="form-row mb-4">
+                    <div class="col">
+                        <!-- First name -->
+                        <input type="text" id="PrimerApellido" class="form-control" placeholder="Primer Apellido" required />
+                    </div>
+                    <div class="col">
+                        <!-- Last name -->
+                        <input type="text" id="SegundoApellido" class="form-control" placeholder="Segundo Apellido"  /> 
                     </div>
                 </div>
                 <input type="text" id="dni" class="form-control" placeholder="DNI/Cédula" aria-describedby="defaultRegisterFormPhoneHelpBlock" required/>
@@ -103,8 +113,10 @@ $("#alertregistro").hide();
             }
         $.ajax( {
                 data: {
-                    "Nombres": $("#nombres").val(),
-                    "Apellidos":$("#apellidos").val(),
+                    "PrimerNombre": $("#PrimerNombre").val(),
+                    "SegundoNombre": $("#SegundoNombre").val(),
+                    "PrimerApellido":$("#PrimerApellido").val(),
+                    "SegundoApellido":$("#SegundoApellido").val(),
                     "DNI" : $("#dni").val(),
                     "email": $("#email").val(),
                     "password": $("#password").val(),
@@ -129,9 +141,7 @@ $("#alertregistro").hide();
                 error: function(response){
                     $("#alertregistro").show();
                     var str = "";
-                    
-                
-                    
+                                        
                     for(var i=0;i<response.responseJSON.errors.email.length;i++){
                         
                         str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  

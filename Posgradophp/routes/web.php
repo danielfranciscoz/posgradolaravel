@@ -17,20 +17,23 @@ Route::get('/curso', function(){
     return redirect()->route('cursos.index');
 });
 
-//Todos los cursos de la categoria
-Route::get('categorias/{categoria}/{orden}','CursosController@categories')->name('cursos.categorias');
-
-Route::group(['prefix' => 'curso'], function() {
+Route::group(['prefix' => 'oferta'], function() {
+    Route::get('categorias/{categoria}/{orden?}','CursosController@categories')->name('cursos.categorias');
+    
     //Todos los cursos que cumplen con el criterio de busqueda
-    Route::get('/find/{curso}','CursosController@search')->name('cursos.search');
-
+    Route::get('estudio/find/{curso}','CursosController@search')->name('cursos.search');
+    
     //Informacion del curso
-    Route::get('/{curso_name}','CursosController@curso')->name('cursos.curso');
+    Route::get('estudio/{curso_name}','CursosController@curso')->name('cursos.curso');
 });
+//Todos los cursos de la categoria
+
+Route::get('maestrias/{orden?}','CursosController@maestrias')->name('cursos.maestrias');
+
 
 Route::group(['prefix' => 'account'], function() {
 
-    Route::get('/registro', 'AccountController@registro')->name('registro');
+    Route::get('/registro', 'AccountController@registro')->middleware('logged')->name('registro');
     Route::post('/registro', 'AccountController@registrar')->name('registro');
     Route::get('/verificar/{token}', 'AccountController@verificar')->name('verificar');
     Route::get('/carrito','AccountController@carrito');

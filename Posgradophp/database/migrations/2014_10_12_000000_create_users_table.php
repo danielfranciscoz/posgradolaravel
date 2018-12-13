@@ -27,8 +27,10 @@ class CreateUsersTable extends Migration
 
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->unsignedInteger('user_id')->primary();
-            $table->string('Nombres');
-            $table->string('Apellidos');
+            $table->string('PrimerNombre');
+            $table->string('SegundoNombre');
+            $table->string('PrimerApellido');
+            $table->string('SegundoApellido');
             $table->string('DNI');
             $table->string('Telefono');
             $table->boolean('isSuscript');
