@@ -14,21 +14,21 @@
 
                 <div class="form-row mb-4">
                     <div class="col">
-                        <!-- First name -->
+
                         <input type="text" id="PrimerNombre" class="form-control" placeholder="Primer Nombre" required />
                     </div>
                     <div class="col">
-                        <!-- Last name -->
+
                         <input type="text" id="SegundoNombre" class="form-control" placeholder="Segundo Nombre"  /> 
                     </div>
                 </div>
                 <div class="form-row mb-4">
                     <div class="col">
-                        <!-- First name -->
+
                         <input type="text" id="PrimerApellido" class="form-control" placeholder="Primer Apellido" required />
                     </div>
                     <div class="col">
-                        <!-- Last name -->
+
                         <input type="text" id="SegundoApellido" class="form-control" placeholder="Segundo Apellido"  /> 
                     </div>
                 </div>
@@ -126,7 +126,6 @@ $("#alertregistro").hide();
                     '_token': $('meta[name="csrf-token"]').attr('content')
                     
                 },
-                // header: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 url: "../account/registro",
                 type: 'POST',
                 success: function(response){

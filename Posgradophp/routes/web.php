@@ -19,26 +19,37 @@ Route::get('/curso', function(){
 
 Route::group(['prefix' => 'oferta'], function() {
     Route::get('categorias/{categoria}/{orden?}','CursosController@categories')->name('cursos.categorias');
+    Route::get('maestrias/{orden?}','CursosController@maestrias')->name('cursos.maestrias');
     
-    //Todos los cursos que cumplen con el criterio de busqueda
-    Route::get('estudio/find/{curso}','CursosController@search')->name('cursos.search');
-    
-    //Informacion del curso
-    Route::get('estudio/{curso_name}','CursosController@curso')->name('cursos.curso');
+    Route::group(['prefix' => 'estudio'], function() {
+        //Todos los cursos que cumplen con el criterio de busqueda
+        Route::get('/find/{curso}','CursosController@search')->name('cursos.search');
+        
+        //Informacion del curso
+        Route::get('/{curso_name}','CursosController@curso')->name('cursos.curso');
+
+    });
 });
-//Todos los cursos de la categoria
-
-Route::get('maestrias/{orden?}','CursosController@maestrias')->name('cursos.maestrias');
-
 
 Route::group(['prefix' => 'account'], function() {
 
+    Route::get('/login','AccountController@loginUser')->name('process.login');
+    
     Route::get('/registro', 'AccountController@registro')->middleware('logged')->name('registro');
-    Route::post('/registro', 'AccountController@registrar')->name('registro');
+    Route::post('/registro', 'AccountController@registrar')->name('registrar');
+    
     Route::get('/verificar/{token}', 'AccountController@verificar')->name('verificar');
+    
     Route::get('/carrito','AccountController@carrito');
     Route::get('/pagarcarrito','AccountController@resumencarrito');
-    Route::get('/login','AccountController@loginUser')->name('process.login');
+
+    Route::group(['prefix' => 'password'], function() {
+        Route::get('reset', 'AccountController@reset')->name('resetpassword');
+        Route::post('reset/', 'AccountController@sendEmailreset')->name('emailresetear');
+        
+        Route::get('reset/{token}', 'AccountController@changepass')->name('resettoken');
+        Route::post('change/', 'AccountController@resetpassword')->name('changepass');
+    });
 });
 
 Route::group(['prefix' => 'process'],function(){
@@ -50,6 +61,14 @@ Route::group(['prefix' => 'process'],function(){
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+// Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 /*
 

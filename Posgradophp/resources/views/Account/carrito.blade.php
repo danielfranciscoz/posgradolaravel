@@ -140,7 +140,7 @@
     }
     function curso(page)
     {
-        window.location.href = "/curso/"+page;
+        window.location.href = "/oferta/estudio/"+page;
     }
     
 </script>

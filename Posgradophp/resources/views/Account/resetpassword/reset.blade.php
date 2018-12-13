@@ -1,0 +1,1 @@
+Aqui se mostrará un formulario donde se ingrese el correo del usuario, mas un botón para enviar el correo con el token de reseteo de contraseña

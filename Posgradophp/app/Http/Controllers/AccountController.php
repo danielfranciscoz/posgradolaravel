@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\RegisterRequest;
 use App\Mail\ConfirmationUser;
+use App\Mail\ResetPassword;
 use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
@@ -160,4 +161,65 @@ class AccountController extends Controller
         }
     }
 
+    public function reset(){
+        return view('Account.resetpassword.reset');
     }
+
+    public function sendEmailreset(Request $request){
+            
+         $email = $request->input('email');
+
+        $user = User::where('email',$email)->first();
+
+        if ($user != null) {
+            $user->token = str_random(40);
+            $user->save();
+
+            Mail::to($email)
+            ->send((new ResetPassword($user))->locale('es'));
+            // return (new ResetPassword($user))->render();
+
+            return response()->json([
+                'message'=>'Te hemos enviado un correo, por favor revisa tu bandeja de entrada, sino lo encuentras prueba buscar en los correos no deseados.'
+                ]);
+        }else{
+            return response()->json([
+                'error'=>'El correo que has ingresado, no se encuentra registrado en nuestra plataforma, verifica tu información e intenta nuevamente.'
+                ]);
+        }
+    }
+
+    public function changepass($token){
+
+        $user = User::where('token',$token)->first();
+        if($user == null){
+            return response()->json([
+                'error'=>'El identificador no es válido, es probable que se esté intentando acceder a una URL antígua, o exista otra petición de cambio de contraseña mas reciente.'
+                ]);
+        }
+        return view('Account.resetpassword.changepass')->with(compact('user'));
+    }
+
+    public function resetpassword(Request $request){
+        $token = $request->input('token');
+        $password = $request->input('password');
+
+        $user = User::where('token',$token)->first();
+        
+        if ($user == null) {
+            return response()->json([
+                'error'=>'El identificador no es válido, es probable que la contraseña ya haya sido restablecida.'
+                ]);
+        }
+
+        $user->password = bcrypt($password);
+        $user->token = str_random(15);
+
+        $user->save();
+
+        return response()->json([
+            'message'=>'Ya puedes iniciar sesión, tu contraseña ha sido modificada con éxito.'
+            ]);
+    }
+
+}
