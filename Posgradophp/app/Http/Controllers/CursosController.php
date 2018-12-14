@@ -18,7 +18,7 @@ class CursosController extends Controller
     {
       
         $data = Curso::orderBy('created_at','DESC')->take(10)->get();
-        $comentarios = Comentario::where('deleted_at',null);
+        $comentarios = Comentario::where('deleted_at',null)->get();
 
         return view('welcome', compact('data'))
         ->with(compact('comentarios'));
