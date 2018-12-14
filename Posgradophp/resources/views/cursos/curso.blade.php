@@ -128,7 +128,7 @@
                             <span class=""></br> 
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                            
-                                56 horas de Estudio
+                                {{$curso->horas_clase}} horas de Estudio
                             </span>
                             <span class=""></br> 
                                 <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>

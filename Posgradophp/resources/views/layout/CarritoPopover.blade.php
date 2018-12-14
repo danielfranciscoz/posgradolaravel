@@ -25,7 +25,7 @@
         
        var contentcarrito = '<div class="" id="carritodiv">';
                 contentcarrito = contentcarrito + ['<p >Tu Carrito de Compras está vacía</p>',
-                        '<a class="text-center" href="../account/carrito">Ver Carrito</a></div>',
+                        <!-- '<a class="text-center" href="../account/carrito">Ver Carrito</a></div>', -->
                 , ].join('');
 
                 $("#carrito").popover({ 

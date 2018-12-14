@@ -17,36 +17,13 @@ class CursosController extends Controller
     public function index()
     {
       
-// dd(Auth::user()->with('estudiante')->first()->estudiante()->first()->Nombres);
         $data = Curso::orderBy('created_at','DESC')->take(10)->get();
-        $comentarios = Comentario::all()->where('deleted_at',null);
+        $comentarios = Comentario::where('deleted_at',null);
 
         return view('welcome', compact('data'))
         ->with(compact('comentarios'));
     }
-
-    public function search($search_value)
-    { 
-        // divide la frase mediante cualquier número de comas o caracteres de espacio,
-        // lo que incluye " ", \r, \t, \n y \f
-        $data = preg_split("/[\s,]+/", $search_value);      
-        $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($data) {
-            $sql->WhereIn('Etiqueta', $data);
-        })->pluck('id')->toArray();
-        $cursos=  $cursos;
-
-
-        $c = Cursoprecio::with('curso')
-        ->where('deleted_at','=',null)
-        ->whereIn('curso_id',$cursos)->paginate(5);
-        
-        // dd($c->first()->curso()->get() );
-
-        return view("cursos.search")
-        ->with('search_value',$search_value)
-        ->with('cursos',$c);
-    }
-
+  
     public function categories($categoria,$orden=null)
     { 
         $sort=['created_at','DESC'];
@@ -89,6 +66,28 @@ class CursosController extends Controller
          ->with('categoria',$categoria_id)
         ->with('cursos',$cursos);
     }
+
+    public function search($search_value)
+    { 
+        // divide la frase mediante cualquier número de comas o caracteres de espacio,
+        // lo que incluye " ", \r, \t, \n y \f
+        $data = preg_split("/[\s,]+/", $search_value);      
+        $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($data) {
+            $sql->WhereIn('Etiqueta', $data);
+        })->pluck('id')->toArray();
+        $cursos=  $cursos;
+
+
+        $c = Cursoprecio::with('curso')
+        ->where('deleted_at','=',null)
+        ->whereIn('curso_id',$cursos)->paginate(5);
+        
+        // dd($c->first()->curso()->get() );
+
+        return view("cursos.search")
+        ->with('search_value',$search_value)
+        ->with('cursos',$c);
+    }
    
     public function maestrias($orden=null)
     { 
@@ -129,9 +128,9 @@ class CursosController extends Controller
     public function curso($curso_name)
     { 
         $precio = Cursoprecio::where('deleted_at','=',null)
-        ->wherehas('curso', function ($sql) use ($curso_name) {
-            $sql ->where('NombreCurso','like',$curso_name);
-        })->first();
+                ->wherehas('curso', function ($sql) use ($curso_name) {
+                    $sql ->where('NombreCurso','like',$curso_name);
+                })->first();
         
         $curso =  $precio->curso()
             // ->with('competencias')
@@ -139,19 +138,19 @@ class CursosController extends Controller
             // ->with('modalidades')            
             // ->with('requisitos')      
             // ->with('docentes')      
-            ->first();
-            
+            ->first();         
 
         return view("cursos.curso")        
-        ->with(compact('curso'))
-        ->with(compact('precio'));
+            ->with(compact('curso'))
+            ->with(compact('precio'));
     }
 
-       public function addcarrito(Request $request)
+    
+    public function addcarrito(Request $request)
     { 
-    // $request->session()->flush();
-
-       $id= $request->input('curso');
+        
+        $id= $request->input('curso');
+        // $request->session()->flush();
         $curso = Cursoprecio::with('curso')->where('id',$id)->get();
         
         if(count($curso) == 0)
@@ -162,42 +161,33 @@ class CursosController extends Controller
                 ]);
         }
 
-
-            $existid = false;
-            for($i=0;$i<count(Session::get('cartItems'));$i++)
-            {
-               if(Session::get('cartItems')[$i]['id']== $id){
-                return response()->json([
-                    'error' => 'Ya fue agregado al carrito',
-                    'message' => 'error'
-                    ]);
-                        $existid = true;
-                    }
-                    
-            }
-
-        //  dd($curso->get(0));
-           if($existid == false){
-            Session::push('cartItems', [
-                'id' => $curso->get(0)->id, //Tabla precioCurso
-                'curso' => $curso->get(0)->Curso()->get()[0]->NombreCurso, //tabla curso
-                'Image_URL'=> $curso->get(0)->Curso()->get()[0]->Image_URL,
-                'horas' =>  $curso->get(0)->Curso()->get()[0]->HorasClase,
-                'Precio' => $curso->get(0)->Precio
-                
-                ]); 
-           }
+        $existid = false;
+        for($i=0;$i<count(Session::get('cartItems'));$i++)
+        {
+            if(Session::get('cartItems')[$i]['id']== $id){
+            return response()->json([
+                'error' => 'Ya fue agregado al carrito',
+                'message' => 'error'
+                ]);
+                    $existid = true;
+                }                   
+        }
+    
+        if($existid == false){
+        Session::push('cartItems', [
+            'id' => $curso->get(0)->id, //Tabla precioCurso
+            'curso' => $curso->get(0)->Curso()->get()[0]->NombreCurso, //tabla curso
+            'Image_URL'=> $curso->get(0)->Curso()->get()[0]->Image_URL,
+            'horas' =>  $curso->get(0)->Curso()->get()[0]->HorasClase,
+            'Precio' => $curso->get(0)->Precio
+            
+            ]); 
+        }
 
         return response()->json([
             'message' => Session::get('cartItems')]);
-       
-      
-        
-/* 
-        return Input::get(); */
-        
+         
     }
-
 
     public function delcarrito(Request $request)
     {  
