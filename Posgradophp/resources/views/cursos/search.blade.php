@@ -28,7 +28,7 @@
                         </div>
                 @endif
                         @forelse($cursos as $curso)                        
-                               
+                               {{dd($curso->curso->categoria)}}
                         <div class="col-12">
                         <!-- Card content -->
                         <div class="card mb-2 mt-2 ">

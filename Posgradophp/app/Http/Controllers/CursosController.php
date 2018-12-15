@@ -67,23 +67,40 @@ class CursosController extends Controller
         ->with('cursos',$cursos);
     }
 
-    public function search($search_value)
+    public function search($search_value,$orden=null)
     { 
+
+        $sort=['created_at','DESC'];
+        if($orden != null){
+            switch ($orden) {
+                case 'price_asc':
+                $sort=['Precio','ASC']; 
+                break;
+                
+                case 'price_desc':
+                $sort=['Precio','DESC']; 
+                break;
+                
+                default:
+                // $sort=['created_at','DESC'];
+                break;
+            }  
+        }
+       
         // divide la frase mediante cualquier número de comas o caracteres de espacio,
         // lo que incluye " ", \r, \t, \n y \f
         $data = preg_split("/[\s,]+/", $search_value);      
         $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($data) {
             $sql->WhereIn('Etiqueta', $data);
         })->pluck('id')->toArray();
-        $cursos=  $cursos;
-
-
-        $c = Cursoprecio::with('curso')
-        ->where('deleted_at','=',null)
-        ->whereIn('curso_id',$cursos)->paginate(5);
         
-        // dd($c->first()->curso()->get() );
-
+        $c = Cursoprecio::with('curso')
+            ->where('deleted_at','=',null)
+            ->whereIn('curso_id',$cursos)
+            ->orderBy($sort[0],$sort[1]);
+        
+        $c = $c->paginate(5);
+        
         return view("cursos.search")
         ->with('search_value',$search_value)
         ->with('cursos',$c);
