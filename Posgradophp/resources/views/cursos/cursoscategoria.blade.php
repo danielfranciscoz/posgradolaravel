@@ -32,7 +32,7 @@
               
                 <div class="col-6 d-flex justify-content-end  align-items-center">
                         <label>Ordenar por:</label> &nbsp
-                        <select class="mdb-select md-form colorful-select dropdown-primary">
+                        <select class="mdb-select md-form colorful-select dropdown-primary" id="sorden">
                             <option value="1">Mas Reciente</option>
                             <option value="2">Precio Descedente</option>
                             <option value="3">Precio Ascendente</option>            
@@ -96,11 +96,11 @@
                                     <ul class="pagination pg-blue">
                                     @if($cursos->currentPage()==1)
                                     <li class="page-item disabled">
-                                            <a class="page-link" tabindex="-1" onclick="redirect({{$cursos->currentPage()-1}});">Anterior</a>
+                                            <a class="page-link" tabindex="-1" onclick="orden({{$cursos->currentPage()-1}});">Anterior</a>
                                         </li>
                                     @else
                                     <li class="page-item ">
-                                            <a class="page-link" tabindex="-1" onclick="redirect({{$cursos->currentPage()-1}});">Anterior</a>
+                                            <a class="page-link" tabindex="-1" onclick="orden({{$cursos->currentPage()-1}});">Anterior</a>
                                         </li>
                                     @endif
                                        
@@ -109,18 +109,18 @@
                                         @if($i == 0)
 
                                         @endif
-                                        <li class="page-item active" onclick="redirect({{$i}});"><a class="page-link ">{{$i}}</a></li>
+                                        <li class="page-item active" onclick="orden({{$i}});"><a class="page-link ">{{$i}}</a></li>
                                         @else
-                                        <li class="page-item" onclick="redirect({{$i}});"><a class="page-link">{{$i}}</a></li>
+                                        <li class="page-item" onclick="orden({{$i}});"><a class="page-link">{{$i}}</a></li>
                                         @endif
                                         @endfor
                                         @if($cursos->currentPage()==$cursos->lastPage())
                                             <li class="page-item disabled">
-                                                    <a class="page-link" onclick="redirect({{$cursos->currentPage()+1}});">Siguiente</a>
+                                                    <a class="page-link" onclick="orden({{$cursos->currentPage()+1}});">Siguiente</a>
                                                 </li>
                                             @else
                                             <li class="page-item ">
-                                                    <a class="page-link" onclick="redirect({{$cursos->currentPage()+1}});">Siguiente</a>
+                                                    <a class="page-link" onclick="orden({{$cursos->currentPage()+1}});">Siguiente</a>
                                                 </li>
                                          @endif
                                        
@@ -161,12 +161,45 @@
 </div>
 </main>
 @endsection
-
+@section('endscript')
 <script>
- 
-    function redirect(page)
+@php 
+$seg = Request::segment(4);
+
+if($seg == null){
+    echo '$("#sorden").val("1");';
+}else{    
+    if($seg == "precio_desc"){
+        echo '$("#sorden").val("2");';
+    }
+    if($seg == "precio_asc"){
+        echo '$("#sorden").val("3");';
+    }
+}
+
+@endphp
+  
+
+ $( "#sorden" ).change(function() {
+        orden({{$cursos->currentPage()}});
+   });
+
+    function orden(page)
     {
-        window.location.href ="/oferta/categorias/{{$categoria->Categoria}}?page="+page;
+        id = parseInt($("#sorden").val());
+        switch(id) {
+            case 1:
+                window.location.href ="/oferta/categorias/{{$categoria->Categoria}}?page="+page;
+            break;
+            case 2:
+                window.location.href ="/oferta/categorias/{{$categoria->Categoria}}/precio_desc?page="+page;
+            break;
+            case 3:
+                window.location.href ="/oferta/categorias/{{$categoria->Categoria}}/precio_asc?page="+page;
+            break;
+
+        }
+        
     }
     function curso(page)
     {
@@ -196,3 +229,4 @@
     }
 
 </script>
+@endsection
