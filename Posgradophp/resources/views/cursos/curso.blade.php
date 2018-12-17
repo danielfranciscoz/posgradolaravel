@@ -167,7 +167,7 @@
  $( "#alertaddcarrito").hide();
     function addcarrito(id){
         $.ajax({
-            url: "../process/addcarrito",
+            url: "/process/addcarrito",
             type : 'GET',
             data: {
                 "curso" : id

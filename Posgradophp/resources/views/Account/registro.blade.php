@@ -107,6 +107,8 @@ $("#alertregistro").hide();
     function submite(e){
         $("#alertregistro").hide();
         var b = 0;
+        var pasa = true;
+        var mserror = "";
 
         if ($('#boletin').is(":checked"))
             {
@@ -127,27 +129,20 @@ $("#alertregistro").hide();
                     '_token': $('meta[name="csrf-token"]').attr('content')
                     
                 },
-                url: "../account/registro",
-                type: 'POST',
-                success: function(response){
-                    if(response.message =="success"){
-                       
-                      
-                        //
-                    }else{
-                        
-                        
-                        
-                    }
-                },
+                url: "/account/registro",
+                type: 'POST'
+                               ,
                 error: function(response){
                     $("#alertregistro").show();
                     var str = "";
-                                        
-                    for(var i=0;i<response.responseJSON.errors.email.length;i++){
+
+                        console.log(response.responseJSON.errors.toArray());
+                    // response.responseJSON.errors.toArray().forEach(function(e){
+                    // });                    
+                    // for(var i=0;i<response.responseJSON.errors.email.length;i++){
                         
-                        str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
-                    }
+                    //     str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
+                    // }
                     
                         $("#alertregistro").html(str);
                 }
@@ -155,7 +150,6 @@ $("#alertregistro").hide();
             
             }
         );
-        $("#registernow").html('<h4 class="h4-responsive mb-4 text-primary">¡Inscribete y comienza a aprender con nosotros!</h4> <h6 class="h6-responsive mb-4">Esto solo tomará un par de minutos, por favor ten paciencia y completa toda la información.</h6>');
         grecaptcha.reset();
        
     }

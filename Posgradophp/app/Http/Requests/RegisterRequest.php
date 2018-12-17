@@ -27,10 +27,10 @@ class RegisterRequest extends FormRequest
         return [
             'PrimerNombre' =>'required',
             'PrimerApellido' =>'required',
-            'dni' =>'required',
+            'DNI' =>'required',
             'email' => 'required|email|unique:users',
             'Telefono' => 'required',
-            'Password' => 'required|min:6',
+            'password' => 'required|min:6',
             'g-recaptcha-response' => ['required', new ValidRecaptcha]
         ];
     }
@@ -38,7 +38,8 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'Password.required'=>'El campo contraseña es obligatorio',
+            'DNI.required'=>'El campo DNI es obligatorio',
+            'password.required'=>'El campo contraseña es obligatorio',
             'g-recaptcha-response.required' => 'Por favor demuestra que eres un humano'
         ];
     }

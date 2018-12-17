@@ -27,7 +27,7 @@
                       <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4">
                   </video> -->
                   <!-- Carousel content -->
-                  <img src="../img/b.jpg" class="w-md-100 h-100"/>
+                  <img src="/img/b.jpg" class="w-md-100 h-100"/>
                   <div class=" d-flex justify-content-start align-items-center mask rgba-indigo-light white-text" style="max-height:600px">
                         <div class="col-lg-4 col-md-12">
 

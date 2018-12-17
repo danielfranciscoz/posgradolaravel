@@ -40,9 +40,9 @@
                         
                          
                             <div class="flex-column">
-                                <p href="../account/registro" class="
+                                <p href="/account/registro" class="
                                 font-small d-flex justify-content-center float-md-left primary-text  float-sm-none">¿No tienes una cuenta?  </p>
-                                <p href="../account/recuperacion" class="font-small  d-flex justify-content-center primary-text float-md-right float-sm-none">¿Olvido su Contraseña?  </p>
+                                <p href="/account/recuperacion" class="font-small  d-flex justify-content-center primary-text float-md-right float-sm-none">¿Olvido su Contraseña?  </p>
                             
                             </div>
                            </div>
@@ -83,7 +83,7 @@ $("#alertlogin").hide();
                                 "email": user,
                                 "password":pass
                             },
-                            url: "../account/login",
+                            url: "/account/login",
                             type: 'get',
                             success: function(response){
                                 if(response.message =="success"){
