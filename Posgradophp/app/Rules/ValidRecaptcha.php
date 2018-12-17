@@ -47,6 +47,6 @@ class ValidRecaptcha implements Rule
      */
     public function message()
     {
-        return 'La verificación ha fallado.';
+        return 'El código de verificación enviado no es correcto.';
     }
 }

@@ -37,7 +37,14 @@ class ComentariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comentario = new Comentario();
+        $comentario->Nombre = $request->input('Nombre');
+        $comentario->Profesion = $request->input('Profesion');
+        $comentario->Desc_Pais = $request->input('Desc_Pais');
+        $comentario->Comentario = $request->input('Comentario');
+        $comentario->Image_URL = $request->input('Image_URL');
+
+        $comentario->save();
     }
 
     /**
