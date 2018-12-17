@@ -136,13 +136,14 @@ $("#alertregistro").hide();
                     $("#alertregistro").show();
                     var str = "";
 
-                        console.log(response.responseJSON.errors.toArray());
-                    // response.responseJSON.errors.toArray().forEach(function(e){
-                    // });                    
-                    // for(var i=0;i<response.responseJSON.errors.email.length;i++){
-                        
-                    //     str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
-                    // }
+    for(x in response.responseJSON.errors){
+        var d = response.responseJSON.errors[x];
+        
+        for(var i=0;i<d.length;i++){                
+            str= str +'<b>'+d[i]+'</b><br></br>';               
+        }
+    }
+
                     
                         $("#alertregistro").html(str);
                 }
