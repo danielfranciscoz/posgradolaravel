@@ -30,11 +30,11 @@ class CursosController extends Controller
         
         if($orden != null){
             switch ($orden) {
-                case 'price_asc':
+                case 'precio_asc':
                 $sort=['Precio','ASC']; 
                     break;
 
-                case 'price_desc':
+                case 'precio_desc':
                 $sort=['Precio','DESC']; 
                     break;
                 
@@ -73,11 +73,11 @@ class CursosController extends Controller
         $sort=['created_at','DESC'];
         if($orden != null){
             switch ($orden) {
-                case 'price_asc':
+                case 'precio_asc':
                 $sort=['Precio','ASC']; 
                 break;
                 
-                case 'price_desc':
+                case 'precio_desc':
                 $sort=['Precio','DESC']; 
                 break;
                 
@@ -112,11 +112,11 @@ class CursosController extends Controller
         
         if($orden != null){
             switch ($orden) {
-                case 'price_asc':
+                case 'precio_asc':
                 $sort=['Precio','ASC']; 
                     break;
 
-                case 'price_desc':
+                case 'precio_desc':
                 $sort=['Precio','DESC']; 
                     break;
                 

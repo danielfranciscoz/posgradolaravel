@@ -22,13 +22,13 @@
                         <label>Ordenar por: </label>&nbsp
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="sorden">
                             <option value="1">Más reciente</option>
-                            <option value="2">Precio más bajo</option>
-                            <option value="3">Precio más alto</option>            
+                            <option value="2">Precio Descendente</option>
+                            <option value="3">Precio Ascendente</option>            
                         </select>             
                         </div>
                 @endif
                         @forelse($cursos as $curso)                        
-                               {{dd($curso->curso->categoria)}}
+                            
                         <div class="col-12">
                         <!-- Card content -->
                         <div class="card mb-2 mt-2 ">
@@ -47,15 +47,26 @@
                                 Certificación &nbsp <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>
                                 Recursos Descargables</p> 
                                         </p>
+                                          
                                         <p><span>{{$curso->curso->Desc_Publicidad}}</p>
                                         <hr>
-                                       
-                                        <span class="font-weight-bold float-right"  style="color:#b71c1c "> 
-                                            $ {{$curso->Precio}}
-                                        </span> 
                                         
-                                    
-                                
+                                        @if($curso->curso->categoria==null)
+                                            <span class=" float-left deep-purple accent-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                            Maestría
+                                            </span> 
+                                        @elseif($curso->curso->categoria->isCursoPosgrado==1)
+                                            <span class=" float-left teal darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                Curso Especializado
+                                            </span> 
+                                        @elseif($curso->curso->categoria->isCursoPosgrado==0)
+                                            <span class=" float-left blue darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" >                                        
+                                                Posgrado
+                                            </span>                                         
+                                        @endif                                      
+                                            <span class="font-weight-bold float-right"  style="color:#b71c1c "> 
+                                                $ {{$curso->Precio}}
+                                            </span> 
                                 </div>
 
                             </div>
@@ -149,7 +160,8 @@
 @section('endscript')
 <script>
 @php 
-$seg = Request::segment(4);
+
+$seg = Request::segment(5);
 
 if($seg == null){
     echo '$("#sorden").val("1");';
