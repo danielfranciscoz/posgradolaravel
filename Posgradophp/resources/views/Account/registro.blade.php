@@ -132,17 +132,20 @@ $("#alertregistro").hide();
                 url: "/account/registro",
                 type: 'POST'
                                ,
+                success: function(response){
+                        window.location.href = "/account/complete/"+response.message;
+                    },
                 error: function(response){
                     $("#alertregistro").show();
                     var str = "";
 
-    for(x in response.responseJSON.errors){
-        var d = response.responseJSON.errors[x];
-        
-        for(var i=0;i<d.length;i++){                
-            str= str +'<b>'+d[i]+'</b><br></br>';               
-        }
-    }
+                for(x in response.responseJSON.errors){
+                    var d = response.responseJSON.errors[x];
+                    
+                    for(var i=0;i<d.length;i++){                
+                        str= str +'<b>'+d[i]+'</b><br></br>';               
+                    }
+                }
 
                     
                         $("#alertregistro").html(str);

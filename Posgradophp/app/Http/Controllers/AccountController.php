@@ -14,6 +14,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Mail\ConfirmationUser;
 use App\Mail\ResetPassword;
 use Illuminate\Support\Facades\Mail;
+use App\Rules\ValidRecaptcha;
 
 class AccountController extends Controller
 {
@@ -32,14 +33,9 @@ class AccountController extends Controller
 
     public function registrar(RegisterRequest $request){
        //Poner como parametro RegisterRequest $request
-       $user = new User();
-       $user->email = $request->input('email');
-       
-       if (User::where('email',$user->email)->count()>0) {
-        return response()->json([
-            'error'=>'No es posible crear la cuenta debido a que el correo que está ingresando ya se encuentra registrado en nuestra plataforma.'
-        ]);  
-        }
+        $user = new User();
+        $user->email = $request->input('email');
+        $user->token = str_random(50);
         
         DB::beginTransaction();   
         try {
@@ -49,7 +45,6 @@ class AccountController extends Controller
             $user->password = bcrypt($request->input('password'));
 
             $user->isAdmin = false;     
-            $user->token = str_random(50);
             
             $user->save();
     
@@ -68,7 +63,7 @@ class AccountController extends Controller
             // Mail::to($user->email)
             //         ->send((new ConfirmationUser($user,$estudent))->locale('es'));
             
-            // $this->sendConfirmationMail($user,$estudent);
+             $this->sendConfirmationMail($user,$estudent);
             
             //La línea de abajo funciona para visualizar lo que será enviado por correo
             //  return (new ConfirmationUser($user,$estudent))->render();
@@ -76,7 +71,7 @@ class AccountController extends Controller
              DB::commit();
               
              //'Te hemos enviado un correo, por favor revisa tu bandeja de entrada para verificar tu cuenta, sino lo encuentras prueba buscar en los correos no deseados.'
-             response()->json([
+            return response()->json([
                 'message'=> $user->token
             ]);
         } catch (Exception $e) {
@@ -89,6 +84,7 @@ class AccountController extends Controller
     }    
 
     public function RegistroCompleto($token){
+        
         $user = User::where('token',$token)->first();
         if($user==null){
             return response()->json([
@@ -99,14 +95,35 @@ class AccountController extends Controller
         }
     }
 
-    public function sendConfirmationMail($user,$estudent=null){
+    private function sendConfirmationMail($user,$estudent=null){
         if ($estudent == null) {
             Mail::to($user->email)
                         ->send((new ConfirmationUser($user,$user->estudiante))->locale('es'));            
             } else{                        
             Mail::to($user->email)
-                        ->send((new ConfirmationUser($user,$student))->locale('es'));            
+                        ->send((new ConfirmationUser($user,$estudent))->locale('es'));            
         }
+    }
+
+    public function ReEmail(Request $request){
+        
+        $validatedData = $request->validate([
+            'token' => 'required',
+            'g-recaptcha-response' => ['required', new ValidRecaptcha],
+        ]);
+
+        $token = $request->input('token');
+
+        $user = User::where('token',$token)->first();
+        if($user==null){
+            return response()->json([
+                'error'=>'La información del usuario es incorrecta.'
+            ]);        
+        }
+        $this->sendConfirmationMail($user,null);
+        return response()->json([
+            'message'=>'exito'
+        ]);
     }
 
     public function verificar($token){

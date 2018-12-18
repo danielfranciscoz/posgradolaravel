@@ -34,7 +34,8 @@ Route::group(['prefix' => 'oferta'], function() {
 Route::group(['prefix' => 'account'], function() {
     
     Route::get('/login','AccountController@loginUser')->name('process.login');
-    Route::get('/complete/{token}','AccountController@RegistroCompleto')->name('process.complete');
+    Route::get('/complete/{token}','AccountController@RegistroCompleto')->middleware('logged')->name('process.complete');
+    Route::post('/remail','AccountController@ReEmail')->name('process.remail');
     
     Route::get('/registro', 'AccountController@registro')->middleware('logged')->name('registro');
     Route::post('/registro', 'AccountController@registrar')->name('registrar');
