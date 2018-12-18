@@ -61,7 +61,11 @@ Route::group(['prefix' => 'process'],function(){
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::resource('comentarios','ComentariosController');
+Route::resource('comentarios','ComentariosController')->middleware('adminLogged');
+
+Route::get('/Forbbiden',function(){
+    return view('Shared.forbidden');
+});
 
 /*
 
