@@ -1,10 +1,30 @@
 @extends('layout.app')
 @section('title', $curso->NombreCurso)
 @section('content')
+@php
+    $banner;
+    $tipo;
+   
+    if($curso->categoria==null){
+            $banner = "banner-maestria";
+            $tipo = "Maestría";
+    }else{
+        if($curso->categoria->isCursoPosgrado==1){
+            $banner = "banner-curso";
+            $tipo = "Curso de Especialización";
+        }
+        if($curso->categoria->isCursoPosgrado==0){
+            $banner = "banner-posgrado";
+            $tipo = "Posgrado";
+        }
+    }
+
+
+@endphp
 
 <main class="">
 
-<div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1 " style="min-height:325px; ">
+<div class="d-flex align-items-center justify-content-center flex-column {{$banner}}" style="min-height:325px; ">
         <h1 class="h1-responsive text-white text-center font-weight-bold ">{{$curso->NombreCurso}} </h1>
         <p class="text-white text-justify">{{$curso->Desc_Publicidad}} </p>
 </div>
@@ -17,17 +37,24 @@
                 <!--Grid column-->
                 <div class="col-md-8  container">
                 <div class="row">
+                        
                             
-                           <div class="card col-12 mb-4  white">
+                        <div class="card col-12 mb-4  white">
                         <!-- Card content -->
                             <div class="card-body">
-                             <h4 class="h4-responsive"><strong>Lo que aprenderás</strong></h4> </br>
-                                <div class="row">
+
+                            <h4 class="h4-responsive mx-4 mt-4 "><strong>Descripción @if($tipo=='Maestría')de la @else del @endif{{$tipo}}</strong></h4> 
+                             </br>
+                                <div class="text-justify ml-5 mb-4">
+                                {{$curso->Desc_Introduccion}}
+                                </div>
+                             <h4 class="h4-responsive mx-4"><strong>Requisitos</strong></h4> </br>
+                                <div class="row mx-4">
                             
 
                                      @for($i=0;$i<count($curso->requisitos()->get());$i++)  
                                  
-                                    <div class="col-md-6 mt-2  ">
+                                    <div class="col-md-6 mb-2  ">
                                         <i class="fa fa-check grey-text" aria-hidden="true"></i>
                                         
                                         {{$curso->requisitos()->get()[$i]->Requisito}}                           
@@ -39,84 +66,88 @@
 
                             
                         </div>
+                        <div class="card col-12 mb-4  white">
 
-                         <h4 class="h4-responsive mx-4 col-12"><strong>Contenido del Curso</strong></h4> </br>
+                            <h4 class="h4-responsive mx-4 font-weight-bold mt-4">
+                                
+                            Contenido </h4> </br>
+                                <table class="table table-borderless table-hover mx-4">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="font-weight-bold"><i class="fa fa-hashtag" aria-hidden="true"></i></th>
+                                            <th scope="col" class="font-weight-bold"><i class="fa fa-pencil" aria-hidden="true"></i> Tema</th>
+                                            <th scope="col" class="font-weight-bold"><i class="fa fa-clock-o" aria-hidden="true"></i> Horas</th>
+                                       
+                                        </tr>
+                                    </thead>
+                                    <tbody>                            
+                                        @for($i=0;$i<count($curso->tematicas()->get());$i++) 
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold">{{$i+1}}</th>
+                                            <th>{{$curso->tematicas()->get()[$i]->Tematica}}</th>                                          
+                                            <th>{{$curso->tematicas()->get()[$i]->Duracion}}</th>
+                                            
+                                        </tr> 
+                                        @endfor
+                                    </tbody>
+                                </table>
 
-                      
-                        <div class="accordion w-100 mb-4" id="accordionExample">
-                        @for($i=0;$i<count($curso->tematicas()->get());$i++)  
-                            <div class="card z-depth-0 bordered white">
-                                <div class="card-header w-100" id="headingOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                                    aria-expanded="true" aria-controls="collapseOne">
-                                    {{$curso->tematicas()->get()[$i]->Tematica}}
-                                    </button>
-                                </h5>
-                                </div>
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <table class="table  w-100">
-                                    
-                                            <tbody>
-                                                <tr>
-                                                <th scope="row">1</th>
-                                                <td>Validación de formularios (segunda parte)</td>
-                                                <td>8 h</td>
-                                                
-                                                </tr>
-                                                <tr>
-                                                <th scope="row">1</th>
-                                                <td>Validación de formularios (segunda parte)</td>
-                                                <td>8 h</td>
-                                                </tr>
-                                                <tr>
-                                                <th scope="row">1</th>
-                                                <td>Validación de formularios (segunda parte)</td>
-                                                <td>8 h</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>    
-                        @endfor                       
                         </div>
+                        <!-- -->
                     </div>
-                    <h4 class="h4-responsive mx-4 col-12"><strong>Requisitos</strong></h4> 
-                    </br>
-                    @for($i=0;$i<count($curso->requisitos()->get());$i++)  
-                        <li class="mx-5 px-4"> {{$curso->requisitos()->get()[$i]->Requisito}}</li>
-                    @endfor
+                  
                     
-                     <h4 class="h4-responsive mx-4 col-12 mt-4 "><strong>Descripción</strong></h4> 
+                    
+                    <div class="card col-12 mb-4  white">
+                       @if(count($curso->docentes()->get())==0)
+                        <h4 class="h4-responsive mx-4  mt-4 font-weight-bold">Acerca del instructor</h4> 
+                        @else
+                        <h4 class="h4-responsive mx-4  mt-4 font-weight-bold">Acerca de los instructores</h4> 
+                        @endif
                      </br>
-                        <div class="text-justify ml-5 mb-4">
-                        {{$curso->Desc_Introduccion}}
-                        </div>
-                     <h4 class="h4-responsive mx-4 col-12 mt-4 "><strong>Acerca del instructor</strong></h4> 
-                     </br>
-                     <div class="row ml-4">
-                        <div class="col-md-3 col-sm-12">
-                            <img src="https://udemy-images.udemy.com/user/200_H/16661812_b24c.jpg" class="img-fluid  rounded-circle" />
-                        </div>
-                        <div class="col-md-9 col-sm-12">
-                        <div class="font-weight-bold blue-text mb-2">
-                               Victor Robleto 
-                            </div>
-                            <div class="font-weight-bold mb-2">
-                                Desarrollador web
-                            </div>
-                            <div class="text-justify mb-5">
-                            Soy desarrollador web en una empresa y llevo inmerso en el mundo de la programación y la informática desde los 15 años. Me encanta programar y todo lo relacionado con Internet y las nuevas tecnologías, crear cosas y enseñar a los demás. Soy casi completamente autodidacta, por eso voy a ofrecerte muchos de mis conocimientos para que tú puedas aprender más fácilmente y más rápido de lo que yo lo hice y hago cada día. Puedes saber más de mí en mi blog victorroblesweb y en mis perfiles en las diferentes redes sociales ;) .
+                    
+                     <div class="row mx-4">
+                        
+                        <div class="accordion w-100 mb-4" id="accordionExample">
+                            @for($i=0;$i<count($curso->docentes()->get());$i++)  
+                                <div class="card z-depth-0 bordered  bg-primary waves" style=" background:#0d47a1 !important;">
+                                    <div class="card-header w-100" id="heading{{$i}}">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-primary white-text"  style ="box-shadow: none !important; height:30px;"type="button" data-toggle="collapse" data-target="#collapse{{$i}}"
+                                        aria-expanded="true" aria-controls="collapse{{$i}}">
+                                        {{$curso->docentes()->get()[$i]->Nombres}}
+                                        </button>
+                                    </h5>
+                                    </div>
+                                    <div id="collapse{{$i}}" class="collapse @if($i==0)show @endif" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
+                                        <div class="card-body row white">
+                                            <div class="col-md-3 col-sm-12">
+                                                <img src="{{$curso->docentes()->get()[$i]->Image_URL}}" class="img-fluid rounded-circle" />
+                                            </div>
+                                            <div class="col-md-9 col-sm-12">
+                                            
+                                            <div class="font-weight-bold mb-2">
+                                                {{$curso->docentes()->get()[$i]->Profesion}}
+                                            </div>
+                                            <div class="text-justify mb-5">
+                                            {{{$curso->docentes()->get()[$i]->Descripcion}}}
 
-                            </div>
-                         
-                         </div>
+                                            </div>
+                                        
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>    
+                            @endfor                       
+                        </div> 
+
+
+            
+                     </div>
                      </div>
                 </div>
-                <div class="col-md-4  container mb-4 ">
-                    <div class="card pt-2 white">
+                <div class="col-md-4  container mb-4  ">
+                    <div class="card pt-2 white sticky-top">
                         <div class="card-body  px-4 pt-2">
                             <span><strong  style="font-size:2em">$ {{$precio->Precio}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
                             <span class="grey-text"></br> 95 % de descuento</span>

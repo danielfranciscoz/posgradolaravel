@@ -78,7 +78,7 @@
          
                      <input type="text" autocomplete="cc-exp-year" id="año" class="form-control col-6" placeholder="Año de vencimiento/YYYY*"  required />
                      <label class="col-12">CVC:</label>
-                     <input type="text" id="tarjeta" class="form-control  col-12" placeholder="Numero de Tarjeta*"  required />
+                     <input type="text" id="tarjeta" class="form-control  col-12" placeholder="Codigo de Seguridad*"  required />
 
 
                      </div>
@@ -101,8 +101,8 @@
                     <hr >
 
                 <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
-                <div class="g-recaptcha ml-4" data-sitekey="6LfAV4AUAAAAAA0JcDDbpWbV68GfyCeLMNi6aQFf"></div>
-                <a class="btn btn-primary mt-2 w-95 mb-2 mx-4" >Realizar Pago</a>
+                
+                <button class="g-recaptcha btn btn-primary mt-2 w-95 mb-2 mx-4 mb-4" data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq" data-callback="YourOnSubmitFn" >Realizar Pago</button>
                            
             </div>
             </div>
