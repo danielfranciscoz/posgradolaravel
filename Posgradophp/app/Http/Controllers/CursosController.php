@@ -145,10 +145,12 @@ class CursosController extends Controller
     public function curso($curso_name)
     { 
         $precio = Cursoprecio::where('deleted_at','=',null)
-                ->wherehas('curso', function ($sql) use ($curso_name) {
-                    $sql ->where('NombreCurso','like',$curso_name);
-                })->first();
+        ->wherehas('curso', function ($sql) use ($curso_name) {
+            $sql ->where('NombreCurso','like',$curso_name);
+        })->first();
         
+        // dd($precio->curso()->with('etiquetas')->get());
+
         $curso =  $precio->curso()
             // ->with('competencias')
             // ->with('tematicas')

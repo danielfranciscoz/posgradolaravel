@@ -65,16 +65,19 @@ class AccountController extends Controller
              $estudent->save();
 
            
-            Mail::to($user->email)
-                    ->send((new ConfirmationUser($user,$estudent))->locale('es'));
+            // Mail::to($user->email)
+            //         ->send((new ConfirmationUser($user,$estudent))->locale('es'));
+            
+            // $this->sendConfirmationMail($user,$estudent);
             
             //La línea de abajo funciona para visualizar lo que será enviado por correo
             //  return (new ConfirmationUser($user,$estudent))->render();
         
              DB::commit();
               
-             return response()->json([
-                'message'=>'Te hemos enviado un correo, por favor revisa tu bandeja de entrada para verificar tu cuenta, sino lo encuentras prueba buscar en los correos no deseados.'
+             //'Te hemos enviado un correo, por favor revisa tu bandeja de entrada para verificar tu cuenta, sino lo encuentras prueba buscar en los correos no deseados.'
+             response()->json([
+                'message'=> $user->token
             ]);
         } catch (Exception $e) {
             DB::rollback();
@@ -84,6 +87,27 @@ class AccountController extends Controller
         }
   
     }    
+
+    public function RegistroCompleto($token){
+        $user = User::where('token',$token)->first();
+        if($user==null){
+            return response()->json([
+                'error'=>'La información del usuario es incorrecta.'
+            ]);        
+        }else{
+            return view('Account/registrocompleto')->with(compact('user'));
+        }
+    }
+
+    public function sendConfirmationMail($user,$estudent=null){
+        if ($estudent == null) {
+            Mail::to($user->email)
+                        ->send((new ConfirmationUser($user,$user->estudiante))->locale('es'));            
+            } else{                        
+            Mail::to($user->email)
+                        ->send((new ConfirmationUser($user,$student))->locale('es'));            
+        }
+    }
 
     public function verificar($token){
 

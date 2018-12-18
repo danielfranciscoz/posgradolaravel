@@ -52,11 +52,11 @@
                                         <hr>
                                         
                                         @if($curso->curso->categoria==null)
-                                            <span class=" float-left deep-purple accent-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                            <span class=" float-left purple darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
                                             Maestría
                                             </span> 
                                         @elseif($curso->curso->categoria->isCursoPosgrado==1)
-                                            <span class=" float-left teal darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                            <span class=" float-left red darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
                                                 Curso Especializado
                                             </span> 
                                         @elseif($curso->curso->categoria->isCursoPosgrado==0)
