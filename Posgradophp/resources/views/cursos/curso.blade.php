@@ -97,62 +97,61 @@
                     
                   
                     
-                    
+                     @if(count($curso->docentes()->get())>0)
                     <div class="card col-12 mb-4  white">
-                       @if(count($curso->docentes()->get())==0)
-                        <h4 class="h4-responsive mx-4  mt-4 font-weight-bold">Acerca del instructor</h4> 
+                       @if(count($curso->docentes()->get())==1)
+                        <h4 class="h4-responsive mx-4  mt-4 font-weight-bold mb-4">Acerca del instructor</h4> 
                         @else
-                        <h4 class="h4-responsive mx-4  mt-4 font-weight-bold">Acerca de los instructores</h4> 
+                        <h4 class="h4-responsive mx-4  mt-4 font-weight-bold mb-4">Acerca de los instructores</h4> 
                         @endif
                      </br>
                     
                      <div class="row mx-4">
                         
-                        <div class="accordion w-100 mb-4" id="accordionExample">
+                      
                             @for($i=0;$i<count($curso->docentes()->get());$i++)  
-                                <div class="card z-depth-0 bordered  grey lighten-4" >
-                                    <div class="card-header w-100" id="heading{{$i}}">
-                                    <h6 class="mb-0">
-                                        <a class="font-weight-bold"  style ="box-shadow: none !important; height:30px;" data-toggle="collapse" data-target="#collapse{{$i}}"
-                                        aria-expanded="true" aria-controls="collapse{{$i}}">
-                                        {{$curso->docentes()->get()[$i]->Nombres}}
-                                        </a>
-                                    </h6>
-                                    </div>
-                                    <div id="collapse{{$i}}" class="collapse @if($i==0)show @endif" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
-                                        <div class="card-body row white">
-                                            <div class="col-md-3 col-sm-12">
+                             <div class="row   ">
+                                            <div class="col-md-3 col-sm-12 ">
                                                 <img src="{{$curso->docentes()->get()[$i]->Image_URL}}" class="img-fluid rounded-circle" />
                                             </div>
                                             <div class="col-md-9 col-sm-12">
-                                            
-                                            <div class="font-weight-bold mb-2">
-                                                {{$curso->docentes()->get()[$i]->Profesion}}
-                                            </div>
-                                            <div class="text-justify mb-5">
-                                            {{{$curso->docentes()->get()[$i]->Descripcion}}}
+                                                <div class="font-weight-bold primary-text" >
+                                                    <h5 class="h5-responsive">{{$curso->docentes()->get()[$i]->Nombres}}</h5>
+                                                </div>
+                                                <div class="font-weight-bold mb-2">
+                                                    {{$curso->docentes()->get()[$i]->Profesion}}
+                                                </div>
+                                                <div class="text-justify mb-5 ">
+                                                {{{$curso->docentes()->get()[$i]->Descripcion}}}
 
-                                            </div>
+                                                </div>
                                         
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>    
+                                            </div> 
+                                        </div> 
+                                <br>
+                                <hr>
+                                <br>
+                               
                             @endfor                       
-                        </div> 
-
-
-            
+                       
+                            
+                            
+                            </div> 
+                     
                      </div>
+                     @endif
                      </div>
-                     </div>
+                    
+                
+                
                 </div>
+               
                 <div class="col-md-4  container mb-4  ">
                     <div class="card pt-2 white sticky-top">
                         <div class="card-body  px-4 pt-2">
                             <span><strong  style="font-size:2em">$ {{$precio->Precio}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
-                            <span class="grey-text"></br> 95 % de descuento</span>
-
+                            <!-- <span class="grey-text"></br> 95 % de descuento</span>
+ -->
                             <a class="btn btn-primary mt-4 w-100 mb-2" onclick="addcarrito({{$curso->id}})">Añadir al carrito</a>
                             <div class="alert alert-danger col-12" role="alert" id="alertaddcarrito">                            
                             </div>

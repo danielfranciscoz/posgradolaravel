@@ -320,11 +320,11 @@
        
            
             <!--First row-->
-            <div class="row features-small mb-5 mt-3 wow fadeIn">
+            <div class="row features-small mb-5 mt-3 pt-3 pb-3 wow fadeIn grey lighten-3">
 
              
                             <section class="carousel slide col-12" data-ride="carousel" id="carousel-cursos">
-                            <div class="container" style="position: absolute; z-index: 99998; margin-top:23%">
+                            <div class="container" style="position: absolute; z-index: 99998; margin-top:15%">
                                 <div class="d-flex " >
                                     <div class="mr-auto" style="margin-left:-30px" >
                                             <a class="btn white btn-circle" href="#carousel-cursos" role="button" data-slide="prev">
@@ -340,71 +340,51 @@
                             </div>
                             <div class="container pt-0 mt-2">
                                 <div class="carousel-inner">
+                                   @php $contador = 0;@endphp
 
-                                    <div class="carousel-item active">
+                                    @while($contador < count($comentarios))
+                                        @if($contador==0)
+                                            <div class="carousel-item active">
+                                        @else
+                                            <div class="carousel-item">
+                                        @endif
+
                                         <div class="card-deck h-100 mb-2" style="max-height:375px">
-                                        @for ($i = 0; $i < count($comentarios) && $i<3; $i++)
-                                            <div class="card h-100" style="max-height:375px" >
-                                                <div class="card-img-top d-flex justify-content-center">
-                                                    <img class="img-fluid rounded-circle w-50 " src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
-                                                </div>
+                                        @php $tres = 3+$contador;@endphp
+                                        @for ($i = $contador; ($i < count($comentarios) && $i < $tres ); $i++)
+                                            <div class="card h-100 " style="max-height:375px" >                                                
                                                 <div class="card-body pt-2" >
-            
+                                                <div class="d-flex justify-content-center">
+                                                    <img class="img-fluid rounded-circle"  style="max-height:150px; max-weight:150px" src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
+                                                </div><br>
                                                     <a
-                                                    class="card-title text-center" >{{$comentarios[$i]['Nombre']}}
-                                                    </a> <br></br>
+                                                    class="card-title text-center" >{{$comentarios[$contador]['Nombre']}}
+                                                    </a> <br>
                                                     
-                                                    <p class="card-text font-italic ">"{{$comentarios[$i]['Comentario']}}"</p>
+                                                    <p class="card-text font-italic" style="height:100px">"{{$comentarios[$contador]['Comentario']}}"</p>
                                                     <hr>
                                                     <a class="card-meta"></a>
-                                                    <p class="card-meta float-right" style="font-size:12">{{$comentarios[$i]['Profesion']}} - {{$comentarios[$i]['Desc_Pais']}}</p>
-                                                </div>
-            
+                                                    <p class="card-meta float-right" style="font-size:12;height:50px">{{$comentarios[$contador]['Profesion']}} - {{$comentarios[$contador]['Desc_Pais']}}</p>                                            
+                                                </div>            
                                             </div>
+                                            @php $contador++; @endphp
                                         @endfor
-                                        @if(count($comentarios)%3!=0)
-                                                
-                                                @for($j=0;$j<(3-count($comentarios));$j++)
-                                                    <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent;max-height:375px;" >                        
-                                                    </div>
-                                                @endfor    
-                                            @endif
+                                        @if(count($comentarios)%3!=0 && $contador == count($comentarios))   
+                                        @php $multiplo=count($comentarios); @endphp
+                                            @while($multiplo%3!=0)
+                                                <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent;max-height:375px;" >                        
+                                                </div>
+                                            @php $multiplo++; @endphp
+                                            @endwhile
+ 
+                                        @endif
                                         </div>
                                     </div>
-                                    @if(count($comentarios)>3)
-
-                                    <div class="carousel-item">
-                                    <div class="card-deck h-100 mb-2" style="max-height:375px">
-                                        @for ($i = 3; $i < count($comentarios) && $i < 6; $i++)
-                                            <div class="card h-100" style="max-height:375px">
-                                                <div class="card-img-top d-flex justify-content-center">
-                                                    <img class="img-fluid rounded-circle w-50 " src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
-                                                </div>
-                                                <div class="card-body pt-2" >
-            
-                                                    <a
-                                                    class="card-title " >{{$comentarios[$i]['Nombre']}}
-                                                    </a> <br></br>
-                                                    
-                                                    <p class="card-text font-italic">"{{$comentarios[$i]['Comentario']}}"</p>
-                                                    <hr>
-                                                    <a class="card-meta"></a>
-                                                    <p class="card-meta float-right" style="font-size:12">{{$comentarios[$i]['Profesion']}} - {{$comentarios[$i]['Desc_Pais']}}</p>
-                                                </div>
-            
-                                            </div>
-                                        @endfor
-                                            @if(count($comentarios)%3!=0)
-                                                @php $al = round(count($comentarios)/3) @endphp
-                                                @for($j=0;$j<(3-$al);$j++)
-                                                    <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent;max-height:375px;" >                        
-                                                    </div>
-                                                @endfor    
-                                            @endif
-                                        </div>
+                                    
+                                    @endwhile
                                    
-                                    </div>
-                                    @endif
+                                    
+                                    
                             </div>
                             </section>
 

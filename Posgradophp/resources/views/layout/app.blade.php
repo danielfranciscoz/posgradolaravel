@@ -309,6 +309,6 @@ UNI-DEPEC</title>
         @yield('carrito');
     </script>
 
-         @yield('endscript');
+         @yield('endscript')
 </body>
 </html>
