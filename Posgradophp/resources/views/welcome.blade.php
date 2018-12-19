@@ -216,21 +216,21 @@
         <h1 class="h1-responsive text-white text-center">¿Por qué estudiar con nosotros?</h1>
         <p class="text-white">Somos tu mejor opción virtual</p>
 </div>
-<div >
-        <section class="container">
+<div class="banner-degradado-1 pb-5" >
+        <section class="container ">
            
             <!--Grid row-->
-            <div class="row wow fadeIn mt-5">
+            <div class="row wow fadeIn ">
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 px-4">
                     <!--First row-->
                     <div class="row">
-                        <div class="col-1 mr-3">
-                            <i class="fa fa-calendar fa-2x primary-text"></i>
+                        <div class="col-1 mr-3 ">
+                            <i class="fa fa-calendar  fa-2x  white-text "></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title">Conveniencia</h5>
-                            <p class="grey-text">Acceso 24 horas al día para que aprendas a tu propio ritmo y en español</p>
+                            <h5 class="feature-title font-weight-bold white-text">Conveniencia</h5>
+                            <p class="white-text">Acceso 24 horas al día para que aprendas a tu propio ritmo y en español</p>
                         </div>
                     </div>
                     <!--/First row-->
@@ -238,11 +238,11 @@
                     <!--Second row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-users fa-2x primary-text"></i>
+                            <i class="fa fa-users fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title">Confianza</h5>
-                            <p class="grey-text">
+                            <h5 class="feature-title font-weight-bold white-text">Confianza</h5>
+                            <p class="white-text">
                             Apoyo privado de tutores online y videochat ‘Tutor Café’ para debatir temas en grupo
                             </p>
                         </div>
@@ -252,11 +252,11 @@
                     <!--Third row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-line-chart fa-2x primary-text"></i>
+                            <i class="fa fa-line-chart fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title">Calidad</h5>
-                            <p class="grey-text">
+                            <h5 class="feature-title font-weight-bold white-text">Calidad</h5>
+                            <p class="white-text">
                             Cursos online desarrollados por líderes de la industria. 
                             <br>
                             </p>
@@ -268,11 +268,11 @@
                     <!--First row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-map-o fa-2x primary-text"></i>
+                            <i class="fa fa-map-o fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title">Experiencia</h5>
-                            <p class="grey-text">Cientos de horas de ejercicios reales con las que puedes crear o enriquecer tu portafolio. </p>
+                            <h5 class="feature-title font-weight-bold white-text">Experiencia</h5>
+                            <p class="white-text">Cientos de horas de ejercicios reales con las que puedes crear o enriquecer tu portafolio. </p>
                         </div>
                     </div>
                     <!--/First row-->
@@ -280,11 +280,11 @@
                     <!--Second row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-mortar-board fa-2x primary-text"></i>
+                            <i class="fa fa-mortar-board fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title">Respaldo</h5>
-                            <p class="grey-text">
+                            <h5 class="feature-title font-weight-bold white-text">Respaldo</h5>
+                            <p class="white-text">
                                 Certificados con aplicaciones internacionales y validez en LinkedIn. 
                             </p>
                         </div>
@@ -294,11 +294,11 @@
                     <!--Third row-->
                     <div class="row">
                         <div class="col-1 mr-3">
-                            <i class="fa fa-thumbs-o-up fa-2x primary-text"></i>
+                            <i class="fa fa-thumbs-o-up fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title">Facilidad</h5>
-                            <p class="grey-text">
+                            <h5 class="feature-title font-weight-bold white-text">Facilidad</h5>
+                            <p class="white-text">
                             Sin requisitos ni conocimiento previo. 
                             </p>
                         </div>
@@ -311,9 +311,9 @@
         </section>
         <!--Section: Main features & Quick Start-->
         </div>
-<div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1 mt-5" style="min-height:325px; ">
-        <h1 class="h1-responsive text-white text-center ">¿Qué dicen nuestros Estudiantes?</h1>
-        <p class="text-white">Docencia de Calidad </p>
+<div class="d-flex align-items-center justify-content-center flex-column " style="min-height:325px; ">
+        <h1 class="h1-responsive black-white text-center ">¿Qué dicen nuestros Estudiantes?</h1>
+        <p class="black-white">Docencia de Calidad </p>
 </div>
 <div class="container">
         <section>
@@ -342,9 +342,9 @@
                                 <div class="carousel-inner">
 
                                     <div class="carousel-item active">
-                                        <div class="card-deck h-100 mb-2">
+                                        <div class="card-deck h-100 mb-2" style="max-height:375px">
                                         @for ($i = 0; $i < count($comentarios) && $i<3; $i++)
-                                            <div class="card h-100" >
+                                            <div class="card h-100" style="max-height:375px" >
                                                 <div class="card-img-top d-flex justify-content-center">
                                                     <img class="img-fluid rounded-circle w-50 " src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
                                                 </div>
@@ -365,7 +365,7 @@
                                         @if(count($comentarios)%3!=0)
                                                 
                                                 @for($j=0;$j<(3-count($comentarios));$j++)
-                                                    <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent" >                        
+                                                    <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent;max-height:375px;" >                        
                                                     </div>
                                                 @endfor    
                                             @endif
@@ -374,9 +374,9 @@
                                     @if(count($comentarios)>3)
 
                                     <div class="carousel-item">
-                                    <div class="card-deck h-100 mb-2">
+                                    <div class="card-deck h-100 mb-2" style="max-height:375px">
                                         @for ($i = 3; $i < count($comentarios) && $i < 6; $i++)
-                                            <div class="card h-100" >
+                                            <div class="card h-100" style="max-height:375px">
                                                 <div class="card-img-top d-flex justify-content-center">
                                                     <img class="img-fluid rounded-circle w-50 " src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
                                                 </div>
@@ -397,7 +397,7 @@
                                             @if(count($comentarios)%3!=0)
                                                 @php $al = round(count($comentarios)/3) @endphp
                                                 @for($j=0;$j<(3-$al);$j++)
-                                                    <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent" >                        
+                                                    <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent;max-height:375px;" >                        
                                                     </div>
                                                 @endfor    
                                             @endif

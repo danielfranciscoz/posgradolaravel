@@ -2,7 +2,7 @@
 @section('title', 'Registro nuevo usuario')
 @section('content')
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<main class="grey lighten-4">
+<main class="grey lighten-5">
     <div class="container wow fadein">
          <div class="row d-flex justify-content-center">
             <div class="col-md-8 col-sm-12" >

@@ -36,4 +36,8 @@
                         html: true
                         });
         @endif
+
+        $( "#carrito" ).mouseover(function() {
+                $( "#carrito" ).click();
+        });
 @endsection

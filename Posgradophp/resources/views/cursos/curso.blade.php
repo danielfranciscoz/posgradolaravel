@@ -94,7 +94,7 @@
 
                         </div>
                         <!-- -->
-                    </div>
+                    
                   
                     
                     
@@ -110,13 +110,13 @@
                         
                         <div class="accordion w-100 mb-4" id="accordionExample">
                             @for($i=0;$i<count($curso->docentes()->get());$i++)  
-                                <div class="card z-depth-0 bordered  bg-primary waves" style=" background:#0d47a1 !important;">
+                                <div class="card z-depth-0 bordered  grey lighten-4" >
                                     <div class="card-header w-100" id="heading{{$i}}">
                                     <h5 class="mb-0">
-                                        <button class="btn btn-primary white-text"  style ="box-shadow: none !important; height:30px;"type="button" data-toggle="collapse" data-target="#collapse{{$i}}"
+                                        <a class="black-text font-weight-bold"  style ="box-shadow: none !important; height:30px;" data-toggle="collapse" data-target="#collapse{{$i}}"
                                         aria-expanded="true" aria-controls="collapse{{$i}}">
                                         {{$curso->docentes()->get()[$i]->Nombres}}
-                                        </button>
+                                        </a>
                                     </h5>
                                     </div>
                                     <div id="collapse{{$i}}" class="collapse @if($i==0)show @endif" aria-labelledby="heading{{$i}}" data-parent="#accordionExample">
@@ -143,6 +143,7 @@
 
 
             
+                     </div>
                      </div>
                      </div>
                 </div>

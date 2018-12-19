@@ -68,6 +68,15 @@ Route::get('/Forbbiden',function(){
     return view('Shared.forbidden');
 });
 
+
+Route::group(['prefix' => 'admin'], function() {
+    //Todos los cursos que cumplen con el criterio de busqueda
+    Route::get('/','AdminController@index')->name('admin.index');
+    
+    
+
+});
+
 /*
 
  // Authentication Routes...
