@@ -13,26 +13,26 @@ class DocentesSeeder extends Seeder
     public function run()
     {
         Docente::create([
-            'Nombres'=>'ing.Francisco Muñoz',
+            'Nombres'=>'Francisco Muñoz',
             'Profesion'=>'Ingeniero de Sistemas',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
             'Image_URL'=>'/img/Resources/estudiantes/est1.png'
         ]);
 
         Docente::create([
-            'Nombres'=>'ing.Daniel Zamora',
+            'Nombres'=>'Daniel Zamora',
             'Profesion'=>'Arquitecto',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
             'Image_URL'=>'/img/Resources/estudiantes/est2.png'
         ]);
         Docente::create([
-            'Nombres'=>'ing.Yasser Montiel',
+            'Nombres'=>'Yasser Montiel',
             'Profesion'=>'Ingeniero de Ciencias',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
             'Image_URL'=>'/img/Resources/estudiantes/est3.png'
         ]);
         Docente::create([
-            'Nombres'=>'ing.Radamez Lozano',
+            'Nombres'=>'Radamez Lozano',
             'Profesion'=>'Ingeniero de Software',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
             'Image_URL'=>'/img/Resources/estudiantes/est4.png'

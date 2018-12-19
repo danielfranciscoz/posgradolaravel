@@ -62,7 +62,6 @@ Route::group(['prefix' => 'process'],function(){
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::resource('comentarios','ComentariosController')->middleware('adminLogged');
 
 Route::get('/Forbbiden',function(){
     return view('Shared.forbidden');
@@ -70,11 +69,10 @@ Route::get('/Forbbiden',function(){
 
 
 Route::group(['prefix' => 'admin'], function() {
-    //Todos los cursos que cumplen con el criterio de busqueda
+    
     Route::get('/','AdminController@index')->name('admin.index');
+    Route::resource('comentarios','ComentariosController')->middleware('adminLogged');
     
-    
-
 });
 
 /*
