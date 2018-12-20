@@ -20,18 +20,18 @@ UNI-DEPEC</title>
 </head>
 <body class="grey lighten-4">
 <nav class="navbar navbar-expand-lg navbar-dark indigo darken-4">
-<a class="navbar-brand" href="#">Navbar</a>
+<a class="navbar-brand" href="/admin">Posgrado</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestiones</a>
                 <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
-                    <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+                    <a class="dropdown-item waves-effect waves-light" href="/admin/categorias">Categorias</a>
+                    <a class="dropdown-item waves-effect waves-light" href="/admin/cursos">Cursos</a>
+                    <a class="dropdown-item waves-effect waves-light" href="/admin/comentarios">Comentarios</a>
                 </div>
             </li>
         </ul>

@@ -22,5 +22,11 @@ class AdminController extends Controller
         return view("cms/index");
 
     }
+    public function categorias(){
+
+    return view("cms/categorias");
+
+    }
+
 
 }

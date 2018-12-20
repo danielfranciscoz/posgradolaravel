@@ -71,6 +71,7 @@ Route::get('/Forbbiden',function(){
 Route::group(['prefix' => 'admin'], function() {
     
     Route::get('/','AdminController@index')->name('admin.index');
+    Route::get('/categorias','AdminController@categorias')->name('admin.categorias');
     Route::resource('comentarios','ComentariosController')->middleware('adminLogged');
     
 });
