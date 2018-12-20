@@ -17,10 +17,13 @@ class CursosController extends Controller
     public function index()
     {
       
-        $data = Curso::orderBy('created_at','DESC')->take(10)->get();
+        $cursos = Curso::where('categoria_id',null)
+                    ->orderBy('created_at','DESC')
+                    ->get();
+ 
         $comentarios = Comentario::where('deleted_at',null)->get();
-
-        return view('welcome', compact('data'))
+        
+        return view('welcome', compact('cursos'))
         ->with(compact('comentarios'));
     }
   

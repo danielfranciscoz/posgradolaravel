@@ -19,7 +19,7 @@
         <div class="carousel-inner " role="listbox" style="max-height:600px">
 
             <!--First slide-->
-            <div class="carousel-item active">
+            <div class="carousel-item active" id="carrusel_Id">
                 <!--Mask-->
                 <div class="view">
                   <!--Video source-->
@@ -155,10 +155,10 @@
            
         </section> -->
 
- <div class="d-flex align-items-center justify-content-center  mt-5 " style="min-height:100px; ">
+<!--  <div class="d-flex align-items-center justify-content-center  mt-5 " style="min-height:100px; ">
         <h1 class="h1-responsive text-center ">Nosotros somos Posgrado</h1>
-</div>
-<section class="container pt-5 pb-4">
+</div> -->
+<!-- <section class="container pt-5 pb-4">
     <div class=row>
         <div class="col-sm-12 col-md-6 text-justify text-body mb-4">
         El Sistema de Estudios de Posgrado y Educación Continua tiene como objetivo la capacitación y formación de profesionales en el más alto nivel técnico y científico, en el ámbito de las diversas disciplinas para que sean capaces de desarrollar sus actividades de forma independiente y provechosa para el desarrollo del país. El sistema se integra por todos los programas y unidades académicas que ofrecen cursos especializados y de Maestría y Doctorado teniendo como instancia reguladora a la Dirección de Estudios de Posgrado y Educación Continua y como instancias ejecutoras a las facultades y a la Dirección de Estudios de Posgrado y Educación Continua 
@@ -174,28 +174,31 @@
 
     </div>
 
-</section>
+</section -->
         
-<div class="d-flex align-items-center justify-content-center  flex-column  banner-degradado-1  mt-5 " style="min-height:325px; ">
-        <h1 class="h1-responsive text-white text-center">Nuestras Categorias de Cursos</h1>
-        <p class="text-white">  Conviértete en un experto en tu área de interés.</p>
+<div class="d-flex align-items-center justify-content-center  flex-column mx-4" style="min-height:200px; ">
+        <h1 class="h1-responsive text-center">Nuestra Oferta Academica</h1>
+        <p class="text-center">  Conviértete en un experto en tu área de interés.</p>
 </div>
 
 <div >
    
-        <section class="container pt-5 pb-4">
-      
+        <section class="container pb-4">
+        <h4 class="font-weight-bold h4-responsive "> Cursos especializados </h4>
+               
+               <hr class=" mb-4">
             <!--Grid row-->
             <div class="row wow fadeIn">
                
             @for ($i = 0; $i < count($categorias); $i++)
-                    
+           
+                    @if($categorias[$i]->isCursoPosgrado == 1)
                        <div class="col-md-3 col-sm-12 mb-4">
-                           <div class="card h-100 wow fadeIn" style="max-height:450px">
+                           <div class="card h-100 wow fadeIn" style="height:450px">
                                <img class="card-img-top" src="{{$categorias[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text">{{$categorias[$i]['Categoria']}}</h5>
-                                   <p class="card-text">{{$categorias[$i]['Descripcion']}}</p>
+                                   <h5 class="card-title primary-text" style="height:50px">{{$categorias[$i]['Categoria']}}</h5>
+                                   <p class="card-text" style="height:100px">{{$categorias[$i]['Descripcion']}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}" >SABER MAS</a>
                                   
 
@@ -203,7 +206,80 @@
                                </div>
                            </div>
                        </div>
-                                           
+                      @endif                     
+            @endfor               
+             </div>
+
+            
+
+             <h4 class="font-weight-bold h4-responsive mt-4"> Posgrados </h4>
+               
+               <hr class=" mb-4">
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+               
+            @for ($i = 0; $i < count($categorias); $i++)
+           
+                    @if($categorias[$i]->isCursoPosgrado == 0)
+                       <div class="col-md-3 col-sm-12 mb-4">
+                           <div class="card h-100 wow fadeIn" style="height:450px">
+                               <img class="card-img-top" src="{{$categorias[$i]['Image_URL']}}" alt="Card image cap">
+                               <div class="card-body">
+                                   <h5 class="card-title primary-text" style="height:50px">{{$categorias[$i]['Categoria']}}</h5>
+                                   <p class="card-text" style="height:100px">{{$categorias[$i]['Descripcion']}}</p>
+                                   <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}" >SABER MAS</a>
+                                  
+
+                                   <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
+                               </div>
+                           </div>
+                       </div>
+                      @endif                     
+            @endfor               
+             </div>
+             </div >
+             </section>
+             <div class="d-flex align-items-center justify-content-center  flex-column blue darken-4" style="min-height:225px; ">
+                <div class="row mb-4">
+                    <div class="col-sm-12 col-md-4 text-center white-text mt-4">
+                    <i class="fa fa-graduation-cap fa-4x" aria-hidden="true"></i> <br> <br>
+                        +20.000 estudiantes
+                    </div>
+                    <div class="col-sm-12 col-md-4 text-center white-text mt-4 ">
+                    <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i> <br> <br>
+                   Comprometidos con la Calidad de nuestra enseñanza
+                </div>
+                <div class="col-sm-12 col-md-4 text-center white-text mt-4">
+                <i class="fa fa-globe fa-4x" aria-hidden="true"></i> <br> <br>
+                Líderes a nivel Centroamericano
+                </div>
+                    
+                </div>
+            </div>
+            <section class="container pb-4">
+             
+                <h4 class="font-weight-bold h4-responsive mt-4"> Maestrías </h4>
+               
+            <hr class=" mb-4">
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+               
+            @for ($i = 0; $i < count($cursos); $i++)
+                             
+                         <div class="col-md-3 col-sm-12 mb-4">
+                           <div class="card h-100 wow fadeIn" style="max-height:450px">
+                               <img class="card-img-top" src="{{$cursos[$i]->Image_URL}}" alt="Card image cap">
+                               <div class="card-body">
+                                   <h5 class="card-title primary-text" style="height:50px">{{$cursos[$i]->NombreCurso}}</h5>
+                                   <p class="card-text" style="height:100px">{{$cursos[$i]->Desc_Publicidad}}</p>
+                                   <a class="card-text float-right font-weight-bold" href="/oferta/estudio/{{$cursos[$i]->NombreCurso}}" >SABER MAS</a>
+                                  
+
+                                   <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
+                               </div>
+                           </div>
+                       </div>
+                      
             @endfor               
              </div>
 
@@ -212,11 +288,11 @@
         </section>
         
 </div>
-<div class="d-flex align-items-center justify-content-center flex-column banner-degradado-1" style="min-height:325px; ">
+<div class="d-flex align-items-center justify-content-center flex-column grey darken-4" style="min-height:325px; ">
         <h1 class="h1-responsive text-white text-center">¿Por qué estudiar con nosotros?</h1>
-        <p class="text-white">Somos tu mejor opción virtual</p>
+        <p class="text-white text-center">Contamos con las mejores metodologías de enseñanza virtual, docentes calificados y una amplia gama de recursos mediáticos para facilitar el proceso enseñanza-aprendizaje</p>
 </div>
-<div class="banner-degradado-1 pb-5" >
+<div class=" grey darken-4 pb-5" >
         <section class="container ">
            
             <!--Grid row-->
@@ -229,7 +305,7 @@
                             <i class="fa fa-calendar  fa-2x  white-text "></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title font-weight-bold white-text">Conveniencia</h5>
+                            <h5 class="feature-title  white-text">Conveniencia</h5>
                             <p class="white-text">Acceso 24 horas al día para que aprendas a tu propio ritmo y en español</p>
                         </div>
                     </div>
@@ -241,7 +317,7 @@
                             <i class="fa fa-users fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title font-weight-bold white-text">Confianza</h5>
+                            <h5 class="feature-title  white-text">Confianza</h5>
                             <p class="white-text">
                             Apoyo privado de tutores online y videochat ‘Tutor Café’ para debatir temas en grupo
                             </p>
@@ -255,7 +331,7 @@
                             <i class="fa fa-line-chart fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title font-weight-bold white-text">Calidad</h5>
+                            <h5 class="feature-title white-text">Calidad</h5>
                             <p class="white-text">
                             Cursos online desarrollados por líderes de la industria. 
                             <br>
@@ -271,7 +347,7 @@
                             <i class="fa fa-map-o fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title font-weight-bold white-text">Experiencia</h5>
+                            <h5 class="feature-title  white-text">Experiencia</h5>
                             <p class="white-text">Cientos de horas de ejercicios reales con las que puedes crear o enriquecer tu portafolio. </p>
                         </div>
                     </div>
@@ -283,7 +359,7 @@
                             <i class="fa fa-mortar-board fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title font-weight-bold white-text">Respaldo</h5>
+                            <h5 class="feature-title  white-text">Respaldo</h5>
                             <p class="white-text">
                                 Certificados con aplicaciones internacionales y validez en LinkedIn. 
                             </p>
@@ -297,7 +373,7 @@
                             <i class="fa fa-thumbs-o-up fa-2x white-text"></i>
                         </div>
                         <div class="col-10">
-                            <h5 class="feature-title font-weight-bold white-text">Facilidad</h5>
+                            <h5 class="feature-title  white-text">Facilidad</h5>
                             <p class="white-text">
                             Sin requisitos ni conocimiento previo. 
                             </p>
@@ -311,15 +387,31 @@
         </section>
         <!--Section: Main features & Quick Start-->
         </div>
-        <div class="indigo lighten-5">
+        
+        <div class="white">
+        <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nosotros</h1>
+        <div class="d-flex align-items-center justify-content-center    " style="height:250px; ">
+
+            <img src="/img/Resources/empresas/BAC.jpg" style="weight:50px"/>       
+            <img src="/img/Resources/empresas/BDF.jpg" style="weight:50px"/>                       
+            <img src="/img/Resources/empresas/CARGILL.jpg" style="weight:50px"/>                       
+            <img src="/img/Resources/empresas/CEMEX.jpg" style="weight:50px"/>                       
+            <img src="/img/Resources/empresas/LA-PRENSA.jpg" style="weight:50px"/>                       
+            <img src="/img/Resources/empresas/MINED.jpg" style="weight:50px"/>                       
+            <img src="/img/Resources/empresas/MTI.jpg" style="weight:50px"/>                       
+            <img src="/img/Resources/empresas/NIMAC.jpg" style="weight:50px"/>                       
+
+         </div>
+        </div>
+        <div class="grey lighten-4">
             <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:280px; ">
                     <h1 class="h1-responsive black-white text-center ">Lo que opinan de nuestros estudiantes</h1>
-                    <p class="black-white">Se parte de nuestra comunidad, y logra el éxito a través del aprendizaje en línea</p>
+                    <p class="black-white text-center">Se parte de nuestra comunidad, y logra el éxito a través del aprendizaje en línea</p>
             </div>
             <div class="container">
                 <section>
                     <!--First row-->
-                    <div class="row features-small mb-5 pb-3 wow fadeIn">
+                    <div class="row features-small  pb-3 wow fadeIn">
                                     <section class="carousel slide col-12" data-ride="carousel" id="carousel-cursos">
                                     <div class="container" style="position: absolute; z-index: 99998; margin-top:15%">
                                         <div class="d-flex " >
@@ -385,6 +477,27 @@
                                     </div>
                                     </section>
 
+                                   
+              
+                
+                    
+
+                            
+
+                    
+                    </div>
+                    <!--/First row-->
+                </section>
+            </div>
+        </div>
+</main>
+
+<a id="return-to-top" class="" style="display:none">
+        <i class="fa fa-angle-up fa-2x white-text"></i>
+    </a>
+@endsection
+
+@section('endscript')
                     <script>
                             $('#btnsearchcarrusel').click(function(){
                     
@@ -402,18 +515,30 @@
                                     document.getElementById("btnsearchcarrusel").click();
                                 }
                             });
-                    </script>
+
+                            window.onscroll = function () { scrollFunction() };
+        function scrollFunction() {
+            var alto = document.getElementById('navbarsite').clientHeight + document.getElementById('carrusel_Id').clientHeight;
+
+            if (document.body.scrollTop > alto || document.documentElement.scrollTop > alto) {
                 
-                    
+                //$('#return-to-top').hide();
+                $('#return-to-top').fadeIn(200);
+               
+                        console.log(document.body.scrollTop);
+            } else {
+               
+                
+                $('#return-to-top').fadeOut(200);
+               
+            }
+        }
 
-                            
+        $('#return-to-top').click(function () {      // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0                       // Scroll to top of body
+            }, 500);
+        });
 
-                    
-                    </div>
-                    <!--/First row-->
-                </section>
-            </div>
-        </div>
-</main>
-@endsection
-
+                    </script>
+                    @endsection

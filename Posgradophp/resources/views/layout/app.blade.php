@@ -25,7 +25,7 @@ UNI-DEPEC</title>
    
 
 
-  <nav class="navbar navbar-expand-lg navbar-light white lighten-5 h-auto" >
+  <nav class="navbar navbar-expand-lg navbar-light white lighten-5 h-auto" id="navbarsite">
 
   <!-- Navbar brand -->
   <a class="navbar-brand" href="{{route('cursos.index')}}">Posgrado</a>
@@ -67,7 +67,7 @@ UNI-DEPEC</title>
                     @endforeach        
                 </ul>
             </li> 
-            <a  class="dropdown-item" tabindex="-1" href="{{route('cursos.maestrias')}}"">Maestrías</a>
+            <a  class="dropdown-item" tabindex="-1" href="{{route('cursos.maestrias')}}">Maestrías</a>
             </li>  
          </u>
             <!-- <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -104,9 +104,10 @@ UNI-DEPEC</title>
 
 </nav>
 
+<div id="mainpage"> 
             @yield('content')
 
-
+</div>
             
       <!--   <div class="fixed-action-btn smooth-scroll" style="bottom: 45px; right: 24px;">
             <a href="#top-section" class="btn-floating btn-large red">
@@ -116,6 +117,9 @@ UNI-DEPEC</title>
 
  <div class="banner-degradado-1 wow fadeIn" style="height:10px">
 </div>
+
+ 
+    
     <footer class="page-footer font-small stylish-color-dark pt-4    ">
 
         <!-- Footer Links -->
@@ -133,10 +137,22 @@ UNI-DEPEC</title>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-gplus mx-1">
-                        <i class="fa fa-google-plus  fa-2x"> </i>
+                    <a class="btn-floating btn-gplus mx-1" href="https://www.linkedin.com/company/universidad-nacional-de-ingenieria-%C2%B7-direcci%C3%B3n-de-posgrado" >
+                        <i class="fa fa-linkedin-square  fa-2x"> </i>
                     </a>
                 </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-gplus mx-1"  href="https://www.instagram.com/unidepec/">
+                        <i class="fa fa-instagram  fa-2x"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-gplus mx-1" href="https://www.youtube.com/channel/UC-xl0Fx7MgbntmHuq99SJ3g">
+                        <i class="fa fa-youtube-square  fa-2x"> </i>
+                    </a>
+                </li>
+
+               
               
             </ul>
             <hr>
@@ -144,23 +160,29 @@ UNI-DEPEC</title>
             <div class="row">
 
 
+                    @php
+                        $cur = $categorias->where('isCursoPosgrado',1)->take(8);
+                        $pos = $categorias->where('isCursoPosgrado',0)->take(8);
+                    @endphp
                     <div class="col-md-3 mx-auto">
-                        <h6 class="h6-responsive font-weight-bold">Top Categorias</h6>
+                        <h6 class="h6-responsive font-weight-bold">Cursos Especializados</h6>               
+                         @foreach ($cur as $d)
+                            <li ><a href="{{route('cursos.categorias',$d->Categoria)}}">{{$d->Categoria}}</a></li>                            
+                        @endforeach
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <h6 class="h6-responsive font-weight-bold">Posgrados</h6>
+                        @foreach ($pos as $d)
+                            <li ><a href="{{route('cursos.categorias',$d->Categoria)}}">{{$d->Categoria}}</a></li>                            
+                        @endforeach
+                    </div>
                    
-                         @for ($i = 0; $i < 5; $i++)
-                            <li ><a href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}">{{$categorias[$i]['Categoria']}}</a></li>
-                        @endfor
+                    <div class="col-md-3 mx-auto">
+                        <h6 class="h6-responsive font-weight-bold">Maestrías</h6>
+                        @foreach ($cursos->take(8) as $d)
+                            <li ><a href="{{route('cursos.categorias',$d->NombreCurso)}}">{{$d->NombreCurso}}</a></li>                            
+                        @endforeach
                     </div>
-                    @if( count($categorias)>5)
-                <hr class="clearfix w-100 d-md-none">
-                     <div class="col-md-3 mx-auto">
-                        <h6 class="h6-responsive font-weight-bold ">&nbsp;</h6>
-                        
-                         @for ($i = 5; ($i < count($categorias) && $i < 10 ); $i++)
-                            <li ><a href="{{route('cursos.categorias', $categorias[$i]['Categoria'])}}">{{$categorias[$i]['Categoria']}}</a></li>
-                        @endfor
-                    </div>
-                    @endif
 
                 <!-- Grid column -->
                <!--  <div class="col-md-3 mx-auto"> -->
@@ -185,22 +207,7 @@ UNI-DEPEC</title>
                 <!-- <hr class="clearfix w-100 d-md-none"> -->
 
                 <!-- Grid column -->
-                <div class="col-md-3 mx-auto">
-
-                    <!-- Links -->
-
-                    <h6 class="h6-responsive font-weight-bold">Dirección de Posgrado</h6><div class="menu-menu-footer-container">
-                       
-                            <li><a href="http://www.posgrado.uni.edu.ni/cursos-de-especializacion/">Cursos de Espelización</a></li>
-                            <li><a href="http://www.posgrado.uni.edu.ni/posgrado/">Posgrado</a></li>
-                            <li><a href="http://www.posgrado.uni.edu.ni/maestria/">Maestria</a></li>
-                            <li><a href="http://www.posgrado.uni.edu.ni/blog/">Blog</a></li>
-                            <li><a href="http://www.posgrado.uni.edu.ni/contactenos/">Contáctenos</a></li>
-                       
-                    </div>
-
-
-                </div>
+             
 
                 <hr class="clearfix w-100 d-md-none">
 
@@ -307,6 +314,8 @@ UNI-DEPEC</title>
             
       
         @yield('carrito');
+
+     
     </script>
 
          @yield('endscript')

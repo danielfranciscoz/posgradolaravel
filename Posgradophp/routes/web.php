@@ -18,12 +18,12 @@ Route::get('/curso', function(){
 });
 
 Route::group(['prefix' => 'oferta'], function() {
-    Route::get('categorias/{categoria}/{orden?}','CursosController@categories')->name('cursos.categorias');
+    Route::get('categorias/{categoria?}/{orden?}','CursosController@categories')->name('cursos.categorias');
     Route::get('maestrias/{orden?}','CursosController@maestrias')->name('cursos.maestrias');
     
     Route::group(['prefix' => 'estudio'], function() {
         //Todos los cursos que cumplen con el criterio de busqueda
-        Route::get('/find/{curso}/{orden?}','CursosController@search')->name('cursos.search');
+        Route::get('/find/{curso?}/{orden?}','CursosController@search')->name('cursos.search');
         
         //Informacion del curso
         Route::get('/{curso_name}','CursosController@curso')->name('cursos.curso');
