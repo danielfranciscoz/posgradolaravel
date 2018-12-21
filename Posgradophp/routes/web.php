@@ -73,6 +73,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/','AdminController@index')->name('admin.index');
     Route::get('/categorias','AdminController@categorias')->name('admin.categorias');
     Route::resource('comentarios','ComentariosController')->middleware('adminLogged');
+    Route::get('/categorias/search','AdminController@searchcategorias')->name('admin.searchcategorias');
     
 });
 

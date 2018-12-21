@@ -15,7 +15,9 @@ UNI-DEPEC</title>
 <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
 <link href="{{ URL::asset('css/mdb.css') }}" rel="stylesheet" type="text/css" >
 <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css" >
-
+<link href="{{ URL::asset('DataTables/datatables.css') }}" rel="stylesheet" type="text/css" >
+<link href="{{ URL::asset('DataTables/Datatables-1.10.18/css/dataTables.bootstrap4.css') }}" rel="stylesheet" type="text/css" >
+<link href="{{ URL::asset('DataTables/Select-1.2.6/css/select.bootstrap4.css') }}" rel="stylesheet" type="text/css" >
 
 </head>
 <body class="grey lighten-4">
@@ -56,7 +58,10 @@ UNI-DEPEC</title>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mdb.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
-  
+    <script type="text/javascript" src="{{ asset('DataTables/datatables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('DataTables/Datatables-1.10.18/js/dataTables.bootstrap4.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('DataTables/Select-1.2.6/js/select.bootstrap4.js') }}"></script>
+    
 
    <!-- Modals -->
    @include('layout.ModalLogin')
