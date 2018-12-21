@@ -58,7 +58,7 @@ class CategoriasSeeder extends Seeder
             'Categoria'=>'Docente' ,
             'Image_URL'=>'/img/Resources/categorias/cat6.jpg',
             'Descripcion'=>'Ultima de las descripciones de prueba',
-            'isCursoPosgrado' => '0'
+            'isCursoPosgrado' => '1'
             ]);
         Categoria::create([
             'Categoria'=>'Finanzas',
