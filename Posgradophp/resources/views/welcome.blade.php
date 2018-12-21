@@ -5,7 +5,6 @@
 @section('title', 'Inicio')
 @section('content')
 
-   <!-- <img src="https://www.posgrado.uni.edu.ni/wp-content/uploads/2018/06/docentes.jpg" class="img-fluid"/> -->
    <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
         <!--Indicators-->
         <ol class="carousel-indicators">
@@ -22,13 +21,8 @@
             <div class="carousel-item active" id="carrusel_Id">
                 <!--Mask-->
                 <div class="view">
-                  <!--Video source-->
-                  <!-- <video autoplay="" loop="" playsinline="">
-                      <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4">
-                  </video> -->
-                  <!-- Carousel content -->
                   <img src="/img/b.jpg" class="w-md-100 h-100"/>
-                  <div class=" d-flex justify-content-start align-items-center mask rgba-indigo-light white-text" style="max-height:600px">
+                  <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
                         <div class="col-lg-4 col-md-12">
 
             <!--Panel-->
@@ -58,11 +52,6 @@
             <div class="carousel-item">
                 <!--Mask color-->
                 <div class="view">
-                    <!--Video source--><!--
-                    <video autoplay="" loop="" playsinline="">
-                        <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4">
-                    </video> -->
-                    <!-- Carousel content -->
                     <div class="full-bg-img flex-center mask rgba-purple-light white-text">
                       <ul class="animated fadeInUp col-md-12 list-unstyled">
                         <li>
@@ -77,20 +66,9 @@
                       </ul>
                     </div>
                 </div>
-                <!--/Mask color-->
             </div>
-            <!--/Second slide-->
-
-            <!--Third slide-->
             <div class="carousel-item">
-                <!--Mask color-->
                 <div class="view">
-                    <!--Video source--><!--
-                    <video autoplay="" loop="" playsinline="">
-                        <source src="https://mdbootstrap.com/images/video/Tropical.mp4" type="video/mp4">
-                    </video>-->
-
-                    <!-- Carousel content -->
                     <div class="full-bg-img flex-center mask rgba-blue-light white-text">                  
                       <ul class="animated fadeInUp col-md-12 list-unstyled">
                         <li>
@@ -104,78 +82,13 @@
                       </ul>
                     </div>
                 </div>
-                <!--/Mask color-->
             </div>
-            <!--/Third slide-->
         </div>
-        <!--/.Slides-->
 
-        <!--Controls-->
-        <!-- <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a> -->
-        <!--/.Controls-->
     </div>
 
 <main>
-  
-        <!--Section: Main info-->
-       <!--  <section class="mt-5 wow fadeIn">
-           
-            <div class="row grey lighten-4">
-               
-                <div class="col-md-4 mb-4  d-flex justify-content-center  align-items-center">
-
-                 <div>  
-                                <p class="font-weight-bold text-carrousel-cursos">La selección de cursos más amplia del pais </p>                     
-                              <p class="grey-text">  
-                                Elige entre más de 300 cursos con nuevo contenido cada mes
-
-                               
-
-                              </p>
-                             
-                </div>
-
-                    
-                </div>
-              
-                <div class="col-md-8 mb-4">
-                
-                   
-                  
-                </div>
-               
-            </div>
-           
-        </section> -->
-
-<!--  <div class="d-flex align-items-center justify-content-center  mt-5 " style="min-height:100px; ">
-        <h1 class="h1-responsive text-center ">Nosotros somos Posgrado</h1>
-</div> -->
-<!-- <section class="container pt-5 pb-4">
-    <div class=row>
-        <div class="col-sm-12 col-md-6 text-justify text-body mb-4">
-        El Sistema de Estudios de Posgrado y Educación Continua tiene como objetivo la capacitación y formación de profesionales en el más alto nivel técnico y científico, en el ámbito de las diversas disciplinas para que sean capaces de desarrollar sus actividades de forma independiente y provechosa para el desarrollo del país. El sistema se integra por todos los programas y unidades académicas que ofrecen cursos especializados y de Maestría y Doctorado teniendo como instancia reguladora a la Dirección de Estudios de Posgrado y Educación Continua y como instancias ejecutoras a las facultades y a la Dirección de Estudios de Posgrado y Educación Continua 
-            
-        </div>
-        <div class="col-sm-12 col-md-6 ">
-
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Emlt4VmOFoI" allowfullscreen></iframe>
-            </div>
-                  
-        </div>
-
-    </div>
-
-</section -->
-        
+          
 <div class="d-flex align-items-center justify-content-center  flex-column mx-4" style="min-height:200px; ">
         <h1 class="h1-responsive text-center">Nuestra Oferta Academica</h1>
         <p class="text-center">  Conviértete en un experto en tu área de interés.</p>
@@ -184,24 +97,22 @@
 <div >
    
         <section class="container pb-4">
-        <h4 class="font-weight-bold h4-responsive "> Cursos especializados </h4>
+        <h2 class="h2-responsive text-black-50"> Cursos especializados </h2>
                
                <hr class=" mb-4">
             <!--Grid row-->
             <div class="row wow fadeIn">
                
-            @for ($i = 0; $i < count($categorias); $i++)
+            @for ($i = 0; $i < count($categories); $i++)
            
-                    @if($categorias[$i]->isCursoPosgrado == 1)
+                    @if($categories[$i]->isCursoPosgrado == 1)
                        <div class="col-md-3 col-sm-12 mb-4">
                            <div class="card h-100 wow fadeIn" style="height:450px">
-                               <img class="card-img-top" src="{{$categorias[$i]['Image_URL']}}" alt="Card image cap">
+                               <img class="card-img-top" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text" style="height:50px">{{$categorias[$i]['Categoria']}}</h5>
-                                   <p class="card-text" style="height:100px">{{$categorias[$i]['Descripcion']}}</p>
-                                   <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}" >SABER MAS</a>
-                                  
-
+                                   <h5 class="card-title primary-text" style="height:50px">{{$categories[$i]['Categoria']}}</h5>
+                                   <p class="card-text" style="height:100px">{{$categories[$i]['Descripcion']}}</p>
+                                   <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>                                
                                    <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
                                </div>
                            </div>
@@ -212,25 +123,23 @@
 
             
 
-             <h4 class="font-weight-bold h4-responsive mt-4"> Posgrados </h4>
+             <h2 class="h2-responsive mt-4 text-black-50"> Posgrados </h2>
                
                <hr class=" mb-4">
             <!--Grid row-->
             <div class="row wow fadeIn">
                
-            @for ($i = 0; $i < count($categorias); $i++)
+            @for ($i = 0; $i < count($categories); $i++)
            
-                    @if($categorias[$i]->isCursoPosgrado == 0)
+                    @if($categories[$i]->isCursoPosgrado == 0)
                        <div class="col-md-3 col-sm-12 mb-4">
                            <div class="card h-100 wow fadeIn" style="height:450px">
-                               <img class="card-img-top" src="{{$categorias[$i]['Image_URL']}}" alt="Card image cap">
+                               <img class="card-img-top" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text" style="height:50px">{{$categorias[$i]['Categoria']}}</h5>
-                                   <p class="card-text" style="height:100px">{{$categorias[$i]['Descripcion']}}</p>
-                                   <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categorias[$i]['Categoria'])}}" >SABER MAS</a>
-                                  
-
-                                   <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
+                                   <h5 class="card-title primary-text" style="height:50px">{{$categories[$i]['Categoria']}}</h5>
+                                   <p class="card-text" style="height:100px">{{$categories[$i]['Descripcion']}}</p>
+                                   <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>
+    
                                </div>
                            </div>
                        </div>
@@ -258,21 +167,21 @@
             </div>
             <section class="container pb-4">
              
-                <h4 class="font-weight-bold h4-responsive mt-4"> Maestrías </h4>
+                <h2 class="h2-responsive mt-4 text-black-50"> Maestrías </h2>
                
             <hr class=" mb-4">
             <!--Grid row-->
             <div class="row wow fadeIn">
                
-            @for ($i = 0; $i < count($cursos); $i++)
+            @for ($i = 0; $i < count($courses); $i++)
                              
                          <div class="col-md-3 col-sm-12 mb-4">
                            <div class="card h-100 wow fadeIn" style="max-height:450px">
-                               <img class="card-img-top" src="{{$cursos[$i]->Image_URL}}" alt="Card image cap">
+                               <img class="card-img-top" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text" style="height:50px">{{$cursos[$i]->NombreCurso}}</h5>
-                                   <p class="card-text" style="height:100px">{{$cursos[$i]->Desc_Publicidad}}</p>
-                                   <a class="card-text float-right font-weight-bold" href="/oferta/estudio/{{$cursos[$i]->NombreCurso}}" >SABER MAS</a>
+                                   <h5 class="card-title primary-text" style="height:50px">{{$courses[$i]->NombreCurso}}</h5>
+                                   <p class="card-text" style="height:100px">{{$courses[$i]->Desc_Publicidad}}</p>
+                                   <a class="card-text float-right font-weight-bold" href="/oferta/estudio/{{$courses[$i]->NombreCurso}}" >VER MAS</a>
                                   
 
                                    <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
@@ -288,12 +197,13 @@
         </section>
         
 </div>
-<div class="d-flex align-items-center justify-content-center flex-column grey darken-4" style="min-height:325px; ">
+<div class="d-flex align-items-center justify-content-center flex-column " style="min-height:700px; background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('/img/b_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+
+        <!-- <img src="/img/b.jpg" class="w-md-100 h-100"/>         -->
         <h1 class="h1-responsive text-white text-center">¿Por qué estudiar con nosotros?</h1>
         <p class="text-white text-center">Contamos con las mejores metodologías de enseñanza virtual, docentes calificados y una amplia gama de recursos mediáticos para facilitar el proceso enseñanza-aprendizaje</p>
-</div>
-<div class=" grey darken-4 pb-5" >
-        <section class="container ">
+
+        <section class="container pt-4">
            
             <!--Grid row-->
             <div class="row wow fadeIn ">
@@ -306,7 +216,7 @@
                         </div>
                         <div class="col-10">
                             <h5 class="feature-title  white-text">Conveniencia</h5>
-                            <p class="white-text">Acceso 24 horas al día para que aprendas a tu propio ritmo y en español</p>
+                            <p class="white-text">Acceso 24 horas al día para que aprendas a tu propio ritmo.</p>
                         </div>
                     </div>
                     <!--/First row-->
@@ -319,7 +229,7 @@
                         <div class="col-10">
                             <h5 class="feature-title  white-text">Confianza</h5>
                             <p class="white-text">
-                            Apoyo privado de tutores online y videochat ‘Tutor Café’ para debatir temas en grupo
+                            Apoyo privado de tutores en línea y videochat para debatir temas en grupo.
                             </p>
                         </div>
                     </div>
@@ -333,7 +243,7 @@
                         <div class="col-10">
                             <h5 class="feature-title white-text">Calidad</h5>
                             <p class="white-text">
-                            Cursos online desarrollados por líderes de la industria. 
+                            Cursos, Posgrados y Maestrías desarrollados por expertos en cada rama. 
                             <br>
                             </p>
                         </div>
@@ -361,7 +271,7 @@
                         <div class="col-10">
                             <h5 class="feature-title  white-text">Respaldo</h5>
                             <p class="white-text">
-                                Certificados con aplicaciones internacionales y validez en LinkedIn. 
+                                Certificados por asociaciones internacionales que ratifican nuestra calidad en educación. 
                             </p>
                         </div>
                     </div>
@@ -375,7 +285,7 @@
                         <div class="col-10">
                             <h5 class="feature-title  white-text">Facilidad</h5>
                             <p class="white-text">
-                            Sin requisitos ni conocimiento previo. 
+                                Toda nuestra documentación al alcance de un clic. 
                             </p>
                         </div>
                     </div>
@@ -386,10 +296,10 @@
             <!--/Grid row-->
         </section>
         <!--Section: Main features & Quick Start-->
-        </div>
-        
+</div>
+       
         <div class="white">
-        <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nosotros</h1>
+        <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nuestro trabajo</h1>
         <div class="d-flex align-items-center justify-content-center    " style="height:250px; ">
 
             <img src="/img/Resources/empresas/BAC.jpg" style="weight:50px"/>       
@@ -405,13 +315,13 @@
         </div>
         <div class="grey lighten-4">
             <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:280px; ">
-                    <h1 class="h1-responsive black-white text-center ">Lo que opinan de nuestros estudiantes</h1>
-                    <p class="black-white text-center">Se parte de nuestra comunidad, y logra el éxito a través del aprendizaje en línea</p>
+                    <h1 class="h1-responsive text-black-50 text-center ">Lo que opinan de nuestros estudiantes</h1>
+                    <p class="text-black-50 text-center">Se parte de nuestra comunidad, y logra el éxito a través del aprendizaje en línea</p>
             </div>
             <div class="container">
                 <section>
                     <!--First row-->
-                    <div class="row features-small  pb-3 wow fadeIn">
+                    <div class="row features-small pb-3 wow fadeIn">
                                     <section class="carousel slide col-12" data-ride="carousel" id="carousel-cursos">
                                     <div class="container" style="position: absolute; z-index: 99998; margin-top:15%">
                                         <div class="d-flex " >
@@ -518,18 +428,17 @@
 
                             window.onscroll = function () { scrollFunction() };
         function scrollFunction() {
-            var alto = document.getElementById('navbarsite').clientHeight + document.getElementById('carrusel_Id').clientHeight;
+            var alto = document.getElementById('navbarsite').clientHeight +100;
 
             if (document.body.scrollTop > alto || document.documentElement.scrollTop > alto) {
                 
                 //$('#return-to-top').hide();
-                $('#return-to-top').fadeIn(200);
-               
-                        console.log(document.body.scrollTop);
+                $('#return-to-top').fadeIn(250);
+
             } else {
                
                 
-                $('#return-to-top').fadeOut(200);
+                $('#return-to-top').fadeOut(250);
                
             }
         }

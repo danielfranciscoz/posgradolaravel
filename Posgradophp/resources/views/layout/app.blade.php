@@ -50,7 +50,7 @@ UNI-DEPEC</title>
             <li class="dropdown-submenu">
                 <a  class="dropdown-item" tabindex="-1" href="#">Cursos Especializados</a>
                 <ul class="dropdown-menu">
-                    @foreach($categorias as $categoria) 
+                    @foreach($categories as $categoria) 
                     @if($categoria->isCursoPosgrado)
                         <li class="dropdown-item" style="max-height:50px"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
                         @endif
@@ -60,7 +60,7 @@ UNI-DEPEC</title>
             <li class="dropdown-submenu">
                 <a  class="dropdown-item" tabindex="-1" href="#">Posgrados</a>
                 <ul class="dropdown-menu">
-                    @foreach($categorias as $categoria)
+                    @foreach($categories as $categoria)
                     @if($categoria->isCursoPosgrado == false) 
                         <li class="dropdown-item" style="max-height:50px"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
                     @endif
@@ -70,11 +70,7 @@ UNI-DEPEC</title>
             <a  class="dropdown-item" tabindex="-1" href="{{route('cursos.maestrias')}}">Maestrías</a>
             </li>  
          </u>
-            <!-- <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-               @foreach($categorias as $categoria) 
-               <li class="dropdown-item" style="max-height:50px"><a href="{{route('cursos.categorias',$categoria->Categoria)}}">{{$categoria->Categoria}}</a></li>
-               @endforeach               
-            </ul> -->
+
         </div>
       </li>
 
@@ -161,8 +157,8 @@ UNI-DEPEC</title>
 
 
                     @php
-                        $cur = $categorias->where('isCursoPosgrado',1)->take(8);
-                        $pos = $categorias->where('isCursoPosgrado',0)->take(8);
+                        $cur = $categories->where('isCursoPosgrado',1)->take(8);
+                        $pos = $categories->where('isCursoPosgrado',0)->take(8);
                     @endphp
                     <div class="col-md-3 mx-auto">
                         <h6 class="h6-responsive font-weight-bold">Cursos Especializados</h6>               
@@ -179,7 +175,7 @@ UNI-DEPEC</title>
                    
                     <div class="col-md-3 mx-auto">
                         <h6 class="h6-responsive font-weight-bold">Maestrías</h6>
-                        @foreach ($cursos->take(8) as $d)
+                        @foreach ($courses->take(8) as $d)
                             <li ><a href="{{route('cursos.categorias',$d->NombreCurso)}}">{{$d->NombreCurso}}</a></li>                            
                         @endforeach
                     </div>

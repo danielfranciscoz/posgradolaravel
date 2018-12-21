@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Categoria;
+use App\Models\Curso;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,8 +16,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function($view) {
-            $categorias = Categoria::all()->where('deleted_at',null);
-            $view->with('categorias', $categorias);
+            $categories = Categoria::all()->where('deleted_at',null);
+            $courses = Curso::where('categoria_id',null)
+                        ->orderBy('created_at','DESC')
+                        ->get();
+            $view
+            ->with(compact('categories'))
+            ->with(compact('courses'));
         });
     }
 
