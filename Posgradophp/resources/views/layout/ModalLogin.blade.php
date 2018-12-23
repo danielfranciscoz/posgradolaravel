@@ -40,9 +40,8 @@
                         
                          
                             <div class="flex-column">
-                                <p href="/account/registro" class="
-                                font-small d-flex justify-content-center float-md-left primary-text  float-sm-none">¿No tienes una cuenta?  </p>
-                                <p href="/account/recuperacion" class="font-small  d-flex justify-content-center primary-text float-md-right float-sm-none">¿Olvido su Contraseña?  </p>
+                                <p href="/account/registro" onclick="registroredirect()" class="font-small d-flex justify-content-center float-md-left primary-text  float-sm-none" style="cursor:hand">¿No tienes una cuenta?  </p>
+                                <p href="/account/password/reset"  onclick="resetredirect()class="font-small  d-flex justify-content-center primary-text float-md-right float-sm-none"  style="cursor:hand">¿Olvido su Contraseña?  </p>
                             
                             </div>
                            </div>
@@ -58,6 +57,13 @@
 <script>
 
 $("#alertlogin").hide();
+
+function registroredirect(){
+    window.location.href = "/account/registro";
+}
+function resetredirect(){
+    window.location.href = "/account/password/reset";
+}
 
  $("#loginForm").submit(function(e){
                 e.preventDefault();

@@ -2,20 +2,21 @@
 @section('title', 'Registro nuevo usuario')
 @section('content')
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<main class="grey lighten-5">
+<main class="grey lighten-4">
     <div class="container wow fadein">
          <div class="row d-flex justify-content-center">
+        
             <div class="col-md-8 col-sm-12" >
                         </br>
                  <div id="registernow" class="white">
-                    <form class="text-center border border-light p-5 white">
+                    <form class="text-center border border-light p-5 white" id="registroform" method="post"> 
                     {{csrf_field()}}
                     <h4 class="h4-responsive mb-4 text-primary">¡Inscribete y comienza a aprender con nosotros!</h4>
                     <h6 class="h6-responsive mb-4">Esto solo tomará un par de minutos, por favor ten paciencia y completa toda la información.</h6>
 
                     <div class="form-row mb-4">
                         <div class="col">
-
+                        
                             <input type="text" id="PrimerNombre" class="form-control" placeholder="Primer Nombre" required />
                         </div>
                         <div class="col">
@@ -105,6 +106,7 @@
 <script>
 $("#alertregistro").hide();
     function submite(e){
+      
         $("#alertregistro").hide();
         var b = 0;
         var pasa = true;
@@ -114,6 +116,9 @@ $("#alertregistro").hide();
             {
                 b = 1;
             }
+            
+
+
         $.ajax( {
                 data: {
                     "PrimerNombre": $("#PrimerNombre").val(),

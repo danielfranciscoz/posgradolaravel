@@ -135,13 +135,22 @@ class AccountController extends Controller
                 $user->email_verified_at=date('Y-m-d H:i:s');                
                 $user->save();
                 
-                return response()->json([
-                    'message'=>'Muchas gracias por verificar tu cuenta, ahora estamos listos, ya puedes empezar a aprender con nosotros.'
-                ]);
+               
+                $message = 'Muchas gracias por verificar tu cuenta, ahora estamos listos, ya puedes empezar a aprender con nosotros.';
+                /* response()->json([
+                    'message'=>
+                ]) */;
+                return view("Account/verificar")->with(compact('user'))
+                ->with(compact('message'));
+             
             }else{
-                return response()->json([
+                $message ='Esta cuenta ya se encuentra verificada.';
+                /* return response()->json([
                     'message'=>'Esta cuenta ya se encuentra verificada.'
-                ]);
+                ]); */
+
+                return view("Account/verificar")->with(compact('user'))
+                ->with(compact('message'));
             }
 
         } catch (Exception $e) {

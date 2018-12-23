@@ -1,7 +1,7 @@
 @include('layout.CarritoPopover')
 
 
-<html class="grey lighten-5">
+<html class="grey lighten-4">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />

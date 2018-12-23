@@ -41,7 +41,7 @@
 </ul>
         <div class="row">
             <div class="col-md-8 col-sm-12 row">
-                <div class="card grey lighten-5 mb-4 mt-2 col-12 ">
+                <div class="card grey lighten-4 mb-4 mt-2 col-12 ">
                      <div class="card-body row mx-5">
                      <h5 class="h5-responsive font-weight-bold col-12 mb-4">Información de Facturación</h5>
                      <label class="col-12">Nombres:</label>
@@ -66,7 +66,7 @@
             </div>
           
             </div>
-            <div class="card grey lighten-5 mb-4 mt-2 col-12 ">
+            <div class="card grey lighten-4 mb-4 mt-2 col-12 ">
                      <div class="card-body row mx-5">
                      <h5 class="h5-responsive font-weight-bold col-12 mb-4">Información de Pago</h5>
                      <label class="col-12">Tarjeta de Credito:</label>
