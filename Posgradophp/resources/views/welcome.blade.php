@@ -106,7 +106,7 @@
             @for ($i = 0; $i < count($categories); $i++)
            
                     @if($categories[$i]->isCursoPosgrado == 1)
-                       <div class="col-md-3 col-sm-12 mb-4">
+                       <div class="col-md-3 col-sm-12 mb-4" style="height:450px">
                            <div class="card h-100 wow fadeIn" style="height:450px">
                                <img class="card-img-top" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
@@ -132,7 +132,7 @@
             @for ($i = 0; $i < count($categories); $i++)
            
                     @if($categories[$i]->isCursoPosgrado == 0)
-                       <div class="col-md-3 col-sm-12 mb-4">
+                       <div class="col-md-3 col-sm-12 mb-4" style="height:450px">
                            <div class="card h-100 wow fadeIn" style="height:450px">
                                <img class="card-img-top" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
@@ -175,8 +175,8 @@
                
             @for ($i = 0; $i < count($courses); $i++)
                              
-                         <div class="col-md-3 col-sm-12 mb-4">
-                           <div class="card h-100 wow fadeIn" style="max-height:450px">
+                         <div class="col-md-3 col-sm-12 mb-4" style="height:400px">
+                           <div class="card h-100 wow fadeIn" style="max-height:400px">
                                <img class="card-img-top" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text" style="height:50px">{{$courses[$i]->NombreCurso}}</h5>
@@ -300,7 +300,7 @@
        
         <div class="white">
         <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nuestro trabajo</h1>
-        <div class="d-flex align-items-center justify-content-center    " style="height:250px; ">
+        <div class="d-flex align-items-center justify-content-center  row " style="height:250px; ">
 
             <img src="/img/Resources/empresas/BAC.jpg" style="weight:50px"/>       
             <img src="/img/Resources/empresas/BDF.jpg" style="weight:50px"/>                       
