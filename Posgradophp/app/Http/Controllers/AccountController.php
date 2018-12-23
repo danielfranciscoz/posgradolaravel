@@ -63,7 +63,7 @@ class AccountController extends Controller
             // Mail::to($user->email)
             //         ->send((new ConfirmationUser($user,$estudent))->locale('es'));
             
-             $this->sendConfirmationMail($user,$estudent);
+            // // //  $this->sendConfirmationMail($user,$estudent);
             
             //La línea de abajo funciona para visualizar lo que será enviado por correo
             //  return (new ConfirmationUser($user,$estudent))->render();
@@ -120,7 +120,7 @@ class AccountController extends Controller
                 'error'=>'La información del usuario es incorrecta.'
             ]);        
         }
-        $this->sendConfirmationMail($user,null);
+        // // // $this->sendConfirmationMail($user,null);
         return response()->json([
             'message'=>'exito'
         ]);
@@ -225,8 +225,7 @@ class AccountController extends Controller
             $user->token = str_random(40);
             $user->save();
 
-            Mail::to($email)
-            ->send((new ResetPassword($user))->locale('es'));
+            // // // Mail::to($email)->send((new ResetPassword($user))->locale('es'));
             // return (new ResetPassword($user))->render();
 
             return response()->json([
