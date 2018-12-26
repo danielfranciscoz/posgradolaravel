@@ -70,11 +70,15 @@ Route::get('/Forbbiden',function(){
 
 Route::group(['prefix' => 'admin'], function() {
     
-    Route::get('/','AdminController@index')->name('admin.index');
-    Route::get('/categorias','AdminController@categorias')->name('admin.categorias');
-    Route::resource('comentarios','ComentariosController')->middleware('adminLogged');
-    Route::get('/categorias/search','AdminController@searchcategorias')->name('admin.searchcategorias');
-    
+    Route::get('/','AdminController@index')->middleware('adminLogged')->name('admin.index');
+        Route::group(['prefix' => 'categorias'], function() {
+            Route::get('/','AdminController@categorias')->middleware('adminLogged')->name('admin.categorias');
+            Route::get('/search','AdminController@searchcategorias')->middleware('adminLogged')->name('admin.searchcategorias');  
+        });  
+        Route::group(['prefix' => 'comentarios'], function() {
+            Route::get('/','AdminController@comentarios')->middleware('adminLogged')->name('admin.comentarios');
+            Route::get('/search','AdminController@searchcomentarios')->middleware('adminLogged')->name('admin.searchcomentarios'); 
+        }); 
 });
 
 /*

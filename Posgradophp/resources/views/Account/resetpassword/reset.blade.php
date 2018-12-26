@@ -13,6 +13,7 @@
                                 <h4 class="h4-responsive font-weight-bold mt-2 text-justify mb-4">
                                    Restablecimiento de contraseña
                                 </h4>
+                                <p class="mb-4 text-justify">Se enviará un vínculo para restablecer tu contraseña a la dirección de correo electrónico.</p>
                                 <input type="email" id="email" class="form-control mb-2" placeholder="Correo Electrónico" required/>
                                 <div class="d-flex justify-content-center">
                                 <button
@@ -22,7 +23,7 @@
                                     Recuperar
                                 </button>
                                 </div>
-                                <div class="alert alert-danger col-12" role="alert" id="alertreset">
+                                <div class="alert alert-success col-12 mt-4" role="alert" id="alertreset">
                                     </div>
 
                                     
@@ -42,6 +43,7 @@
 
     function submite(e){
         $("#alertreset").hide();
+        var str = "Se envió un mensaje de correo electrónico a "+$("#email").val()+". Sigue las instrucciones del mensaje y restablece tu contraseña.";
         $.ajax( {
            
                 data: {                    
@@ -53,26 +55,13 @@
                                ,
                 success: function(response){
                     $("#alertreset").show();
-                    var str = "";
-
-                    str = response.message;
-
+                    
                     
                         $("#alertreset").html(str);
                     },
                 error: function(response){
                     $("#alertreset").show();
-                    var str = "";
-
-                        for(x in response.responseJSON.errors){
-                            var d = response.responseJSON.errors[x];
-                            
-                            for(var i=0;i<d.length;i++){                
-                                str= str +'<b>'+d[i]+'</b><br></br>';               
-                            }
-                        }
-
-                    
+                                       
                         $("#alertreset").html(str);
                 }
                 
