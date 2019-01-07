@@ -6,12 +6,13 @@
     <div class="container wow fadein">
          <div class="row d-flex justify-content-center">
             <div class="col-md-8 col-sm-12" >
-                        </br>
+                    
                  <div id="registernow" class="white">
                     <div class="card mb-4 ">
                             <div class="card-body  mb-2 mt-2 mx-4 ">
                                 <h4 class="h4-responsive font-weight-bold mt-2 text-justify mb-4">
                                    Restablecimiento de contraseña
+                                   {{csrf_field()}}
                                 </h4>
                                 <p class="mb-4 text-justify">Se enviará un vínculo para restablecer tu contraseña a la dirección de correo electrónico.</p>
                                 <input type="email" id="email" class="form-control mb-2" placeholder="Correo Electrónico" required/>
@@ -47,16 +48,15 @@
         $.ajax( {
            
                 data: {                    
-                    "email": $("#email").val()                  
-                    
+                    "email": $("#email").val(),
+                    "g-recaptcha-response": e,
+                    '_token': $('meta[name="csrf-token"]').attr('content')                                     
                 },
                 url: "/account/password/reset",
                 type: 'POST'
                                ,
                 success: function(response){
-                    $("#alertreset").show();
-                    
-                    
+                    $("#alertreset").show();                    
                         $("#alertreset").html(str);
                     },
                 error: function(response){

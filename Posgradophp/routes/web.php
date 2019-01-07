@@ -45,12 +45,13 @@ Route::group(['prefix' => 'account'], function() {
     Route::get('/carrito','AccountController@carrito');
     Route::get('/pagarcarrito','AccountController@resumencarrito');
 
+    //'middleware'=>'logged'
     Route::group(['prefix' => 'password'], function() {
-        Route::get('reset', 'AccountController@reset')->name('resetpassword');
-        Route::post('reset/', 'AccountController@sendEmailreset')->name('emailresetear');
+        Route::post('/reset', 'AccountController@sendEmailreset')->name('emailresetear');
+        Route::get('/reset', 'AccountController@reset')->name('resetpassword');
         
         Route::get('reset/{token}', 'AccountController@changepass')->name('resettoken');
-        Route::post('change/', 'AccountController@resetpassword')->name('changepass');
+        Route::post('/change', 'AccountController@resetpassword')->name('changepass');
     });
 });
 

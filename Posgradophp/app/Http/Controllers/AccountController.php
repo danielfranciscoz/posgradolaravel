@@ -63,7 +63,7 @@ class AccountController extends Controller
             // Mail::to($user->email)
             //         ->send((new ConfirmationUser($user,$estudent))->locale('es'));
             
-            // // //  $this->sendConfirmationMail($user,$estudent);
+            $this->sendConfirmationMail($user,$estudent);
             
             //La línea de abajo funciona para visualizar lo que será enviado por correo
             //  return (new ConfirmationUser($user,$estudent))->render();
@@ -120,7 +120,8 @@ class AccountController extends Controller
                 'error'=>'La información del usuario es incorrecta.'
             ]);        
         }
-        // // // $this->sendConfirmationMail($user,null);
+        
+        $this->sendConfirmationMail($user,null);
         return response()->json([
             'message'=>'exito'
         ]);
@@ -216,25 +217,34 @@ class AccountController extends Controller
     }
 
     public function sendEmailreset(Request $request){
+
+        try {        
+            $validatedData = $request->validate([
+                'g-recaptcha-response' => ['required', new ValidRecaptcha],
+            ]);
+                
+            $email = $request->input('email');
+
+            $user = User::where('email',$email)->first();
             
-         $email = $request->input('email');
+            if ($user != null) {
+                $user->token = str_random(40);
+                $user->save();
 
-        $user = User::where('email',$email)->first();
+                Mail::to($email)->send((new ResetPassword($user))->locale('es'));
+                // return (new ResetPassword($user))->render();
 
-        if ($user != null) {
-            $user->token = str_random(40);
-            $user->save();
+                return response()->json([
+                    'message'=>'Te hemos enviado un correo, por favor revisa tu bandeja de entrada, sino lo encuentras prueba buscar en los correos no deseados.'
+                    ]);
+            }else{
+                return response()->json([
+                    'error'=>'El correo que has ingresado, no se encuentra registrado en nuestra plataforma, verifica tu información e intenta nuevamente.'
+                    ]);
+            }
 
-            // // // Mail::to($email)->send((new ResetPassword($user))->locale('es'));
-            // return (new ResetPassword($user))->render();
-
-            return response()->json([
-                'message'=>'Te hemos enviado un correo, por favor revisa tu bandeja de entrada, sino lo encuentras prueba buscar en los correos no deseados.'
-                ]);
-        }else{
-            return response()->json([
-                'error'=>'El correo que has ingresado, no se encuentra registrado en nuestra plataforma, verifica tu información e intenta nuevamente.'
-                ]);
+        } catch (Exception $e) {
+            return report($e);
         }
     }
 

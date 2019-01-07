@@ -165,6 +165,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b0899', endColorstr='#9c02cf', GradientType=1 );
 }
 
+.imagen-banner{
+    background: url('/img/Papel tapiz/t.svg');
+
+}
+
 
 #return-to-top {
     position: fixed;

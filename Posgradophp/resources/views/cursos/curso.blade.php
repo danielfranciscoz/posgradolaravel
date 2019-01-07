@@ -24,9 +24,12 @@
 
 <main class="">
 
-<div class="d-flex align-items-center justify-content-center flex-column {{$banner}}" style="min-height:325px; ">
+<div class=" {{$banner}} " >
+
+<div class="d-flex align-items-center justify-content-center flex-column imagen-banner " style="min-height:325px;">
         <h1 class="h1-responsive text-white text-center font-weight-bold ">{{$curso->NombreCurso}} </h1>
         <p class="text-white text-justify">{{$curso->Desc_Publicidad}} </p>
+</div>
 </div>
 
 <h5 class="">  </strong></h5>
