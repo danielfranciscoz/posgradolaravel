@@ -131,27 +131,30 @@ class AccountController extends Controller
 
         try{
             $user = User::where('token',$token)->first();
-            
-            if($user->email_verified_at == null){
-                $user->email_verified_at=date('Y-m-d H:i:s');                
-                $user->save();
+            if ($user != null) {
+                if ($user->email_verified_at == null) {
+                    $user->email_verified_at=date('Y-m-d H:i:s');
+                    $user->save();
                 
                
-                $message = 'Muchas gracias por verificar tu cuenta, ahora estamos listos, ya puedes empezar a aprender con nosotros.';
-                /* response()->json([
-                    'message'=>
-                ]) */;
-                return view("Account/verificar")->with(compact('user'))
+                    $message = 'Muchas gracias por verificar tu cuenta, ahora estamos listos, ya puedes empezar a aprender con nosotros.';
+                    /* response()->json([
+                        'message'=>
+                    ]) */;
+                    return view("Account/verificar")->with(compact('user'))
                 ->with(compact('message'));
-             
-            }else{
-                $message ='Esta cuenta ya se encuentra verificada.';
-                /* return response()->json([
-                    'message'=>'Esta cuenta ya se encuentra verificada.'
-                ]); */
+                } else {
+                    $message ='Esta cuenta ya se encuentra verificada.';
+                    /* return response()->json([
+                        'message'=>'Esta cuenta ya se encuentra verificada.'
+                    ]); */
 
-                return view("Account/verificar")->with(compact('user'))
+                    return view("Account/verificar")->with(compact('user'))
                 ->with(compact('message'));
+                }
+            }else{
+                $message ='No fue posible encontrar al usuario, es probable que la cuenta ya haya sido verificada o que se esté usando un identificador no válido.';                    
+                    return view("Account/verificar")->with(compact('message'));
             }
 
         } catch (Exception $e) {
