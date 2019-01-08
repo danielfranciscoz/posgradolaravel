@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Categoria;
 use App\Models\Curso;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+
         view()->composer('*', function($view) {
             $categories = Categoria::all()->where('deleted_at',null);
             $courses = Curso::where('categoria_id',null)
