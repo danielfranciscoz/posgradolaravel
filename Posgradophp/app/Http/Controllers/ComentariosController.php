@@ -15,9 +15,8 @@ class ComentariosController extends Controller
      */
     public function index()
     {
-        $comentarios = Comentario::where('deleted_at',null)->orderBy('created_at','DESC')->take(6)->get();
         
-        return view('Comentarios.index')->with(compact('comentarios'));
+        return view('cms/comentarios');
     }
 
     /**
@@ -148,5 +147,46 @@ class ComentariosController extends Controller
         } catch (Exception $e) {
             return report($e);
         }
+    }
+
+    public function searchcomentarios(Request $request){
+
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+       
+        $lenght = $request->input("length");
+
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        
+        $searchv = $request->input("search.value");
+        $pagesize = $lenght != null ? $lenght : 0;
+        $skip = $start != null ? $start : 0;
+        
+        $totalRecords = 0;
+
+        $v = Comentario::where('deleted_at',null);
+
+        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+        
+        if (strlen($searchv) !=0) {
+            $v = $v->Where('Nombre','LIKE','%'.$searchv.'%');
+        }
+        
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
+        {          
+            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        }
+        
+        $totalRecords = Count($v->get());
+        $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+        return response()->Json([
+                'draw' => $draw, 
+                'recordsFiltered' => $totalRecords, 
+                'recordsTotal' => $totalRecords, 
+                'data' => $data ]);
+
+    
     }
 }

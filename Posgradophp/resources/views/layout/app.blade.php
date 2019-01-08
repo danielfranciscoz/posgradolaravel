@@ -89,8 +89,13 @@ UNI-DEPEC</title>
                 <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold" style="min-width: 150px; background: #424242; " data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
                 <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect font-weight-bold" style="min-width: 150px">Registrate</button>
             @else
-                <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{ Auth::user()->estudiante->PrimerNombre . ' '. Auth::user()->estudiante->PrimerApellido}} &nbsp;</a> 
+         
+            @if(Auth::user()->isAdmin)
+            <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold" style="min-width: 150px; background: #424242; " onclick="window.location.href='{{route('admin.index')}}'"  >Administracion</button>
+              @endif
+            <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{ Auth::user()->estudiante->PrimerNombre . ' '. Auth::user()->estudiante->PrimerApellido}} &nbsp;</a> 
                 <a class="" style="width:80px" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  <i class="fa fa-sign-out fa-1x red-text text-right" aria-hidden="true"></i> </a>
+                
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                  </form>

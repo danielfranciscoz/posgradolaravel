@@ -36,6 +36,7 @@ UNI-DEPEC</title>
                     <a class="dropdown-item waves-effect waves-light" href="/admin/comentarios">Comentarios</a>
                 </div>
             </li>
+            <a class="nav-item btn btn-primary btn-sm" href="{{ route('cursos.index') }}">Ver sitio</a>
         </ul>
     </div>
 </nav>
@@ -47,7 +48,7 @@ UNI-DEPEC</title>
 <footer class="page-footer font-small indigo darken-4 fixed-bottom">
 
 <!-- Copyright -->
-<div class="footer-copyright text-center py-3">© 2018 Copyright:
+<div class="footer-copyright text-center py-3">© {{@date("Y")}} Copyright:
   <a href="https://posgrado.uni.edu.ni"> Posgrado UNI</a>
 </div>
 <!-- Copyright -->

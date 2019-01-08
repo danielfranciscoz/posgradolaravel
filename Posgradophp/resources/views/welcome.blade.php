@@ -5,20 +5,16 @@
 @section('title', 'Inicio')
 @section('content')
 
-   <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+   <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false" style="max-height:600px">
         <!--Indicators-->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-2" data-slide-to="1"></li>
-            <li data-target="#carousel-example-2" data-slide-to="2"></li>
-        </ol>
+  
         <!--/.Indicators-->
 
         <!--Slides-->
-        <div class="carousel-inner " role="listbox" style="max-height:600px">
+        <div class="" role="listbox" style="max-height:600px">
 
             <!--First slide-->
-            <div class="carousel-item active" id="carrusel_Id">
+            <div class="" id="carrusel_Id">
                 <!--Mask-->
                 <div class="view">
                   <img src="/img/b.jpg" class="w-md-100 h-100"/>
@@ -49,47 +45,15 @@
             <!--/First slide-->
 
             <!--Second slide-->
-            <div class="carousel-item">
-                <!--Mask color-->
-                <div class="view">
-                    <div class="full-bg-img flex-center mask rgba-purple-light white-text">
-                      <ul class="animated fadeInUp col-md-12 list-unstyled">
-                        <li>
-                          <h1 class="font-weight-bold text-uppercase">Lots of tutorials at your disposal</h1>
-                        </li>
-                        <li>
-                          <p class="font-weight-bold text-uppercase py-4">And all of them are FREE!</p>
-                        </li>
-                        <li>
-                          <a target="_blank" href="https://mdbootstrap.com/bootstrap-tutorial/" class="btn btn-pink btn-rounded btn-lg waves-effect waves-light">Start learning</a>
-                        </li>
-                      </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="view">
-                    <div class="full-bg-img flex-center mask rgba-blue-light white-text">                  
-                      <ul class="animated fadeInUp col-md-12 list-unstyled">
-                        <li>
-                          <h1 class="font-weight-bold text-uppercase">Visit our support forum</h1></li>
-                        <li>
-                          <p class="font-weight-bold text-uppercase py-4">Our community can help you with any question</p>
-                        </li>
-                        <li>
-                          <a target="_blank" href="https://mdbootstrap.com/forums/forum/support/" class="btn btn-lg btn-indigo btn-rounded waves-effect waves-light">Support forum</a>
-                        </li>
-                      </ul>
-                    </div>
-                </div>
-            </div>
+           
+         
         </div>
 
     </div>
 
 <main>
           
-<div class="d-flex align-items-center justify-content-center  flex-column mx-4" style="min-height:200px; ">
+<div class="d-flex align-items-center justify-content-center  flex-column mx-4 mt-5 " style="min-height:200px; ">
         <h1 class="h1-responsive text-center">Nuestra Oferta Academica</h1>
         <p class="text-center">  Conviértete en un experto en tu área de interés.</p>
 </div>
@@ -197,7 +161,7 @@
         </section>
         
 </div>
-<div class="d-flex align-items-center justify-content-center flex-column " style="min-height:700px; background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('/img/b_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+<div class="d-flex align-items-center justify-content-center flex-column " style="min-height:575px; background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('/img/b_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
 
         <!-- <img src="/img/b.jpg" class="w-md-100 h-100"/>         -->
         <h1 class="h1-responsive text-white text-center">¿Por qué estudiar con nosotros?</h1>
@@ -298,23 +262,23 @@
         <!--Section: Main features & Quick Start-->
 </div>
        
-        <div class="white">
+        <div class="white pt-2">
         <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nuestro trabajo</h1>
-        <div class="d-flex align-items-center justify-content-center  row " style="height:250px; ">
+            <div class="d-flex align-items-center justify-content-center  row " style="height:250px; ">
 
-            <img src="/img/Resources/empresas/BAC.jpg" style="weight:50px"/>       
-            <img src="/img/Resources/empresas/BDF.jpg" style="weight:50px"/>                       
-            <img src="/img/Resources/empresas/CARGILL.jpg" style="weight:50px"/>                       
-            <img src="/img/Resources/empresas/CEMEX.jpg" style="weight:50px"/>                       
-            <img src="/img/Resources/empresas/LA-PRENSA.jpg" style="weight:50px"/>                       
-            <img src="/img/Resources/empresas/MINED.jpg" style="weight:50px"/>                       
-            <img src="/img/Resources/empresas/MTI.jpg" style="weight:50px"/>                       
-            <img src="/img/Resources/empresas/NIMAC.jpg" style="weight:50px"/>                       
+                <img src="/img/Resources/empresas/BAC.jpg" style="height:80px"/>       
+                <img src="/img/Resources/empresas/BDF.jpg" style="height:80px"/>                       
+                <img src="/img/Resources/empresas/CARGILL.jpg" style="height:80px"/>                       
+                <img src="/img/Resources/empresas/CEMEX.jpg" style="height:80px"/>                       
+                <img src="/img/Resources/empresas/LA-PRENSA.jpg" style="height:80px"/>                       
+                <img src="/img/Resources/empresas/MINED.jpg" style="height:80px"/>                       
+                <img src="/img/Resources/empresas/MTI.jpg" style="height:80px"/>                       
+                <img src="/img/Resources/empresas/NIMAC.jpg" style="height:80px"/>                       
 
-         </div>
+            </div>
         </div>
         <div class="grey lighten-4">
-            <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:280px; ">
+            <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:220px; ">
                     <h1 class="h1-responsive text-black-50 text-center ">Lo que opinan de nuestros estudiantes</h1>
                     <p class="text-black-50 text-center">Se parte de nuestra comunidad, y logra el éxito a través del aprendizaje en línea</p>
             </div>
@@ -337,7 +301,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="container pt-0 mt-2">
+                                    <div class="container pt-0 mt-2 mb-5">
                                         <div class="carousel-inner">
                                         @php $contador = 0;@endphp
 
