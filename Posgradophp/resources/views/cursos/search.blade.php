@@ -35,7 +35,7 @@
                             <div class="card-body row"  >
                                 <div class="col-md-4 col-sm-6 d-flex justify-content-center  align-items-center " >
                                    
-                                    <img src= "{{route('cursos.index')}}{{$curso->curso->Image_URL}}"  class="img-fluid"/>
+                                    <img src= "/{{route('cursos.index')}}{{$curso->curso->Image_URL}}"  class="img-fluid"/>
                                 </div>
 
                                 <div class="col-md-8 col-sm-6 ">

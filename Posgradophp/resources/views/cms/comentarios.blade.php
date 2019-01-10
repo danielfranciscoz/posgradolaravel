@@ -60,7 +60,7 @@
                     { "data": "Profesion", "name": "Profesion" },
                     { "data": "Desc_Pais", "name": "Desc_Pais" },
                     { "data": "Image_URL", "name": "Image_URL", render: function (data) {
-                           return  '<img src= {{route('cursos.index')}}'+data+' class="img-fluid" />'
+                           return  '<img src= "{{route('cursos.index')}}'+data+'" class="img-fluid" />'
                     }},
                     { "data": "Comentario", "name": "Comentario" },
                     { "data": "created_at", "name": "created_at" },

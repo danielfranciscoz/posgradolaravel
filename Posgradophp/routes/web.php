@@ -30,6 +30,7 @@ Route::group(['prefix' => 'oferta'], function() {
     Route::group(['prefix' => 'estudio'], function() {
         //Todos los cursos que cumplen con el criterio de busqueda
         Route::get('/find/{curso?}/{orden?}','CursosController@search')->name('cursos.search');
+        Route::get('/find','CursosController@search')->name('cursos.searchroute');
         
         //Informacion del curso
         Route::get('/{curso_name}','CursosController@curso')->name('cursos.curso');

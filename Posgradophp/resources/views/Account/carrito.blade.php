@@ -43,7 +43,7 @@
             <div class="card white mb-4 mt-2">
                      <div class="card-body row">
                                 <div class="col-4 " >
-                                    <img src={{route('cursos.index')}}{{Session::get('cartItems')[$i]['Image_URL']}} class="w-100"/>
+                                    <img src="/{{route('cursos.index')}}{{Session::get('cartItems')[$i]['Image_URL']}}" class="w-100"/>
                                 </div>
                                 <div class="col-8">
                                     <p style="margin-bottom:0"> <p class="h4-responsive font-weight-bold"  onclick='curso("{{Session::get('cartItems')[$i]['curso']}}");' style="cursor: pointer; margin-bottom:0;"> {{Session::get('cartItems')[$i]['curso'] }}</p>

@@ -115,7 +115,7 @@
                             @for($i=0;$i<count($curso->docentes()->get());$i++)  
                              <div class="row   ">
                                             <div class="col-md-3 col-sm-12 ">
-                                                <img src="{{route('cursos.index')}}{{$curso->docentes()->get()[$i]->Image_URL}}" class="img-fluid rounded-circle" />
+                                                <img src="/{{route('cursos.index')}}{{$curso->docentes()->get()[$i]->Image_URL}}" class="img-fluid rounded-circle" />
                                             </div>
                                             <div class="col-md-9 col-sm-12">
                                                 <div class="font-weight-bold primary-text" >
