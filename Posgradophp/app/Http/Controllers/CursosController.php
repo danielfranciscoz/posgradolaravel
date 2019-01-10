@@ -25,6 +25,7 @@ class CursosController extends Controller
   
     public function categories($categoria,$orden=null)
     { 
+
         $sort=['created_at','DESC'];
         
         if($orden != null){
@@ -170,7 +171,16 @@ class CursosController extends Controller
         }
 
         $existid = false;
-        for($i=0;$i<count(Session::get('cartItems'));$i++)
+
+        $caritems = Session::get('cartItems');
+        
+        if(is_array($caritems)){
+            $count = count($caritems);
+        }else{
+            $count=0;
+        }
+
+        for($i=0;$i<$count;$i++)
         {
             if(Session::get('cartItems')[$i]['id']== $id){
             return response()->json([
@@ -202,15 +212,23 @@ class CursosController extends Controller
         $id= $request->input('curso');
         $existid = false;
         
-        if(count(Session::get('cartItems'))>0){
+        $caritems = Session::get('cartItems');
 
-            for($i=0;$i<count(Session::get('cartItems'));$i++){
+        if(is_array($caritems)){
+            $count = count($caritems);
+        }else{
+            $count=0;
+        }
+
+        if($count > 0){
+
+            for($i=0;$i<$count;$i++){
 
                     if(Session::get('cartItems')[$i]['id']== $id){
                         
                         $existid == true;
                         
-                        $arraysession = Session::get('cartItems');
+                        $arraysession = $caritems;
                         Session::forget('cartItems');
                         
                         unset($arraysession[$i]); 
