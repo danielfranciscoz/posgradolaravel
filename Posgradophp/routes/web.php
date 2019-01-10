@@ -83,8 +83,8 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
     
     Route::get('/','AdminController@index')->name('admin.index');
         Route::group(['prefix' => 'categorias'], function() {
-            Route::get('/','AdminController@categorias')->name('admin.categorias');
-            Route::get('/search','AdminController@searchcategorias')->name('admin.searchcategorias');  
+            Route::get('/','CategoriasController@index')->name('admin.categorias');
+            Route::post('/search','CategoriasController@searchcategorias')->name('admin.searchcategorias');  
         });  
         Route::group(['prefix' => 'comentarios'], function() {
             Route::get('/','ComentariosController@index')->name('admin.comentarios');

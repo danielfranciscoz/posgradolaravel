@@ -17,8 +17,6 @@ class CursosController extends Controller
     public function index()
     {
       
-        
- 
         $comentarios = Comentario::where('deleted_at',null)->get();
         
         return view('welcome')
@@ -129,15 +127,12 @@ class CursosController extends Controller
               
         $cursos_id = Curso::where('Categoria_Id', null)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
         
-
         $cursos = Cursoprecio::where('deleted_at','=',null)
         ->whereIn('curso_id',$cursos_id)
         ->orderBy($sort[0],$sort[1]);
              
        
         $cursos=  $cursos->paginate(5);
-
-        // dd($cursos);
 
         return view("cursos.maestria")
          ->with('cursos',$cursos);
@@ -150,14 +145,7 @@ class CursosController extends Controller
             $sql ->where('NombreCurso','like',$curso_name);
         })->first();
         
-        // dd($precio->curso()->with('etiquetas')->get());
-
-        $curso =  $precio->curso()
-            // ->with('competencias')
-            // ->with('tematicas')
-            // ->with('modalidades')            
-            // ->with('requisitos')      
-            // ->with('docentes')      
+        $curso =  $precio->curso()   
             ->first();         
 
         return view("cursos.curso")        
