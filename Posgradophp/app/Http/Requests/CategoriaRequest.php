@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ComentariosRequest extends FormRequest
+class CategoriaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -12,8 +12,7 @@ class ComentariosRequest extends FormRequest
      * @return bool
      */
     public function authorize()
-    {        
-        //Retorna true porque la validacion de admin la hago en el MiddleWare        
+    {
         return true;
     }
 
@@ -25,11 +24,10 @@ class ComentariosRequest extends FormRequest
     public function rules()
     {
         return [
-            'Nombre'=>'required',
-            'Profesion'=>'required',
-            'Desc_Pais'=>'required',
-            'Comentario'=>'required|max:2000',
+            'isCursoPosgrado'=>'required',
+            'Categoria'=>'required',
             'Image_URL'=>'required',
+            'Descripcion'=>'required',
         ];
     }
 

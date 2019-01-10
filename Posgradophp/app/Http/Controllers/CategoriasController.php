@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Comentario;
-use App\Http\Requests\ComentariosRequest;
+use App\Models\Categoria;
+use App\Http\Requests\CategoriaRequest;
 
-class ComentariosController extends Controller
+class CategoriasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ComentariosController extends Controller
      */
     public function index()
     {
-        
-        return view('cms/comentarios');
+                
+        return view('cms/categorias');
     }
 
     /**
@@ -35,11 +35,11 @@ class ComentariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ComentariosRequest $request)
+    public function store(CategoriaRequest $request)
     {
         try {
-            $comentario = $this->AsignarData($request);
-            $comentario->save();
+            $categoria = $this->AsignarData($request);
+            $categoria->save();
             
             return response()->json([
                 'message'=>'exito.'
@@ -78,23 +78,23 @@ class ComentariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ComentariosRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $comentario = $this->AsignarData($request);
-        $original = Comentario::find($id);
+        $categoria = $this->AsignarData($request);
+        $original = Categoria::find($id);
 
         if ($original == null) {
             return response()->json([
-                'error'=>'El comentario no ha sido encontrado en la base de datos'
+                'error'=>'La categoria no ha sido encontrada en la base de datos'
             ]);
         }
        try {
     
-            $original->Nombre = $comentario->Nombre;
-            $original->Profesion = $comentario->Profesion;
-            $original->Desc_Pais = $comentario->Desc_Pais;
-            $original->Comentario = $comentario->Comentario;
+            $original->isCursoPosgrado = $comentario->isCursoPosgrado;
+            $original->Categoria = $comentario->Categoria;
             $original->Image_URL = $comentario->Image_URL;
+            $original->Descripcion = $comentario->Descripcion;
+            $original->Descripcion_larga = $comentario->Descripcion_larga;
             
             $original->save();
 
@@ -105,7 +105,7 @@ class ComentariosController extends Controller
         } catch (Exception $e) {
             return report($e);
         }
-}
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -115,11 +115,11 @@ class ComentariosController extends Controller
      */
     public function destroy($id)
     {
-        $original = Comentario::find($id);
+        $original = Categoria::find($id);
 
         if ($original == null) {
             return response()->json([
-                'error'=>'El comentario no ha sido encontrado en la base de datos'
+                'error'=>'La categoria no ha sido encontrada en la base de datos'
             ]);
         }
        try {
@@ -136,20 +136,20 @@ class ComentariosController extends Controller
         }
     }
 
-    public function AsignarData(ComentariosRequest $request){
+    public function AsignarData(CategoriaRequest $request){
 
-        $comentario = new Comentario();
-        $comentario->Nombre = $request->input('Nombre');
-        $comentario->Profesion = $request->input('Profesion');
-        $comentario->Desc_Pais = $request->input('Desc_Pais');
-        $comentario->Comentario = $request->input('Comentario');
-        $comentario->Image_URL = $request->input('Image_URL');
+        $categoria = new Categoria();
+        $categoria->isCursoPosgrado = $request->input('isCursoPosgrado');
+        $categoria->Categoria = $request->input('Categoria');
+        $categoria->Image_URL = $request->input('Image_URL');
+        $categoria->Descripcion = $request->input('Descripcion');
+        $categoria->Descripcion_larga = $request->input('Descripcion_larga');
         
-        return $comentario;
+        return $categoria;
         
     }
 
-    public function searchcomentarios(Request $request){
+    public function searchcategorias(Request $request){
 
         $draw = $request->input("draw");
         $start = $request->input("start");
@@ -165,12 +165,12 @@ class ComentariosController extends Controller
         
         $totalRecords = 0;
 
-        $v = Comentario::where('deleted_at',null);
+        $v = Categoria::where('deleted_at',null);
 
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
         if (strlen($searchv) !=0) {
-            $v = $v->Where('Nombre','LIKE','%'.$searchv.'%');
+            $v = $v->Where('Categoria','LIKE','%'.$searchv.'%');
         }
         
         if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
