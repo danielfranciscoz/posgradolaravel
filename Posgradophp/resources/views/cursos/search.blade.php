@@ -35,7 +35,7 @@
                             <div class="card-body row"  >
                                 <div class="col-md-4 col-sm-6 d-flex justify-content-center  align-items-center " >
                                    
-                                    <img src= {{$curso->curso->Image_URL}}  class="img-fluid"/>
+                                    <img src= "{{route('cursos.index')}}{{$curso->curso->Image_URL}}"  class="img-fluid"/>
                                 </div>
 
                                 <div class="col-md-8 col-sm-6 ">
@@ -186,13 +186,13 @@ if($seg == null){
         id = parseInt($("#sorden").val());
         switch(id) {
             case 1:
-                window.location.href ="/oferta/estudio/find/{{$search_value}}?page="+page;
+                window.location.href ="{{route('cursos.cursodetalle')}}/find/{{$search_value}}?page="+page;
             break;
             case 2:
-                window.location.href ="/oferta/estudio/find/{{$search_value}}/precio_desc?page="+page;
+                window.location.href ="{{route('cursos.cursodetalle')}}/find/{{$search_value}}/precio_desc?page="+page;
             break;
             case 3:
-                window.location.href ="/oferta/estudio/find/{{$search_value}}/precio_asc?page="+page;
+                window.location.href ="{{route('cursos.cursodetalle')}}/find/{{$search_value}}/precio_asc?page="+page;
             break;
 
         }
@@ -200,12 +200,12 @@ if($seg == null){
     }
  function curso(page)
  {
-     window.location.href = "/oferta/estudio/"+page;
+     window.location.href = "{{route('cursos.cursodetalle')}}/"+page;
  }
 
    function addcart(id){
      $.ajax({
-         url: "/process/addcarrito",
+         url: "{{route('process.addcarrito')}}",
          type : 'GET',
          data: {
              "curso" : id

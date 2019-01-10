@@ -52,7 +52,7 @@
                     "g-recaptcha-response": e,
                     '_token': $('meta[name="csrf-token"]').attr('content')                                     
                 },
-                url: "/account/password/reset",
+                url: "{{route('emailresetear')}}",
                 type: 'POST'
                                ,
                 success: function(response){

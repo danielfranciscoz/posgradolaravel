@@ -11,7 +11,7 @@
 
           <!-- First Step -->
           <li class="completed">
-            <a href="/account/carrito">
+            <a href="{{route('carrito')}}">
               <span class="circle">1</span>
               <span class="label">Carrito de compras</span>
             </a>
@@ -43,7 +43,7 @@
             <div class="card white mb-4 mt-2">
                      <div class="card-body row">
                                 <div class="col-4 " >
-                                    <img src={{Session::get('cartItems')[$i]['Image_URL']}} class="w-100"/>
+                                    <img src={{route('cursos.index')}}{{Session::get('cartItems')[$i]['Image_URL']}} class="w-100"/>
                                 </div>
                                 <div class="col-8">
                                     <p style="margin-bottom:0"> <p class="h4-responsive font-weight-bold"  onclick='curso("{{Session::get('cartItems')[$i]['curso']}}");' style="cursor: pointer; margin-bottom:0;"> {{Session::get('cartItems')[$i]['curso'] }}</p>
@@ -86,7 +86,7 @@
                <div class="card col-md-4 col-sm-12 white mb-4 mt-2  sticky-top" style="height:200px ">
                 <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
                
-               <a class="btn btn-primary mt-2 w-95 mb-2" href="/account/pagarcarrito">Proceder al Pago</a>
+               <a class="btn btn-primary mt-2 w-95 mb-2" href="{{route('pagarcarrito')}}">Proceder al Pago</a>
                <div class="mt-2 d-flex justify-content-center grey-text">
                                 <i class="fa fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
                                 <i class="fa fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
@@ -121,7 +121,7 @@
 <script>
     function delcart(id){
         $.ajax({
-            url: "/process/delcarrito",
+            url: "{{route('process.delcarrito')}}",
             type : 'GET',
             data: {
                 "curso" : id
@@ -140,7 +140,9 @@
     }
     function curso(page)
     {
-        window.location.href = "/oferta/estudio/"+page;
+        window.location.href = "{{route('cursos.cursodetalle')}}/"+page;
     }
     
 </script>
+
+

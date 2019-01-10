@@ -26,10 +26,10 @@
 
 <div class=" {{$banner}} " >
 
-<div class="d-flex align-items-center justify-content-center flex-column imagen-banner " style="min-height:325px;">
-        <h1 class="h1-responsive text-white text-center font-weight-bold ">{{$curso->NombreCurso}} </h1>
-        <p class="text-white text-justify">{{$curso->Desc_Publicidad}} </p>
-</div>
+    <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:325px;background: url('{{route('cursos.index')}}/img/Papel tapiz/t.svg');">
+            <h1 class="h1-responsive text-white text-center font-weight-bold ">{{$curso->NombreCurso}} </h1>
+            <p class="text-white text-justify">{{$curso->Desc_Publicidad}} </p>
+    </div>
 </div>
 
 <h5 class="">  </strong></h5>
@@ -115,7 +115,7 @@
                             @for($i=0;$i<count($curso->docentes()->get());$i++)  
                              <div class="row   ">
                                             <div class="col-md-3 col-sm-12 ">
-                                                <img src="{{$curso->docentes()->get()[$i]->Image_URL}}" class="img-fluid rounded-circle" />
+                                                <img src="{{route('cursos.index')}}{{$curso->docentes()->get()[$i]->Image_URL}}" class="img-fluid rounded-circle" />
                                             </div>
                                             <div class="col-md-9 col-sm-12">
                                                 <div class="font-weight-bold primary-text" >
@@ -201,7 +201,7 @@
  $( "#alertaddcarrito").hide();
     function addcarrito(id){
         $.ajax({
-            url: "/process/addcarrito",
+            url: "{{route('process.addcarrito')}}",
             type : 'GET',
             data: {
                 "curso" : id

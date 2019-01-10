@@ -12,7 +12,7 @@
                         @endphp
                 @endfor
                 contentcarrito = [contentcarrito,'<p class="font-weight-bold col-12"> Total $ {{$totalcarrito}}   </p>', ].join('');
-                contentcarrito = [contentcarrito,'<a class="text-center col-12" href="/account/carrito">Ver Carrito</a></div>', ].join('');
+                contentcarrito = [contentcarrito,'<a class="text-center col-12" href="{{route('carrito')}}">Ver Carrito</a></div>', ].join('');
                 $("#carrito").popover({ 
                         title: 'Carrito de Compras',
                 content: contentcarrito,

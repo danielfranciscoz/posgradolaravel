@@ -40,8 +40,8 @@
                         
                          
                             <div class="flex-column">
-                                <p href="/account/registro" onclick="registroredirect()" class="font-small d-flex justify-content-center float-md-left primary-text  float-sm-none" style="cursor:hand">¿No tienes una cuenta?  </p>
-                                <p href="/account/password/reset"  onclick="resetredirect()" class="font-small  d-flex justify-content-center primary-text float-md-right float-sm-none"  style="cursor:hand">¿Olvido su Contraseña?  </p>
+                                <p onclick="registroredirect()" class="font-small d-flex justify-content-center float-md-left primary-text  float-sm-none" style="cursor:hand">¿No tienes una cuenta?  </p>
+                                <p  onclick="resetredirect()" class="font-small  d-flex justify-content-center primary-text float-md-right float-sm-none"  style="cursor:hand">¿Olvido su Contraseña?  </p>
                             
                             </div>
                            </div>
@@ -59,10 +59,10 @@
 $("#alertlogin").hide();
 
 function registroredirect(){
-    window.location.href = "/account/registro";
+    window.location.href = "{{route('registro')}}";
 }
 function resetredirect(){
-    window.location.href = "/account/password/reset";
+    window.location.href = "{{route('resetpassword')}}";
 }
 
  $("#loginForm").submit(function(e){
@@ -89,7 +89,7 @@ function resetredirect(){
                                 "email": user,
                                 "password":pass
                             },
-                            url: "/account/login",
+                            url: "{{route('process.login')}}",
                             type: 'get',
                             success: function(response){
                                 if(response.message =="success"){

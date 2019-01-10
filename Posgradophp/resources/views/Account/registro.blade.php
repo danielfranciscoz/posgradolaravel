@@ -134,11 +134,11 @@ $("#alertregistro").hide();
                     '_token': $('meta[name="csrf-token"]').attr('content')
                     
                 },
-                url: "/account/registro",
+                url: "{{route('registrar')}}",
                 type: 'POST'
                                ,
                 success: function(response){
-                        window.location.href = "/account/complete/"+response.message;
+                        window.location.href = "{{route('process.completeindex')}}"+response.message;
                     },
                 error: function(response){
                     $("#alertregistro").show();
