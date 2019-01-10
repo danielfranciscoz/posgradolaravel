@@ -378,7 +378,7 @@
                                         
                                 var searchcarrusel = $( "#searchcarruselinput").val();
                                 if( searchcarrusel.length > 0){
-                                    window.location.href  = "oferta/estudio/find/"+searchcarrusel;
+                                    window.location.href  = "{{route('cursos.searchroute')}}/"+searchcarrusel;
                                 }
                             });
 
