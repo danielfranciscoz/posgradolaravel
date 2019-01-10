@@ -300,7 +300,7 @@ UNI-DEPEC</title>
                
                 var search = $("#searchinput").val();
                 if( search.length > 0){
-                    window.location.href  = "/oferta/estudio/find/"+search;
+                    window.location.href  = "{{route('cursos.searchroute')}}/"+search; 
                 }
             };
 

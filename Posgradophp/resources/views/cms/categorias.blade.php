@@ -61,7 +61,7 @@
                     { "data": "Descripcion", "name": "Descripcion" },
                     { "data": "Descripcion_larga", "name": "Descripcion_larga" },
                     { "data": "Image_URL", "name": "Image_URL", render: function (data) {
-                           return  '<img src='+data+' class="img-fluid" />'
+                        return  '<img src= "{{route('cursos.index')}}/'+data+'" class="img-fluid" />'
                     }},
             ],
             @include('layout.lenguagetable')

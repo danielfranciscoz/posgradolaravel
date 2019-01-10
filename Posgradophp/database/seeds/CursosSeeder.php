@@ -20,8 +20,8 @@ class CursosSeeder extends Seeder
         //Realiza insert a la tabla, esto sirve para cuando se esta creando la base de datos desde cero
         Curso::create([
             'NombreCurso'=>'Programando en Java',
-            'Image_URL'=>'/img/Resources/cursos/test_img_0.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_0.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Con este curso el estudiante podra realizar un sinnumero de estudios',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -53,8 +53,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Programando en Python',
-            'Image_URL'=>'/img/Resources/cursos/test_img_1.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_1.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -84,8 +84,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Mestria en Laravel',
-            'Image_URL'=>'/img/Resources/cursos/test_img_3.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_3.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba para el curso de laravel',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -114,8 +114,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Desarrollo Web con Angular',
-            'Image_URL'=>'/img/Resources/cursos/test_img_4.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_4.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Angular, como el futuro de la web',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -146,8 +146,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Tecnicas de Pedagogia Virtual',
-            'Image_URL'=>'/img/Resources/cursos/test_img_5.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_5.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Implementacion de nuevas tecnologias TIC para impartir clases',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -177,8 +177,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Maquinas Virtuales (VWWare Station)',
-            'Image_URL'=>'/img/Resources/cursos/test_img_6.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_6.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -208,8 +208,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Matematicas Interactivas',
-            'Image_URL'=>'/img/Resources/cursos/test_img_7.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_7.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -239,8 +239,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Redaccion tecnica',
-            'Image_URL'=>'/img/Resources/cursos/test_img_8.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_8.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -271,8 +271,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Diseños arquitectonicos',
-            'Image_URL'=>'/img/Resources/cursos/test_img_9.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_9.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -302,8 +302,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Diseños',
-            'Image_URL'=>'/img/Resources/cursos/test_img_6.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_6.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -333,8 +333,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Diseños Prueba',
-            'Image_URL'=>'/img/Resources/cursos/test_img_3.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_3.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -364,8 +364,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Diseños 2',
-            'Image_URL'=>'/img/Resources/cursos/test_img_1.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_1.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -395,8 +395,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'Diseños 1',
-            'Image_URL'=>'/img/Resources/cursos/test_img_5.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_5.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
@@ -426,8 +426,8 @@ class CursosSeeder extends Seeder
 
         Curso::create([
             'NombreCurso'=>'arquitectonicos',
-            'Image_URL'=>'/img/Resources/cursos/test_img_2.png',
-            'Temario_URL'=>'/img/Resources/cursos/test_img_0.png',
+            'Image_URL'=>'img/Resources/cursos/test_img_2.png',
+            'Temario_URL'=>'img/Resources/cursos/test_img_0.png',
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',

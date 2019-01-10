@@ -16,26 +16,26 @@ class DocentesSeeder extends Seeder
             'Nombres'=>'Francisco Muñoz',
             'Profesion'=>'Ingeniero de Sistemas',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
-            'Image_URL'=>'/img/Resources/estudiantes/est1.jpg'
+            'Image_URL'=>'img/Resources/estudiantes/est1.jpg'
         ]);
 
         Docente::create([
             'Nombres'=>'Daniel Zamora',
             'Profesion'=>'Arquitecto',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
-            'Image_URL'=>'/img/Resources/estudiantes/est2.jpg'
+            'Image_URL'=>'img/Resources/estudiantes/est2.jpg'
         ]);
         Docente::create([
             'Nombres'=>'Yasser Montiel',
             'Profesion'=>'Ingeniero de Ciencias',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
-            'Image_URL'=>'/img/Resources/estudiantes/est3.jpg'
+            'Image_URL'=>'img/Resources/estudiantes/est3.jpg'
         ]);
         Docente::create([
             'Nombres'=>'Radamez Lozano',
             'Profesion'=>'Ingeniero de Software',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
-            'Image_URL'=>'/img/Resources/estudiantes/est4.jpg'
+            'Image_URL'=>'img/Resources/estudiantes/est4.jpg'
         ]);
 
         $docente = Docente::find(1);

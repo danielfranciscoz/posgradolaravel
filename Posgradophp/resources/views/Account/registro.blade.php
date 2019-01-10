@@ -44,7 +44,7 @@
                     <input type="password" id="password" class="form-control" placeholder="Contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock" required/>
                     <input type="password" id="repassword" class="form-control mt-4" placeholder="Repetir contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock" required />
                     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                        Al menos 8 caracteres y 1 dígito
+                        Al menos 6 caracteres 
                     </small>
                     
 
