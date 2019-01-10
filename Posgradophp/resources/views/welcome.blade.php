@@ -113,7 +113,7 @@
              </div >
              </section>
              <div class="d-flex align-items-center justify-content-center  flex-column blue darken-4" style="min-height:225px; ">
-                <div class="row mb-4">
+                <div class="row mb-4 ">
                     <div class="col-sm-12 col-md-4 text-center white-text mt-4">
                     <i class="fa fa-graduation-cap fa-4x" aria-hidden="true"></i> <br> <br>
                         +20.000 estudiantes
@@ -161,7 +161,7 @@
         </section>
         
 </div>
-<div class="d-flex align-items-center justify-content-center flex-column " style="min-height:575px; background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('/img/b_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+<div class="d-flex align-items-center justify-content-center flex-column " style="min-height:575px; background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('{{route('cursos.index')}}/img/b_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
 
         <!-- <img src="/img/b.jpg" class="w-md-100 h-100"/>         -->
         <h1 class="h1-responsive text-white text-center mt-4">¿Por qué estudiar con nosotros?</h1>
