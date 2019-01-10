@@ -75,7 +75,7 @@
                                <img class="card-img-top" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text" style="height:50px">{{$categories[$i]['Categoria']}}</h5>
-                                   <p class="card-text" style="height:100px">{{$categories[$i]['Descripcion']}}</p>
+                                   <p class="card-text" style="height:70px">{{$categories[$i]['Descripcion']}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>                                
                                    <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
                                </div>
@@ -101,7 +101,7 @@
                                <img class="card-img-top" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text" style="height:50px">{{$categories[$i]['Categoria']}}</h5>
-                                   <p class="card-text" style="height:100px">{{$categories[$i]['Descripcion']}}</p>
+                                   <p class="card-text" style="height:70px">{{$categories[$i]['Descripcion']}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>
     
                                </div>
@@ -144,7 +144,7 @@
                                <img class="card-img-top" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text" style="height:50px">{{$courses[$i]->NombreCurso}}</h5>
-                                   <p class="card-text" style="height:100px">{{$courses[$i]->Desc_Publicidad}}</p>
+                                   <p class="card-text" style="height:70px">{{$courses[$i]->Desc_Publicidad}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.cursodetalle')}}/{{$courses[$i]->NombreCurso}}" >VER MAS</a>
                                   
 
@@ -164,7 +164,7 @@
 <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:575px; background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('/img/b_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
 
         <!-- <img src="/img/b.jpg" class="w-md-100 h-100"/>         -->
-        <h1 class="h1-responsive text-white text-center">¿Por qué estudiar con nosotros?</h1>
+        <h1 class="h1-responsive text-white text-center mt-4">¿Por qué estudiar con nosotros?</h1>
         <p class="text-white text-center">Contamos con las mejores metodologías de enseñanza virtual, docentes calificados y una amplia gama de recursos mediáticos para facilitar el proceso enseñanza-aprendizaje</p>
 
         <section class="container pt-4">
@@ -264,7 +264,7 @@
        
         <div class="white pt-2">
         <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nuestro trabajo</h1>
-            <div class="d-flex align-items-center justify-content-center  row " style="height:250px; ">
+            <div class="d-flex align-items-center justify-content-center  row " style="min-height:250px; ">
 
                 <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" style="height:80px"/>       
                 <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" style="height:80px"/>                       
@@ -282,7 +282,7 @@
                     <h1 class="h1-responsive text-black-50 text-center ">Lo que opinan de nuestros estudiantes</h1>
                     <p class="text-black-50 text-center">Se parte de nuestra comunidad, y logra el éxito a través del aprendizaje en línea</p>
             </div>
-            <div class="container">
+            <div class="container ">
                 <section>
                     <!--First row-->
                     <div class="row features-small pb-3 wow fadeIn">
@@ -301,7 +301,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="container pt-0 mt-2 mb-5">
+                                    <div class="container pt-0 mt-2 mb-5  d-block d-sm-none">
                                         <div class="carousel-inner">
                                         @php $contador = 0;@endphp
 
@@ -313,7 +313,7 @@
                                                 @endif
 
                                                 <div class="card-deck h-100 mb-2" style="max-height:375px">
-                                                @php $tres = 3+$contador;@endphp
+                                                @php $tres = 1+$contador;@endphp
                                                 @for ($i = $contador; ($i < count($comentarios) && $i < $tres ); $i++)
                                                     <div class="card h-100 " style="max-height:375px" >                                                
                                                         <div class="card-body pt-2" >
@@ -324,7 +324,7 @@
                                                             class="card-title text-center" >{{$comentarios[$contador]['Nombre']}}
                                                             </a> <br>
                                                             
-                                                            <p class="card-text font-italic" style="height:100px">"{{$comentarios[$contador]['Comentario']}}"</p>
+                                                            <p class="card-text font-italic" style="min-height:100px">"{{$comentarios[$contador]['Comentario']}}"</p>
                                                             <hr>
                                                             <a class="card-meta"></a>
                                                             <p class="card-meta float-right" style="font-size:12;height:50px">{{$comentarios[$contador]['Profesion']}} - {{$comentarios[$contador]['Desc_Pais']}}</p>                                            
@@ -348,6 +348,57 @@
                                         
                                             
                                             
+                                    </div>
+                                    </div>
+
+                                    <div class="container pt-0 mt-2 mb-5 d-none d-md-block">
+                                        <div class="carousel-inner">
+                                        @php $contador2 = 0;@endphp
+
+                                            @while($contador2 < count($comentarios))
+                                                @if($contador2==0)
+                                                    <div class="carousel-item active">
+                                                @else
+                                                    <div class="carousel-item">
+                                                @endif
+
+                                                <div class="card-deck h-100 mb-2" style="max-height:375px">
+                                                @php $tres = 3+$contador2;@endphp
+                                                @for ($i = $contador2; ($i < count($comentarios) && $i < $tres ); $i++)
+                                                    <div class="card h-100 " style="max-height:375px" >                                                
+                                                        <div class="card-body pt-2" >
+                                                        <div class="d-flex justify-content-center">
+                                                            <img class="img-fluid rounded-circle"  style="max-height:150px; max-weight:150px" src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
+                                                        </div><br>
+                                                            <a
+                                                            class="card-title text-center" >{{$comentarios[$contador2]['Nombre']}}
+                                                            </a> <br>
+                                                            
+                                                            <p class="card-text font-italic" style="min-height:100px">"{{$comentarios[$contador2]['Comentario']}}"</p>
+                                                            <hr>
+                                                            <a class="card-meta"></a>
+                                                            <p class="card-meta float-right" style="font-size:12;height:50px">{{$comentarios[$contador2]['Profesion']}} - {{$comentarios[$contador2]['Desc_Pais']}}</p>                                            
+                                                        </div>            
+                                                    </div>
+                                                    @php $contador2++; @endphp
+                                                @endfor
+                                                @if(count($comentarios)%3!=0 && $contador2 == count($comentarios))   
+                                                @php $multiplo=count($comentarios); @endphp
+                                                    @while($multiplo%3!=0)
+                                                        <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent;max-height:375px;" >                        
+                                                        </div>
+                                                    @php $multiplo++; @endphp
+                                                    @endwhile
+        
+                                                @endif
+                                                </div>
+                                            </div>
+                                            
+                                            @endwhile
+                                        
+                                            
+                                            
+                                    </div>
                                     </div>
                                     </section>
 

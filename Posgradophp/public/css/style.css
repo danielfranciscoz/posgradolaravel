@@ -16,7 +16,8 @@ body,
 /* Adding color to the Navbar on mobile */
 @media only screen and (max-width: 768px) {
   .navbar {
-    background-color: #1C2331; } }
+    background-color: #1C2331; } 
+}
 
 /* Footer color for sake of consistency with Navbar */
 .page-footer {
@@ -38,6 +39,10 @@ body,
 }
 
 .dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu:target>.dropdown-menu {
     display: block;
 }
 
@@ -211,8 +216,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
     color: #fff;
    
 }
-
-
-
   .primary-text {
-    color: #0d47a1 !important; }
+    color: #0d47a1 !important; 
+}
+
+
+@media (max-width:576px) {
+          
+            .comentariosnav {
+                min-height: 325px;
+            }
+}

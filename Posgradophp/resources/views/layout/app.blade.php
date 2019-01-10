@@ -46,9 +46,10 @@ UNI-DEPEC</title>
        <a class="nav-link dropdown-toggle text-muted " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" ><i class="fa fa-folder-open-o fa-1x text-muted" aria-hidden="true"></i> Oferta Académica</a>
          <div class="dropdown">
-         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu" >
             <li class="dropdown-submenu">
-                <a  class="dropdown-item" tabindex="-1" href="#">Cursos Especializados</a>
+                <a  class="dropdown-item" tabindex="-1" onclick="event.preventDefault();
+    event.stopPropagation();">Cursos Especializados</a>
                 <ul class="dropdown-menu">
                     @foreach($categories as $categoria) 
                     @if($categoria->isCursoPosgrado)
@@ -58,7 +59,8 @@ UNI-DEPEC</title>
                 </ul>
                 </li> 
             <li class="dropdown-submenu">
-                <a  class="dropdown-item" tabindex="-1" href="#">Posgrados</a>
+                <a  class="dropdown-item" tabindex="-1"  onclick="event.preventDefault();
+    event.stopPropagation();">Posgrados</a>
                 <ul class="dropdown-menu">
                     @foreach($categories as $categoria)
                     @if($categoria->isCursoPosgrado == false) 
