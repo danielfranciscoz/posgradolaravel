@@ -286,120 +286,127 @@
                 <section>
                     <!--First row-->
                     <div class="row features-small pb-3 wow fadeIn">
-                                    <section class="carousel slide col-12" data-ride="carousel" id="carousel-cursos">
-                                    <div class="container" style="position: absolute; z-index: 99998; margin-top:15%">
-                                        <div class="d-flex " >
-                                            <div class="mr-auto" style="margin-left:-30px" >
-                                                    <a class="btn white btn-circle" href="#carousel-cursos" role="button" data-slide="prev">
-                                                    <i class="fa fa-chevron-left center-ico-button grey-text " aria-hidden="true"></i>                                            
-                                                </a>
-                                            </div>
-                                            <div class="ml-auto " style="margin-right:10px">
-                                                <a class="btn white btn-circle" href="#carousel-cursos" role="button" data-slide="next">
-                                                <i class="fa fa-chevron-right center-ico-button grey-text" aria-hidden="true"></i> 
-                                                </a>
+                                    <section class="carousel slide col-12 d-block d-sm-none" data-ride="carousel" id="carousel-cursossm">
+                                        <div class="container" style="position: absolute; z-index: 99998; margin-top:15%">
+                                            <div class="d-flex " >
+                                                <div class="mr-auto" style="margin-left:-30px" >
+                                                        <a class="btn white btn-circle" href="#carousel-cursossm" role="button" data-slide="prev">
+                                                        <i class="fa fa-chevron-left center-ico-button grey-text " aria-hidden="true"></i>                                            
+                                                    </a>
+                                                </div>
+                                                <div class="ml-auto " style="margin-right:10px">
+                                                    <a class="btn white btn-circle" href="#carousel-cursossm" role="button" data-slide="next">
+                                                    <i class="fa fa-chevron-right center-ico-button grey-text" aria-hidden="true"></i> 
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="container pt-0 mt-2 mb-5  d-block d-sm-none">
-                                        <div class="carousel-inner">
-                                        @php $contador = 0;@endphp
+                                        <div class="container pt-0 mt-2 mb-5  ">
+                                            <div class="carousel-inner">
+                                            @php $contador = 0;@endphp
 
-                                            @while($contador < count($comentarios))
-                                                @if($contador==0)
-                                                    <div class="carousel-item active">
-                                                @else
-                                                    <div class="carousel-item">
-                                                @endif
+                                                @while($contador < count($comentarios))
+                                                    @if($contador==0)
+                                                        <div class="carousel-item active">
+                                                    @else
+                                                        <div class="carousel-item">
+                                                    @endif
 
-                                                <div class="card-deck h-100 mb-2" style="max-height:375px">
-                                                @php $tres = 1+$contador;@endphp
-                                                @for ($i = $contador; ($i < count($comentarios) && $i < $tres ); $i++)
-                                                    <div class="card h-100 " style="max-height:375px" >                                                
-                                                        <div class="card-body pt-2" >
-                                                        <div class="d-flex justify-content-center">
-                                                            <img class="img-fluid rounded-circle"  style="max-height:150px; max-weight:150px" src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
-                                                        </div><br>
-                                                            <a
-                                                            class="card-title text-center" >{{$comentarios[$contador]['Nombre']}}
-                                                            </a> <br>
-                                                            
-                                                            <p class="card-text font-italic" style="min-height:100px">"{{$comentarios[$contador]['Comentario']}}"</p>
-                                                            <hr>
-                                                            <a class="card-meta"></a>
-                                                            <p class="card-meta float-right" style="font-size:12;height:50px">{{$comentarios[$contador]['Profesion']}} - {{$comentarios[$contador]['Desc_Pais']}}</p>                                            
-                                                        </div>            
-                                                    </div>
-                                                    @php $contador++; @endphp
-                                                @endfor
-                                                @if(count($comentarios)%3!=0 && $contador == count($comentarios))   
-                                                @php $multiplo=count($comentarios); @endphp
-                                                    @while($multiplo%3!=0)
-                                                        <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent;max-height:375px;" >                        
+                                                    <div class="card-deck h-100 mb-2 " style="max-height:375px">
+                                                    @php $tres = 1+$contador;@endphp
+                                                    @for ($i = $contador; ($i < count($comentarios) && $i < $tres ); $i++)
+                                                        <div class="card h-100 " style="max-height:375px" >                                                
+                                                            <div class="card-body pt-2" >
+                                                            <div class="d-flex justify-content-center">
+                                                                <img class="img-fluid rounded-circle"  style="max-height:150px; max-weight:150px" src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
+                                                            </div><br>
+                                                                <a
+                                                                class="card-title text-center" >{{$comentarios[$contador]['Nombre']}}
+                                                                </a> <br>
+                                                                
+                                                                <p class="card-text font-italic" style="min-height:80px">"{{$comentarios[$contador]['Comentario']}}"</p>
+                                                                <hr>
+                                                                <a class="card-meta"></a>
+                                                                <p class="card-meta float-right" style="font-size:12;height:50px">{{$comentarios[$contador]['Profesion']}} - {{$comentarios[$contador]['Desc_Pais']}}</p>                                            
+                                                            </div>            
                                                         </div>
-                                                    @php $multiplo++; @endphp
-                                                    @endwhile
-        
-                                                @endif
+                                                        @php $contador++; @endphp
+                                                    @endfor
+                                               
+                                                    </div>
+                                                </div>
+                                                
+                                                @endwhile
+                                            
+                                                
+                                                
+                                        </div>
+                                        </div>
+                                    </section>
+                                    <section class="carousel slide col-12 d-none d-md-block" data-ride="carousel" id="carousel-cursosmd">
+                                        <div class="container" style="position: absolute; z-index: 99998; margin-top:15%">
+                                            <div class="d-flex " >
+                                                <div class="mr-auto" style="margin-left:-30px" >
+                                                        <a class="btn white btn-circle" href="#carousel-cursosmd" role="button" data-slide="prev">
+                                                        <i class="fa fa-chevron-left center-ico-button grey-text " aria-hidden="true"></i>                                            
+                                                    </a>
+                                                </div>
+                                                <div class="ml-auto " style="margin-right:10px">
+                                                    <a class="btn white btn-circle" href="#carousel-cursosmd" role="button" data-slide="next">
+                                                    <i class="fa fa-chevron-right center-ico-button grey-text" aria-hidden="true"></i> 
+                                                    </a>
                                                 </div>
                                             </div>
-                                            
-                                            @endwhile
-                                        
-                                            
-                                            
-                                    </div>
-                                    </div>
+                                        </div>
+                                        <div class="container pt-0 mt-2 mb-5 ">
+                                            <div class="carousel-inner">
+                                            @php $contador2 = 0;@endphp
 
-                                    <div class="container pt-0 mt-2 mb-5 d-none d-md-block">
-                                        <div class="carousel-inner">
-                                        @php $contador2 = 0;@endphp
+                                                @while($contador2 < count($comentarios))
+                                                    @if($contador2==0)
+                                                        <div class="carousel-item active">
+                                                    @else
+                                                        <div class="carousel-item">
+                                                    @endif
 
-                                            @while($contador2 < count($comentarios))
-                                                @if($contador2==0)
-                                                    <div class="carousel-item active">
-                                                @else
-                                                    <div class="carousel-item">
-                                                @endif
-
-                                                <div class="card-deck h-100 mb-2" style="max-height:375px">
-                                                @php $tres = 3+$contador2;@endphp
-                                                @for ($i = $contador2; ($i < count($comentarios) && $i < $tres ); $i++)
-                                                    <div class="card h-100 " style="max-height:375px" >                                                
-                                                        <div class="card-body pt-2" >
-                                                        <div class="d-flex justify-content-center">
-                                                            <img class="img-fluid rounded-circle"  style="max-height:150px; max-weight:150px" src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
-                                                        </div><br>
-                                                            <a
-                                                            class="card-title text-center" >{{$comentarios[$contador2]['Nombre']}}
-                                                            </a> <br>
-                                                            
-                                                            <p class="card-text font-italic" style="min-height:100px">"{{$comentarios[$contador2]['Comentario']}}"</p>
-                                                            <hr>
-                                                            <a class="card-meta"></a>
-                                                            <p class="card-meta float-right" style="font-size:12;height:50px">{{$comentarios[$contador2]['Profesion']}} - {{$comentarios[$contador2]['Desc_Pais']}}</p>                                            
-                                                        </div>            
-                                                    </div>
-                                                    @php $contador2++; @endphp
-                                                @endfor
-                                                @if(count($comentarios)%3!=0 && $contador2 == count($comentarios))   
-                                                @php $multiplo=count($comentarios); @endphp
-                                                    @while($multiplo%3!=0)
-                                                        <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent;max-height:375px;" >                        
+                                                    <div class="card-deck h-100 mb-2" style="max-height:375px">
+                                                    @php $tres = 3+$contador2;@endphp
+                                                    @for ($i = $contador2; ($i < count($comentarios) && $i < $tres ); $i++)
+                                                        <div class="card h-100 " style="max-height:375px" >                                                
+                                                            <div class="card-body pt-2" >
+                                                            <div class="d-flex justify-content-center">
+                                                                <img class="img-fluid rounded-circle"  style="max-height:150px; max-weight:150px" src="{{$comentarios[$i]['Image_URL']}}" alt="comentario {{$comentarios[$i]['Nombre']}}">
+                                                            </div><br>
+                                                                <a
+                                                                class="card-title text-center" >{{$comentarios[$contador2]['Nombre']}}
+                                                                </a> <br>
+                                                                
+                                                                <p class="card-text font-italic" style="min-height:100px">"{{$comentarios[$contador2]['Comentario']}}"</p>
+                                                                <hr>
+                                                                <a class="card-meta"></a>
+                                                                <p class="card-meta float-right" style="font-size:12;height:50px">{{$comentarios[$contador2]['Profesion']}} - {{$comentarios[$contador2]['Desc_Pais']}}</p>                                            
+                                                            </div>            
                                                         </div>
-                                                    @php $multiplo++; @endphp
-                                                    @endwhile
-        
-                                                @endif
+                                                        @php $contador2++; @endphp
+                                                    @endfor
+                                                    @if(count($comentarios)%3!=0 && $contador2 == count($comentarios))   
+                                                    @php $multiplo=count($comentarios); @endphp
+                                                        @while($multiplo%3!=0)
+                                                            <div class="card h-100" style="-webkit-box-shadow:none; box-shadow:none; background:transparent;max-height:375px;" >                        
+                                                            </div>
+                                                        @php $multiplo++; @endphp
+                                                        @endwhile
+            
+                                                    @endif
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                
+                                                @endwhile
                                             
-                                            @endwhile
-                                        
-                                            
-                                            
-                                    </div>
-                                    </div>
+                                                
+                                                
+                                        </div>
+                                        </div>
                                     </section>
 
                                    
