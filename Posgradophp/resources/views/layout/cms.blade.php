@@ -22,7 +22,7 @@ UNI-DEPEC</title>
 </head>
 <body class="grey lighten-4">
 <nav class="navbar navbar-expand-lg navbar-dark indigo darken-4">
-<a class="navbar-brand" href="/admin">Posgrado</a>
+<a class="navbar-brand" href="{{route('admin.index')}}">Posgrado</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,9 +31,9 @@ UNI-DEPEC</title>
              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestiones</a>
                 <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item waves-effect waves-light" href="/admin/categorias">Categorias</a>
-                    <a class="dropdown-item waves-effect waves-light" href="/admin/cursos">Cursos</a>
-                    <a class="dropdown-item waves-effect waves-light" href="/admin/comentarios">Comentarios</a>
+                    <a class="dropdown-item waves-effect waves-light" href="{{route('admin.categorias')}}s">Categorias</a>
+                    <a class="dropdown-item waves-effect waves-light" href="">Cursos</a>
+                    <a class="dropdown-item waves-effect waves-light" href="{{route('admin.comentarios')}}">Comentarios</a>
                 </div>
             </li>
             <a class="nav-item btn btn-primary btn-sm" href="{{ route('cursos.index') }}">Ver sitio</a>

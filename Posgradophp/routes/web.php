@@ -18,8 +18,14 @@ Route::get('/curso', function(){
 });
 
 Route::group(['prefix' => 'oferta'], function() {
-    Route::get('categorias/{categoria?}/{orden?}','CursosController@categories')->name('cursos.categorias');
-    Route::get('maestrias/{orden?}','CursosController@maestrias')->name('cursos.maestrias');
+    Route::group(['prefix' => 'categorias'], function() {
+        Route::get('/{categoria?}/{orden?}','CursosController@categories')->name('cursos.categorias');
+        Route::get('/')->name('cursos.categoriadetalle');
+    });
+    Route::group(['prefix' => 'maestrias'], function() {
+        Route::get('/{orden?}','CursosController@maestrias')->name('cursos.maestrias');
+        Route::get('/')->name('cursos.maestriadetalle');
+    });
     
     Route::group(['prefix' => 'estudio'], function() {
         //Todos los cursos que cumplen con el criterio de busqueda
@@ -28,6 +34,8 @@ Route::group(['prefix' => 'oferta'], function() {
         //Informacion del curso
         Route::get('/{curso_name}','CursosController@curso')->name('cursos.curso');
 
+        Route::get('/')->name('cursos.cursodetalle');
+
     });
 });
 
@@ -35,6 +43,7 @@ Route::group(['prefix' => 'account'], function() {
     
     Route::get('/login','AccountController@loginUser')->name('process.login');
     Route::get('/complete/{token}','AccountController@RegistroCompleto')->middleware('logged')->name('process.complete');
+    Route::get('/complete')->middleware('logged')->name('process.completeindex');
     Route::post('/remail','AccountController@ReEmail')->name('process.remail');
     
     Route::get('/registro', 'AccountController@registro')->middleware('logged')->name('registro');
@@ -42,8 +51,8 @@ Route::group(['prefix' => 'account'], function() {
     
     Route::get('/verificar/{token}', 'AccountController@verificar')->name('verificar');
     
-    Route::get('/carrito','AccountController@carrito');
-    Route::get('/pagarcarrito','AccountController@resumencarrito');
+    Route::get('/carrito','AccountController@carrito')->name('carrito');
+    Route::get('/pagarcarrito','AccountController@resumencarrito')->name('pagarcarrito');
 
     //'middleware'=>'logged'
     Route::group(['prefix' => 'password','middleware'=>'logged'], function() {

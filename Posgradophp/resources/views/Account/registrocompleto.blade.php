@@ -41,7 +41,7 @@
                                     '_token': $('meta[name="csrf-token"]').attr('content')
                                     
                                 },
-                                url: "/account/remail",
+                                url: "{{route('process.remail')}}",
                                 type: 'POST'
                                             ,
                                 success: function(response){

@@ -17,7 +17,7 @@
 
 <!-- First Step -->
 <li class=" ">
-  <a href="/account/carrito">
+  <a href="{{route('carrito')}}">
     <span class="circle green">1</span>
     <span class="label font-weight-bold black-text">Carrito de compras</span>
   </a>
@@ -25,7 +25,7 @@
 
 <!-- Second Step -->
 <li class="completed">
-  <a href="/account/pagarcarrito">
+  <a href="{{route('pagarcarrito')}}">
     <span class="circle">2</span>
     <span class="label">Método de Pago</span>
   </a>

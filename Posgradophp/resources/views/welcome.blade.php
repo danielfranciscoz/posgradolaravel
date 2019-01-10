@@ -17,7 +17,7 @@
             <div class="" id="carrusel_Id">
                 <!--Mask-->
                 <div class="view">
-                  <img src="/img/b.jpg" class="w-md-100 h-100"/>
+                  <img src="{{URL::asset('img/b.jpg')}}" class="w-md-100 h-100"/>
                   <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
                         <div class="col-lg-4 col-md-12">
 
@@ -145,7 +145,7 @@
                                <div class="card-body">
                                    <h5 class="card-title primary-text" style="height:50px">{{$courses[$i]->NombreCurso}}</h5>
                                    <p class="card-text" style="height:100px">{{$courses[$i]->Desc_Publicidad}}</p>
-                                   <a class="card-text float-right font-weight-bold" href="/oferta/estudio/{{$courses[$i]->NombreCurso}}" >VER MAS</a>
+                                   <a class="card-text float-right font-weight-bold" href="{{route('cursos.cursodetalle')}}/{{$courses[$i]->NombreCurso}}" >VER MAS</a>
                                   
 
                                    <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
@@ -266,14 +266,14 @@
         <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nuestro trabajo</h1>
             <div class="d-flex align-items-center justify-content-center  row " style="height:250px; ">
 
-                <img src="/img/Resources/empresas/BAC.jpg" style="height:80px"/>       
-                <img src="/img/Resources/empresas/BDF.jpg" style="height:80px"/>                       
-                <img src="/img/Resources/empresas/CARGILL.jpg" style="height:80px"/>                       
-                <img src="/img/Resources/empresas/CEMEX.jpg" style="height:80px"/>                       
-                <img src="/img/Resources/empresas/LA-PRENSA.jpg" style="height:80px"/>                       
-                <img src="/img/Resources/empresas/MINED.jpg" style="height:80px"/>                       
-                <img src="/img/Resources/empresas/MTI.jpg" style="height:80px"/>                       
-                <img src="/img/Resources/empresas/NIMAC.jpg" style="height:80px"/>                       
+                <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" style="height:80px"/>       
+                <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" style="height:80px"/>                       
+                <img src="{{URL::asset('img/Resources/empresas/CARGILL.jpg')}}" style="height:80px"/>                       
+                <img src="{{URL::asset('img/Resources/empresas/CEMEX.jpg')}}" style="height:80px"/>                       
+                <img src="{{URL::asset('img/Resources/empresas/LA-PRENSA.jpg')}}" style="height:80px"/>                       
+                <img src="{{URL::asset('img/Resources/empresas/MINED.jpg')}}" style="height:80px"/>                       
+                <img src="{{URL::asset('img/Resources/empresas/MTI.jpg')}}" style="height:80px"/>                       
+                <img src="{{URL::asset('img/Resources/empresas/NIMAC.jpg')}}" style="height:80px"/>                       
 
             </div>
         </div>
