@@ -42,7 +42,7 @@
             "serverSide": true,
             "orderMulti": false,
             "ajax": {
-                "url": "/admin/categorias/search",
+                "url": "{{route('admin.searchcategorias')}}",
                 "type": "POST",
                 'data': {"_token": $('meta[name="csrf-token"]').attr('content')},        
                 "dataType": "JSON"

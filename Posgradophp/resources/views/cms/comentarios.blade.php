@@ -48,7 +48,7 @@
             "serverSide": true,
             "orderMulti": false,
             "ajax": {
-                "url": "/admin/comentarios/search",
+                "url": "{{route('admin.searchcomentarios')}}",
                 "type": "POST",
                 'data': {"_token": $('meta[name="csrf-token"]').attr('content')},        
                 "dataType": "JSON"
