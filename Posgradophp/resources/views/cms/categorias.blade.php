@@ -18,8 +18,8 @@
                             <th>id</th>
                             <th>Categoria</th>
                             <th>Tipo</th>
-                            <th>Descripcion</th>
-                            <th>Descripcion Completa</th>
+                            <th>Descripción</th>
+                            <th>Descripción Completa</th>
                             <th>Imagen</th>
                         </tr>
                     </thead>
