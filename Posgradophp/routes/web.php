@@ -50,6 +50,7 @@ Route::group(['prefix' => 'account'], function() {
     Route::get('/registro', 'AccountController@registro')->middleware('logged')->name('registro');
     Route::post('/registro', 'AccountController@registrar')->name('registrar');
     
+    Route::get('/verificar', 'AccountController@verificar')->name('verificar.url');
     Route::get('/verificar/{token}', 'AccountController@verificar')->name('verificar');
     
     Route::get('/carrito','AccountController@carrito')->name('carrito');
@@ -57,6 +58,7 @@ Route::group(['prefix' => 'account'], function() {
 
     //'middleware'=>'logged'
     Route::group(['prefix' => 'password','middleware'=>'logged'], function() {
+        
         Route::post('/reset', 'AccountController@sendEmailreset')->name('emailresetear');
         Route::get('/reset', 'AccountController@reset')->name('resetpassword');
         

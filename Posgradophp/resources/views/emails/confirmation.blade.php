@@ -23,7 +23,7 @@
 <p>Gracias por confiar en nosotros tu camino de aprendizaje.<br><br> Ya falta poco para terminar, por favor verifica tu cuenta dando click en el siguiente enlace:<br /><br />
 </p>
 
-<a title="Verificación de cuenta" href="http://localhost:8000/account/verificar/{{$user->token}}" target="_blank" >Verificación de cuenta</a><br /><br />
+<a title="Verificación de cuenta" href="{{route('verificar.url')}}/{{$user->token}}" target="_blank" >Verificación de cuenta</a><br /><br />
 <p>Si el enlace anterior no funciona, entonces por favor copia y pega la siguiente dirección en la barra de búsqueda de tu navegador: <strong>http://localhost:8000/account/verificar/{{$user->token}}</strong></p>
 <br />
 <p>Atentamente,<br /><br /><strong>Equipo de Posgrado </strong><br /> <strong>Universidad Nacional de Ingenier&iacute;a</strong></p>

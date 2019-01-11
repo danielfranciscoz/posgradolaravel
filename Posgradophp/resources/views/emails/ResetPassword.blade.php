@@ -23,7 +23,7 @@
 <p>Al parecer has olvidado la contraseña de tu cuenta, pero no te preocupes, vamos a solucionar tu problema.<br><br> Por favor presiona click en el siguiente enlace:<br /><br />
 </p>
 
-<a title="Cambio de contraseña" href="http://localhost:8000/account/password/reset/{{$user->token}}" target="_blank" >Cambio de contraseña</a><br /><br />
+<a title="Cambio de contraseña" href="{{route('resetpassword')}}/{{$user->token}}" target="_blank" >Cambio de contraseña</a><br /><br />
 <p>Si el enlace anterior no funciona, entonces por favor copia y pega la siguiente dirección en la barra de búsqueda de tu navegador: <strong>http://localhost:8000/account/password/reset/{{$user->token}}</strong></p>
 <br />
 <p>Atentamente,<br /><br /><strong>Equipo de Posgrado </strong><br /> <strong>Universidad Nacional de Ingenier&iacute;a</strong></p>
