@@ -3,7 +3,7 @@
 @section('content')
  
 
-<main class=" mx-4">
+<main class="mx-4">
 @if(Session::has('cartItems'))
 
     <div class="container ">
@@ -42,14 +42,14 @@
             @php $totalcarrito=$totalcarrito + Session::get('cartItems')[$i]['Precio']; @endphp
             <div class="card white mb-4 mt-2">
                      <div class="card-body row">
-                                <div class="col-4 " >
+                                <div class="col-md-4 col-sm-6 d-flex justify-content-center  align-items-center " >
                                     <img src="{{route('cursos.index')}}/{{Session::get('cartItems')[$i]['Image_URL']}}" class="w-100"/>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-md-8 col-sm-6 ">
                                     <p style="margin-bottom:0"> <p class="h4-responsive font-weight-bold"  onclick='curso("{{Session::get('cartItems')[$i]['curso']}}");' style="cursor: pointer; margin-bottom:0;"> {{Session::get('cartItems')[$i]['curso'] }}</p>
-                                    <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{Session::get('cartItems')[$i]['horas']}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
-                                Certificación &nbsp <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>
-                                Recursos Descargables</p>
+                                    <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{Session::get('cartItems')[$i]['horas']}} Horas Clase &nbsp <br class="d-block d-sm-none">
+                                    <i class="fa fa-certificate grey-text" aria-hidden="true">  </i>                               Certificación &nbsp <br class="d-block d-sm-none">
+                                    <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>                                Recursos Descargables</p>
                                     </p>
                                     
                                     <h5 class="font-weight-bold float-left "  style="color:#b71c1c "> 
@@ -101,7 +101,7 @@
     </div>
 
     
-    <h5 class="h5-responsive mt-4 text-center mb-5 font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
+    <h5 class="h5-responsive mt-4 text-center mb-5 font-weight-bold d-none d-md-block">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
     @else
   
     <div class="container" >

@@ -27,8 +27,8 @@
 <div class=" {{$banner}} " >
 
     <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:325px;background: url('{{route('cursos.index')}}/img/Papel tapiz/t.svg');">
-            <h1 class="h1-responsive text-white text-center font-weight-bold ">{{$curso->NombreCurso}} </h1>
-            <p class="text-white text-justify">{{$curso->Desc_Publicidad}} </p>
+            <h1 class="h1-responsive text-white text-center font-weight-bold mx-4">{{$curso->NombreCurso}} </h1>
+            <p class="text-white text-justify mx-4">{{$curso->Desc_Publicidad}} </p>
     </div>
 </div>
 

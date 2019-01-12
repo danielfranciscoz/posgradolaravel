@@ -11,13 +11,13 @@
         <!--/.Indicators-->
 
         <!--Slides-->
-        <div class="" role="listbox" style="max-height:600px">
+        <div class="h-50 w-100 d-block d-sm-none" role="listbox" style="max-height:600px">
 
             <!--First slide-->
             <div class="" id="carrusel_Id">
                 <!--Mask-->
                 <div class="view">
-                  <img src="{{URL::asset('img/b.jpg')}}" class="w-md-100 h-100"/>
+                  <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100"/>
                   <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
                         <div class="col-lg-4 col-md-12">
 
@@ -28,8 +28,46 @@
                                   Howard G. Hendricks
                               </p>
                               <div class="input-group md-form form-sm form-2 pl-0">
-                              <input class="form-control my-0 py-1 red-border" id="searchcarruselinput" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
-                              <div class="input-group-append" id="btnsearchcarrusel" >
+                              <input class="form-control my-0 py-1 red-border" id="searchcarruselinputsm" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
+                              <div class="input-group-append" id="btnsearchcarruselsm" >
+                                <a class="input-group-text btn-primary white-text"  ><i class="fa fa-search white-text"  aria-hidden="true"></i></a>
+                              </div>
+                            </div>
+                            </div>
+                            <!--/.Panel-->
+
+                          </div>
+                  </div>
+
+                </div>
+                <!--/Mask-->
+            </div>
+            <!--/First slide-->
+
+            <!--Second slide-->
+           
+         
+        </div>
+
+        <div class="h-100 w-100 d-none d-md-block" role="listbox" style="max-height:600px">
+
+            <!--First slide-->
+            <div class="" id="carrusel_Id">
+                <!--Mask-->
+                <div class="view">
+                  <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100"/>
+                  <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
+                        <div class="col-lg-4 col-md-12">
+
+            <!--Panel-->
+                            <div class="card card-body white-text" style=" background-color:rgba( 255, 255,255, 0.1)">  
+                                <h4 class="card-text black-text text-justify  white-text"  > "La enseñanza que deja huella no es la que se hace de cabeza a cabeza, sino de corazón a corazón" </h4>                          
+                              <p class="card-text white-text"> 
+                                  Howard G. Hendricks
+                              </p>
+                              <div class="input-group md-form form-sm form-2 pl-0">
+                              <input class="form-control my-0 py-1 red-border" id="searchcarruselinputmd" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
+                              <div class="input-group-append" id="btnsearchcarruselmd" >
                                 <a class="input-group-text btn-primary white-text"  ><i class="fa fa-search white-text"  aria-hidden="true"></i></a>
                               </div>
                             </div>
@@ -70,17 +108,19 @@
             @for ($i = 0; $i < count($categories); $i++)
            
                     @if($categories[$i]->isCursoPosgrado == 1)
-                       <div class="col-md-3 col-sm-12 mb-4" style="height:450px">
-                           <div class="card h-100 wow fadeIn" style="height:450px">
-                               <img class="card-img-top" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
+                       <div class="col-md-3 col-sm-12 mb-4 " style="max-height:350px;height: 75% !important;" >
+                           <div class="card h-100 wow fadeIn"  >
+                               <img class="card-img-top h-50" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text" style="height:50px">{{$categories[$i]['Categoria']}}</h5>
-                                   <p class="card-text" style="height:70px">{{$categories[$i]['Descripcion']}}</p>
-                                   <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>                                
+                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important;"  >{{$categories[$i]['Categoria']}}</h5>
+                                   <p class="card-text mb-4 " style="height: 10% !important;">{{$categories[$i]['Descripcion']}}</p>
+                                   <a class="card-text float-right  font-weight-bold " href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>                                
                                    <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
                                </div>
                            </div>
                        </div>
+
+                      
                       @endif                     
             @endfor               
              </div>
@@ -96,12 +136,12 @@
             @for ($i = 0; $i < count($categories); $i++)
            
                     @if($categories[$i]->isCursoPosgrado == 0)
-                       <div class="col-md-3 col-sm-12 mb-4" style="height:450px">
-                           <div class="card h-100 wow fadeIn" style="height:450px">
-                               <img class="card-img-top" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
+                       <div class="col-md-3 col-sm-12 mb-4 " style="max-height:350px; height: 75% !important;" >
+                           <div class="card h-100 wow fadeIn" >
+                               <img class="card-img-top h-50" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text" style="height:50px">{{$categories[$i]['Categoria']}}</h5>
-                                   <p class="card-text" style="height:70px">{{$categories[$i]['Descripcion']}}</p>
+                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important;" >{{$categories[$i]['Categoria']}}</h5>
+                                   <p class="card-text mb-4 text-justify" style="height: 10% !important;">{{$categories[$i]['Descripcion']}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>
     
                                </div>
@@ -139,12 +179,12 @@
                
             @for ($i = 0; $i < count($courses); $i++)
                              
-                         <div class="col-md-3 col-sm-12 mb-4" style="height:400px">
-                           <div class="card h-100 wow fadeIn" style="max-height:400px">
-                               <img class="card-img-top" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
+                         <div class="col-md-3 col-sm-12 mb-4"  style="max-height:350px;height: 75% !important;" >
+                           <div class="card h-100 wow fadeIn" >
+                               <img class="card-img-top h-50" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text" style="height:50px">{{$courses[$i]->NombreCurso}}</h5>
-                                   <p class="card-text" style="height:70px">{{$courses[$i]->Desc_Publicidad}}</p>
+                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important;"  >{{$courses[$i]->NombreCurso}}</h5>
+                                   <p class="card-text mb-4 "  style="height: 10% !important;">{{$courses[$i]->Desc_Publicidad}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.cursodetalle')}}/{{$courses[$i]->NombreCurso}}" >VER MAS</a>
                                   
 
@@ -264,7 +304,7 @@
        
         <div class="white pt-2">
         <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nuestro trabajo</h1>
-            <div class="d-flex align-items-center justify-content-center  row " style="min-height:250px; ">
+            <div class="d-flex align-items-center justify-content-center  row " style="max-height:360px; ">
 
                 <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" style="height:80px"/>       
                 <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" style="height:80px"/>                       
@@ -289,12 +329,12 @@
                                     <section class="carousel slide col-12 d-block d-sm-none" data-ride="carousel" id="carousel-cursossm">
                                         <div class="container" style="position: absolute; z-index: 99998; margin-top:15%">
                                             <div class="d-flex " >
-                                                <div class="mr-auto" style="margin-left:-30px" >
+                                                <div class="mr-auto" style="margin-left:-5%" >
                                                         <a class="btn white btn-circle" href="#carousel-cursossm" role="button" data-slide="prev">
                                                         <i class="fa fa-chevron-left center-ico-button grey-text " aria-hidden="true"></i>                                            
                                                     </a>
                                                 </div>
-                                                <div class="ml-auto " style="margin-right:10px">
+                                                <div class="ml-auto " style="margin-right:3%">
                                                     <a class="btn white btn-circle" href="#carousel-cursossm" role="button" data-slide="next">
                                                     <i class="fa fa-chevron-right center-ico-button grey-text" aria-hidden="true"></i> 
                                                     </a>
@@ -431,22 +471,43 @@
 
 @section('endscript')
                     <script>
-                            $('#btnsearchcarrusel').click(function(){
+                            $('#btnsearchcarruselsm').click(function(){
                     
                                         
-                                var searchcarrusel = $( "#searchcarruselinput").val();
+                                var searchcarruselsm = $( "#searchcarruselinputsm").val();
                                 if( searchcarrusel.length > 0){
-                                    window.location.href  = "{{route('cursos.searchroute')}}/"+searchcarrusel;
+                                    window.location.href  = "{{route('cursos.searchroute')}}/"+searchcarruselsm;
                                 }
                             });
 
-                        var inputentercarrusel = document.getElementById("searchcarruselinput");
-                        inputentercarrusel.addEventListener("keyup", function(event) {
+                        var inputentercarruselsm = document.getElementById("searchcarruselinputsm");
+                        inputentercarruselsm.addEventListener("keyup", function(event) {
                                 event.preventDefault();
                                 if (event.keyCode === 13) {
-                                    document.getElementById("btnsearchcarrusel").click();
+                                    document.getElementById("btnsearchcarruselsm").click();
                                 }
                             });
+
+                            $('#btnsearchcarruselmd').click(function(){
+                    
+                                        
+                            var searchcarruselmd = $( "#searchcarruselinputmd").val();
+                            if( searchcarruselmd.length > 0){
+                                window.location.href  = "{{route('cursos.searchroute')}}/"+searchcarruselmd;
+                            }
+                        });
+
+                    var inputentercarruselmd = document.getElementById("searchcarruselinputmd");
+                    inputentercarruselmd.addEventListener("keyup", function(event) {
+                            event.preventDefault();
+                            if (event.keyCode === 13) {
+                                document.getElementById("btnsearchcarruselmd").click();
+                            }
+                        });
+
+
+
+                            
 
                             window.onscroll = function () { scrollFunction() };
         function scrollFunction() {

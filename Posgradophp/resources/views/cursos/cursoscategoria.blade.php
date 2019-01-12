@@ -19,7 +19,7 @@
                     </ol>
                 </nav>
                 @if($cursos->isNotEmpty())
-                <div class="col-6 mt-4">
+                <div class="col-md-6 col-sm-12 mt-4">
                     <h6 class="h6-responsive font-weight-bold">Disponemos de {{$cursos->total()}}  
                                         @if($categoria->isCursoPosgrado)
                                             Curso(s) de especialización
@@ -30,7 +30,7 @@
                     </h6>
                     </div>
               
-                <div class="col-6 d-flex justify-content-end  align-items-center">
+                <div class="col-md-6 col-sm-12 d-flex justify-content-end  align-items-center">
                         <label>Ordenar por:</label> &nbsp
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="sorden">
                             <option value="1">Mas Reciente</option>

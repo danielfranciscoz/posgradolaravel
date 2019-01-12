@@ -86,7 +86,12 @@ UNI-DEPEC</title>
             <span class="input-group-text btn-primary waves-effect " id="buttonsearch" onclick="searchnav();"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>
-            <a id="carrito" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100" style="min-width: 70px; " class="btn btn-primary"  ><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i></a>
+
+             <div class="d-block d-sm-none font-weight-bold "><a id="carritosm" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 " style="min-width:70px;"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i>&nbsp;&nbsp;Inversion Total  @if(isset( $GLOBALS["totalcarrito"])) $ {{ $GLOBALS["totalcarrito"]}}@else $ 0 @endif</a></div>
+      
+             <div class="d-none d-md-block font-weight-bold "><a id="carritomd" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 " style="min-width:70px;"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i></a></div>
+      
+             
             @guest        
                 <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold" style="min-width: 150px; background: #424242; " data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
                 <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect font-weight-bold" style="min-width: 150px">Registrate</button>
@@ -97,6 +102,7 @@ UNI-DEPEC</title>
               @endif
             <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{ Auth::user()->estudiante->PrimerNombre . ' '. Auth::user()->estudiante->PrimerApellido}} &nbsp;</a> 
                 <a class="" style="width:80px" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  <i class="fa fa-sign-out fa-1x red-text text-right" aria-hidden="true"></i> </a>
+                
                 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -183,7 +189,7 @@ UNI-DEPEC</title>
                     <div class="col-md-3 mx-auto">
                         <h6 class="h6-responsive font-weight-bold">Maestrías</h6>
                         @foreach ($courses->take(8) as $d)
-                            <li ><a href="{{route('cursos.categorias',$d->NombreCurso)}}">{{$d->NombreCurso}}</a></li>                            
+                            <li ><a href="{{route('cursos.curso',$d->NombreCurso)}}">{{$d->NombreCurso}}</a></li>                            
                         @endforeach
                     </div>
 

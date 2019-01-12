@@ -15,10 +15,10 @@
               
                
                 @if($cursos->isNotEmpty())
-                <h5 class="col-6 mt-4 font-weight-bold">{{$cursos->total()}} resultado(s) para {{$search_value}} <strong> </strong></h5>
+                <h5 class="col-md-6 col-sm-12 mt-4 font-weight-bold">{{$cursos->total()}} resultado(s) para {{$search_value}} <strong> </strong></h5>
              
                
-                <div class="col-6 d-flex justify-content-end  align-items-center font-weight-bold">
+                <div class="col-md-6 col-sm-12 d-flex justify-content-end  align-items-center font-weight-bold">
                         <label>Ordenar por: </label>&nbsp
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="sorden">
                             <option value="1">Más reciente</option>
