@@ -110,10 +110,10 @@
                     @if($categories[$i]->isCursoPosgrado == 1)
                        <div class="col-md-3 col-sm-12 mb-4 " style="max-height:350px;height: 75% !important;" >
                            <div class="card h-100 wow fadeIn"  >
-                               <img class="card-img-top h-50" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
+                               <img class="card-img-top h-50" style="max-height:175px" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; "  >{{$categories[$i]['Categoria']}}</h5>
-                                   <p class="card-text mb-5 " style="height: 10% !important; font-size:0.75rem;"">{{$categories[$i]['Descripcion']}}</p>
+                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px "  >{{$categories[$i]['Categoria']}}</h5>
+                                   <p class="card-text mb-5 " style="height: 10% !important; font-size:0.75rem;">{{$categories[$i]['Descripcion']}}</p>
                                    <a class="card-text float-right  font-weight-bold " href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>                                
                                    <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
                                </div>
@@ -138,9 +138,9 @@
                     @if($categories[$i]->isCursoPosgrado == 0)
                        <div class="col-md-3 col-sm-12 mb-4 " style="max-height:350px; height: 75% !important;" >
                            <div class="card h-100 wow fadeIn" >
-                               <img class="card-img-top h-50" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
+                               <img class="card-img-top h-50" style="max-height:175px" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important;" >{{$categories[$i]['Categoria']}}</h5>
+                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px" >{{$categories[$i]['Categoria']}}</h5>
                                    <p class="card-text mb-5 text-justify" style="height: 10% !important; font-size:0.75rem;">{{$categories[$i]['Descripcion']}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>
     
@@ -181,9 +181,9 @@
                              
                          <div class="col-md-3 col-sm-12 mb-4"  style="max-height:350px;height: 75% !important;" >
                            <div class="card h-100 wow fadeIn" >
-                               <img class="card-img-top h-50" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
+                               <img class="card-img-top h-50" style="max-height:175px" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important;"  >{{$courses[$i]->NombreCurso}}</h5>
+                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px;"  >{{$courses[$i]->NombreCurso}}</h5>
                                    <p class="card-text mb-5 "  style="height: 10% !important;font-size:0.75rem;">{{$courses[$i]->Desc_Publicidad}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.cursodetalle')}}/{{$courses[$i]->NombreCurso}}" >VER MAS</a>
                                   
