@@ -7,11 +7,12 @@
     }
 </style>
 <main>
-    <div class=" card white mt-5 mx-5 mb-4">
+
+    <div class=" card white mt-5 mx-4 mb-4">
         <div class="card-body">
             <h4 class="font-weight-bold h4-responsive">Comentarios</h4>
             {{csrf_field()}}
-            <a class="btn btn-sm green darken-4 white-text font-weight-bold"> <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Nuevo</a>
+            <a class="btn btn-sm green darken-4 white-text font-weight-bold" onclick="openmodal()"> <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Nuevo</a>
             <a class="btn btn-sm yellow darken-4 white-text font-weight-bold"><i class="fa fa-edit" aria-hidden="true">&nbsp; </i>Editar</a>
             <a class="btn btn-sm red darken-4 white-text font-weight-bold"><i class="fa fa-trash" aria-hidden="true"> </i>&nbsp;Eliminar</a>
         
@@ -37,11 +38,14 @@
 
 </main>
 
+@include('cms.modalComentarios')
+
 @endsection
 
 @section('endscript')
 
 <script>
+    paises();
     $('#table1').DataTable( {
             select: true,
             "processing": true,
@@ -68,5 +72,30 @@
             @include('layout.lenguagetable')
 
         } );
+
+        function openmodal(){
+            $('#modalcomentarios').modal('show');
+        }
+
+        function paises(){
+            $.ajax(
+                        {
+                            
+                            url: "https://restcountries.eu/rest/v2/",
+                            type: 'get',
+                            success: function(response){                             
+
+                                response.forEach(function(element) {
+                                    $('#pais').append($('<option>', { 
+                                        value: element.name,
+                                        text : element.name 
+                                        }));
+                                    });
+                                  
+                            }                                                       
+                        
+                        }
+                    );
+        }
 </script>
 @endsection

@@ -296,7 +296,7 @@ UNI-DEPEC</title>
     
       $(document).ready(function() {
                 new WOW().init();
-                
+            $('.mdb-select').materialSelect();
             $('[data-toggle="popover"]').popover();
            
            
