@@ -29,7 +29,7 @@ class ComentariosRequest extends FormRequest
             'Profesion'=>'required',
             'Desc_Pais'=>'required',
             'Comentario'=>'required|max:2000',
-            'Image_URL'=>'required',
+            'Imagen'=>'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=250,max_width=250'
         ];
     }
 
@@ -37,7 +37,7 @@ class ComentariosRequest extends FormRequest
     {
         return [
             'Desc_Pais.required'=>'El campo pais es obligatorio',
-            'Image_URL.required'=>'La Imagen es obligatoria'           
+            // 'Image_URL.required'=>'La Imagen es obligatoria'           
         ];
     }
 }

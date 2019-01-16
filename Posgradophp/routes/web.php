@@ -87,11 +87,19 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
         Route::group(['prefix' => 'categorias'], function() {
             Route::get('/','CategoriasController@index')->name('admin.categorias');
             Route::post('/search','CategoriasController@searchcategorias')->name('admin.searchcategorias');  
-        });  
-        Route::group(['prefix' => 'comentarios'], function() {
-            Route::get('/','ComentariosController@index')->name('admin.comentarios');
-            Route::post('/search','ComentariosController@searchcomentarios')->name('admin.searchcomentarios'); 
         }); 
+        
+       
+        Route::group(['prefix' => 'comentarios'], function() {
+            // Route::get('/','ComentariosController@index')->name('admin.comentarios');
+            Route::post('/search','ComentariosController@searchcomentarios')->name('admin.searchcomentarios');
+            Route::post('/save','ComentariosController@uploadphoto')->name('admin.uploadphotocometarios'); 
+        }); 
+        Route::resource('comentarios','ComentariosController')->names([
+            'index'=>'admin.comentarios',
+            'store'=>'admin.comentariosSave',
+            // 'searchcomentarios'=>'admin.searchcomentarios'
+        ]);
 });
 
 /*

@@ -35,23 +35,11 @@
                     <label>Comentario</label>
                     <textarea type="text" id="comentario" class="md-textarea form-control" rows="3"></textarea>
  
-                   
-                
-                        <div class="input-default-wrapper mt-3">
-
-                            <span class="input-group-text mb-3" id="input1">Upload</span>
-
-                            <input type="file" id="file-with-current" class="input-default-js">
-
-                            <label class="label-for-default-js rounded-right mb-3" for="file-with-current"><span class="span-choose-file">Choose
-                                file</span>
-
-                            <div class="float-right span-browse">Browse</div>
-
-                            </label>
-
-                        </div>
-                       
+                    <i class="fa fa-keyboard prefix grey-text"></i>
+                    <label>imagen</label>
+                    <input type="file" id="file" name="file" class="form-control"/>
+                    
+                             
 
             </div>
             
@@ -63,10 +51,10 @@
                         <div class="col-12 ">
                         
                         <div class="d-flex justify-content-center align-items-center text-justify row container ml-1">
-                            <div class="alert alert-danger col-12" role="alert" id="alertlogin">
+                            <div class="alert alert-danger col-12" role="alert" id="alertmodalcomentarios">
                             
                             </div>
-                            <button class="btn btn-sm btn-primary " id="btnsesion">Guardar</button>
+                            <button class="btn btn-sm btn-primary " id="but_upload">Guardar</button>
                         </div>
                         
                          

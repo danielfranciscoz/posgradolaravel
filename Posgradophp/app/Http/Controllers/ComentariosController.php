@@ -94,7 +94,13 @@ class ComentariosController extends Controller
             $original->Profesion = $comentario->Profesion;
             $original->Desc_Pais = $comentario->Desc_Pais;
             $original->Comentario = $comentario->Comentario;
-            $original->Image_URL = $comentario->Image_URL;
+
+            if($original->Image_URL != $request->input('Image_URL'))
+            {
+                File::delete(public_path($comentario->Image_URL));
+                $original->Image_URL = $this->uploadphoto($request);
+            }
+            
             
             $original->save();
 
@@ -143,7 +149,7 @@ class ComentariosController extends Controller
         $comentario->Profesion = $request->input('Profesion');
         $comentario->Desc_Pais = $request->input('Desc_Pais');
         $comentario->Comentario = $request->input('Comentario');
-        $comentario->Image_URL = $request->input('Image_URL');
+        $comentario->Image_URL = $this->uploadphoto($request);
         
         return $comentario;
         
@@ -186,5 +192,14 @@ class ComentariosController extends Controller
                 'recordsFiltered' => $totalRecords, 
                 'recordsTotal' => $totalRecords, 
                 'data' => $data ]);
+    }
+
+    public function uploadphoto(Request $request){
+        // $this->validate($request,['file'=>'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=250,max_width=250']);
+
+        $image = $request->file('Imagen');
+        $new_name =  rand().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path("img/Resources/estudiantes"),$new_name);
+        return 'img/Resources/estudiantes/'.$new_name;
     }
 }

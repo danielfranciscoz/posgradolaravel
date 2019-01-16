@@ -38,6 +38,8 @@
 
 </main>
 
+
+
 @include('cms.modalComentarios')
 
 @endsection
@@ -45,8 +47,10 @@
 @section('endscript')
 
 <script>
+
+$("#alertmodalcomentarios").hide();
     paises();
-    $('#table1').DataTable( {
+    var table = $('#table1').DataTable( {
             select: true,
             "processing": true,
             "serverSide": true,
@@ -97,5 +101,66 @@
                         }
                     );
         }
+
+
+        $("#but_upload").click(function(){
+            
+            var fd = new FormData();
+            var files = $('#file')[0].files[0];          
+            fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
+            fd.append('Imagen',files);
+            fd.append('Nombre',$('#estudiante').val());
+            fd.append('Profesion',$('#profesion').val());
+            fd.append('Desc_Pais',$('#pais').val());
+            fd.append('Comentario',$('#comentario').val());
+            
+            $.ajax({
+                url: "{{route('admin.comentariosSave')}}",
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                  
+                   if(response.message=="exito."){
+                    table.ajax.reload();
+                   } $("#alertmodalcomentarios").show();
+                
+                },
+                error: function(response){
+                   
+                    var str = "";
+                                $("#alertmodalcomentarios").show();
+                                for(var i=0;i<response.responseJSON.errors.Nombre.length;i++){
+                                    
+                                    str= str +'<b>'+response.responseJSON.errors.Nombre[i]+'</b><br></br>';                                  
+                                }
+                                
+                            
+                                for(var i=0;i<response.responseJSON.errors.Profesion.length;i++){
+                                    
+                                    str= str +'<b>'+response.responseJSON.errors.Profesion[i]+'</b><br></br>';                                  
+                                }
+                                for(var i=0;i<response.responseJSON.errors.Comentario.length;i++){
+                                    
+                                    str= str +'<b>'+response.responseJSON.errors.Comentario[i]+'</b><br></br>';                                  
+                                }
+                                
+                                for(var i=0;i<response.responseJSON.errors.Imagen.length;i++){
+                                    
+                                    str= str +'<b>'+response.responseJSON.errors.Imagen[i]+'</b><br></br>';                                  
+                                }
+                                
+                                $("#alertmodalcomentarios").html(str);
+                }
+            });
+            });
+
+            $('#modalcomentarios').on('hidden.bs.modal', function (e) {
+                $("#alertmodalcomentarios").hide();
+            })
+
+//            fd.append('Image_URL',$('#Image_URL').val());
+
 </script>
 @endsection
