@@ -134,7 +134,7 @@ class ComentariosController extends Controller
             $original->save();
     
             return response()->json([
-                'message'=>'exito.'
+                'message'=>'exito'
             ]);
             
         } catch (Exception $e) {

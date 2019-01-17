@@ -121,10 +121,10 @@ $("#alertmodalcomentarios").hide();
                 contentType: false,
                 processData: false,
                 success: function(response){
-                  
-                   if(response.message=="exito."){
+                  console.log(response.message);
+                   if(response.message=="exito"){
                     table.ajax.reload();
-                   } $("#alertmodalcomentarios").show();
+                   } $("#modalcomentarios").modal('hide');
                 
                 },
                 error: function(response){
@@ -158,9 +158,21 @@ $("#alertmodalcomentarios").hide();
 
             $('#modalcomentarios').on('hidden.bs.modal', function (e) {
                 $("#alertmodalcomentarios").hide();
-            })
+            }) 
+            
+            function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-//            fd.append('Image_URL',$('#Image_URL').val());
+                reader.onload = function (e) {
+                    $('#picturepreview').attr('src', e.target.result);
+                }
 
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        
 </script>
 @endsection

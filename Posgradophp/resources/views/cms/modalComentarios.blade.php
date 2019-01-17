@@ -34,14 +34,29 @@
                     <i class="fa fa-keyboard prefix grey-text"></i>
                     <label>Comentario</label>
                     <textarea type="text" id="comentario" class="md-textarea form-control" rows="3"></textarea>
- 
-                    <i class="fa fa-keyboard prefix grey-text"></i>
-                    <label>imagen</label>
-                    <input type="file" id="file" name="file" class="form-control"/>
+                  
+                    <i class="fa fa-image prefix grey-text"></i>
+                    <label>Imagen</label> <br>
+                    <img src=""/>
+                    <div class="input-default-wrapper mt-3 " id="upload_button">
+
+                    <img id="picturepreview" src="#" alt="Sin Imagen" />
+
+                        <input type="file" id="file" class="input-default-js" onchange="readURL(this);">
+
+                        <label class="label-for-default-js rounded-right mb-3" for="file"><span class="span-choose-file btn btn-sm btn-primary">Subir Imagen</span>
+
+                            
+
+                        </label>
+
+                     </div>
                     
                              
 
             </div>
+
+            
             
             <div class="d-flex justify-content-center">
                 
@@ -54,7 +69,7 @@
                             <div class="alert alert-danger col-12" role="alert" id="alertmodalcomentarios">
                             
                             </div>
-                            <button class="btn btn-sm btn-primary " id="but_upload">Guardar</button>
+                            <a class="btn btn-sm btn-primary col-12 " id="but_upload">Guardar</a>
                         </div>
                         
                          
@@ -68,3 +83,12 @@
         </div>
     </div>
 </div>
+
+<style>
+#upload_button {
+  display: inline-block;
+}
+#upload_button input[type=file] {
+  display:none;
+}
+</style>
