@@ -8,9 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <script>
-             
-            </script>
+           
             <div class=" ml-5 mr-5">
             
                     <i class="fa fa-user prefix grey-text"></i>
@@ -37,10 +35,10 @@
                   
                     <i class="fa fa-image prefix grey-text"></i>
                     <label>Imagen</label> <br>
-                    <img src=""/>
+                   
                     <div class="input-default-wrapper mt-3 " id="upload_button">
 
-                    <img id="picturepreview" src="#" alt="Sin Imagen" />
+                    <img id="picturepreview" src="#" alt="Sin Imagen" class="img-fluid"/>
 
                         <input type="file" id="file" class="input-default-js" onchange="readURL(this);">
 

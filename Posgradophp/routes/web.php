@@ -98,6 +98,9 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
         Route::resource('comentarios','ComentariosController')->names([
             'index'=>'admin.comentarios',
             'store'=>'admin.comentariosSave',
+           
+            'destroy'=>'admin.comentariosDelete',
+            'update'=>'admin.comentariosUpdate',
             // 'searchcomentarios'=>'admin.searchcomentarios'
         ]);
 });
