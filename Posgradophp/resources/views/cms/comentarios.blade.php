@@ -225,7 +225,7 @@ $("#alertmodaldelete").hide();
             $("#btn_delete").click(function(){           
               
                 $.ajax({
-                    url: "{{route('admin.comentariosUpdate')}}",
+                    url: "{{route('admin.comentariosUpdate',['comentario'=>'','id'=>''])}}",
                     type: 'delete',
                     data: {"id":id},
                     contentType: false,
@@ -264,7 +264,7 @@ $("#alertmodaldelete").hide();
                                     $("#alertmodaldelete").html(str);
                     }
                 });
-            }
+            });
 
             $('#modalcomentarios').on('hidden.bs.modal', function (e) {
                 $("#alertmodalcomentarios").hide();
