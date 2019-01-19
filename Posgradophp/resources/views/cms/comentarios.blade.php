@@ -178,26 +178,42 @@ $("#alertmodaldelete").hide();
                     
                         var str = "";
                                     $("#alertmodalcomentarios").show();
-                                    for(var i=0;i<response.responseJSON.errors.Nombre.length;i++){
-                                        
-                                        str= str +'<b>'+response.responseJSON.errors.Nombre[i]+'</b><br></br>';                                  
-                                    }
+                                    if (typeof response.responseJSON.errors.Nombre != "undefined") {
+                                   
                                     
-                                
-                                    for(var i=0;i<response.responseJSON.errors.Profesion.length;i++){
-                                        
-                                        str= str +'<b>'+response.responseJSON.errors.Profesion[i]+'</b><br></br>';                                  
-                                    }
-                                    for(var i=0;i<response.responseJSON.errors.Comentario.length;i++){
-                                        
-                                        str= str +'<b>'+response.responseJSON.errors.Comentario[i]+'</b><br></br>';                                  
-                                    }
-                                    
-                                    for(var i=0;i<response.responseJSON.errors.Imagen.length;i++){
-                                        
-                                        str= str +'<b>'+response.responseJSON.errors.Imagen[i]+'</b><br></br>';                                  
-                                    }
-                                    
+                                   for(var i=0;i<response.responseJSON.errors.Nombre.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.Nombre[i]+'</b><br></br>';                                  
+                                   }
+                               }
+                               
+                           
+                               if (typeof response.responseJSON.errors.Profesion != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.Profesion.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.Profesion[i]+'</b><br></br>';                                  
+                              }
+                            }
+                          
+                            if (typeof response.responseJSON.errors.Comentario != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.Comentario.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.Comentario[i]+'</b><br></br>';                                  
+                              }
+                            }
+                               
+                            if (typeof response.responseJSON.errors.Imagen != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.Imagen.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.Imagen[i]+'</b><br></br>';                                  
+                              }
+                            }
                                     $("#alertmodalcomentarios").html(str);
                     }
                 });
@@ -207,17 +223,74 @@ $("#alertmodaldelete").hide();
                 var fd = new FormData();
                 var files = $('#file')[0].files[0];          
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
-                
+                fd.append('id',id);
+                fd.append('_method','put');                
                 fd.append('Nombre',$('#estudiante').val());
                 fd.append('Profesion',$('#profesion').val());
                 fd.append('Desc_Pais',$('#pais').val());
                 fd.append('Comentario',$('#comentario').val());
 
-               if(files==null){
+               //if(files==null){
                 fd.append('Image_URL',files);
-               }else{
+               //}else{
                 fd.append('Imagen',files);
-               }
+               //}
+               $.ajax({
+                    url: "{{route('admin.comentariosSave')}}/"+id,
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                    console.log(response.message);
+                    if(response.message=="exito"){
+                        table.ajax.reload();
+                    } $("#modalcomentarios").modal('hide');
+                    
+                    },
+                    error: function(response){
+                    
+                        var str = "";
+                                    $("#alertmodalcomentarios").show();
+                                    if (typeof response.responseJSON.errors.Nombre != "undefined") {
+                                   
+                                    
+                                        for(var i=0;i<response.responseJSON.errors.Nombre.length;i++){
+                                            
+                                            str= str +'<b>'+response.responseJSON.errors.Nombre[i]+'</b><br></br>';                                  
+                                        }
+                                    }
+                                    
+                                
+                                    if (typeof response.responseJSON.errors.Profesion != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.Profesion.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.Profesion[i]+'</b><br></br>';                                  
+                                   }
+                                 }
+                               
+                                 if (typeof response.responseJSON.errors.Comentario != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.Comentario.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.Comentario[i]+'</b><br></br>';                                  
+                                   }
+                                 }
+                                    
+                                 if (typeof response.responseJSON.errors.Imagen != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.Imagen.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.Imagen[i]+'</b><br></br>';                                  
+                                   }
+                                 }
+                                    $("#alertmodalcomentarios").html(str);
+                    }
+                });
              
             }
             });
@@ -225,11 +298,15 @@ $("#alertmodaldelete").hide();
             $("#btn_delete").click(function(){           
               
                 $.ajax({
-                    url: "{{route('admin.comentariosUpdate',['comentario'=>'','id'=>''])}}",
-                    type: 'delete',
-                    data: {"id":id},
-                    contentType: false,
-                    processData: false,
+                    url: "{{route('admin.comentarios')}}/"+id,
+                    type: 'post',
+                    dataType: "JSON",
+                    data: {
+                        'id':id,
+                        '_method': 'delete',
+                       '_token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    
                     success: function(response){
                     console.log(response.message);
                     if(response.message=="exito"){
