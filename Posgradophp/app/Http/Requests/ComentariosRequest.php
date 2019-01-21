@@ -24,13 +24,15 @@ class ComentariosRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'Nombre'=>'required',
-            'Profesion'=>'required',
-            'Desc_Pais'=>'required',
-            'Comentario'=>'required|max:2000',
-            'Imagen'=>'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=250,max_width=250'
-        ];
+        
+            return [
+                'Nombre'=>'required',
+                'Profesion'=>'required',
+                'Desc_Pais'=>'required',
+                'Comentario'=>'required|max:2000',
+                'Imagen'=>'sometimes|required|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=250,max_width=250'
+            ];
+       
     }
 
     public function messages()
