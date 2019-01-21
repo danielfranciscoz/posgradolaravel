@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comentario;
 use App\Http\Requests\ComentariosRequest;
-use Illuminate\Support\Facades\Storage;
 
 class ComentariosController extends Controller
 {
@@ -40,8 +39,6 @@ class ComentariosController extends Controller
     {
         try {
             $comentario = $this->AsignarData($request);
-            $comentario->Image_URL = $this->uploadphoto($request);
-
             $comentario->save();
             
             return response()->json([
@@ -83,24 +80,15 @@ class ComentariosController extends Controller
      */
     public function update(ComentariosRequest $request, $id)
     {
-        
         $comentario = $this->AsignarData($request);
-        $comentario->Image_URL = $request->input('Image_URL');
         $original = Comentario::find($id);
-        
+
         if ($original == null) {
-    
             return response()->json([
                 'error'=>'El comentario no ha sido encontrado en la base de datos'
-                
             ]);
         }
-
-        try {            
-
-            return response()->json([
-                'ruta'=>public_path($original->Image_URL)
-            ]);
+       try {
     
             $original->Nombre = $comentario->Nombre;
             $original->Profesion = $comentario->Profesion;
@@ -109,7 +97,7 @@ class ComentariosController extends Controller
 
             if($original->Image_URL != $request->input('Image_URL'))
             {
-                unlink(public_path($original->Image_URL));
+                File::delete(public_path($comentario->Image_URL));
                 $original->Image_URL = $this->uploadphoto($request);
             }
             
@@ -161,7 +149,7 @@ class ComentariosController extends Controller
         $comentario->Profesion = $request->input('Profesion');
         $comentario->Desc_Pais = $request->input('Desc_Pais');
         $comentario->Comentario = $request->input('Comentario');
-        
+        $comentario->Image_URL = $this->uploadphoto($request);
         
         return $comentario;
         

@@ -231,7 +231,7 @@ $("#alertmodaldelete").hide();
                 fd.append('Comentario',$('#comentario').val());
 
                //if(files==null){
-                fd.append('Image_URL','AQUI NECESITO LA URL DE LA IMAGEN VIEJA, ES DECIR LA URL DE LA IMAGEN ACTUAL');
+                fd.append('Image_URL', img_url);
                //}else{
                 fd.append('Imagen',files);
                //}
