@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categoria;
 use App\Http\Requests\CategoriaRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriasController extends Controller
 {
@@ -39,10 +40,12 @@ class CategoriasController extends Controller
     {
         try {
             $categoria = $this->AsignarData($request);
+            $categoria->Image_URL = $this->uploadphoto($request);
+
             $categoria->save();
             
             return response()->json([
-                'message'=>'exito.'
+                'message'=>'exito'
             ]);
         } catch (Exception $e) {
             return report($e);
@@ -78,9 +81,10 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoriaRequest $request, $id)
     {
         $categoria = $this->AsignarData($request);
+        $categoria->Image_URL = $request->input('Image_URL');
         $original = Categoria::find($id);
 
         if ($original == null) {
@@ -88,18 +92,26 @@ class CategoriasController extends Controller
                 'error'=>'La categoria no ha sido encontrada en la base de datos'
             ]);
         }
+
        try {
     
-            $original->isCursoPosgrado = $comentario->isCursoPosgrado;
-            $original->Categoria = $comentario->Categoria;
-            $original->Image_URL = $comentario->Image_URL;
-            $original->Descripcion = $comentario->Descripcion;
-            $original->Descripcion_larga = $comentario->Descripcion_larga;
+            $original->isCursoPosgrado = $categoria->isCursoPosgrado;
+            $original->Categoria = $categoria->Categoria;
+            $original->Descripcion = $categoria->Descripcion;
+            $original->Descripcion_larga = $categoria->Descripcion_larga;
             
+            if($original->Image_URL != $request->input('Image_URL'))
+            {
+                if(file_exists(public_path($original->Image_URL))){
+                    unlink(public_path($original->Image_URL));
+                }
+                $original->Image_URL = $this->uploadphoto($request);
+            }
+
             $original->save();
 
             return response()->json([
-                'message'=>'exito.'
+                'message'=>'exito'
             ]);
     
         } catch (Exception $e) {
@@ -128,7 +140,7 @@ class CategoriasController extends Controller
             $original->save();
     
             return response()->json([
-                'message'=>'exito.'
+                'message'=>'exito'
             ]);
             
         } catch (Exception $e) {
@@ -141,7 +153,6 @@ class CategoriasController extends Controller
         $categoria = new Categoria();
         $categoria->isCursoPosgrado = $request->input('isCursoPosgrado');
         $categoria->Categoria = $request->input('Categoria');
-        $categoria->Image_URL = $request->input('Image_URL');
         $categoria->Descripcion = $request->input('Descripcion');
         $categoria->Descripcion_larga = $request->input('Descripcion_larga');
         
@@ -186,5 +197,14 @@ class CategoriasController extends Controller
                 'recordsFiltered' => $totalRecords, 
                 'recordsTotal' => $totalRecords, 
                 'data' => $data ]);
+    }
+
+    
+    public function uploadphoto(Request $request){
+     
+        $image = $request->file('Imagen');
+        $new_name =  rand().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path("img/Resources/categorias"),$new_name);
+        return 'img/Resources/categorias/'.$new_name;
     }
 }

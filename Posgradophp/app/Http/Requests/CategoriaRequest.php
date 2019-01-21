@@ -26,7 +26,7 @@ class CategoriaRequest extends FormRequest
         return [
             'isCursoPosgrado'=>'required',
             'Categoria'=>'required',
-            'Image_URL'=>'required',
+            'Imagen'=>'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=550,max_width=720',
             'Descripcion'=>'required',
         ];
     }
@@ -35,7 +35,7 @@ class CategoriaRequest extends FormRequest
     {
         return [
             'Desc_Pais.required'=>'El campo pais es obligatorio',
-            'Image_URL.required'=>'La Imagen es obligatoria'           
+            'Imagen.required'=>'La Imagen es obligatoria'           
         ];
     }
 }

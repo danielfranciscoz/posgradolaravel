@@ -133,11 +133,11 @@ $("#alertmodaldelete").hide();
                 var fd = new FormData();
                 var files = $('#file')[0].files[0];          
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
-                fd.append('Imagen_Url',files);
+                fd.append('Imagen',files);
                 fd.append('Categoria',$('#categoria').val());
                 fd.append('isCursoPosgrado',$('#tipo').val());
                 fd.append('Descripcion',$('#descripcion').val());
-                fd.append('Descripcion_Larga',$('#descripcionlarga').val());
+                fd.append('Descripcion_larga',$('#descripcionlarga').val());
                 
                 $.ajax({
                     url: "{{route('admin.categoriasSave')}}",
@@ -212,16 +212,18 @@ $("#alertmodaldelete").hide();
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
                 fd.append('id',id);
                 fd.append('_method','put');                
-                fd.append('Imagen_Url',files);
+                //fd.append('Imagen',files);
                 fd.append('Categoria',$('#categoria').val());
                 fd.append('isCursoPosgrado',$('#tipo').val());
                 fd.append('Descripcion',$('#descripcion').val());
-                fd.append('Descripcion_Larga',$('#descripcionlarga').val());
+                fd.append('Descripcion_larga',$('#descripcionlarga').val());
 
-               //if(files==null){
-                fd.append('Image_URL','AQUI NECESITO LA URL DE LA IMAGEN VIEJA, ES DECIR LA URL DE LA IMAGEN ACTUAL');
-               //}else{        
-               //}
+                if(files==null){
+                fd.append('Image_URL', img_url);
+               }else{
+                fd.append('Image_URL', "");
+                fd.append('Imagen',files);
+               }
                $.ajax({
                     url: "{{route('admin.categoriasSave')}}/"+id,
                     type: 'post',

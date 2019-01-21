@@ -230,11 +230,12 @@ $("#alertmodaldelete").hide();
                 fd.append('Desc_Pais',$('#pais').val());
                 fd.append('Comentario',$('#comentario').val());
 
-               //if(files==null){
+               if(files==null){
                 fd.append('Image_URL', img_url);
-               //}else{
+               }else{
+                fd.append('Image_URL', "");
                 fd.append('Imagen',files);
-               //}
+               }
                $.ajax({
                     url: "{{route('admin.comentariosSave')}}/"+id,
                     type: 'post',
