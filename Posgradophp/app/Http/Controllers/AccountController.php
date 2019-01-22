@@ -15,6 +15,7 @@ use App\Mail\ConfirmationUser;
 use App\Mail\ResetPassword;
 use Illuminate\Support\Facades\Mail;
 use App\Rules\ValidRecaptcha;
+use App\Models\Cursoprecio;
 
 class AccountController extends Controller
 {
@@ -284,4 +285,107 @@ class AccountController extends Controller
             ]);
     }
 
+
+      
+    public function addcarrito(Request $request)
+    { 
+        
+        $id= $request->input('curso');
+        // $request->session()->flush();
+        $curso = Cursoprecio::with('curso')->where('id',$id)->get();
+        
+        if(count($curso) == 0)
+        {
+            return response()->json([
+                'error' => 'Se encuentra intentando agregar un curso que no existe',
+                'message' => 'error'
+                ]);
+        }
+
+        $existid = false;
+
+        $caritems = Session::get('cartItems');
+        
+        if(is_array($caritems)){
+            $count = count($caritems);
+        }else{
+            $count=0;
+        }
+
+        for($i=0;$i<$count;$i++)
+        {
+            if(Session::get('cartItems')[$i]['id']== $id){
+            return response()->json([
+                'error' => 'Ya fue agregado al carrito',
+                'message' => 'error'
+                ]);
+                    $existid = true;
+                }                   
+        }
+    
+        if($existid == false){
+        Session::push('cartItems', [
+            'id' => $curso->get(0)->id, //Tabla precioCurso
+            'curso' => $curso->get(0)->Curso()->get()[0]->NombreCurso, //tabla curso
+            'Image_URL'=> $curso->get(0)->Curso()->get()[0]->Image_URL,
+            'horas' =>  $curso->get(0)->Curso()->get()[0]->HorasClase,
+            'Precio' => $curso->get(0)->Precio
+            
+            ]); 
+        }
+
+        return response()->json([
+            'message' => Session::get('cartItems')]);
+         
+    }
+
+    public function delcarrito(Request $request)
+    {  
+        $id= $request->input('curso');
+        $existid = false;
+        
+        $caritems = Session::get('cartItems');
+
+        if(is_array($caritems)){
+            $count = count($caritems);
+        }else{
+            $count=0;
+        }
+
+        if($count > 0){
+
+            for($i=0;$i<$count;$i++){
+
+                    if(Session::get('cartItems')[$i]['id']== $id){
+                        
+                        $existid == true;
+                        
+                        $arraysession = $caritems;
+                        Session::forget('cartItems');
+                        
+                        unset($arraysession[$i]); 
+                        
+                        foreach($arraysession as $data ){
+                            Session::push('cartItems', $data);
+                        }
+       
+                        return response()->json([
+                            
+                            'message' => Session::get('cartItems')
+                            ]);
+                    }
+                }
+            }  
+        if($existid==false){
+            return response()->json([
+                'error' => 'Elemento del carrito no existe o ya fue eliminado',
+                'message' => 'error'
+                ]);
+                    $existid = true;
+                }
+        }
+
+    
+
+    
 }

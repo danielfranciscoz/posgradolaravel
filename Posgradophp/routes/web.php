@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'CursosController@index')->name('cursos.index');
+Route::get('/', 'HomeController@index')->name('cursos.index');
 
 Route::get('/curso', function(){
     return redirect()->route('cursos.index');
@@ -69,8 +69,8 @@ Route::group(['prefix' => 'account'], function() {
 
 Route::group(['prefix' => 'process'],function(){
 
-    Route::get('/addcarrito','CursosController@addcarrito')->name('process.addcarrito');
-    Route::get('/delcarrito','CursosController@delcarrito')->name('process.delcarrito');
+    Route::get('/addcarrito','AccountController@addcarrito')->name('process.addcarrito');
+    Route::get('/delcarrito','AccountController@delcarrito')->name('process.delcarrito');
 });
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -93,6 +93,14 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
             'store'=>'admin.categoriasSave',           
             'destroy'=>'admin.categoriasDelete',
             'update'=>'admin.categoriasUpdate',
+           
+        ]);
+
+        Route::resource('docentes','DocentesController')->names([
+            'index'=>'admin.docentes',
+            'store'=>'admin.docentesSave',           
+            'destroy'=>'admin.docentesDelete',
+            'update'=>'admin.docentesUpdate',
            
         ]);
        

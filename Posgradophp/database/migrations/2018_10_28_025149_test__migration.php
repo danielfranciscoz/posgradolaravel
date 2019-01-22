@@ -95,6 +95,7 @@ class TestMigration extends Migration
             $table->string('Nombres');
             $table->string('Profesion');
             $table->string('Descripcion');
+            $table->string('LinkedIn_URL')->nullable();
             $table->string('Image_URL');
             $table->timestamps(); 
             $table->softDeletes();           

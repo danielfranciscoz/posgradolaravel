@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categoria;
-use App\Http\Requests\CategoriaRequest;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Docente;
 use App\Clases\uploadPhoto;
 
-class CategoriasController extends Controller
+class DocentesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,7 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-                
-        return view('cms/categorias');
+        return view('cms.docentes');
     }
 
     /**
@@ -37,16 +34,16 @@ class CategoriasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoriaRequest $request)
+    public function store(Request $request)
     {
         try {
-            $categoria = $this->AsignarData($request);
-            $categoria->Image_URL = $this->uploadphoto($request);
+            $docente = $this->AsignarData($request);
+            $docente->Image_URL = $this->uploadphoto($request);
 
-            $categoria->save();
+            $docente->save();
             
             return response()->json([
-                'message'=>'exito'
+                'message'=>'exito.'
             ]);
         } catch (Exception $e) {
             return report($e);
@@ -82,33 +79,33 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoriaRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $categoria = $this->AsignarData($request);
-        $categoria->Image_URL = $request->input('Image_URL');
-        $original = Categoria::find($id);
-
+        $docente = $this->AsignarData($request);
+        $docente->Image_URL = $request->input('Image_URL');
+        $original = Docente::find($id);
+        
         if ($original == null) {
+    
             return response()->json([
-                'error'=>'La categoria no ha sido encontrada en la base de datos'
+                'error'=>'El docente no ha sido encontrado en la base de datos'
+                
             ]);
         }
 
-       try {
+        try {            
     
-            $original->isCursoPosgrado = $categoria->isCursoPosgrado;
-            $original->Categoria = $categoria->Categoria;
-            $original->Descripcion = $categoria->Descripcion;
-            $original->Descripcion_larga = $categoria->Descripcion_larga;
-            
+            $original->Nombres = $comentario->Nombres;
+            $original->Profesion = $comentario->Profesion;
+            $original->Descripcion = $comentario->Descripcion;
+            $original->LinkedIn_URL = $comentario->LinkedIn_URL;
+
             if($original->Image_URL != $request->input('Image_URL'))
             {
-                if(file_exists(public_path($original->Image_URL))){
-                    unlink(public_path($original->Image_URL));
-                }
+                unlink(public_path($original->Image_URL));
                 $original->Image_URL = $this->uploadphoto($request);
             }
-
+                        
             $original->save();
 
             return response()->json([
@@ -128,11 +125,11 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        $original = Categoria::find($id);
+        $original = Docente::find($id);
 
         if ($original == null) {
             return response()->json([
-                'error'=>'La categoria no ha sido encontrada en la base de datos'
+                'error'=>'El docente no ha sido encontrado en la base de datos'
             ]);
         }
        try {
@@ -149,19 +146,19 @@ class CategoriasController extends Controller
         }
     }
 
-    public function AsignarData(CategoriaRequest $request){
+    public function AsignarData(ComentariosRequest $request){
 
-        $categoria = new Categoria();
-        $categoria->isCursoPosgrado = $request->input('isCursoPosgrado');
-        $categoria->Categoria = $request->input('Categoria');
-        $categoria->Descripcion = $request->input('Descripcion');
-        $categoria->Descripcion_larga = $request->input('Descripcion_larga');
-        
-        return $categoria;
+        $docente = new Docente();
+        $docente->Nombres = $request->input('Nombres');
+        $docente->Profesion = $request->input('Profesion');
+        $docente->Descripcion = $request->input('Descripcion');
+        $docente->LinkedIn_URL = $request->input('LinkedIn_URL');
+       
+        return $docente;
         
     }
 
-    public function searchcategorias(Request $request){
+    public function searchcomentarios(Request $request){
 
         $draw = $request->input("draw");
         $start = $request->input("start");
@@ -177,12 +174,12 @@ class CategoriasController extends Controller
         
         $totalRecords = 0;
 
-        $v = Categoria::where('deleted_at',null);
+        $v = Docente::where('deleted_at',null);
 
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
         if (strlen($searchv) !=0) {
-            $v = $v->Where('Categoria','LIKE','%'.$searchv.'%');
+            $v = $v->Where('Nombres','LIKE','%'.$searchv.'%');
         }
         
         if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
@@ -202,6 +199,6 @@ class CategoriasController extends Controller
 
     public function uploadphoto(Request $request){
         $f = new uploadPhoto();
-        return $f->upload($request,"img/Resources/categorias");
+        return $f->uploadphoto($request,"img/Resources/docentes");
     }
 }

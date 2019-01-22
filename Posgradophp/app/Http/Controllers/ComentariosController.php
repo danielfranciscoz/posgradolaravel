@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Comentario;
 use App\Http\Requests\ComentariosRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Clases\uploadPhoto;
 
 class ComentariosController extends Controller
 {
@@ -202,11 +203,7 @@ class ComentariosController extends Controller
     }
 
     public function uploadphoto(Request $request){
-        // $this->validate($request,['file'=>'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=250,max_width=250']);
-
-        $image = $request->file('Imagen');
-        $new_name =  rand().'.'.$image->getClientOriginalExtension();
-        $image->move(public_path("img/Resources/estudiantes"),$new_name);
-        return 'img/Resources/estudiantes/'.$new_name;
+        $f = new uploadPhoto();
+        return $f->upload($request,"img/Resources/estudiantes");
     }
 }

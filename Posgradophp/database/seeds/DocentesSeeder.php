@@ -16,14 +16,16 @@ class DocentesSeeder extends Seeder
             'Nombres'=>'Francisco Muñoz',
             'Profesion'=>'Ingeniero de Sistemas',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
-            'Image_URL'=>'img/Resources/estudiantes/est1.jpg'
+            'Image_URL'=>'img/Resources/estudiantes/est1.jpg',
+            'LinkedIn_URL'=>'linkedin.com/in/daniel-zamora-3b525414b'
         ]);
 
         Docente::create([
             'Nombres'=>'Daniel Zamora',
             'Profesion'=>'Arquitecto',
             'Descripcion'=>'Destacado desarrollador, con 5 años de experiencia, perteneciente al MVA, Google Developers Team',
-            'Image_URL'=>'img/Resources/estudiantes/est2.jpg'
+            'Image_URL'=>'img/Resources/estudiantes/est2.jpg',
+            'LinkedIn_URL'=>'linkedin.com/in/daniel-zamora-3b525414b'
         ]);
         Docente::create([
             'Nombres'=>'Yasser Montiel',
