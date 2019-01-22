@@ -150,7 +150,7 @@ class ComentariosController extends Controller
         }
     }
 
-    public function AsignarData(ComentariosRequest $request){
+    public function AsignarData(Request $request){
 
         $comentario = new Comentario();
         $comentario->Nombre = $request->input('Nombre');

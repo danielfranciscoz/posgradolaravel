@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\DocentesRequest;
 use App\Models\Docente;
 use App\Clases\uploadPhoto;
 
@@ -34,7 +35,7 @@ class DocentesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DocentesRequest $request)
     {
         try {
             $docente = $this->AsignarData($request);
@@ -79,7 +80,7 @@ class DocentesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DocentesRequest $request, $id)
     {
         $docente = $this->AsignarData($request);
         $docente->Image_URL = $request->input('Image_URL');
@@ -146,7 +147,7 @@ class DocentesController extends Controller
         }
     }
 
-    public function AsignarData(ComentariosRequest $request){
+    public function AsignarData(Request $request){
 
         $docente = new Docente();
         $docente->Nombres = $request->input('Nombres');

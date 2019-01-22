@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoriaRequest extends FormRequest
+class DocentesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,17 @@ class CategoriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'isCursoPosgrado'=>'required',
-            'Categoria'=>'required',
-            'Imagen'=>'sometimes|required|image|mimes:jpeg,png,jpg|max:2048|dimensions:height=550,width=720',
-            'Descripcion'=>'required',
+            'Nombres' =>'required',
+            'Profesion' =>'required',
+            'Descripcion' =>'required',
+            'Imagen'=>'sometimes|required|image|mimes:jpeg,png,jpg|max:2048|dimensions:height=250,width=250'           
         ];
     }
 
     public function messages()
     {
         return [
-            'Desc_Pais.required'=>'El campo pais es obligatorio',
-            // 'Imagen.required'=>'La Imagen es obligatoria'           
+            'Nombres.required'=>'El Nombres pais es obligatorio (Asegúrese de escribir almenos un nombre y un apellido)',          
         ];
     }
 }

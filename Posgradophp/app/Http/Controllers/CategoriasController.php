@@ -149,7 +149,7 @@ class CategoriasController extends Controller
         }
     }
 
-    public function AsignarData(CategoriaRequest $request){
+    public function AsignarData(Request $request){
 
         $categoria = new Categoria();
         $categoria->isCursoPosgrado = $request->input('isCursoPosgrado');

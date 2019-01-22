@@ -30,7 +30,7 @@ class ComentariosRequest extends FormRequest
                 'Profesion'=>'required',
                 'Desc_Pais'=>'required',
                 'Comentario'=>'required|max:2000',
-                'Imagen'=>'sometimes|required|image|mimes:jpeg,png,jpg|max:2048|dimensions:width=250,width=250'
+                'Imagen'=>'sometimes|required|image|mimes:jpeg,png,jpg|max:2048|dimensions:height=250,width=250'
             ];
        
     }
