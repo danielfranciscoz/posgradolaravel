@@ -16,7 +16,7 @@
                     <label>Categoria</label>
                     <input type="text" id="categoria" class="form-control" >
                     
-                    <i class="fa fa-globe prefix grey-text"></i>
+                    <i class="fa fa-leanpub prefix grey-text"></i>
                     <label>Tipo de Categoria</label>
                     <select class="browser-default custom-select mb-4" id="tipo">
                         <option value="" disabled>Seleccione un tipo</option>
@@ -26,7 +26,7 @@
                         
                     </select> 
                   
-                    <i class="fa fa-graduation-cap prefix grey-text"></i>
+                    <i class="fa fa-pencil prefix grey-text"></i>
                     <label>Descripción</label>
                     <input type="text" id="descripcion" class="form-control">
 
@@ -52,6 +52,11 @@
                         </label>
 
                      </div>
+                     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                        * Formatos aceptados: jpeg,jpg,png. <br>
+                        * Altura maxima: 550px, Anchura maxima 720px.<br>
+                        * Peso Maximo: 2 megabytes.
+                    </small>
                     
                              
 

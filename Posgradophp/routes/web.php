@@ -108,6 +108,19 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
             'update'=>'admin.comentariosUpdate',
            
         ]);
+
+        Route::group(['prefix' => 'cursos'], function() {
+            // Route::get('/','ComentariosController@index')->name('admin.comentarios');
+            Route::post('/search','CursosController@searchcursos')->name('admin.searchcursos');
+            Route::post('/save','CursosController@uploadphoto')->name('admin.uploadphotocursos'); 
+        }); 
+        Route::resource('cursos','CursosController')->names([
+            'index'=>'admin.cursos',
+            'store'=>'admin.cursosSave',           
+            'destroy'=>'admin.cursosDelete',
+            'update'=>'admin.cursosUpdate',
+           
+        ]);
 });
 
 /*
