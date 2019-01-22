@@ -54,7 +54,7 @@
                      </div>
                      <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
                         * Formatos aceptados: jpeg,jpg,png. <br>
-                        * Altura maxima: 550px, Anchura maxima 720px.<br>
+                        * Altura: 550px, Anchura: 720px.<br>
                         * Peso Maximo: 2 megabytes.
                     </small>
                     

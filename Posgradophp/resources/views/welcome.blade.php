@@ -113,7 +113,7 @@
                                <img class="card-img-top h-50" style="max-height:175px" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px "  >{{$categories[$i]['Categoria']}}</h5>
-                                   <p class="card-text mb-5 " style="height: 10% !important; font-size:0.75rem;">{{$categories[$i]['Descripcion']}}</p>
+                                   <p class="card-text mb-5 " style="height: 8% !important; font-size:0.75rem;">{{$categories[$i]['Descripcion']}}</p>
                                    <a class="card-text float-right  font-weight-bold " href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>                                
                                    <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
                                </div>
@@ -141,7 +141,7 @@
                                <img class="card-img-top h-50" style="max-height:175px" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px" >{{$categories[$i]['Categoria']}}</h5>
-                                   <p class="card-text mb-5 text-justify" style="height: 10% !important; font-size:0.75rem;">{{$categories[$i]['Descripcion']}}</p>
+                                   <p class="card-text mb-5 text-justify" style="height: 8% !important; font-size:0.75rem;">{{$categories[$i]['Descripcion']}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>
     
                                </div>
@@ -184,7 +184,7 @@
                                <img class="card-img-top h-50" style="max-height:175px" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px;"  >{{$courses[$i]->NombreCurso}}</h5>
-                                   <p class="card-text mb-5 "  style="height: 10% !important;font-size:0.75rem;">{{$courses[$i]->Desc_Publicidad}}</p>
+                                   <p class="card-text mb-5 "  style="height: 8% !important;font-size:0.75rem;">{{$courses[$i]->Desc_Publicidad}}</p>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.cursodetalle')}}/{{$courses[$i]->NombreCurso}}" >VER MAS</a>
                                   
 

@@ -26,7 +26,7 @@ class CategoriaRequest extends FormRequest
         return [
             'isCursoPosgrado'=>'required',
             'Categoria'=>'required',
-            'Imagen'=>'sometimes|required|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=550,max_width=720',
+            'Imagen'=>'sometimes|required|image|mimes:jpeg,png,jpg|max:2048|dimensions:width=550,width=720',
             'Descripcion'=>'required',
         ];
     }
