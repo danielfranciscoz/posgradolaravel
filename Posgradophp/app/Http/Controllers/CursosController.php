@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class CursosController extends Controller
 {
     public function index()
-    {
-      
+    {   
         return view('cms.cursos');
     }
   
@@ -172,6 +171,47 @@ class CursosController extends Controller
         return view("cursos.curso")        
             ->with(compact('curso'))
             ->with(compact('precio'));
+    }
+
+    public function searchcursos(Request $request){
+
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+       
+        $lenght = $request->input("length");
+
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        
+        $searchv = $request->input("search.value");
+        $pagesize = $lenght != null ? $lenght : 0;
+        $skip = $start != null ? $start : 0;
+        
+        $totalRecords = 0;
+
+        $v = Cursoprecio::with('curso')->where('deleted_at',null);
+
+        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+        
+        if (strlen($searchv) !=0) {
+            $v = $v->wherehas('curso', function ($sql) use ($searchv) {
+                $sql->Where('NombreCurso','LIKE','%'.$searchv.'%');
+            });
+        }
+        
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
+        {          
+            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        }
+        
+        $totalRecords = Count($v->get());
+        $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+        return response()->Json([
+                'draw' => $draw, 
+                'recordsFiltered' => $totalRecords, 
+                'recordsTotal' => $totalRecords, 
+                'data' => $data ]);
     }
 
   

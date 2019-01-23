@@ -96,10 +96,10 @@ class DocentesController extends Controller
 
         try {            
     
-            $original->Nombres = $comentario->Nombres;
-            $original->Profesion = $comentario->Profesion;
-            $original->Descripcion = $comentario->Descripcion;
-            $original->LinkedIn_URL = $comentario->LinkedIn_URL;
+            $original->Nombres = $docente->Nombres;
+            $original->Profesion = $docente->Profesion;
+            $original->Descripcion = $docente->Descripcion;
+            $original->LinkedIn_URL = $docente->LinkedIn_URL;
 
             if($original->Image_URL != $request->input('Image_URL'))
             {
@@ -200,6 +200,6 @@ class DocentesController extends Controller
 
     public function uploadphoto(Request $request){
         $f = new uploadPhoto();
-        return $f->uploadphoto($request,"img/Resources/docentes");
+        return $f->upload($request,"img/Resources/docentes");
     }
 }
