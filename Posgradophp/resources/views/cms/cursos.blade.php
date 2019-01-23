@@ -10,7 +10,7 @@
 
     <div class=" card white mt-5 mx-4 mb-4">
         <div class="card-body">
-            <h4 class="font-weight-bold h4-responsive">cursos</h4>
+            <h4 class="font-weight-bold h4-responsive">Cursos</h4>
             {{csrf_field()}}
             <a class="btn btn-sm green darken-4 white-text font-weight-bold" onclick="openmodal(true)"> <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Nuevo</a>
             <a class="btn btn-sm yellow darken-4 white-text font-weight-bold" onclick="openmodal(false)"><i class="fa fa-edit" aria-hidden="true">&nbsp; </i>Editar</a>
@@ -22,6 +22,7 @@
                         <tr>
                             <th>id</th>
                             <th>Curso</th>
+                            <th>Categoría</th>
                             <th>Categoría</th>
                             <th>Publicidad</th>
                             <th>Introducción</th>
@@ -54,10 +55,10 @@
 
 $("#alertmodalcursos").hide();
 $("#alertmodaldelete").hide();
-    paises();
+   
     var id = 0;
     var curso = "";
-    var categoria = "";   
+    var categoria = "";  
     var img_url = "";
     var temario_url = "";
     var descripcionpublicidad = "";

@@ -95,12 +95,16 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
             'update'=>'admin.categoriasUpdate',
            
         ]);
-
+        Route::group(['prefix' => 'docentes'], function() {
+            Route::post('/search','DocentesController@searchdocentes')->name('admin.searchdocentes');
+           
+        }); 
         Route::resource('docentes','DocentesController')->names([
             'index'=>'admin.docentes',
             'store'=>'admin.docentesSave',           
             'destroy'=>'admin.docentesDelete',
             'update'=>'admin.docentesUpdate',
+           
            
         ]);
        

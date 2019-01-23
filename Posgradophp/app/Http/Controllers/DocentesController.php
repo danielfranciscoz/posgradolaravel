@@ -44,7 +44,7 @@ class DocentesController extends Controller
             $docente->save();
             
             return response()->json([
-                'message'=>'exito.'
+                'message'=>'exito'
             ]);
         } catch (Exception $e) {
             return report($e);
@@ -159,7 +159,7 @@ class DocentesController extends Controller
         
     }
 
-    public function searchcomentarios(Request $request){
+    public function searchdocentes(Request $request){
 
         $draw = $request->input("draw");
         $start = $request->input("start");

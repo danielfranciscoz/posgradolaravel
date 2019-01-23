@@ -34,6 +34,7 @@ UNI-DEPEC</title>
                     <a class="dropdown-item waves-effect waves-light" href="{{route('admin.categorias')}}">Categorias</a>
                     <a class="dropdown-item waves-effect waves-light" href="{{route('admin.cursos')}}">Cursos</a>
                     <a class="dropdown-item waves-effect waves-light" href="{{route('admin.comentarios')}}">Comentarios</a>
+                    <a class="dropdown-item waves-effect waves-light" href="{{route('admin.docentes')}}">Docentes</a>
                 </div>
             </li>
             <a class="nav-item btn btn-primary btn-sm" href="{{ route('cursos.index') }}">Ver sitio</a>
