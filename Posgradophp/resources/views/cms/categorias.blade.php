@@ -36,7 +36,7 @@
 
 </main>
 
-@include('cms.modalcategorias')
+@include('cms.modalCategorias')
 @include('cms.modaldelete')
 
 

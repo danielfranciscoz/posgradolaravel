@@ -36,7 +36,7 @@
 
 </main>
 
-@include('cms.modaldocentes')
+@include('cms.modalDocentes')
 @include('cms.modaldelete')
 
 
