@@ -13,8 +13,12 @@ class uploadPhoto
         $image = $request->file('Imagen');
         $new_name =  rand().'.'.$image->getClientOriginalExtension();
         $image->move(public_path($dir),$new_name);
-        // $image->move(route('cursos.index').'/'.$dir,$new_name); //Para el servidor
+        
+        //Local
         return $dir.'/'.$new_name;
+        
+        //Para el servidor
+        // return 'laravel/public/'.$dir.'/'.$new_name;
     }
     
 }

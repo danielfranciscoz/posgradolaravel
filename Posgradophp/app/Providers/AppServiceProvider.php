@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         view()->composer('*', function($view) {
-            $categories = Categoria::all()->where('deleted_at',null);
+            $categories = Categoria::where('deleted_at',null)->get();
             $courses = Curso::where('categoria_id',null)
                         ->orderBy('created_at','DESC')
                         ->get();
