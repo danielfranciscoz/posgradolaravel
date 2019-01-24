@@ -28,22 +28,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = ['nombre_completo']; //Debe estar en snake_case y su metodo debe estar en CamellCase iniciando con Get, y terminando con Attribute
+
+
     public function estudiante(){
         return $this->hasOne(\App\Models\Estudiante::class);
     }
 
-    // public function login($user){
-        
-    //     for($i=0;$i<count(Session::get('login'));$i++)
-    //     {
-    //        if(Session::get('login')[$i]['user']== $user->email && Session::get('login')[$i]['password']== bcrypt($user->password)){
-    //             return true;                    
-    //         }
-
-            
-                
-    //     }
-    // }
+    public function getNombreCompletoAttribute(){
+        $a= $this-> estudiante()->first()->PrimerNombre ." ".estudiante()->first()->PrimerApellido;
+        return $a;
+    }
 
     
 

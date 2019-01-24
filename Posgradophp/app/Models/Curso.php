@@ -53,8 +53,6 @@ class Curso extends Model
     }
 
 
-    
-
     public function getHorasClaseAttribute(){
         $a= $this-> tematicas()->sum('Duracion');
         return $a;

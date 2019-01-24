@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('isAdmin');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('estudiantes', function (Blueprint $table) {

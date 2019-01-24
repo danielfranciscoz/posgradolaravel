@@ -27,6 +27,11 @@ class AccountController extends Controller
         // dd('Auth::user()');
     }
 
+    public function index()
+    {  
+        return view('cms/usuarios');
+    }
+
     public function registro(){
         // dd(Auth::user());
         return view("Account/registro");
@@ -45,7 +50,11 @@ class AccountController extends Controller
             $user->name = $user->email;
             $user->password = bcrypt($request->input('password'));
 
-            $user->isAdmin = false;     
+            if ($request->has('isAdmin')) {
+                $user->isAdmin = true;                     
+            }else{
+                $user->isAdmin = false;     
+            }
             
             $user->save();
     
@@ -284,11 +293,8 @@ class AccountController extends Controller
             'message'=>'Ya puedes iniciar sesión, tu contraseña ha sido modificada con éxito.'
             ]);
     }
-
-
       
-    public function addcarrito(Request $request)
-    { 
+    public function addcarrito(Request $request){ 
         
         $id= $request->input('curso');
         // $request->session()->flush();
@@ -339,8 +345,7 @@ class AccountController extends Controller
          
     }
 
-    public function delcarrito(Request $request)
-    {  
+    public function delcarrito(Request $request){  
         $id= $request->input('curso');
         $existid = false;
         
@@ -383,9 +388,46 @@ class AccountController extends Controller
                 ]);
                     $existid = true;
                 }
-        }
+    }
 
-    
+    public function searchusuarios(Request $request){
+
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+       
+        $lenght = $request->input("length");
+
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        
+        $searchv = $request->input("search.value");
+        $pagesize = $lenght != null ? $lenght : 0;
+        $skip = $start != null ? $start : 0;
+        
+        $totalRecords = 0;
+
+        $v = User::with('estudiante')->where('deleted_at',null);
+
+        if (strlen($searchv) !=0) {
+            $v = $v->wherehas('estudiante', function ($sql) use ($searchv) {
+                $sql->Where('nombre_completo','LIKE','%'.$searchv.'%');
+            });
+        }
+        
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
+        {          
+            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        }
+        
+        $totalRecords = Count($v->get());
+        $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+        return response()->Json([
+                'draw' => $draw, 
+                'recordsFiltered' => $totalRecords, 
+                'recordsTotal' => $totalRecords, 
+                'data' => $data ]);
+    }
 
     
 }
