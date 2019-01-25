@@ -22,6 +22,7 @@
                         <tr>
                             <th>id</th>
                             <th>Nombres Y Apellido</th>
+                            <th>Linkedin</th>
                             <th>Profesión</th>
                             <th>Descripción</th>                           
                             <th>Imagen</th>
@@ -53,6 +54,7 @@ $("#alertmodaldelete").hide();
     var profesion = "";
     var descripcion = "";
     var img_url = "";
+    var linkedin = "";
  
     var nuevo = true;
 
@@ -71,6 +73,9 @@ $("#alertmodaldelete").hide();
             "columns": [                    
                     { "data": "id", "name": "id" ,"visible":false},
                     { "data": "Nombres", "name": "Nombres" },
+                    { "data": "LinkedIn_URL", "name": "LinkedIn_URL" , render: function (data) {
+                           return  '<a  href= "'+data+'" target="_blank   "><i class="fa fa-linkedin-in fa-2x grey"></i></a>'
+                    }},                    
                     { "data": "Profesion", "name": "Profesion" },
                     { "data": "Descripcion", "name": "Descripcion" },
                     { "data": "Image_URL", "name": "Image_URL", render: function (data) {
@@ -104,16 +109,19 @@ $("#alertmodaldelete").hide();
         function clear(){
             $('#nombres').val("");
             $('#profesion').val("");
-            $('#descripcion').val("");          
-            $('#picturepreview').attr('src', '');           
+            $('#descripcion').val("");      
+            $('#linkedin').val("");            
+            $('#picturepreview').attr('src', '');   
+            $('#file').val(null);                  
 
         }
 
         function setedit(){
             $('#nombres').val(nombres);
             $('#profesion').val(profesion);
-            $('#descripcion').val(descripcion);          
-            //$('#file').val(null);
+            $('#descripcion').val(descripcion); 
+            $('#linkedin').val(linkedin);           
+            $('#file').val(null);
             $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);           
 
         }
@@ -126,6 +134,7 @@ $("#alertmodaldelete").hide();
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
                 fd.append('Imagen',files);
                 fd.append('Nombres',$('#nombres').val());
+                fd.append('LinkedIn_URL',$('#linkedin').val());                
                 fd.append('Profesion',$('#profesion').val());
                 fd.append('Descripcion',$('#descripcion').val());
                 
@@ -154,6 +163,14 @@ $("#alertmodaldelete").hide();
                                    for(var i=0;i<response.responseJSON.errors.Nombres.length;i++){
                                        
                                        str= str +'<b>'+response.responseJSON.errors.Nombres[i]+'</b><br></br>';                                  
+                                   }
+                               }
+                               if (typeof response.responseJSON.errors.LinkedIn_URL != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.LinkedIn_URL.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.LinkedIn_URL[i]+'</b><br></br>';                                  
                                    }
                                }
                                
@@ -193,7 +210,8 @@ $("#alertmodaldelete").hide();
                 var files = $('#file')[0].files[0];          
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
                 fd.append('id',id);
-                fd.append('_method','put');                
+                fd.append('_method','put');
+                fd.append('LinkedIn_URL',$('#linkedin').val());                
                 //fd.append('Imagen',files);
                 fd.append('Imagen',files);
                 fd.append('Nombres',$('#nombres').val());
@@ -234,7 +252,15 @@ $("#alertmodaldelete").hide();
                                    }
                                }
                                
-                           
+                               if (typeof response.responseJSON.errors.LinkedIn_URL != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.LinkedIn_URL.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.LinkedIn_URL[i]+'</b><br></br>';                                  
+                                   }
+                               }
+                               
                                if (typeof response.responseJSON.errors.Profesion != "undefined") {
                               
                                
@@ -352,8 +378,9 @@ $("#alertmodaldelete").hide();
 
             $('#table1 tbody').on( 'click', 'tr', function () {
                  id = table.row(this ).data().id ;
+                 linkedin = table.row(this ).data().LinkedIn_URL ;
                  nombres = table.row(this ).data().Nombres ;
-                 profesion = table.row(this ).data().Profeison ;
+                 profesion = table.row(this ).data().Profesion ;
                  descripcion = table.row(this ).data().Descripcion ;
                  img_url = table.row(this ).data().Image_URL ;
                 

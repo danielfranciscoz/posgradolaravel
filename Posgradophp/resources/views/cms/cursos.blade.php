@@ -90,7 +90,7 @@ $("#alertmodaldelete").hide();
                            return  '<img src= "{{route('cursos.index')}}/'+data+'" class="img-fluid" />'
                     }},
                     { "data": "Temario_URL", "name": "Temario_URL", render: function (data) {
-                           return  '<a  src= "{{route('cursos.index')}}/'+data+'"><i class="fa fa-file-pdf fa-2x grey"></i></a>'
+                           return  '<a  src= "{{route('cursos.index')}}/'+data+'"><i class="fa fa-inkedin-in  fa-2x grey"></i></a>'
                     }},                    
                     { "data": "created_at", "name": "created_at" },
             ],
