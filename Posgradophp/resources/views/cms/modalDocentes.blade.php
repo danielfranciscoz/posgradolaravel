@@ -16,9 +16,14 @@
                     <label>Nombres y apellidos</label>
                     <input type="text" id="nombres" class="form-control" >
                     
+                    <i class="fa fa-linkedin-in prefix grey-text"></i>
+                    <label>Linkedin</label>
+                    <input type="text" id="linkedin" class="form-control">
+
                     <i class="fa fa-graduation-cap prefix grey-text"></i>
                     <label>Profesión</label>
                     <input type="text" id="profesion" class="form-control">
+
 
                     <i class="fa fa-pencil prefix grey-text"></i>
                     <label>Descripción</label>                    
