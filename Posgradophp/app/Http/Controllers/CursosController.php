@@ -191,6 +191,8 @@ class CursosController extends Controller
 
         $v = Cursoprecio::with('curso')->where('deleted_at',null);
 
+        dd($v);
+
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
         if (strlen($searchv) !=0) {

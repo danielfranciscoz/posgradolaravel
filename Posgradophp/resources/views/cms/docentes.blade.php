@@ -278,12 +278,12 @@ $("#alertmodaldelete").hide();
                                   str= str +'<b>'+response.responseJSON.errors.Descripcion[i]+'</b><br></br>';                                  
                               }
                             }                           
-                            if (typeof response.responseJSON.errors.Image_URL != "undefined") {
+                            if (typeof response.responseJSON.errors.Imagen != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Image_URL.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.Imagen.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Image_URL[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.Imagen[i]+'</b><br></br>';                                  
                               }
                             }
                                     
@@ -345,12 +345,12 @@ $("#alertmodaldelete").hide();
                                   str= str +'<b>'+response.responseJSON.errors.Descripcion[i]+'</b><br></br>';                                  
                               }
                             }                           
-                            if (typeof response.responseJSON.errors.Image_URL != "undefined") {
+                            if (typeof response.responseJSON.errors.Imagen != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Image_URL.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.Imagen.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Image_URL[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.Imagen[i]+'</b><br></br>';                                  
                               }
                             }
                                     
