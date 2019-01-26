@@ -204,9 +204,12 @@ class CursosController extends Controller
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
         if (strlen($searchv) !=0) {
-            $v = $v->wherehas('curso', function ($sql) use ($searchv) {
-                $sql->Where('NombreCurso','LIKE','%'.$searchv.'%');
-            });
+            $v = Curso::join('Cursoprecios', 'Cursos.id', '=', 'Cursoprecios.curso_id')
+            ->join('Categorias', 'Categorias.id', '=', 'Cursos.categoria_id')
+            ->select('Cursoprecios.id','Cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad','cursos.Desc_Introduccion','cursos.InfoAdicional','Categorias.Categoria' )
+            ->where('Cursoprecios.deleted_at',null)->where('Cursoprecios.deleted_at',null)
+            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%')
+            ->getQuery();
         }
         
         if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)

@@ -1,11 +1,7 @@
 @extends('layout.cms')
 @section('title', 'INICIO')
 @section('content')
-<style>
-    #table1_filter{
-        display:none;
-    }
-</style>
+
 <main>
 
     <div class=" card white mt-5 mx-4 mb-4">
