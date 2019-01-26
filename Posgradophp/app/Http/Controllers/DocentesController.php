@@ -103,7 +103,9 @@ class DocentesController extends Controller
 
             if($original->Image_URL != $request->input('Image_URL'))
             {
-                unlink(public_path($original->Image_URL));
+                if(file_exists(public_path($original->Image_URL))){
+                    unlink(public_path($original->Image_URL));
+                }
                 $original->Image_URL = $this->uploadphoto($request);
             }
                         
