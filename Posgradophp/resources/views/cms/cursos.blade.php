@@ -84,7 +84,14 @@ $("#alertmodaldelete").hide();
                     { "data": "id", "name": "id" ,"visible":false},
                     { "data": "NombreCurso", "name": "NombreCurso" },
                     { "data": "categoria_id", "name": "categoria_id" ,"visible":false},
-                    { "data": "Categoria", "name": "Categoria"},
+                    { "data": "Categoria", "name": "Categoria",render: function (data) {
+                        if(data==null){
+                            return 'Maestría'
+                        }else{
+                            return data 
+                        }
+                      
+                    }},
                     { "data": "Desc_Publicidad", "name": "Desc_Publicidad" },
                     { "data": "Desc_Introduccion", "name": "Desc_Introduccion" },
                     { "data": "InfoAdicional", "name": "InfoAdicional" },
