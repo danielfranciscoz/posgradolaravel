@@ -19,9 +19,13 @@
                     <i class="fa fa-leanpub prefix grey-text"></i>
                     <label>Categoría</label>
                     <select class="browser-default custom-select mb-4" id="categoria">
-                        <option value="" disabled>Seleccione una categoría</option>
-                        <option value="0" >Posgrado</option>                        
-                        <option value="1" >Curso de Espeliazación</option>
+
+                        <option value="-1" disabled>Seleccione una categoría</option>
+                        <option value="" disabled>Maestría</option>
+                       
+                        @for($i=0;$i<count($categoriaselect);$i++)
+                        <option value="{{$categoriaselect[$i]->id}}" >{{$categoriaselect[$i]->Categoria}}</option>                        
+                        @endfor
                         
                         
                     </select> 
@@ -38,7 +42,9 @@
                     <label>Información Adicional</label>
                     <textarea type="text" id="descripcionadicional" class="md-textarea form-control" rows="3"></textarea>
                     
-                   
+                    <i class="fa fa-money prefix grey-text"></i>
+                    <label>Precio:</label>
+                    <input type="number" id="precio" class="form-control" >
 
                       <i class="fa fa-file-alt prefix grey-text"></i>
                     <label>Temario</label> <br>

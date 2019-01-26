@@ -213,7 +213,6 @@ $("#alertmodaldelete").hide();
                 fd.append('_method','put');
                 fd.append('LinkedIn_URL',$('#linkedin').val());                
                 //fd.append('Imagen',files);
-                fd.append('Imagen',files);
                 fd.append('Nombres',$('#nombres').val());
                 fd.append('Profesion',$('#profesion').val());
                 fd.append('Descripcion',$('#descripcion').val());
