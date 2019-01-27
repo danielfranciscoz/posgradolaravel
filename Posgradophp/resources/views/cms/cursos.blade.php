@@ -107,6 +107,12 @@ $("#alertmodaldelete").hide();
 
         } );
 
+    var table2 = $('#table2').DataTable( {
+        "pageLength": 50,
+        @include('layout.lenguagetable')
+
+    });
+
         function openmodal(nuevo){
             this.nuevo = nuevo;
             if(nuevo==true){
@@ -135,7 +141,8 @@ $("#alertmodaldelete").hide();
             $('#precio').val("");
             $('#file').val(null);
             $('#image').val(null);
-            $('#picturepreview').attr('src', '');           
+            $('#picturepreview').attr('src', '');      
+            $('#filepreview').attr('src', '');          
 
         }
 
@@ -147,6 +154,8 @@ $("#alertmodaldelete").hide();
             $('#descripcionadicional').val(descripcionadicional);
             $('#descripcionintroduccion').val(descripcionintroduccion);
             //$('#file').val(null);
+            $('#filepreview').attr('src','{{route('cursos.index')}}/'+temario_url);
+                      
             $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);           
 
         }
@@ -466,7 +475,9 @@ $("#alertmodaldelete").hide();
                     var reader = new FileReader();
 
                     reader.onload = function (e) {
-                       // $('#picturepreview').attr('src', e.target.result);
+                       // console.log(e.target.result);
+                      $('#filepreview').attr('src', e.target.result);
+                      
                     }
 
                     reader.readAsDataURL(input.files[0]);

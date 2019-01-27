@@ -9,6 +9,7 @@ use App\Models\Cursomodalidad;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
+use App\Models\Docente;
 use Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,9 @@ class CursosController extends Controller
     public function index()
     {   
         $categoriaselect = Categoria::where('deleted_at',null)->get();
-        return view('cms.cursos') ->with('categoriaselect',$categoriaselect);
+        $docentesselect = Docente::where('deleted_at',null)->get();
+        return view('cms.cursos') ->with('categoriaselect',$categoriaselect)
+        ->with('docentesselect',$docentesselect);
     }
   
     public function categories($categoria,$orden=null)
@@ -192,8 +195,8 @@ class CursosController extends Controller
 
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
 
-        $v = Curso::join('Cursoprecios', 'Cursos.id', '=', 'Cursoprecios.curso_id')
-        ->join('Categorias', 'Categorias.id', '=', 'Cursos.categoria_id')
+        $v = Curso::leftJoin('Cursoprecios', 'Cursos.id', '=', 'Cursoprecios.curso_id')
+        ->leftJoin('Categorias', 'Categorias.id', '=', 'Cursos.categoria_id')       
         ->select('Cursoprecios.id','Cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad','cursos.Desc_Introduccion','cursos.InfoAdicional','Categorias.Categoria' )
         ->where('Cursoprecios.deleted_at',null)
         ->getQuery();
@@ -204,10 +207,10 @@ class CursosController extends Controller
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
         if (strlen($searchv) !=0) {
-            $v = Curso::join('Cursoprecios', 'Cursos.id', '=', 'Cursoprecios.curso_id')
-            ->join('Categorias', 'Categorias.id', '=', 'Cursos.categoria_id')
+            $v = Curso::leftJoin('Cursoprecios', 'Cursos.id', '=', 'Cursoprecios.curso_id')
+            ->leftJoin('Categorias', 'Categorias.id', '=', 'Cursos.categoria_id')       
             ->select('Cursoprecios.id','Cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad','cursos.Desc_Introduccion','cursos.InfoAdicional','Categorias.Categoria' )
-            ->where('Cursoprecios.deleted_at',null)->where('Cursoprecios.deleted_at',null)
+            ->where('Cursoprecios.deleted_at',null)           
             ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%')
             ->getQuery();
         }
