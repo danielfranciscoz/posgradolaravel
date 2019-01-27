@@ -107,6 +107,20 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
            
            
         ]);
+
+
+        Route::group(['prefix' => 'usuarios'], function() {
+            Route::post('/search','AccountController@searchusuarios')->name('admin.searchusuarios');
+           
+        }); 
+        Route::resource('usuarios','AccountController')->names([
+            'index'=>'admin.usuarios',
+            'store'=>'admin.usuariosSave',           
+            'destroy'=>'admin.usuariosDelete',
+            'update'=>'admin.usuariosUpdate',
+           
+           
+        ]);
        
         Route::group(['prefix' => 'comentarios'], function() {
             // Route::get('/','ComentariosController@index')->name('admin.comentarios');
