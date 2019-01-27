@@ -6,6 +6,7 @@ use App\Models\Curso;
 use App\Models\Cursoprecio;
 use App\Models\Cursotematica;
 use App\Models\Cursomodalidad;
+use App\Models\CompetenciaCurso;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
@@ -19,8 +20,9 @@ class CursosController extends Controller
     {   
         $categoriaselect = Categoria::where('deleted_at',null)->get();
         $docentesselect = Docente::where('deleted_at',null)->get();
-        return view('cms.cursos') ->with('categoriaselect',$categoriaselect)
-        ->with('docentesselect',$docentesselect);
+        return view('cms.cursos') 
+            ->with(compact('categoriaselect'))
+            ->with(compact('docentesselect'));
     }
   
     public function categories($categoria,$orden=null)
@@ -198,21 +200,15 @@ class CursosController extends Controller
         $v = Curso::leftJoin('Cursoprecios', 'Cursos.id', '=', 'Cursoprecios.curso_id')
         ->leftJoin('Categorias', 'Categorias.id', '=', 'Cursos.categoria_id')       
         ->select('Cursoprecios.id','Cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad','cursos.Desc_Introduccion','cursos.InfoAdicional','Categorias.Categoria' )
-        ->where('Cursoprecios.deleted_at',null)
-        ->getQuery();
-        
-
-   
+        ->where('Cursoprecios.deleted_at',null);
 
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
         if (strlen($searchv) !=0) {
-            $v = Curso::leftJoin('Cursoprecios', 'Cursos.id', '=', 'Cursoprecios.curso_id')
-            ->leftJoin('Categorias', 'Categorias.id', '=', 'Cursos.categoria_id')       
-            ->select('Cursoprecios.id','Cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad','cursos.Desc_Introduccion','cursos.InfoAdicional','Categorias.Categoria' )
-            ->where('Cursoprecios.deleted_at',null)           
-            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%')
-            ->getQuery();
+            $v = $v          
+            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
+        }else{
+            $v = $v->getQuery();
         }
         
         if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
@@ -230,5 +226,22 @@ class CursosController extends Controller
                 'data' => $data ]);
     }
 
+    public function searchRelacionesCurso($idcurso){
+        
+        $curso = Curso::
+            with('competencias')
+            ->with('tematicas')
+            ->with('modalidades')
+            ->with('requisitos')
+            ->with('docentes')
+            ->with('etiquetas')
+            ->find($idcurso);
+
+        // dd($curso);
+
+        return response()->json([
+            'curso'=> $curso
+        ]);
+    }
   
 }
