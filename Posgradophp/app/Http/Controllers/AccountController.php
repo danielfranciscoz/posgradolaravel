@@ -93,6 +93,81 @@ class AccountController extends Controller
   
     }    
 
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'PrimerNombre' =>'required',
+            'PrimerApellido' =>'required',
+            'DNI' =>'required',
+            'email' => 'required|email|unique:users',
+            'Telefono' => 'required',
+            'password' => 'required|min:6',
+        ]);
+                
+        $original = User::find($request->input('id'));
+
+        if ($original == null) {
+    
+            return response()->json([
+                'error'=>'El usuario no ha sido encontrado en la base de datos'
+                
+            ]);
+        }
+
+        try {    
+
+            $original->name = $user->email;
+            $original->password = bcrypt($request->input('password'));
+
+            if ($request->has('isAdmin')) {
+                $original->isAdmin = true;                     
+            }else{
+                $original->isAdmin = false;     
+            }
+            
+            $original->save();
+            
+            $estudent = Estudiante::find($original->id);
+            $estudent->PrimerNombre  = $request->input('PrimerNombre');
+            $estudent->SegundoNombre  = $request->input('SegundoNombre');
+            $estudent->PrimerApellido = $request->input('PrimerApellido');
+            $estudent->SegundoApellido = $request->input('SegundoApellido');
+            $estudent->DNI = $request->input('DNI');
+            $estudent->Telefono = $request->input('Telefono');
+            $estudent->isSuscript =$request->input('isSuscript');            
+                        
+            $estudent->save();
+
+            return response()->json([
+                'message'=>'exito'
+            ]);
+    
+        } catch (Exception $e) {
+            return report($e);
+        }
+}
+
+    public function destroy($id)
+    {
+        $original = User::find($id);
+
+        if ($original == null) {
+            return response()->json([
+                'error'=>'El usuario no ha sido encontrado en la base de datos'
+            ]);
+        }
+        try {
+            $original->deleted_at =date('Y-m-d H:i:s');            
+            $original->save();
+
+            return response()->json([
+                'message'=>'exito'
+            ]);
+            
+        } catch (Exception $e) {
+            return report($e);
+        }
+    }
     public function RegistroCompleto($token){
         
         $user = User::where('token',$token)->first();
@@ -406,12 +481,16 @@ class AccountController extends Controller
         
         $totalRecords = 0;
 
-        $v = User::with('estudiante')->where('deleted_at',null);
-
+        $v = User::leftJoin('estudiantes', 'users.id', '=', 'estudiantes.user_id')
+        ->select('users.id','users.email', 'users.isAdmin', 'users.created_at', 'estudiantes.PrimerNombre','estudiantes.SegundoNombre','estudiantes.PrimerApellido','estudiantes.SegundoApellido','estudiantes.DNI','estudiantes.Telefono','estudiantes.isSuscript')
+        ->where('users.deleted_at',null);
+        
         if (strlen($searchv) !=0) {
             $v = $v->wherehas('estudiante', function ($sql) use ($searchv) {
                 $sql->Where('nombre_completo','LIKE','%'.$searchv.'%');
             });
+        }else{
+            $v = $v->getQuery();
         }
         
         if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)

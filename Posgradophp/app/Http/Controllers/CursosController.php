@@ -197,10 +197,10 @@ class CursosController extends Controller
 
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
 
-        $v = Curso::leftJoin('Cursoprecios', 'Cursos.id', '=', 'Cursoprecios.curso_id')
-        ->leftJoin('Categorias', 'Categorias.id', '=', 'Cursos.categoria_id')       
-        ->select('Cursoprecios.id','Cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad','cursos.Desc_Introduccion','cursos.InfoAdicional','Categorias.Categoria' )
-        ->where('Cursoprecios.deleted_at',null);
+        $v = Curso::leftJoin('cursoprecios', 'cursos.id', '=', 'cursoprecios.curso_id')
+        ->leftJoin('categorias', 'categorias.id', '=', 'cursos.categoria_id')       
+        ->select('cursoprecios.id','cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad','cursos.Desc_Introduccion','cursos.InfoAdicional','Categorias.Categoria' )
+        ->where('cursoprecios.deleted_at',null);
 
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         

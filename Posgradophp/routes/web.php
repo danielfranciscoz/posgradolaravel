@@ -108,18 +108,16 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
            
         ]);
 
+        // Route::group(['prefix' => 'usuarios'], function() {
+        // });
 
-        Route::group(['prefix' => 'usuarios'], function() {
-            Route::post('/search','AccountController@searchusuarios')->name('admin.searchusuarios');
-           
-        }); 
+        Route::post('usuarios/search','AccountController@searchusuarios')->name('admin.searchusuarios');           
+
         Route::resource('usuarios','AccountController')->names([
             'index'=>'admin.usuarios',
-            'store'=>'admin.usuariosSave',           
+            // 'store'=>'admin.usuariosSave',     //Este metodo en realidad se llama registrar      
             'destroy'=>'admin.usuariosDelete',
-            'update'=>'admin.usuariosUpdate',
-           
-           
+            'update'=>'admin.usuariosUpdate',                      
         ]);
        
         Route::group(['prefix' => 'comentarios'], function() {
@@ -137,6 +135,7 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
 
         Route::group(['prefix' => 'cursos'], function() {
             // Route::get('/','ComentariosController@index')->name('admin.comentarios');
+            Route::get('/infocurso/{id}','CursosController@searchRelacionesCurso')->name('admin.searchinfocurso');
             Route::post('/search','CursosController@searchcursos')->name('admin.searchcursos');
             Route::post('/save','CursosController@uploadphoto')->name('admin.uploadphotocursos'); 
         }); 

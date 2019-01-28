@@ -120,7 +120,7 @@ class ComentariosController extends Controller
         } catch (Exception $e) {
             return report($e);
         }
-}
+    }
 
     /**
      * Remove the specified resource from storage.
