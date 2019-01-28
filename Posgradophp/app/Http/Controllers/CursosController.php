@@ -170,7 +170,7 @@ class CursosController extends Controller
         $precio = Cursoprecio::where('deleted_at','=',null)
         ->wherehas('curso', function ($sql) use ($curso_name) {
             $sql ->where('NombreCurso','like',$curso_name);
-        })->first();
+        })->firstorfail();
         
         $curso =  $precio->curso()   
             ->first();         
@@ -228,7 +228,7 @@ class CursosController extends Controller
     }
 
     public function searchRelacionesCurso($idcurso){
-        
+        $id = Cursoprecio::find($idcurso);
         $curso = Curso::
             with('competencias')
             ->with('tematicas')
@@ -236,9 +236,9 @@ class CursosController extends Controller
             ->with('requisitos')
             ->with('docentes')
             ->with('etiquetas')
-            ->find($idcurso);
+            ->find($id->curso_id);
 
-        // dd($curso);
+        dd($curso);
 
         return response()->json([
             'curso'=> $curso
@@ -253,7 +253,7 @@ class CursosController extends Controller
     }
   
     public function destroy($id){
-        $original = Curso::find($id);
+        $original = Cursoprecio::find($id);
 
         if ($original == null) {
             return response()->json([
