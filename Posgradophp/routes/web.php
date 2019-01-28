@@ -115,7 +115,7 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
 
         Route::resource('usuarios','AccountController')->names([
             'index'=>'admin.usuarios',
-            // 'store'=>'admin.usuariosSave',     //Este metodo en realidad se llama registrar      
+           //'registrar'=>'admin.usuariosSave',     //Este metodo en realidad se llama registrar      
             'destroy'=>'admin.usuariosDelete',
             'update'=>'admin.usuariosUpdate',                      
         ]);

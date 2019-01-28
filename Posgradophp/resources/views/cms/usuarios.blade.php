@@ -1,16 +1,11 @@
 @extends('layout.cms')
 @section('title', 'INICIO')
 @section('content')
-<style>
-    #table1_filter{
-        display:none;
-    }
-</style>
 
 <main>
     <div class=" card white mt-5 mx-5 mb-4">
         <div class="card-body">
-            <h4 class="font-weight-bold h4-responsive">Categorias</h4>
+            <h4 class="font-weight-bold h4-responsive">Usuarios</h4>
             {{csrf_field()}}
             <a class="btn btn-sm green darken-4 white-text font-weight-bold" onclick="openmodal(true)"> <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Nuevo</a>
             <a class="btn btn-sm yellow darken-4 white-text font-weight-bold" onclick="openmodal(false)"><i class="fa fa-edit" aria-hidden="true">&nbsp; </i>Editar</a>
@@ -21,11 +16,15 @@
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>Categoria</th>
-                            <th>Tipo</th>
-                            <th>Descripción</th>
-                            <th>Descripción Completa</th>
-                            <th>Imagen</th>
+                            <th>Email</th>
+                            <th>Tipo Usuario</th>
+                            <th>Primer Nombre</th>
+                            <th>Segundo Nombre</th>
+                            <th>Primer Apellido</th>
+                            <th>Segundo Apellido</th>
+                            <th>DNI</th>
+                            <th>Teléfono</th>
+                            <th>Suscrito</th>
                         </tr>
                     </thead>
                    <tbody></tbody>
@@ -36,7 +35,7 @@
 
 </main>
 
-@include('cms.modalCategorias')
+@include('cms.modalUsuarios')
 @include('cms.modaldelete')
 
 
@@ -46,15 +45,20 @@
 
 <script>
 
-$("#alertmodalcategorias").hide();
+$("#alertmodalusuarios").hide();
 $("#alertmodaldelete").hide();   
     var id = 0;
-    var categoria = "";
-    var tipo = "";
-    var descripcion = "";
-    var img_url = "";
-    var descripcionlarga = "";
-    var nuevo = true;
+    var email = "";
+    var password = "";
+    var isadmin = "";
+    var issuscrito = "";
+    var primern = "";
+    var segundoa = "";
+    var primera = "";
+    var segundon = "";
+    var dni = "";
+    var telefono = "";
+ 
 
     var table =  $('#table1').DataTable( {
         select: true,
@@ -62,7 +66,7 @@ $("#alertmodaldelete").hide();
             "serverSide": true,
             "orderMulti": false,
             "ajax": {
-                "url": "{{route('admin.searchcategorias')}}",
+                "url": "{{route('admin.searchusuarios')}}",
                 "type": "POST",
                 'data': {"_token": $('meta[name="csrf-token"]').attr('content')},        
                 "dataType": "JSON"
@@ -70,19 +74,27 @@ $("#alertmodaldelete").hide();
             },
             "columns": [                    
                     { "data": "id", "name": "id" ,"visible":false},
-                    { "data": "Categoria", "name": "Categoria" },
-                    { "data": "isCursoPosgrado", "name": "isCursoPosgrado",render:function(data){
+                    { "data": "email", "name": "email" },      
+                    { "data": "isAdmin", "name": "isAdmin",render:function(data){
                         if (data==1) {
-                            return 'Curso'
+                            return 'Administrador'
                         }else{
-                            return 'Posgrado'
+                            return 'Usuario Web'
+                        }
+                    }  },      
+                    { "data": "PrimerNombre", "name": "PrimerNombre" },                   
+                    { "data": "SegundoNombre", "name": "SegundoNombre" },
+                    { "data": "PrimerApellido", "name": "PrimerApellido" },
+                    { "data": "SegundoApellido", "name": "SegundoApellido" },
+                    { "data": "DNI", "name": "DNI" },
+                    { "data": "Telefono", "name": "Telefono" },
+                    { "data": "isSuscript", "name": "isSuscript",render:function(data){
+                        if (data==1) {
+                            return 'Suscrito'
+                        }else{
+                            return 'No suscrito'
                         }
                     } },
-                    { "data": "Descripcion", "name": "Descripcion" },
-                    { "data": "Descripcion_larga", "name": "Descripcion_larga" },
-                    { "data": "Image_URL", "name": "Image_URL", render: function (data) {
-                        return  '<img src= "{{route('cursos.index')}}/'+data+'" class="img-fluid" />'
-                    }},
             ],
               
             @include('layout.lenguagetable')
@@ -92,11 +104,11 @@ $("#alertmodaldelete").hide();
             this.nuevo = nuevo;
             if(nuevo==true){
                 clear();
-                $('#modalcategorias').modal('show');
+                $('#modalusuarios').modal('show');
             }else{
                 if(id>0){
                     setedit();
-                    $('#modalcategorias').modal('show');
+                    $('#modalusuarios').modal('show');
                 }
             }
         }
@@ -108,22 +120,30 @@ $("#alertmodaldelete").hide();
         }
 
         function clear(){
-            $('#categoria').val("");
-            $('#tipo').val("");
-            $('#descripcion').val("");
-            $('#descripcionlarga').val("");
-            $('#file').val(null);
-            $('#picturepreview').attr('src', '');           
+            $('#email').val("");
+            $('#password').val("");
+            $('#primern').val("");
+            $('#segundon').val("");
+            $('#primera').val("");
+            $('#segundoa').val("");
+            $('#dni').val("");
+            $('#telefono').val("");
+            $('#isadmin').val("");
+            $('#issuscrito').val("");                   
 
         }
 
         function setedit(){
-            $('#categoria').val(categoria);
-            $('#tipo').val(tipo);
-            $('#descripcion').val(descripcion);
-            $('#descripcionlarga').val(descripcionlarga);
-            //$('#file').val(null);
-            $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);           
+            $('#email').val(email);
+            $('#password').val(password);
+            $('#primern').val(primern);
+            $('#segundon').val(segundon);
+            $('#primera').val(primera);
+            $('#segundoa').val(segundoa);
+            $('#dni').val(dni);
+            $('#telefono').val(telefono);
+            $('#isadmin').val(isadmin);
+            $('#issuscrito').val(issuscrito);             
 
         }
 
@@ -133,14 +153,19 @@ $("#alertmodaldelete").hide();
                 var fd = new FormData();
                 var files = $('#file')[0].files[0];          
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
-                fd.append('Imagen',files);
-                fd.append('Categoria',$('#categoria').val());
-                fd.append('isCursoPosgrado',$('#tipo').val());
-                fd.append('Descripcion',$('#descripcion').val());
-                fd.append('Descripcion_larga',$('#descripcionlarga').val());
+                fd.append('email',$('#email').val());
+                fd.append('password',$('#password').val());
+                fd.append('isAdmin',$('#isadmin').val());
+                fd.append('PrimerNombre',$('#primern').val());
+                fd.append('SegundoNombre',$('#segundon').val());
+                fd.append('PrimerApellido',$('#primera').val());
+                fd.append('SegundoApellido',$('#segundoa').val());
+                fd.append('DNI',$('#dni').val());
+                fd.append('Telefono',$('#telefono').val());
+                fd.append('isSuscript',$('#issuscrito').val());
                 
                 $.ajax({
-                    url: "{{route('admin.categoriasSave')}}",
+                    url: "{{route('registrar')}}",
                     type: 'post',
                     data: fd,
                     contentType: false,
@@ -149,59 +174,101 @@ $("#alertmodaldelete").hide();
                     console.log(response.message);
                     if(response.message=="exito"){
                         table.ajax.reload();
-                    } $("#modalcategorias").modal('hide');
+                    } $("#modalusuarios").modal('hide');
                     
                     },
                     error: function(response){
                     
                         var str = "";
-                                    $("#alertmodalcategorias").show();
+                                    $("#alertmodalusuarios").show();
 
-                             if (typeof response.responseJSON.errors.Categoria != "undefined") {
+                             if (typeof response.responseJSON.errors.email != "undefined") {
                                    
                                     
-                                   for(var i=0;i<response.responseJSON.errors.Categoria.length;i++){
+                                   for(var i=0;i<response.responseJSON.errors.email.length;i++){
                                        
-                                       str= str +'<b>'+response.responseJSON.errors.Categoria[i]+'</b><br></br>';                                  
+                                       str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
                                    }
                                }
                                
                            
-                               if (typeof response.responseJSON.errors.isCursoPosgrado != "undefined") {
+                               if (typeof response.responseJSON.errors.password != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.isCursoPosgrado.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.password.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.isCursoPosgrado[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.password[i]+'</b><br></br>';                                  
                               }
                             }
                           
-                            if (typeof response.responseJSON.errors.Descripcion != "undefined") {
+                            if (typeof response.responseJSON.errors.isAdmin != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Descripcion.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.isAdmin.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Descripcion[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.isAdmin[i]+'</b><br></br>';                                  
                               }
                             }
-                            if (typeof response.responseJSON.errors.Descripcion_Larga != "undefined") {
+                            if (typeof response.responseJSON.errors.PrimerNombre != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Descripcion_Larga.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.PrimerNombre.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Descripcion_Larga[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.PrimerNombre[i]+'</b><br></br>';                                  
                               }
                             }
                                
-                            if (typeof response.responseJSON.errors.Image_URL != "undefined") {
+                            if (typeof response.responseJSON.errors.SegundoNombre != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Image_URL.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.SegundoNombre.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Image_URL[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.SegundoNombre[i]+'</b><br></br>';                                  
                               }
                             }
-                                    $("#alertmodalcategorias").html(str);
+
+                            if (typeof response.responseJSON.errors.PrimerApellido != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.PrimerApellido.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.PrimerApellido[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.SegundoApellido != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.SegundoApellido.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.SegundoApellido[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.DNI != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.DNI.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.DNI[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.Telefono != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.Telefono.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.Telefono[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.isSuscript != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.isSuscript.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.isSuscript[i]+'</b><br></br>';                                  
+                              }
+                            }
+
+                                    $("#alertmodalusuarios").html(str);
                     }
                 });
             }
@@ -212,20 +279,18 @@ $("#alertmodaldelete").hide();
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
                 fd.append('id',id);
                 fd.append('_method','put');                
-                //fd.append('Imagen',files);
-                fd.append('Categoria',$('#categoria').val());
-                fd.append('isCursoPosgrado',$('#tipo').val());
-                fd.append('Descripcion',$('#descripcion').val());
-                fd.append('Descripcion_larga',$('#descripcionlarga').val());
-
-                if(files==null){
-                fd.append('Image_URL', img_url);
-               }else{
-                fd.append('Image_URL', "");
-                fd.append('Imagen',files);
-               }
+                fd.append('email',$('#email').val());
+                fd.append('password',$('#password').val());
+                fd.append('isAdmin',$('#isadmin').val());
+                fd.append('PrimerNombre',$('#primern').val());
+                fd.append('SegundoNombre',$('#segundon').val());
+                fd.append('PrimerApellido',$('#primera').val());
+                fd.append('SegundoApellido',$('#segundoa').val());
+                fd.append('DNI',$('#dni').val());
+                fd.append('Telefono',$('#telefono').val());
+                fd.append('isSuscript',$('#issuscrito').val());
                $.ajax({
-                    url: "{{route('admin.categoriasSave')}}/"+id,
+                    url: "{{route('admin.usuarios')}}/"+id,
                     type: 'post',
                     data: fd,
                     contentType: false,
@@ -234,59 +299,100 @@ $("#alertmodaldelete").hide();
                     console.log(response.message);
                     if(response.message=="exito"){
                         table.ajax.reload();
-                    } $("#modalcategorias").modal('hide');
+                    } $("#modalusuarios").modal('hide');
                     
                     },
                     error: function(response){
                     
                         var str = "";
-                                    $("#alertmodalcategorias").show();
+                                    $("#alertmodalusuarios").show();
                                           
-                             if (typeof response.responseJSON.errors.Categoria != "undefined") {
+                                    if (typeof response.responseJSON.errors.email != "undefined") {
                                    
                                     
-                                   for(var i=0;i<response.responseJSON.errors.Categoria.length;i++){
+                                   for(var i=0;i<response.responseJSON.errors.email.length;i++){
                                        
-                                       str= str +'<b>'+response.responseJSON.errors.Categoria[i]+'</b><br></br>';                                  
+                                       str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
                                    }
                                }
                                
                            
-                               if (typeof response.responseJSON.errors.isCursoPosgrado != "undefined") {
+                               if (typeof response.responseJSON.errors.password != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.isCursoPosgrado.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.password.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.isCursoPosgrado[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.password[i]+'</b><br></br>';                                  
                               }
                             }
                           
-                            if (typeof response.responseJSON.errors.Descripcion != "undefined") {
+                            if (typeof response.responseJSON.errors.isAdmin != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Descripcion.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.isAdmin.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Descripcion[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.isAdmin[i]+'</b><br></br>';                                  
                               }
                             }
-                            if (typeof response.responseJSON.errors.Descripcion_Larga != "undefined") {
+                            if (typeof response.responseJSON.errors.PrimerNombre != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Descripcion_Larga.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.PrimerNombre.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Descripcion_Larga[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.PrimerNombre[i]+'</b><br></br>';                                  
                               }
                             }
                                
-                            if (typeof response.responseJSON.errors.Image_URL != "undefined") {
+                            if (typeof response.responseJSON.errors.SegundoNombre != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Image_URL.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.SegundoNombre.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Image_URL[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.SegundoNombre[i]+'</b><br></br>';                                  
                               }
                             }
-                                    $("#alertmodalcategorias").html(str);
+
+                            if (typeof response.responseJSON.errors.PrimerApellido != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.PrimerApellido.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.PrimerApellido[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.SegundoApellido != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.SegundoApellido.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.SegundoApellido[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.DNI != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.DNI.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.DNI[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.Telefono != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.Telefono.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.Telefono[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.isSuscript != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.isSuscript.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.isSuscript[i]+'</b><br></br>';                                  
+                              }
+                            }
+                                    $("#alertmodalusuarios").html(str);
                     }
                 });
              
@@ -296,7 +402,7 @@ $("#alertmodaldelete").hide();
             $("#btn_delete").click(function(){           
               
                 $.ajax({
-                    url: "{{route('admin.categorias')}}/"+id,
+                    url: "{{route('admin.usuarios')}}/"+id,
                     type: 'post',
                     dataType: "JSON",
                     data: {
@@ -317,48 +423,89 @@ $("#alertmodaldelete").hide();
                         var str = "";
                                     $("#alertmodaldelete").show();
                                           
-                             if (typeof response.responseJSON.errors.Categoria != "undefined") {
+                                    if (typeof response.responseJSON.errors.email != "undefined") {
                                    
                                     
-                                   for(var i=0;i<response.responseJSON.errors.Categoria.length;i++){
+                                   for(var i=0;i<response.responseJSON.errors.email.length;i++){
                                        
-                                       str= str +'<b>'+response.responseJSON.errors.Categoria[i]+'</b><br></br>';                                  
+                                       str= str +'<b>'+response.responseJSON.errors.email[i]+'</b><br></br>';                                  
                                    }
                                }
                                
                            
-                               if (typeof response.responseJSON.errors.isCursoPosgrado != "undefined") {
+                               if (typeof response.responseJSON.errors.password != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.isCursoPosgrado.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.password.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.isCursoPosgrado[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.password[i]+'</b><br></br>';                                  
                               }
                             }
                           
-                            if (typeof response.responseJSON.errors.Descripcion != "undefined") {
+                            if (typeof response.responseJSON.errors.isAdmin != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Descripcion.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.isAdmin.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Descripcion[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.isAdmin[i]+'</b><br></br>';                                  
                               }
                             }
-                            if (typeof response.responseJSON.errors.Descripcion_Larga != "undefined") {
+                            if (typeof response.responseJSON.errors.PrimerNombre != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Descripcion_Larga.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.PrimerNombre.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Descripcion_Larga[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.PrimerNombre[i]+'</b><br></br>';                                  
                               }
                             }
                                
-                            if (typeof response.responseJSON.errors.Image_URL != "undefined") {
+                            if (typeof response.responseJSON.errors.SegundoNombre != "undefined") {
                               
                                
-                              for(var i=0;i<response.responseJSON.errors.Image_URL.length;i++){
+                              for(var i=0;i<response.responseJSON.errors.SegundoNombre.length;i++){
                                   
-                                  str= str +'<b>'+response.responseJSON.errors.Image_URL[i]+'</b><br></br>';                                  
+                                  str= str +'<b>'+response.responseJSON.errors.SegundoNombre[i]+'</b><br></br>';                                  
+                              }
+                            }
+
+                            if (typeof response.responseJSON.errors.PrimerApellido != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.PrimerApellido.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.PrimerApellido[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.SegundoApellido != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.SegundoApellido.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.SegundoApellido[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.DNI != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.DNI.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.DNI[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.Telefono != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.Telefono.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.Telefono[i]+'</b><br></br>';                                  
+                              }
+                            }
+                            if (typeof response.responseJSON.errors.isSuscript != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.isSuscript.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.isSuscript[i]+'</b><br></br>';                                  
                               }
                             }
                                     
@@ -367,8 +514,8 @@ $("#alertmodaldelete").hide();
                 });
             });
 
-            $('#modalcategorias').on('hidden.bs.modal', function (e) {
-                $("#alertmodalcategorias").hide();
+            $('#modalusuarios').on('hidden.bs.modal', function (e) {
+                $("#alertmodalusuarios").hide();
             }) 
             
             function readURL(input) {
@@ -385,11 +532,16 @@ $("#alertmodaldelete").hide();
 
             $('#table1 tbody').on( 'click', 'tr', function () {
                  id = table.row(this ).data().id ;
-                 categoria = table.row(this ).data().Categoria ;
-                 tipo = table.row(this ).data().isCursoPosgrado ;
-                 descripcion = table.row(this ).data().Descripcion ;
-                 img_url = table.row(this ).data().Image_URL ;
-                 descripcionlarga = table.row(this ).data().Descripcion_larga ;  
+                 email = table.row(this ).data().email ;
+                 password = table.row(this ).data().password ;
+                 isadmin = table.row(this ).data().isAdmin ;
+                 primern = table.row(this ).data().PrimerNombre ;
+                 segundon = table.row(this ).data().SegundoNombre ; 
+                 primera = table.row(this ).data().PrimerApellido ;
+                 segundoa = table.row(this ).data().SegundoApellido ; 
+                 telefono = table.row(this ).data().Telefono ; 
+                 dni = table.row(this ).data().DNI ; 
+                 issuscrito = table.row(this ).data().isSuscript ;  
             } );
 
 
