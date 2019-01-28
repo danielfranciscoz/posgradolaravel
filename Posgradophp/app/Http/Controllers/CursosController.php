@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CursoRequest;
 use App\Models\Curso;
 use App\Models\Cursoprecio;
 use App\Models\Cursotematica;
@@ -243,5 +244,32 @@ class CursosController extends Controller
             'curso'=> $curso
         ]);
     }
+
+    public function store(CursoRequest $request){
+
+    }
+    public function update(CursoRequest $request,$id){
+
+    }
   
+    public function destroy($id){
+        $original = Curso::find($id);
+
+        if ($original == null) {
+            return response()->json([
+                'error'=>'El curso no ha sido encontrado en la base de datos'
+            ]);
+        }
+        try {
+            $original->deleted_at =date('Y-m-d H:i:s');            
+            $original->save();
+
+            return response()->json([
+                'message'=>'exito'
+            ]);
+            
+        } catch (Exception $e) {
+            return report($e);
+        }
+    }
 }

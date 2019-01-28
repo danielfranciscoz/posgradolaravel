@@ -118,7 +118,7 @@ class AccountController extends Controller
 
             $original->name = $user->email;
             $original->password = bcrypt($request->input('password'));
-
+            $original->updated_at =date('Y-m-d H:i:s');       
             if ($request->has('isAdmin')) {
                 $original->isAdmin = true;                     
             }else{
@@ -135,7 +135,7 @@ class AccountController extends Controller
             $estudent->DNI = $request->input('DNI');
             $estudent->Telefono = $request->input('Telefono');
             $estudent->isSuscript =$request->input('isSuscript');            
-                        
+            $estudent->updated_at =date('Y-m-d H:i:s');                   
             $estudent->save();
 
             return response()->json([
