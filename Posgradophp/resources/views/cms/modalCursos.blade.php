@@ -118,7 +118,7 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                     <div class="table-responsive">
-                        <table id="table2" class="table" style="width:100%;heigth:500px">
+                        <table id="tabledocentes" class="table" style="width:100%;heigth:500px">
                             <thead>
                                 <tr>
                                     <th>id</th>
@@ -179,11 +179,4 @@
   display:none;
 }
 
-#table2_length{
-    display:none;
-}
-
-#table2_filter{
-        display:none;
-    }
 </style>

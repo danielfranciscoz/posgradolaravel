@@ -1,7 +1,32 @@
 @extends('layout.cms')
 @section('title', 'INICIO')
 @section('content')
+<style>
 
+#table2_length{
+    display:none;
+}
+
+#table2_filter{
+        display:none;
+    }
+    
+#table3_length{
+    display:none;
+}
+
+#table3_filter{
+        display:none;
+    }
+
+    #table4_length{
+    display:none;
+}
+
+#table4_filter{
+        display:none;
+    }
+</style>
 <main>
 
     <div class=" card white mt-5 mx-4 mb-4">
@@ -33,6 +58,62 @@
                     <tbody></tbody>                 
                 </table>
             </div>
+<hr>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <h6 class="font-weight-bold h4-responsive">Requisitos</h6>
+                    <div class="table-responsive px-4 mt-4 mb-4">
+                        <table id="table2" class="table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Requisito</th>
+                                    
+                                    <!-- <th>Creado</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>                 
+                        </table>
+                    </div>
+                 </div>
+                 <div class="col-sm-12 col-md-4">
+                    <h6 class="font-weight-bold h4-responsive">Modalidades</h6>
+                    <div class="table-responsive px-4 mt-4 mb-4">
+                        <table id="table3" class="table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Modalidad</th>
+                                    <th>Horario</th>
+                                    
+                                    <!-- <th>Creado</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>                 
+                        </table>
+                    </div>
+                 </div>
+                 <div class="col-sm-12 col-md-4">
+                    <h6 class="font-weight-bold h4-responsive">Competencias</h6>
+                    <div class="table-responsive px-4 mt-4 mb-4">
+                        <table id="table4" class="table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Competencia</th>
+                                   
+                                    
+                                    <!-- <th>Creado</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>                 
+                        </table>
+                    </div>
+                 </div>
+            </div>
         </div>
     </div>
 
@@ -52,7 +133,9 @@
 
 $("#alertmodalcursos").hide();
 $("#alertmodaldelete").hide();
-   
+loadtable2();
+loadtable3();
+loadtable4();
     var id = 0;
     var curso = "";
     var precio = 0;
@@ -63,6 +146,10 @@ $("#alertmodaldelete").hide();
     var descripcionintroduccion = "";
     var descripcionadicional = "";
     var nuevo = true;
+
+    var table2;
+    var table3;
+    var table4;
 
     var table = $('#table1').DataTable( {
             select: true,
@@ -107,9 +194,98 @@ $("#alertmodaldelete").hide();
 
         } );
 
-    var table2 = $('#table2').DataTable( {
+    
+    function loadtable2(){
+        table2 = $('#table2').DataTable( {
+            select: true,
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "ajax": {
+                "url": "{{route('admin.searchcursosrequisitos')}}",
+                "type": "POST",
+                'data': {
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                     "id": id           
+                },        
+                "dataType": "JSON"
+
+            },
+            "columns": [                    
+                    { "data": "id", "name": "id" ,"visible":false},
+                    { "data": "Requisito", "name": "Requisito" }                  
+                    //{ "data": "created_at", "name": "created_at" },
+            ],
+            @include('layout.lenguagetableshort')
+            
+
+        } );
+
+    }
+    
+    function loadtable3(){
+        table3 = $('#table3').DataTable( {
+            select: true,
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "ajax": {
+                "url": "{{route('admin.searchcursosmodalidades')}}",
+                "type": "POST",
+                'data': {
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                     "id": id           
+                },        
+                "dataType": "JSON"
+
+            },
+            "columns": [                    
+                    { "data": "id", "name": "id" ,"visible":false},
+                    { "data": "Modalidad", "name": "Modalidad" },
+                    { "data": "Horario", "name": "Horario" }                  
+                    //{ "data": "created_at", "name": "created_at" },
+            ],
+            @include('layout.lenguagetableshort')
+            
+
+        } );
+
+    }
+
+    function loadtable4(){
+        table4 = $('#table4').DataTable( {
+            select: true,
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "ajax": {
+                "url": "{{route('admin.searchcursoscompetencias')}}",
+                "type": "POST",
+                'data': {
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                     "id": id           
+                },        
+                "dataType": "JSON"
+
+            },
+            "columns": [                    
+                    { "data": "id", "name": "id" ,"visible":false},
+                    { "data": "competencia", "name": "competencia" }
+                               
+                    //{ "data": "created_at", "name": "created_at" },
+            ],
+            @include('layout.lenguagetableshort')
+            
+
+        } );
+
+    }
+    
+    
+   
+    var tabledocentes = $('#tabledocentes').DataTable( {
         "pageLength": 50,
-        @include('layout.lenguagetable')
+        @include('layout.lenguagetableshort')
 
     });
 
@@ -156,7 +332,8 @@ $("#alertmodaldelete").hide();
             //$('#file').val(null);
             $('#filepreview').attr('src','{{route('cursos.index')}}/'+temario_url);
                       
-            $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);           
+            $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);
+                      
 
         }
 
@@ -506,6 +683,16 @@ $("#alertmodaldelete").hide();
                  img_url = table.row(this ).data().Image_URL ;
                  temario_url = table.row(this ).data().Temario_URL ;
                  precio = table.row(this ).data().Precio ;
+                table2.destroy();
+                loadtable2();
+                table3.destroy();
+                loadtable3();
+                table4.destroy();
+                loadtable4();
+        
+        
+
+    
                   
             } );
 

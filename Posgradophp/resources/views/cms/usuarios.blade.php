@@ -1,7 +1,7 @@
 @extends('layout.cms')
 @section('title', 'INICIO')
 @section('content')
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <main>
     <div class=" card white mt-5 mx-5 mb-4">
         <div class="card-body">
@@ -147,11 +147,12 @@ $("#alertmodaldelete").hide();
 
         }
 
-
-        $("#but_upload").click(function(){
+        
+        function but_upload(t){
+            
             if(nuevo){
                 var fd = new FormData();
-                var files = $('#file')[0].files[0];          
+                       
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
                 fd.append('email',$('#email').val());
                 fd.append('password',$('#password').val());
@@ -162,6 +163,7 @@ $("#alertmodaldelete").hide();
                 fd.append('SegundoApellido',$('#segundoa').val());
                 fd.append('DNI',$('#dni').val());
                 fd.append('Telefono',$('#telefono').val());
+                fd.append("g-recaptcha-response",t);               
                 fd.append('isSuscript',$('#issuscrito').val());
                 
                 $.ajax({
@@ -275,7 +277,7 @@ $("#alertmodaldelete").hide();
             else
             {
                 var fd = new FormData();
-                var files = $('#file')[0].files[0];          
+                
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
                 fd.append('id',id);
                 fd.append('_method','put');                
@@ -397,7 +399,8 @@ $("#alertmodaldelete").hide();
                 });
              
             }
-            });
+            grecaptcha.reset();
+            };
 
             $("#btn_delete").click(function(){           
               
@@ -518,18 +521,7 @@ $("#alertmodaldelete").hide();
                 $("#alertmodalusuarios").hide();
             }) 
             
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('#picturepreview').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-
+         
             $('#table1 tbody').on( 'click', 'tr', function () {
                  id = table.row(this ).data().id ;
                  email = table.row(this ).data().email ;

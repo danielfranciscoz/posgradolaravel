@@ -14,7 +14,7 @@
             
                     <i class="fa fa-user prefix grey-text"></i>
                     <label>usuario</label>
-                    <input type="text" id="usuario" class="form-control" >
+                    <input type="text" id="email" class="form-control" >
 
                     <i class="fa fa-cog prefix grey-text"></i>
                     <label>Constraseña</label>
@@ -51,7 +51,6 @@
                     <i class="fa fa-mail-bulk prefix grey-text"></i>
                     <label>Suscripción</label>
                     <select class="browser-default custom-select mb-4" id="isadmin">
-                        <option value="" disabled>Seleccione un tipo</option>
                         <option value="0" >No suscrito</option>                        
                         <option value="1" >Suscrito</option>
                         
@@ -76,7 +75,16 @@
                             <div class="alert alert-danger col-12" role="alert" id="alertmodalusuarios">
                             
                             </div>
-                            <a class="btn btn-sm btn-primary col-12 " id="but_upload">Guardar</a>
+                          <!--   <a class="" id="">Guardar</a -->
+
+                            
+                      <button
+                                    class="g-recaptcha btn btn-sm btn-primary col-12 "
+                                    data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq"
+                                    data-callback="but_upload">
+                                    Guardar                        
+                                    </button>
+
                         </div>
                         
                          

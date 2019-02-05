@@ -8,6 +8,7 @@ use App\Models\Cursoprecio;
 use App\Models\Cursotematica;
 use App\Models\Cursomodalidad;
 use App\Models\CompetenciaCurso;
+use App\Models\Cursorequisito;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
@@ -203,6 +204,138 @@ class CursosController extends Controller
         ->select('cursoprecios.id','cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad','cursos.Desc_Introduccion','cursos.InfoAdicional','Categorias.Categoria' )
         ->where('cursoprecios.deleted_at',null);
 
+        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+        
+        if (strlen($searchv) !=0) {
+            $v = $v          
+            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
+        }else{
+            $v = $v->getQuery();
+        }
+        
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
+        {          
+            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        }
+        
+        $totalRecords = Count($v->get());
+        $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+        return response()->Json([
+                'draw' => $draw, 
+                'recordsFiltered' => $totalRecords, 
+                'recordsTotal' => $totalRecords, 
+                'data' => $data ]);
+    }
+
+    public function searchcursosrequisitos(Request $request){
+
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+       
+        $lenght = $request->input("length");
+
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        $idcurso = $request->input("id");
+        $searchv = $request->input("search.value");
+        $pagesize = $lenght != null ? $lenght : 0;
+        $skip = $start != null ? $start : 0;
+        
+        $totalRecords = 0;
+
+        //$v = Cursoprecio::with('curso')->where('deleted_at',null);
+
+        $v = Cursorequisito::where('deleted_at',null)->where('id',$idcurso);
+        
+        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+        
+        if (strlen($searchv) !=0) {
+            $v = $v          
+            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
+        }else{
+            $v = $v->getQuery();
+        }
+        
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
+        {          
+            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        }
+        
+        $totalRecords = Count($v->get());
+        $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+        return response()->Json([
+                'draw' => $draw, 
+                'recordsFiltered' => $totalRecords, 
+                'recordsTotal' => $totalRecords, 
+                'data' => $data ]);
+    }
+
+    public function searchcursosmodalidades(Request $request){
+
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+       
+        $lenght = $request->input("length");
+
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        $idcurso = $request->input("id");
+        $searchv = $request->input("search.value");
+        $pagesize = $lenght != null ? $lenght : 0;
+        $skip = $start != null ? $start : 0;
+        
+        $totalRecords = 0;
+
+        //$v = Cursoprecio::with('curso')->where('deleted_at',null);
+
+        $v = Cursomodalidad::where('deleted_at',null)->where('id',$idcurso);
+        
+        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+        
+        if (strlen($searchv) !=0) {
+            $v = $v          
+            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
+        }else{
+            $v = $v->getQuery();
+        }
+        
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
+        {          
+            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        }
+        
+        $totalRecords = Count($v->get());
+        $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+        return response()->Json([
+                'draw' => $draw, 
+                'recordsFiltered' => $totalRecords, 
+                'recordsTotal' => $totalRecords, 
+                'data' => $data ]);
+    }
+
+    public function searchcursoscompetencias(Request $request){
+
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+       
+        $lenght = $request->input("length");
+
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        $idcurso = $request->input("id");
+        $searchv = $request->input("search.value");
+        $pagesize = $lenght != null ? $lenght : 0;
+        $skip = $start != null ? $start : 0;
+        
+        $totalRecords = 0;
+
+        //$v = Cursoprecio::with('curso')->where('deleted_at',null);
+
+        $v = CompetenciaCurso::where('deleted_at',null)->where('id',$idcurso);
+        
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
         if (strlen($searchv) !=0) {

@@ -110,7 +110,8 @@
                     @if($categories[$i]->isCursoPosgrado == 1)
                        <div class="col-md-3 col-sm-12 mb-4 " style="max-height:350px;height: 75% !important;" >
                            <div class="card h-100 wow fadeIn"  >
-                               <img class="card-img-top h-50" style="max-height:175px" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
+                           <img class="card-img-top h-50 d-block d-sm-none px-4" style="width:100%" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">                               
+                               <img class="card-img-top h-50 d-none d-md-block"  src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px "  >{{$categories[$i]['Categoria']}}</h5>
                                    <p class="card-text mb-5 " style="height: 8% !important; font-size:0.75rem;">{{$categories[$i]['Descripcion']}}</p>
@@ -152,23 +153,25 @@
              </div>
              </div >
              </section>
-             <div class="d-flex align-items-center justify-content-center  flex-column blue darken-4" style="min-height:225px; ">
-                <div class="row mb-4 ">
-                    <div class="col-sm-12 col-md-4 text-center white-text mt-4">
-                    <i class="fa fa-graduation-cap fa-4x" aria-hidden="true"></i> <br> <br>
-                        +20.000 estudiantes
+             <section class="container pb-4">
+                <div class="d-flex align-items-center justify-content-center  flex-column blue darken-4" style="min-height:225px; ">
+                    <div class="row mb-4 " >
+                        <div class="col-sm-12 col-md-4 text-center white-text mt-4" >
+                        <i class="fa fa-graduation-cap fa-4x" aria-hidden="true"></i> <br> <br>
+                            +20.000 estudiantes
+                        </div>
+                        <div class="col-sm-12 col-md-4 text-center white-text mt-4 ">
+                        <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i> <br> <br>
+                    Comprometidos con la Calidad de nuestra enseñanza
                     </div>
-                    <div class="col-sm-12 col-md-4 text-center white-text mt-4 ">
-                    <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i> <br> <br>
-                   Comprometidos con la Calidad de nuestra enseñanza
+                    <div class="col-sm-12 col-md-4 text-center white-text mt-4">
+                    <i class="fa fa-globe fa-4x" aria-hidden="true"></i> <br> <br>
+                    Líderes a nivel Centroamericano
+                    </div>
+                        
+                    </div>
                 </div>
-                <div class="col-sm-12 col-md-4 text-center white-text mt-4">
-                <i class="fa fa-globe fa-4x" aria-hidden="true"></i> <br> <br>
-                Líderes a nivel Centroamericano
-                </div>
-                    
-                </div>
-            </div>
+            </section>
             <section class="container pb-4">
              
                 <h2 class="h2-responsive mt-4 text-black-50"> Maestrías </h2>
@@ -201,6 +204,7 @@
         </section>
         
 </div>
+
 <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:575px; background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('{{route('cursos.index')}}/img/b_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
 
         <!-- <img src="/img/b.jpg" class="w-md-100 h-100"/>         -->
@@ -302,19 +306,34 @@
         <!--Section: Main features & Quick Start-->
 </div>
        
-        <div class="white pt-2">
+        <div class="container white pt-2">
         <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nuestro trabajo</h1>
-            <div class="d-flex align-items-center justify-content-center  row " style="max-height:360px; ">
+            <div class="d-block d-sm-none">
+                <div class="d-flex align-items-center justify-content-center flex-column " >
 
-                <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" style="height:80px"/>       
-                <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" style="height:80px"/>                       
-                <img src="{{URL::asset('img/Resources/empresas/CARGILL.jpg')}}" style="height:80px"/>                       
-                <img src="{{URL::asset('img/Resources/empresas/CEMEX.jpg')}}" style="height:80px"/>                       
-                <img src="{{URL::asset('img/Resources/empresas/LA-PRENSA.jpg')}}" style="height:80px"/>                       
-                <img src="{{URL::asset('img/Resources/empresas/MINED.jpg')}}" style="height:80px"/>                       
-                <img src="{{URL::asset('img/Resources/empresas/MTI.jpg')}}" style="height:80px"/>                       
-                <img src="{{URL::asset('img/Resources/empresas/NIMAC.jpg')}}" style="height:80px"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" />       
+                    <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" />                       
+                    <img src="{{URL::asset('img/Resources/empresas/CARGILL.jpg')}}" />                       
+                    <img src="{{URL::asset('img/Resources/empresas/CEMEX.jpg')}}" />                       
+                    <img src="{{URL::asset('img/Resources/empresas/LA-PRENSA.jpg')}}" />                       
+                    <img src="{{URL::asset('img/Resources/empresas/MINED.jpg')}}" />                       
+                    <img src="{{URL::asset('img/Resources/empresas/MTI.jpg')}}" />                       
+                    <img src="{{URL::asset('img/Resources/empresas/NIMAC.jpg')}}" />                       
+                
+                </div>
+             </div>
+             <div class="d-none d-md-block">
+                <div class=" d-flex align-items-center justify-content-center row" >
 
+                    <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" style="width:200px"/>       
+                    <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" style="width:200px"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/CARGILL.jpg')}}" style="width:200px"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/CEMEX.jpg')}}" style="width:200px"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/LA-PRENSA.jpg')}}" style="width:200px"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/MINED.jpg')}}" style="width:200px"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/MTI.jpg')}}" style="width:200px"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/NIMAC.jpg')}}" style="width:200px"/>                       
+                </div>
             </div>
         </div>
         <div class="grey lighten-4">
