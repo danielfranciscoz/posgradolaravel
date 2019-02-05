@@ -7,9 +7,10 @@
         <div class="card-body">
             <h4 class="font-weight-bold h4-responsive">Usuarios</h4>
             {{csrf_field()}}
-            <a class="btn btn-sm green darken-4 white-text font-weight-bold" onclick="openmodal(true)"> <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Nuevo</a>
+            <a class="btn btn-sm green darken-4 white-text font-weight-bold" onclick="openmodal(true)"> <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Nuevo Administrador</a>
             <a class="btn btn-sm yellow darken-4 white-text font-weight-bold" onclick="openmodal(false)"><i class="fa fa-edit" aria-hidden="true">&nbsp; </i>Editar</a>
             <a class="btn btn-sm red darken-4 white-text font-weight-bold" onclick="opendelete()"><i class="fa fa-trash" aria-hidden="true"> </i>&nbsp;Eliminar</a>
+            <a class="btn btn-sm orange darken-4 white-text font-weight-bold" onclick="opencontra()"><i class="fa fa-edit" aria-hidden="true"> </i>&nbsp;Cambiar Contraseña</a>
         
             <div class="table-responsive px-4 mt-4 mb-4">
                 <table id="table1" class="table" style="width:100%">
@@ -35,23 +36,78 @@
 
 </main>
 
+<div class="modal fade" id="modalcontra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+        <form id="loginForm" method="post" >
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100 font-weight-bold">usuarios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           
+            <div class=" ml-5 mr-5">            
+                   
+                        <i class="fa fa-cog prefix grey-text"></i>
+                        <label>Contraseña</label>
+                        <input type="password" id="passrecovery" class="form-control" >
+
+            </div>
+              
+                <div class="row d-flex justify-content-center">
+                
+                        <!--Grid column-->
+                        <div class="col-12 ">
+                        
+                        <div class="d-flex justify-content-center align-items-center text-justify row container ml-1">
+                            <div class="alert alert-danger col-12" role="alert" id="alertrecovery">
+                            
+                            </div>
+                          <!--   <a class="" id="">Guardar</a -->
+
+                            
+                      <button
+                                    class="g-recaptcha btn btn-sm btn-primary col-6 mt-5 "
+                                    data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq"
+                                    data-callback="but_upload">
+                                    Guardar Contraseña                       
+                                    </button>
+
+                        </div>
+                        
+                         
+                           
+                           </div>
+                        <!--Grid column-->
+
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 @include('cms.modalUsuarios')
 @include('cms.modaldelete')
 
 
 @endsection
-
 @section('endscript')
-
 <script>
 
 $("#alertmodalusuarios").hide();
-$("#alertmodaldelete").hide();   
+$("#alertmodaldelete").hide();  
+$("#alertrecovery").hide();  
+$("#tipodiv").hide();    
+$("#contradiv").show();   
     var id = 0;
     var email = "";
     var password = "";
     var isadmin = "";
-    var issuscrito = "";
+    var issuscrito = 0;
     var primern = "";
     var segundoa = "";
     var primera = "";
@@ -104,6 +160,8 @@ $("#alertmodaldelete").hide();
             this.nuevo = nuevo;
             if(nuevo==true){
                 clear();
+                $("#contradiv").show(); 
+                $("#tipodiv").hide();          
                 $('#modalusuarios').modal('show');
             }else{
                 if(id>0){
@@ -119,6 +177,12 @@ $("#alertmodaldelete").hide();
             }
         }
 
+        function opencontra(){
+            if(id>0){
+                $('#modalcontra').modal('show');
+            }
+        }
+
         function clear(){
             $('#email').val("");
             $('#password').val("");
@@ -129,7 +193,7 @@ $("#alertmodaldelete").hide();
             $('#dni').val("");
             $('#telefono').val("");
             $('#isadmin').val("");
-            $('#issuscrito').val("");                   
+            $('#issuscrito').val(0);                   
 
         }
 
@@ -144,7 +208,8 @@ $("#alertmodaldelete").hide();
             $('#telefono').val(telefono);
             $('#isadmin').val(isadmin);
             $('#issuscrito').val(issuscrito);             
-
+            $("#tipodiv").show();
+            $("#contradiv").hide(); 
         }
 
         
@@ -156,7 +221,7 @@ $("#alertmodaldelete").hide();
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
                 fd.append('email',$('#email').val());
                 fd.append('password',$('#password').val());
-                fd.append('isAdmin',$('#isadmin').val());
+                fd.append('isAdmin', 1);
                 fd.append('PrimerNombre',$('#primern').val());
                 fd.append('SegundoNombre',$('#segundon').val());
                 fd.append('PrimerApellido',$('#primera').val());
@@ -173,10 +238,10 @@ $("#alertmodaldelete").hide();
                     contentType: false,
                     processData: false,
                     success: function(response){
-                    console.log(response.message);
-                    if(response.message=="exito"){
-                        table.ajax.reload();
-                    } $("#modalusuarios").modal('hide');
+                   
+                 
+                    table.ajax.reload();
+                    $("#modalusuarios").modal('hide');
                     
                     },
                     error: function(response){
@@ -519,13 +584,14 @@ $("#alertmodaldelete").hide();
 
             $('#modalusuarios').on('hidden.bs.modal', function (e) {
                 $("#alertmodalusuarios").hide();
+                $("#tipodiv").show();
+                $("#contradiv").hide(); 
             }) 
             
          
             $('#table1 tbody').on( 'click', 'tr', function () {
                  id = table.row(this ).data().id ;
-                 email = table.row(this ).data().email ;
-                 password = table.row(this ).data().password ;
+                 email = table.row(this ).data().email ;                
                  isadmin = table.row(this ).data().isAdmin ;
                  primern = table.row(this ).data().PrimerNombre ;
                  segundon = table.row(this ).data().SegundoNombre ; 

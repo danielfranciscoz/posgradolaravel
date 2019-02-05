@@ -15,20 +15,21 @@
                     <i class="fa fa-user prefix grey-text"></i>
                     <label>usuario</label>
                     <input type="text" id="email" class="form-control" >
+                    <div id="contradiv">
+                        <i class="fa fa-cog prefix grey-text"></i>
+                        <label>Contraseña</label>
+                        <input type="password" id="password" class="form-control" >
 
-                    <i class="fa fa-cog prefix grey-text"></i>
-                    <label>Constraseña</label>
-                    <input type="password" id="password" class="form-control" >
-                    
-                    <i class="fa fa-leanpub prefix grey-text"></i>
-                    <label>Tipo de usuario</label>
-                    <select class="browser-default custom-select mb-4" id="isadmin">
-                        <option value="" disabled>Seleccione un tipo</option>
-                        <option value="0" >Usuario web</option>                        
-                        <option value="1" >Administrador</option>
-                        
-                        
-                    </select> 
+                    </div>                  
+                    <div id="tipodiv">
+                        <i class="fa fa-leanpub prefix grey-text"></i>
+                        <label>Tipo de usuario</label>
+                        <select class="browser-default custom-select mb-4" id="isadmin">
+                            <option value="" disabled>Seleccione un tipo</option>
+                            <option value="0" >Usuario web</option>                        
+                            <option value="1" >Administrador</option>    
+                        </select> 
+                    </div>
                   
                     <i class="fa fa-user-circle prefix grey-text"></i>
                     <label>Primer Nombre</label>
@@ -50,7 +51,7 @@
 
                     <i class="fa fa-mail-bulk prefix grey-text"></i>
                     <label>Suscripción</label>
-                    <select class="browser-default custom-select mb-4" id="isadmin">
+                    <select class="browser-default custom-select mb-4" id="issuscrito">
                         <option value="0" >No suscrito</option>                        
                         <option value="1" >Suscrito</option>
                         
