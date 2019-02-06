@@ -246,7 +246,7 @@ class CursosController extends Controller
 
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
 
-        $v = Cursorequisito::where('deleted_at',null)->where('id',$idcurso);
+        $v = Cursorequisito::where('deleted_at',null)->where('curso_id',$idcurso);
         
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
@@ -290,7 +290,7 @@ class CursosController extends Controller
 
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
 
-        $v = Cursomodalidad::where('deleted_at',null)->where('id',$idcurso);
+        $v = Cursomodalidad::where('deleted_at',null)->where('curso_id',$idcurso);
         
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
@@ -334,10 +334,52 @@ class CursosController extends Controller
 
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
 
-        $v = CompetenciaCurso::where('deleted_at',null)->where('id',$idcurso);
+        $v = CompetenciaCurso::where('deleted_at',null)->where('curso_id',$idcurso);
         
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
+        if (strlen($searchv) !=0) {
+            $v = $v          
+            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
+        }else{
+            $v = $v->getQuery();
+        }
+        
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
+        {          
+            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        }
+        
+        $totalRecords = Count($v->get());
+        $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+        return response()->Json([
+                'draw' => $draw, 
+                'recordsFiltered' => $totalRecords, 
+                'recordsTotal' => $totalRecords, 
+                'data' => $data ]);
+    }
+
+    public function searchcursosetiquetas(Request $request){
+
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+       
+        $lenght = $request->input("length");
+
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        $idcurso = $request->input("id");
+        $searchv = $request->input("search.value");
+        $pagesize = $lenght != null ? $lenght : 0;
+        $skip = $start != null ? $start : 0;
+        
+        $totalRecords = 0;
+
+        $v = Etiqueta::with('cursos')->where('deleted_at',null)->wherehas('cursos',function($sql) {
+            $sql->where('curso_id',$idcurso);
+        });
+
         if (strlen($searchv) !=0) {
             $v = $v          
             ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');

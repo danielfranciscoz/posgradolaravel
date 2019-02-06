@@ -112,10 +112,11 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
         // });
 
         Route::post('usuarios/search','AccountController@searchusuarios')->name('admin.searchusuarios');           
+        Route::post('usuarios/reset','AccountController@resetPasswordAdmin')->name('admin.adminReset');           
 
         Route::resource('usuarios','AccountController')->names([
             'index'=>'admin.usuarios',
-           //'registrar'=>'admin.usuariosSave',     //Este metodo en realidad se llama registrar      
+           'store'=>'admin.usuariosSave',     //Este metodo en realidad se llama registrar      
             'destroy'=>'admin.usuariosDelete',
             'update'=>'admin.usuariosUpdate',                      
         ]);

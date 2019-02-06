@@ -72,8 +72,9 @@ class AccountController extends Controller
            
             // Mail::to($user->email)
             //         ->send((new ConfirmationUser($user,$estudent))->locale('es'));
-            
-            $this->sendConfirmationMail($user,$estudent);
+            if ($request->has('isAdmin') ==false) {
+                 $this->sendConfirmationMail($user,$estudent);                 
+            }
             
             //La línea de abajo funciona para visualizar lo que será enviado por correo
             //  return (new ConfirmationUser($user,$estudent))->render();
@@ -91,17 +92,17 @@ class AccountController extends Controller
             ]);        
         }
   
-    }    
+    }   
+     
+    public function store(RegisterRequest $request){        
+    }
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $validatedData = $request->validate([
             'PrimerNombre' =>'required',
             'PrimerApellido' =>'required',
             'DNI' =>'required',
-            'email' => 'required|email|unique:users',
             'Telefono' => 'required',
-            'password' => 'required|min:6',
         ]);
                 
         $original = User::find($request->input('id'));
@@ -116,18 +117,13 @@ class AccountController extends Controller
 
         try {    
 
-            $original->name = $user->email;
-            $original->password = bcrypt($request->input('password'));
             $original->updated_at =date('Y-m-d H:i:s');       
-            if ($request->has('isAdmin')) {
-                $original->isAdmin = true;                     
-            }else{
-                $original->isAdmin = false;     
-            }
             
             $original->save();
             
             $estudent = Estudiante::find($original->id);
+       
+            $estudent->user_id  = $original->id;
             $estudent->PrimerNombre  = $request->input('PrimerNombre');
             $estudent->SegundoNombre  = $request->input('SegundoNombre');
             $estudent->PrimerApellido = $request->input('PrimerApellido');
@@ -145,10 +141,10 @@ class AccountController extends Controller
         } catch (Exception $e) {
             return report($e);
         }
-}
+    }
 
-    public function destroy($id)
-    {
+    public function destroy($id){
+        
         $original = User::find($id);
 
         if ($original == null) {
@@ -168,6 +164,28 @@ class AccountController extends Controller
             return report($e);
         }
     }
+
+    public function resetPasswordAdmin(Request $request,$id){
+ 
+        $password = $request->input('password');
+
+        $user = User::find($id);
+        
+        if ($user == null) {
+            return response()->json([
+                'error'=>'El usuario no ha sido encontrado en la base de datos'                
+            ]);
+        }
+
+        $user->password = bcrypt($password);
+        
+        $user->save();
+
+        return response()->json([
+            'message'=>'Exito'
+            ]);
+    }
+
     public function RegistroCompleto($token){
         
         $user = User::where('token',$token)->first();

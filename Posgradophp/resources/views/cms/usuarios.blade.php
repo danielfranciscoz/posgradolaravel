@@ -347,8 +347,6 @@ $("#contradiv").show();
                 fd.append('id',id);
                 fd.append('_method','put');                
                 fd.append('email',$('#email').val());
-                fd.append('password',$('#password').val());
-                fd.append('isAdmin',$('#isadmin').val());
                 fd.append('PrimerNombre',$('#primern').val());
                 fd.append('SegundoNombre',$('#segundon').val());
                 fd.append('PrimerApellido',$('#primera').val());
@@ -357,7 +355,7 @@ $("#contradiv").show();
                 fd.append('Telefono',$('#telefono').val());
                 fd.append('isSuscript',$('#issuscrito').val());
                $.ajax({
-                    url: "{{route('admin.usuarios')}}/"+id,
+                    url: "{{route('admin.usuariosSave')}}/"+id,
                     type: 'post',
                     data: fd,
                     contentType: false,
