@@ -41,7 +41,7 @@
         <div class="modal-content">
         <form id="loginForm" method="post" >
             <div class="modal-header text-center">
-                <h5 class="modal-title w-100 font-weight-bold">usuarios</h5>
+                <h5 class="modal-title w-100 font-weight-bold">Cambio de contraseña</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -70,7 +70,7 @@
                       <button
                                     class="g-recaptcha btn btn-sm btn-primary col-6 mt-5 "
                                     data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq"
-                                    data-callback="but_upload">
+                                    data-callback="but_pass">
                                     Guardar Contraseña                       
                                     </button>
 
@@ -193,7 +193,8 @@ $("#contradiv").show();
             $('#dni').val("");
             $('#telefono').val("");
             $('#isadmin').val("");
-            $('#issuscrito').val(0);                   
+            $('#issuscrito').val(0); 
+            $('#email').prop('disabled', false);                  
 
         }
 
@@ -209,6 +210,8 @@ $("#contradiv").show();
             $('#isadmin').val(isadmin);
             $('#issuscrito').val(issuscrito);             
             $("#tipodiv").show();
+            $('#email').prop('disabled', true);
+          
             $("#contradiv").hide(); 
         }
 
@@ -579,6 +582,50 @@ $("#contradiv").show();
                     }
                 });
             });
+
+            function but_pass(){
+            
+         
+                var fd = new FormData();
+                       
+                fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
+                fd.append('id',id);
+                fd.append('_method','put');      
+                fd.append('password',$('#password').val());               
+                $.ajax({
+                    url: "{{route('registrar')}}",
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){                   
+                 
+                    table.ajax.reload();
+                    $("#modalcontra").modal('hide');
+                    
+                    },
+                    error: function(response){
+                    
+                        var str = "";
+                                    $("#alertmodalcontra").show();
+
+                           
+                           
+                               if (typeof response.responseJSON.errors.password != "undefined") {
+                              
+                               
+                              for(var i=0;i<response.responseJSON.errors.password.length;i++){
+                                  
+                                  str= str +'<b>'+response.responseJSON.errors.password[i]+'</b><br></br>';                                  
+                              }
+                            }                         
+                          
+
+                                    $("#alertmodalcontra").html(str);
+                    }
+                });
+            }
+
 
             $('#modalusuarios').on('hidden.bs.modal', function (e) {
                 $("#alertmodalusuarios").hide();

@@ -26,6 +26,14 @@
 #table4_filter{
         display:none;
     }
+
+#table5_length{
+    display:none;
+}
+
+#table5_filter{
+        display:none;
+    }
 </style>
 <main>
 
@@ -114,6 +122,42 @@
                     </div>
                  </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                <h6 class="font-weight-bold h4-responsive">Etiquetas</h6>
+                <div class="table-responsive px-4 mt-4 mb-4">
+                <table id="table5" class="table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>idEtiqueta</th>
+                            <th>Etiqueta</th>                           
+                            <!-- <th>Creado</th> -->
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>                 
+                </table>
+            </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <h6 class="font-weight-bold h4-responsive">Docentes</h6>
+                    <div class="table-responsive px-4 mt-4 mb-4">
+                    <table id="table5" class="table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>iddocente</th>
+                                <th>docente</th>                           
+                                <!-- <th>Creado</th> -->
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>                 
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -136,6 +180,7 @@ $("#alertmodaldelete").hide();
 loadtable2();
 loadtable3();
 loadtable4();
+loadtable5();
     var id = 0;
     var curso = "";
     var precio = 0;
@@ -150,6 +195,7 @@ loadtable4();
     var table2;
     var table3;
     var table4;
+    var table5;
 
     var table = $('#table1').DataTable( {
             select: true,
@@ -280,6 +326,37 @@ loadtable4();
         } );
 
     }
+
+    function loadtable5(){
+        table5 = $('#table5').DataTable( {
+            select: true,
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "ajax": {
+                "url": "{{route('admin.searchcursosetiquetas')}}",
+                "type": "POST",
+                'data': {
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                     "id": id           
+                },        
+                "dataType": "JSON"
+
+            },
+            "columns": [                    
+                    { "data": "id", "name": "id" ,"visible":false},
+                    { "data": "etiqueta_id", "name": "etiqueta_id" ,"visible":false},
+                    { "data": "etiqueta", "name": "etiqueta" }
+                               
+                    //{ "data": "created_at", "name": "created_at" },
+            ],
+            @include('layout.lenguagetableshort')
+            
+
+        } );
+
+    }
+    
     
     
    
@@ -689,6 +766,8 @@ loadtable4();
                 loadtable3();
                 table4.destroy();
                 loadtable4();
+                table5.destroy();
+                loadtable5();
         
         
 

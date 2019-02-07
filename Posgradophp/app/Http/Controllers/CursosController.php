@@ -9,6 +9,7 @@ use App\Models\Cursotematica;
 use App\Models\Cursomodalidad;
 use App\Models\CompetenciaCurso;
 use App\Models\Cursorequisito;
+use App\Models\CursoEtiqueta;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
@@ -376,10 +377,11 @@ class CursosController extends Controller
         
         $totalRecords = 0;
 
-        $v = Etiqueta::with('cursos')->where('deleted_at',null)->wherehas('cursos',function($sql) {
-            $sql->where('curso_id',$idcurso);
-        });
+        $v = Etiqueta::rightJoin('curso_etiqueta', 'curso_etiqueta.etiqueta_id', '=', 'etiquetas.id')->
+        select('curso_etiqueta.id','curso_etiqueta.etiqueta_id','curso_etiqueta.deleted_at','etiqueta')->
+        where('curso_etiqueta.deleted_at',null)->where('curso_id',$idcurso);
 
+        
         if (strlen($searchv) !=0) {
             $v = $v          
             ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
