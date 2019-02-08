@@ -68,9 +68,9 @@
 
                             
                       <button
-                                    class="g-recaptcha btn btn-sm btn-primary col-6 mt-5 "
-                                    data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq"
-                                    data-callback="but_pass">
+                                    class="btn btn-sm btn-primary col-6 mt-5 "
+                                   
+                                   onclick="but_pass()">
                                     Guardar Contraseña                       
                                     </button>
 
@@ -589,11 +589,10 @@ $("#contradiv").show();
                 var fd = new FormData();
                        
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));
-                fd.append('id',id);
-                fd.append('_method','put');      
-                fd.append('password',$('#password').val());               
+                fd.append('id',id);            
+                fd.append('password',$('#passrecovery').val());               
                 $.ajax({
-                    url: "{{route('registrar')}}",
+                    url: "{{route('admin.adminReset')}}",
                     type: 'post',
                     data: fd,
                     contentType: false,

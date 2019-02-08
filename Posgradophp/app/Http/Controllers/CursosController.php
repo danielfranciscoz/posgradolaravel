@@ -9,7 +9,6 @@ use App\Models\Cursotematica;
 use App\Models\Cursomodalidad;
 use App\Models\CompetenciaCurso;
 use App\Models\Cursorequisito;
-use App\Models\CursoEtiqueta;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
 use App\Models\Comentario;
@@ -377,18 +376,15 @@ class CursosController extends Controller
         
         $totalRecords = 0;
 
-        $v = Etiqueta::rightJoin('curso_etiqueta', 'curso_etiqueta.etiqueta_id', '=', 'etiquetas.id')->
-        select('curso_etiqueta.id','curso_etiqueta.etiqueta_id','curso_etiqueta.deleted_at','etiqueta')->
-        where('curso_etiqueta.deleted_at',null)->where('curso_id',$idcurso);
+        // $v = Etiqueta::rightJoin('curso_etiqueta', 'curso_etiqueta.etiqueta_id', '=', 'etiquetas.id')->
+        // select('curso_etiqueta.id','curso_etiqueta.etiqueta_id','curso_etiqueta.deleted_at','etiqueta')->
+        // where('curso_etiqueta.deleted_at',null)->where('curso_id',$idcurso);
 
-        
-        if (strlen($searchv) !=0) {
-            $v = $v          
-            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
-        }else{
-            $v = $v->getQuery();
-        }
-        
+        $v = Etiqueta::where('deleted_at',null)
+                ->wherehas('cursos',function($sql) use ($idcurso) {
+                        $sql->where('curso_id',$idcurso);
+                    }); 
+                    
         if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
         {          
             $v = $v->orderBy($sortColumn,$sortColumnDir);
@@ -421,6 +417,43 @@ class CursosController extends Controller
             'curso'=> $curso
         ]);
     }
+
+    public function searchcursodocentes(Request $request){
+
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+       
+        $lenght = $request->input("length");
+
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        $idcurso = $request->input("id");
+        $searchv = $request->input("search.value");
+        $pagesize = $lenght != null ? $lenght : 0;
+        $skip = $start != null ? $start : 0;
+        
+        $totalRecords = 0;
+
+        $v = Docente::where('deleted_at',null)
+        ->wherehas('cursos',function($sql) use ($idcurso) {
+                $sql->where('curso_id',$idcurso);
+            }); 
+
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
+        {          
+            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        }
+        
+        $totalRecords = Count($v->get());
+        $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+        return response()->Json([
+                'draw' => $draw, 
+                'recordsFiltered' => $totalRecords, 
+                'recordsTotal' => $totalRecords, 
+                'data' => $data ]);
+    }
+
 
     public function store(CursoRequest $request){
 

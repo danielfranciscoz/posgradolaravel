@@ -34,6 +34,15 @@
 #table5_filter{
         display:none;
     }
+
+    
+#table6_length{
+    display:none;
+}
+
+#table6_filter{
+        display:none;
+    }
 </style>
 <main>
 
@@ -131,7 +140,7 @@
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>idEtiqueta</th>
+                        
                             <th>Etiqueta</th>                           
                             <!-- <th>Creado</th> -->
 
@@ -144,11 +153,10 @@
                 <div class="col-sm-12 col-md-6">
                     <h6 class="font-weight-bold h4-responsive">Docentes</h6>
                     <div class="table-responsive px-4 mt-4 mb-4">
-                    <table id="table5" class="table" style="width:100%">
+                    <table id="table6" class="table" style="width:100%">
                         <thead>
                             <tr>
-                                <th>id</th>
-                                <th>iddocente</th>
+                                <th>id</th>                              
                                 <th>docente</th>                           
                                 <!-- <th>Creado</th> -->
 
@@ -181,6 +189,7 @@ loadtable2();
 loadtable3();
 loadtable4();
 loadtable5();
+loadtable6();
     var id = 0;
     var curso = "";
     var precio = 0;
@@ -196,6 +205,7 @@ loadtable5();
     var table3;
     var table4;
     var table5;
+    var table6;
 
     var table = $('#table1').DataTable( {
             select: true,
@@ -345,8 +355,8 @@ loadtable5();
             },
             "columns": [                    
                     { "data": "id", "name": "id" ,"visible":false},
-                    { "data": "etiqueta_id", "name": "etiqueta_id" ,"visible":false},
-                    { "data": "etiqueta", "name": "etiqueta" }
+                 
+                    { "data": "Etiqueta", "name": "Etiqueta" }
                                
                     //{ "data": "created_at", "name": "created_at" },
             ],
@@ -358,7 +368,36 @@ loadtable5();
     }
     
     
-    
+    function loadtable6(){
+        table6 = $('#table6').DataTable( {
+            select: true,
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "ajax": {
+                "url": "{{route('admin.searchcursodocentes')}}",
+                "type": "POST",
+                'data': {
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                     "id": id           
+                },        
+                "dataType": "JSON"
+
+            },
+            "columns": [                    
+                    { "data": "id", "name": "id" ,"visible":false},
+                 
+                    { "data": "Nombres", "name": "Nombres" }
+                               
+                    //{ "data": "created_at", "name": "created_at" },
+            ],
+            @include('layout.lenguagetableshort')
+            
+
+        } );
+
+    }
+
    
     var tabledocentes = $('#tabledocentes').DataTable( {
         "pageLength": 50,
@@ -768,6 +807,8 @@ loadtable5();
                 loadtable4();
                 table5.destroy();
                 loadtable5();
+                table6.destroy();
+                loadtable6();
         
         
 

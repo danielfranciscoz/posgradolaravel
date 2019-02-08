@@ -165,10 +165,11 @@ class AccountController extends Controller
         }
     }
 
-    public function resetPasswordAdmin(Request $request,$id){
+    public function resetPasswordAdmin(Request $request){
  
         $password = $request->input('password');
-
+        $id = $request->input('id');
+        
         $user = User::find($id);
         
         if ($user == null) {
