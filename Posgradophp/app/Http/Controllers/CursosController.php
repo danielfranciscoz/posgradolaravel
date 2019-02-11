@@ -456,6 +456,78 @@ class CursosController extends Controller
 
 
     public function store(CursoRequest $request){
+        DB::beginTransaction();   
+        try {
+            
+            $curso = new Curso();
+            $curso->NombreCurso = $request->input('NombreCurso');
+            $curso->Image_URL = $request->input('Image_URL');
+            $curso->Temario_URL = $request->input('Temario_URL');
+            $curso->Desc_Introduccion = $request->input('Desc_Introduccion');
+            $curso->InfoAdicional = $request->input('InfoAdicional');
+            $curso->categoria_id = $request->input('categoria_id');
+
+            $curso->save();
+            
+            $cursoprecio = new CursoPrecio();
+            $cursoprecio->curso_id = $curso->id;
+            $cursoprecio->Precio = $request->input('Precio');
+            
+            $cursoprecio->save();
+
+            $competencias = Request::input('competencias.Competencia');
+            
+            for ($i=0; $i < Count($comentencias); $i++) { 
+                $competenciacurso = new Competenciacurso();
+                $competenciacurso->curso_id = $curso->id;
+                $competenciacurso->Competencia = $competencias[$i];
+                
+                $competenciacurso->save();
+            }
+
+            $tematicas = Request::input('tematicas.Tematica');
+            $tematicasduracion = Request::input('tematicas.Duracion');
+
+            for ($i=0; $i < Count($tematicas); $i++) { 
+                $tematicas = new Cursotematica();
+                $tematicas->curso_id = $curso->id;
+                $tematicas->Tematica = $tematicas[$i];
+                $tematicas->Duracion = $tematicasduracion[$i];
+                
+                $tematicas->save();
+            }
+
+            $modalidades = Request::input('modalidades.Modalidad');
+            $modalidadeshorario = Request::input('modalidades.Horario');
+
+            for ($i=0; $i < Count($modalidades); $i++) { 
+                $modalidades = new Cursomodalidad();
+                $modalidades->curso_id = $curso->id;
+                $modalidades->Tematica = $modalidades[$i];
+                $modalidades->Horario = $modalidadeshorario[$i];
+                
+                $modalidades->save();
+            }
+
+            $requisitos = Request::input('requisitos.Requisito');
+       
+            for ($i=0; $i < Count($requisitos); $i++) { 
+                $requisitos = new Cursorequisito();
+                $requisitos->curso_id = $curso->id;
+                $requisitos->Tematica = $requisitos[$i];
+                
+                $requisitos->save();
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'message'=>'exito'
+            ]);
+        } catch (Exception $e) {
+            DB::rollback();
+            return report($e);     
+        }
 
     }
     public function update(CursoRequest $request,$id){
