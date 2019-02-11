@@ -101,10 +101,152 @@
                 </div>
                 
                 <hr>
+                <h6 class="h6-responsive font-weight-bold">Requisitos</h6>
+                <div class="row mt-4">
+                    <div class="col-md-6 col-sm-12">
+                        <select class="browser-default custom-select mb-4" id="requisitos">
+
+                        <option value="-1" disabled>Seleccione un requisito</option>
+                      
+                        @for($i=0;$i<count($docentesselect);$i++)
+                        <option value="{{$docentesselect[$i]->id}}" >{{$docentesselect[$i]->Nombres}}</option>                        
+                        @endfor
+
+                        </select> 
+                        <a class="btn btn-sm green white-text font-weight-bold">Agregar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                    <div class="table-responsive">
+                        <table id="tablerequisitos" class="table" style="width:100%;heigth:500px">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Requisitos</th>                                
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>                 
+                        </table>
+                    </div>
+                    </div>
+
+                        
+
+                </div>
+
+                <hr>
+                <h6 class="h6-responsive font-weight-bold">Modalidades</h6>
+                <div class="row mt-4">
+                    <div class="col-md-6 col-sm-12">
+                        <select class="browser-default custom-select mb-4" id="modalidades">
+
+                        <option value="-1" disabled>Seleccione un Modalidad</option>
+                      
+                        @for($i=0;$i<count($docentesselect);$i++)
+                        <option value="{{$docentesselect[$i]->id}}" >{{$docentesselect[$i]->Nombres}}</option>                        
+                        @endfor
+
+                        </select> 
+                        <a class="btn btn-sm green white-text font-weight-bold">Agregar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                    <div class="table-responsive">
+                        <table id="tablemodalidades" class="table" style="width:100%;heigth:500px">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Modalidad</th> 
+                                    <th>Horario</th>                               
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>                 
+                        </table>
+                    </div>
+                    </div>
+
+                        
+
+                </div>
+
+                <hr>
+                <h6 class="h6-responsive font-weight-bold">Competencias</h6>
+                <div class="row mt-4">
+                    <div class="col-md-6 col-sm-12">
+                        <select class="browser-default custom-select mb-4" id="competencias">
+
+                        <option value="-1" disabled>Seleccione una competencia</option>
+                      
+                        @for($i=0;$i<count($docentesselect);$i++)
+                        <option value="{{$docentesselect[$i]->id}}" >{{$docentesselect[$i]->Nombres}}</option>                        
+                        @endfor
+
+                        </select> 
+                        <a class="btn btn-sm green white-text font-weight-bold">Agregar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                    <div class="table-responsive">
+                        <table id="tablecompetencia" class="table" style="width:100%;heigth:500px">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Competencia</th>                                
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>                 
+                        </table>
+                    </div>
+                    </div>
+
+                        
+
+                </div>
+
+                <hr>
+                <h6 class="h6-responsive font-weight-bold">Etiquetas</h6>
+                <div class="row mt-4">
+                    <div class="col-md-6 col-sm-12">
+                        <select class="browser-default custom-select mb-4" id="etiqueta">
+
+                        <option value="-1" disabled>Seleccione una etiqueta</option>
+                      
+                        @for($i=0;$i<count($docentesselect);$i++)
+                        <option value="{{$docentesselect[$i]->id}}" >{{$docentesselect[$i]->Nombres}}</option>                        
+                        @endfor
+
+                        </select> 
+                        <a class="btn btn-sm green white-text font-weight-bold">Agregar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                    <div class="table-responsive">
+                        <table id="tableetiquetas" class="table" style="width:100%;heigth:500px">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Etiqueta</th>                                
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>                 
+                        </table>
+                    </div>
+                    </div>
+
+                        
+
+                </div>
+
+                 
+                <hr>
                 <h6 class="h6-responsive font-weight-bold">Docentes</h6>
                 <div class="row mt-4">
                     <div class="col-md-6 col-sm-12">
-                        <select class="browser-default custom-select mb-4" id="categoria">
+                        <select class="browser-default custom-select mb-4" id="docentes">
 
                         <option value="-1" disabled>Seleccione un Docente</option>
                       
@@ -128,8 +270,11 @@
                             </thead>
                             <tbody></tbody>                 
                         </table>
-            </div>
                     </div>
+                    </div>
+
+                        
+
                 </div>
 
                        

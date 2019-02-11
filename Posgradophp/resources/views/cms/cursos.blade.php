@@ -43,6 +43,47 @@
 #table6_filter{
         display:none;
     }
+
+#tabledocentes_length{
+    display:none;
+    }
+
+#tabledocentes_filter{
+        display:none;
+    }
+
+    #tablerequisitos_length{
+    display:none;
+    }
+
+    #tablerequisitos_filter{
+        display:none;
+    }
+    #tablemodalidades_length{
+    display:none;
+    }
+
+    #tablemodalidades_filter{
+        display:none;
+    }
+    #tablecompetencias_length{
+    display:none;
+    }
+
+    #tablecompetencias_filter{
+        display:none;
+    }
+    #tableetiquetas_length{
+    display:none;
+    }
+
+    #tableetiquetas_filter{
+        display:none;
+    }
+
+
+
+   
 </style>
 <main>
 
@@ -57,7 +98,7 @@
             <div class="table-responsive px-4 mt-4 mb-4">
                 <table id="table1" class="table" style="width:100%">
                     <thead>
-                        <tr>
+                        <tr class="font-weight-bold"    >
                             <th>id</th>
                             <th>Curso</th>
                             <th>Categoría</th>
@@ -84,7 +125,7 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>Requisito</th>
+                                    <th class="font-weight-bold">Requisito </th>
                                     
                                     <!-- <th>Creado</th> -->
 
@@ -101,8 +142,8 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>Modalidad</th>
-                                    <th>Horario</th>
+                                    <th class="font-weight-bold">Modalidad</th>
+                                    <th class="font-weight-bold">Horario</th>
                                     
                                     <!-- <th>Creado</th> -->
 
@@ -119,7 +160,7 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>Competencia</th>
+                                    <th class="font-weight-bold">Competencia</th>
                                    
                                     
                                     <!-- <th>Creado</th> -->
@@ -141,7 +182,7 @@
                         <tr>
                             <th>id</th>
                         
-                            <th>Etiqueta</th>                           
+                            <th class="font-weight-bold">Etiqueta</th>                           
                             <!-- <th>Creado</th> -->
 
                         </tr>
@@ -157,7 +198,7 @@
                         <thead>
                             <tr>
                                 <th>id</th>                              
-                                <th>docente</th>                           
+                                <th class="font-weight-bold">Docente</th>                           
                                 <!-- <th>Creado</th> -->
 
                             </tr>
@@ -206,6 +247,11 @@ loadtable6();
     var table4;
     var table5;
     var table6;
+    var tablerequisitos;
+    var tableetiquetas;
+    var tablemodalidades;
+    var tablecompetencias;
+    var tabledocentes;
 
     var table = $('#table1').DataTable( {
             select: true,
@@ -399,11 +445,64 @@ loadtable6();
     }
 
    
-    var tabledocentes = $('#tabledocentes').DataTable( {
+    tabledocentes = $('#tabledocentes').DataTable( {
+        "columns": [                    
+                    { "name": "id" ,"visible":false},
+                 
+                    { "name": "docente" }
+                ],
         "pageLength": 50,
         @include('layout.lenguagetableshort')
 
     });
+
+    tablerequisitos = $('#tablerequisitos').DataTable( {
+        "columns": [                    
+                    { "name": "id" ,"visible":false},
+                 
+                    { "name": "requisitos" }
+                ],
+        "pageLength": 50,
+        @include('layout.lenguagetableshort')
+
+    });
+
+    tablemodalidades = $('#tablemodalidades').DataTable( {
+        "columns": [                    
+                    { "name": "id" ,"visible":false},
+                 
+                    { "name": "modalidad" },
+                    { "name": "horario" }
+                ],
+        "pageLength": 50,
+        @include('layout.lenguagetableshort')
+
+    });
+
+    tablecompetencias = $('#tablecompetencias').DataTable( {
+        "columns": [                    
+                    { "name": "id" ,"visible":false},                 
+                    { "name": "competencia" }                    
+                ],
+        "pageLength": 50,
+        @include('layout.lenguagetableshort')
+
+    });
+
+    
+    tableetiquetas = $('#tableetiquetas').DataTable( {
+        "columns": [                    
+                    { "name": "id" ,"visible":false},                 
+                    { "name": "etiqueta" }                    
+                ],
+        "pageLength": 50,
+        @include('layout.lenguagetableshort')
+
+    });
+
+
+
+    
 
         function openmodal(nuevo){
             this.nuevo = nuevo;
@@ -434,8 +533,9 @@ loadtable6();
             $('#file').val(null);
             $('#image').val(null);
             $('#picturepreview').attr('src', '');      
-            $('#filepreview').attr('src', '');          
-
+            $('#filepreview').attr('src', '');  
+               
+           
         }
 
         function setedit(){
@@ -446,10 +546,30 @@ loadtable6();
             $('#descripcionadicional').val(descripcionadicional);
             $('#descripcionintroduccion').val(descripcionintroduccion);
             //$('#file').val(null);
-            $('#filepreview').attr('src','{{route('cursos.index')}}/'+temario_url);
-                      
+            $('#filepreview').attr('src','{{route('cursos.index')}}/'+temario_url);                      
             $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);
-                      
+            table2.clear().draw(); 
+            table3.clear().draw();        
+            table4.clear().draw();        
+            table5.clear().draw();        
+            table6.clear().draw();    
+            for(var i=0;i<table2.rows().data().count();i++){
+            tablerequisitos.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
+           }
+            for(var i=0;i<table3.rows().data().count();i++){
+            tablemodalidades.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
+           }
+            for(var i=0;i<table4.rows().data().count();i++){
+            tablecompetencias.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
+           }
+            for(var i=0;i<table5.rows().data().count();i++){
+            tableetiquetas.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
+           }
+
+           for(var i=0;i<table6.rows().data().count();i++){
+            tabledocentes.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
+           }
+
 
         }
 
