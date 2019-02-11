@@ -88,7 +88,7 @@ class AccountController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             return response()->json([
-                'error'=>'Ocurrió un error y n o pudimos completar el registro, por favor intenta mas tarde.'
+                'error'=>'Ocurrió un error y no pudimos completar el registro, por favor intenta mas tarde.'
             ]);        
         }
   
