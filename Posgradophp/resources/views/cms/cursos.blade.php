@@ -512,7 +512,7 @@ loadtable6();
             }else{
                 if(id>0){
                     setedit();
-                    $('#modalcursos').modal('show');
+                   
                 }
             }
         }
@@ -548,28 +548,52 @@ loadtable6();
             //$('#file').val(null);
             $('#filepreview').attr('src','{{route('cursos.index')}}/'+temario_url);                      
             $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);
-            table2.clear().draw(); 
-            table3.clear().draw();        
-            table4.clear().draw();        
-            table5.clear().draw();        
-            table6.clear().draw();    
-            for(var i=0;i<table2.rows().data().count();i++){
-            tablerequisitos.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
-           }
-            for(var i=0;i<table3.rows().data().count();i++){
-            tablemodalidades.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
-           }
-            for(var i=0;i<table4.rows().data().count();i++){
-            tablecompetencias.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
-           }
-            for(var i=0;i<table5.rows().data().count();i++){
-            tableetiquetas.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
-           }
 
-           for(var i=0;i<table6.rows().data().count();i++){
-            tabledocentes.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
-           }
+            setTimeout(function(){ 
+                table2.clear().draw();
+                   
+             }, 300);
 
+             setTimeout(function(){ 
+                table3.clear().draw();  
+                  
+            }, 300);
+
+            setTimeout(function(){ 
+                table4.clear().draw();
+                   
+
+            }, 300);
+            setTimeout(function(){ 
+                table5.clear().draw(); 
+               
+
+            }, 300);
+            setTimeout(function(){ 
+                table6.clear().draw();
+              
+
+            }, 300);   
+            setTimeout(function(){ 
+             for(var i=0;i<table2.rows().data().count();i++){
+                        tablerequisitos.row.add([table2.row(i).data().id,table2.row(i).data().Requisito]).draw();
+                    }     
+
+                    for(var i=0;i<table3.rows().data().count();i++){
+                        tablemodalidades.row.add([table3.row(i).data().id,table3.row(i).data().Modalidad,table3.row(i).data().Horario]).draw();
+                    }
+                    for(var i=0;i<table4.rows().data().count();i++){
+                        tablecompetencias.row.add([table4.row(i).data().id,table4.row(i).data().competencia]).draw();
+                    }
+                    for(var i=0;i<table5.rows().data().count();i++){
+                    tableetiquetas.row.add([table5.row(i).data().id,table5.row(i).data().Etiqueta]).draw();
+                }
+                      for(var i=0;i<table6.rows().data().count();i++){
+                    tabledocentes.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
+                }                
+            }, 1000);   
+            $('#modalcursos').modal('show');
+                     
 
         }
 

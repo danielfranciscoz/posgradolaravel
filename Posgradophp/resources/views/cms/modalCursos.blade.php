@@ -189,7 +189,7 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                     <div class="table-responsive">
-                        <table id="tablecompetencia" class="table" style="width:100%;heigth:500px">
+                        <table id="tablecompetencias" class="table" style="width:100%;heigth:500px">
                             <thead>
                                 <tr>
                                     <th>id</th>
