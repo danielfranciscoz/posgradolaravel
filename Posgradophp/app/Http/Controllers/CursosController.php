@@ -21,10 +21,12 @@ class CursosController extends Controller
     public function index()
     {   
         $categoriaselect = Categoria::where('deleted_at',null)->get();
+        $etiquetasselect = Etiqueta::where('deleted_at',null)->get();        
         $docentesselect = Docente::where('deleted_at',null)->get();
         return view('cms.cursos') 
             ->with(compact('categoriaselect'))
-            ->with(compact('docentesselect'));
+            ->with(compact('docentesselect'))
+            ->with(compact('etiquetasselect'));
     }
   
     public function categories($categoria,$orden=null)

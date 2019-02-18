@@ -3,83 +3,83 @@
 @section('content')
 <style>
 
-#table2_length{
-    display:none;
-}
-
-#table2_filter{
-        display:none;
-    }
-    
-#table3_length{
-    display:none;
-}
-
-#table3_filter{
+    #table2_length{
         display:none;
     }
 
-    #table4_length{
-    display:none;
-}
-
-#table4_filter{
+    #table2_filter{
+            display:none;
+        }
+        
+    #table3_length{
         display:none;
     }
 
-#table5_length{
-    display:none;
-}
+    #table3_filter{
+            display:none;
+        }
 
-#table5_filter{
+        #table4_length{
         display:none;
     }
 
-    
-#table6_length{
-    display:none;
-}
+    #table4_filter{
+            display:none;
+        }
 
-#table6_filter{
+    #table5_length{
         display:none;
     }
 
-#tabledocentes_length{
-    display:none;
-    }
+    #table5_filter{
+            display:none;
+        }
 
-#tabledocentes_filter{
+        
+    #table6_length{
         display:none;
     }
 
-    #tablerequisitos_length{
-    display:none;
-    }
+    #table6_filter{
+            display:none;
+        }
 
-    #tablerequisitos_filter{
+    #tabledocentes_length{
         display:none;
-    }
-    #tablemodalidades_length{
-    display:none;
-    }
+        }
 
-    #tablemodalidades_filter{
-        display:none;
-    }
-    #tablecompetencias_length{
-    display:none;
-    }
+    #tabledocentes_filter{
+            display:none;
+        }
 
-    #tablecompetencias_filter{
+        #tablerequisitos_length{
         display:none;
-    }
-    #tableetiquetas_length{
-    display:none;
-    }
+        }
 
-    #tableetiquetas_filter{
+        #tablerequisitos_filter{
+            display:none;
+        }
+        #tablemodalidades_length{
         display:none;
-    }
+        }
+
+        #tablemodalidades_filter{
+            display:none;
+        }
+        #tablecompetencias_length{
+        display:none;
+        }
+
+        #tablecompetencias_filter{
+            display:none;
+        }
+        #tableetiquetas_length{
+        display:none;
+        }
+
+        #tableetiquetas_filter{
+            display:none;
+        }
 
 
 
@@ -203,7 +203,8 @@
 
                             </tr>
                         </thead>
-                        <tbody></tbody>                 
+                        <tbody
+                        ></tbody>                 
                     </table>
                 </div>
             </div>
@@ -217,9 +218,7 @@
 @include('cms.modalCursos')
 @include('cms.modaldelete')
 
-
 @endsection
-
 @section('endscript')
 
 <script>
@@ -232,6 +231,7 @@ loadtable4();
 loadtable5();
 loadtable6();
     var id = 0;
+    var ii = 0;
     var curso = "";
     var precio = 0;
     var categoria = "";  
@@ -252,6 +252,8 @@ loadtable6();
     var tablemodalidades;
     var tablecompetencias;
     var tabledocentes;
+
+
 
     var table = $('#table1').DataTable( {
             select: true,
@@ -446,6 +448,7 @@ loadtable6();
 
    
     tabledocentes = $('#tabledocentes').DataTable( {
+        select: true,
         "columns": [                    
                     { "name": "id" ,"visible":false},
                  
@@ -457,6 +460,7 @@ loadtable6();
     });
 
     tablerequisitos = $('#tablerequisitos').DataTable( {
+        select: true,
         "columns": [                    
                     { "name": "id" ,"visible":false},
                  
@@ -468,6 +472,7 @@ loadtable6();
     });
 
     tablemodalidades = $('#tablemodalidades').DataTable( {
+        select: true,
         "columns": [                    
                     { "name": "id" ,"visible":false},
                  
@@ -480,6 +485,7 @@ loadtable6();
     });
 
     tablecompetencias = $('#tablecompetencias').DataTable( {
+        select: true,
         "columns": [                    
                     { "name": "id" ,"visible":false},                 
                     { "name": "competencia" }                    
@@ -491,6 +497,7 @@ loadtable6();
 
     
     tableetiquetas = $('#tableetiquetas').DataTable( {
+        select: true,
         "columns": [                    
                     { "name": "id" ,"visible":false},                 
                     { "name": "etiqueta" }                    
@@ -549,31 +556,7 @@ loadtable6();
             $('#filepreview').attr('src','{{route('cursos.index')}}/'+temario_url);                      
             $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);
 
-            setTimeout(function(){ 
-                table2.clear().draw();
-                   
-             }, 300);
-
-             setTimeout(function(){ 
-                table3.clear().draw();  
-                  
-            }, 300);
-
-            setTimeout(function(){ 
-                table4.clear().draw();
-                   
-
-            }, 300);
-            setTimeout(function(){ 
-                table5.clear().draw(); 
-               
-
-            }, 300);
-            setTimeout(function(){ 
-                table6.clear().draw();
-              
-
-            }, 300);   
+             
             setTimeout(function(){ 
              for(var i=0;i<table2.rows().data().count();i++){
                         tablerequisitos.row.add([table2.row(i).data().id,table2.row(i).data().Requisito]).draw();
@@ -591,7 +574,7 @@ loadtable6();
                       for(var i=0;i<table6.rows().data().count();i++){
                     tabledocentes.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
                 }                
-            }, 1000);   
+            }, 300);   
             $('#modalcursos').modal('show');
                      
 
@@ -905,9 +888,20 @@ loadtable6();
 
             $('#modalcursos').on('hidden.bs.modal', function (e) {
                 $("#alertmodalcursos").hide();
-            }) 
+
+              
+                $('#tablerequisitos').DataTable().clear().draw(); 
+                $('#tablemodalidades').DataTable().clear().draw(); 
+                $('#tablecompetencias').DataTable().clear().draw(); 
+                $('#tableetiquetas').DataTable().clear().draw(); 
+                $('#tabledocentes').DataTable().clear().draw();         
+
+           
+            }); 
             
             function readURLfile(input) {
+               
+
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
 
@@ -961,6 +955,44 @@ loadtable6();
             } );
 
 
+            function addrequisito(){
+               var txt = $("#requisitos").val();
+                if(txt.length>0){
+                    tablerequisitos.row.add([0,txt]).draw();
+                }
+            }
+
+            
+            function addmodalidad(){
+               var txt = $("#modalidades").val();
+               var txt2 = $("#horarios").val();
+                if(txt.length>0 && txt2.length>0){
+                    tablemodalidades.row.add([0,txt,txt2]).draw();
+                }
+            }
+            
+            function addcompetencia(){
+               var txt = $("#competencias").val();
+                if(txt.length>0){
+                    tablecompetencias.row.add([0,txt]).draw();
+                }
+            }
+
+            function addetiqueta(){
+               var txt = $("#etiquetas").val();
+               var txt2 = $("#etiquetas option:selected").text();
+                if(txt.length>0){
+                    tableetiquetas.row.add([txt,txt2]).draw();
+                }
+            }
+
+            function adddocente(){
+               var txt = $("#docentes").val();
+               var txt2 = $("#docentes option:selected").text();
+                if(txt.length>0){
+                    tabledocentes.row.add([txt,txt2]).draw();
+                }
+            }
         
 </script>
 @endsection

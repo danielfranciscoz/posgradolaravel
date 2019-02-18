@@ -58,7 +58,7 @@
                         <label>Temario</label> <br>
                         <div class="input-default-wrapper mt-3 " id="upload_button_file">
                     
-                            <iframe id="filepreview" src="#"  style="width:300; height:225;" frameborder="0"></iframe>
+                            <iframe id="filepreview" src=""  style="width:300; height:225;" frameborder="0"></iframe>
 
                             <input type="file" id="file" class="input-default-js" onchange="readURLfile(this);" accept="application/pdf">
 
@@ -104,16 +104,8 @@
                 <h6 class="h6-responsive font-weight-bold">Requisitos</h6>
                 <div class="row mt-4">
                     <div class="col-md-6 col-sm-12">
-                        <select class="browser-default custom-select mb-4" id="requisitos">
-
-                        <option value="-1" disabled>Seleccione un requisito</option>
-                      
-                        @for($i=0;$i<count($docentesselect);$i++)
-                        <option value="{{$docentesselect[$i]->id}}" >{{$docentesselect[$i]->Nombres}}</option>                        
-                        @endfor
-
-                        </select> 
-                        <a class="btn btn-sm green white-text font-weight-bold">Agregar</a>
+                         <input type="text" id="requisitos" class="col-12 mb-4">
+                        <a class="btn btn-sm green white-text font-weight-bold" onclick="addrequisito()">Agregar</a>
                         <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
@@ -139,16 +131,9 @@
                 <h6 class="h6-responsive font-weight-bold">Modalidades</h6>
                 <div class="row mt-4">
                     <div class="col-md-6 col-sm-12">
-                        <select class="browser-default custom-select mb-4" id="modalidades">
-
-                        <option value="-1" disabled>Seleccione un Modalidad</option>
-                      
-                        @for($i=0;$i<count($docentesselect);$i++)
-                        <option value="{{$docentesselect[$i]->id}}" >{{$docentesselect[$i]->Nombres}}</option>                        
-                        @endfor
-
-                        </select> 
-                        <a class="btn btn-sm green white-text font-weight-bold">Agregar</a>
+                    <input type="text" id="modalidades" class="col-6 mb-4"  placeholder="Modalidad">
+                    <input type="text" id="horarios" class="col-6 mb-4"  placeholder="Horario">
+                        <a class="btn btn-sm green white-text font-weight-bold" onclick="addmodalidad()">Agregar</a>
                         <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
@@ -175,16 +160,8 @@
                 <h6 class="h6-responsive font-weight-bold">Competencias</h6>
                 <div class="row mt-4">
                     <div class="col-md-6 col-sm-12">
-                        <select class="browser-default custom-select mb-4" id="competencias">
-
-                        <option value="-1" disabled>Seleccione una competencia</option>
-                      
-                        @for($i=0;$i<count($docentesselect);$i++)
-                        <option value="{{$docentesselect[$i]->id}}" >{{$docentesselect[$i]->Nombres}}</option>                        
-                        @endfor
-
-                        </select> 
-                        <a class="btn btn-sm green white-text font-weight-bold">Agregar</a>
+                        <input type="text" id="competencias" class="col-12 mb-4">
+                        <a class="btn btn-sm green white-text font-weight-bold" onclick="addcompetencia()">Agregar</a>
                         <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
@@ -210,16 +187,16 @@
                 <h6 class="h6-responsive font-weight-bold">Etiquetas</h6>
                 <div class="row mt-4">
                     <div class="col-md-6 col-sm-12">
-                        <select class="browser-default custom-select mb-4" id="etiqueta">
+                        <select class="browser-default custom-select mb-4" id="etiquetas">
 
                         <option value="-1" disabled>Seleccione una etiqueta</option>
                       
-                        @for($i=0;$i<count($docentesselect);$i++)
-                        <option value="{{$docentesselect[$i]->id}}" >{{$docentesselect[$i]->Nombres}}</option>                        
+                        @for($i=0;$i<count($etiquetasselect);$i++)
+                        <option value="{{$etiquetasselect[$i]->id}}" >{{$etiquetasselect[$i]->Etiqueta}}</option>                        
                         @endfor
 
                         </select> 
-                        <a class="btn btn-sm green white-text font-weight-bold">Agregar</a>
+                        <a class="btn btn-sm green white-text font-weight-bold" onclick="addetiqueta()">Agregar</a>
                         <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
@@ -255,7 +232,7 @@
                         @endfor
 
                         </select> 
-                        <a class="btn btn-sm green white-text font-weight-bold">Agregar</a>
+                        <a class="btn btn-sm green white-text font-weight-bold" onclick="adddocente()">Agregar</a>
                         <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
