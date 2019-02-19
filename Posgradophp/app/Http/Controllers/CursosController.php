@@ -14,13 +14,17 @@ use App\Models\Categoria;
 use App\Models\Comentario;
 use App\Models\Docente;
 use Session;
+use Illuminate\Support\Facades\DB;
+use App\Clases\uploadPhoto;
+
 use Illuminate\Support\Facades\Auth;
 
 class CursosController extends Controller
 {
     public function index()
     {   
-        $categoriaselect = Categoria::where('deleted_at',null)->get();
+        $categoriaselect = Categoria::select(DB::raw("CONCAT(CASE WHEN (isCursoPosgrado=0) THEN 'Curso: ' ELSE 'Posgrado: ' END,Categoria) AS Categoria,id"))->where('deleted_at',null)->orderby('isCursoPosgrado')->get();
+        
         $etiquetasselect = Etiqueta::where('deleted_at',null)->get();        
         $docentesselect = Docente::where('deleted_at',null)->get();
         return view('cms.cursos') 
@@ -362,6 +366,50 @@ class CursosController extends Controller
                 'data' => $data ]);
     }
 
+    public function searchcursostematicas(Request $request){
+
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+       
+        $lenght = $request->input("length");
+
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        $idcurso = $request->input("id");
+        $searchv = $request->input("search.value");
+        $pagesize = $lenght != null ? $lenght : 0;
+        $skip = $start != null ? $start : 0;
+        
+        $totalRecords = 0;
+
+        //$v = Cursoprecio::with('curso')->where('deleted_at',null);
+
+        $v = Cursotematica::where('deleted_at',null)->where('curso_id',$idcurso);
+        
+        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+        
+        if (strlen($searchv) !=0) {
+            $v = $v          
+            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
+        }else{
+            $v = $v->getQuery();
+        }
+        
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
+        {          
+            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        }
+        
+        $totalRecords = Count($v->get());
+        $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+        return response()->Json([
+                'draw' => $draw, 
+                'recordsFiltered' => $totalRecords, 
+                'recordsTotal' => $totalRecords, 
+                'data' => $data ]);
+    }
+
     public function searchcursosetiquetas(Request $request){
 
         $draw = $request->input("draw");
@@ -463,8 +511,9 @@ class CursosController extends Controller
             
             $curso = new Curso();
             $curso->NombreCurso = $request->input('NombreCurso');
-            $curso->Image_URL = $request->input('Image_URL');
-            $curso->Temario_URL = $request->input('Temario_URL');
+            $curso->Image_URL = $this->uploadphoto($request);
+            $curso->Temario_URL = $this->uploadpdf($request);
+            $curso->Desc_Publicidad = $request->input('Desc_Publicidad');
             $curso->Desc_Introduccion = $request->input('Desc_Introduccion');
             $curso->InfoAdicional = $request->input('InfoAdicional');
             $curso->categoria_id = $request->input('categoria_id');
@@ -477,18 +526,18 @@ class CursosController extends Controller
             
             $cursoprecio->save();
 
-            $competencias = Request::input('competencias.Competencia');
+            $competencias = $request->input('competencias');
             
-            for ($i=0; $i < Count($comentencias); $i++) { 
+            for ($i=0; $i < Count($competencias); $i++) { 
                 $competenciacurso = new Competenciacurso();
                 $competenciacurso->curso_id = $curso->id;
                 $competenciacurso->Competencia = $competencias[$i];
                 
                 $competenciacurso->save();
-            }
+            }                       
 
-            $tematicas = Request::input('tematicas.Tematica');
-            $tematicasduracion = Request::input('tematicas.Duracion');
+            $tematicas = $request->input('tematicas.Tematica');
+            $tematicasduracion = $request->input('tematicas.Duracion');
 
             for ($i=0; $i < Count($tematicas); $i++) { 
                 $tematicas = new Cursotematica();
@@ -499,8 +548,8 @@ class CursosController extends Controller
                 $tematicas->save();
             }
 
-            $modalidades = Request::input('modalidades.Modalidad');
-            $modalidadeshorario = Request::input('modalidades.Horario');
+            $modalidades = $request->input('modalidades.Modalidad');
+            $modalidadeshorario = $request->input('modalidades.Horario');
 
             for ($i=0; $i < Count($modalidades); $i++) { 
                 $modalidades = new Cursomodalidad();
@@ -511,7 +560,7 @@ class CursosController extends Controller
                 $modalidades->save();
             }
 
-            $requisitos = Request::input('requisitos.Requisito');
+            $requisitos = $request->input('requisitos.Requisito');
        
             for ($i=0; $i < Count($requisitos); $i++) { 
                 $requisitos = new Cursorequisito();
@@ -555,5 +604,15 @@ class CursosController extends Controller
         } catch (Exception $e) {
             return report($e);
         }
+    }
+
+    public function uploadphoto(Request $request){
+        $f = new uploadPhoto();
+        return $f->upload($request,"img/Resources/cursos");
+    }
+
+    public function uploadpdf(Request $request){
+        $f = new uploadPhoto();
+        return $f->uploadPDF($request,"temarios/");
     }
 }

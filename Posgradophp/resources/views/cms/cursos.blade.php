@@ -44,6 +44,14 @@
             display:none;
         }
 
+        #table7_length{
+        display:none;
+    }
+
+    #table7_filter{
+            display:none;
+        }
+
     #tabledocentes_length{
         display:none;
         }
@@ -78,6 +86,14 @@
         }
 
         #tableetiquetas_filter{
+            display:none;
+        }
+
+        #tabletematicas_length{
+        display:none;
+        }
+
+        #tabletematicas_filter{
             display:none;
         }
 
@@ -174,7 +190,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
                 <h6 class="font-weight-bold h4-responsive">Etiquetas</h6>
                 <div class="table-responsive px-4 mt-4 mb-4">
                 <table id="table5" class="table" style="width:100%">
@@ -191,23 +207,42 @@
                 </table>
             </div>
                 </div>
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
                     <h6 class="font-weight-bold h4-responsive">Docentes</h6>
                     <div class="table-responsive px-4 mt-4 mb-4">
-                    <table id="table6" class="table" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>id</th>                              
-                                <th class="font-weight-bold">Docente</th>                           
-                                <!-- <th>Creado</th> -->
+                        <table id="table6" class="table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>id</th>                              
+                                    <th class="font-weight-bold">Docente</th>                           
+                                    <!-- <th>Creado</th> -->
 
-                            </tr>
-                        </thead>
-                        <tbody
-                        ></tbody>                 
-                    </table>
+                                </tr>
+                            </thead>
+                            <tbody
+                            ></tbody>                 
+                        </table>
+                    </div>
                 </div>
-            </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <h6 class="font-weight-bold h4-responsive">Tematicas</h6>
+                    <div class="table-responsive px-4 mt-4 mb-4">
+                        <table id="table7" class="table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>id</th>                              
+                                    <th class="font-weight-bold">Tematica</th>          
+                                    <th class="font-weight-bold">Duracion</th>                                          
+                                    <!-- <th>Creado</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody
+                            ></tbody>                 
+                        </table>
+                    </div>
+                </div>
         </div>
     </div>
 
@@ -230,6 +265,7 @@ loadtable3();
 loadtable4();
 loadtable5();
 loadtable6();
+loadtable7();
     var id = 0;
     var ii = 0;
     var curso = "";
@@ -247,11 +283,13 @@ loadtable6();
     var table4;
     var table5;
     var table6;
+    var table7;
     var tablerequisitos;
     var tableetiquetas;
     var tablemodalidades;
     var tablecompetencias;
     var tabledocentes;
+    var tabletematicas;
 
 
 
@@ -446,6 +484,38 @@ loadtable6();
 
     }
 
+
+    function loadtable7(){
+        table7 = $('#table7').DataTable( {
+            select: true,
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "ajax": {
+                "url": "{{route('admin.searchcursostematicas')}}",
+                "type": "POST",
+                'data': {
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                     "id": id           
+                },        
+                "dataType": "JSON"
+
+            },
+            "columns": [                    
+                    { "data": "id", "name": "id" ,"visible":false},
+                 
+                    { "data": "Tematica", "name": "Tematica" },
+                    { "data": "Duracion", "name": "Duracion" }
+                               
+                    //{ "data": "created_at", "name": "created_at" },
+            ],
+            @include('layout.lenguagetableshort')
+            
+
+        } );
+
+    }
+
    
     tabledocentes = $('#tabledocentes').DataTable( {
         select: true,
@@ -501,6 +571,19 @@ loadtable6();
         "columns": [                    
                     { "name": "id" ,"visible":false},                 
                     { "name": "etiqueta" }                    
+                ],
+        "pageLength": 50,
+        @include('layout.lenguagetableshort')
+
+    });
+
+     
+    tabletematicas = $('#tabletematicas').DataTable( {
+        select: true,
+        "columns": [                    
+                    { "name": "id" ,"visible":false},                 
+                    { "name": "tematica" }     ,
+                    { "name": "duracion" }                  
                 ],
         "pageLength": 50,
         @include('layout.lenguagetableshort')
@@ -569,11 +652,14 @@ loadtable6();
                         tablecompetencias.row.add([table4.row(i).data().id,table4.row(i).data().competencia]).draw();
                     }
                     for(var i=0;i<table5.rows().data().count();i++){
-                    tableetiquetas.row.add([table5.row(i).data().id,table5.row(i).data().Etiqueta]).draw();
-                }
+                        tableetiquetas.row.add([table5.row(i).data().id,table5.row(i).data().Etiqueta]).draw();
+                    }
                       for(var i=0;i<table6.rows().data().count();i++){
-                    tabledocentes.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
-                }                
+                        tabledocentes.row.add([table6.row(i).data().id,table6.row(i).data().Nombres]).draw();
+                    }
+                    for(var i=0;i<table7.rows().data().count();i++){
+                        tabletematicas.row.add([table7.row(i).data().id,table7.row(i).data().Tematica,table7.row(i).data().Duracion]).draw();
+                    }                
             }, 300);   
             $('#modalcursos').modal('show');
                      
@@ -592,11 +678,65 @@ loadtable6();
                 fd.append('Temario',files);
                 fd.append('NombreCurso',$('#curso').val());
                 fd.append('categoria_id',$('#categoria').val());
-                fd.append('Desc_Publicidad',$('#descripcionpublidad').val());
+                
+                fd.append('Desc_Publicidad',$('#descripcionpublicidad').val());
                 fd.append('Desc_Introduccion',$('#descripcionintroduccion').val());
                 fd.append('InfoAdicional',$('#descripcionadicional').val());
+                fd.append('Precio',$('#precio').val());
+                var requisitos = tablerequisitos.rows().data().toArray()
                 
-                $.ajax({
+                for (var i = 0; i < requisitos.length; i++) {
+                    fd.append('requisitos['+i+']',requisitos[i][1]);
+                  
+                }
+                var modalidades = tablemodalidades.rows().data().toArray()
+                
+                for (var i = 0; i < modalidades.length; i++) {
+                    fd.append('modalidades['+i+']',modalidades[i][1]);
+                 
+                }
+
+                for (var i = 0; i < modalidades.length; i++) {
+                    fd.append('horarios['+i+']',modalidades[i][2]);
+                 
+                }
+
+                var competencias = tablecompetencias.rows().data().toArray()
+                
+                for (var i = 0; i < competencias.length; i++) {
+                    fd.append('competencias['+i+']',competencias[i][1]);
+                    
+                }
+
+                var etiquetas = tableetiquetas.rows().data().toArray()
+                
+                for (var i = 0; i < etiquetas.length; i++) {
+                    fd.append('etiquetas['+i+']',etiquetas[i][0]);
+                   
+                }
+
+                var docentes = tabledocentes.rows().data().toArray()
+                
+                for (var i = 0; i < docentes.length; i++) {
+                    fd.append('docentes['+i+']',docentes[i][0]);
+                   
+                }
+
+                var tematicas = tabletematicas.rows().data().toArray()
+                
+                for (var i = 0; i < tematicas.length; i++) {
+                    fd.append('tematicas['+i+']',tematicas[i][1]);
+                   
+                }
+               
+                
+                for (var i = 0; i < tematicas.length; i++) {
+                    fd.append('duracion['+i+']',tematicas[i][2]);
+                   
+                }
+
+              
+               $.ajax({
                     url: "{{route('admin.cursosSave')}}",
                     type: 'post',
                     data: fd,
@@ -605,7 +745,8 @@ loadtable6();
                     success: function(response){                    
                     if(response.message=="exito"){
                         table.ajax.reload();
-                    } $("#modalcursos").modal('hide');
+                    } 
+                    // $("#modalcursos").modal('hide');
                     
                     },
                     error: function(response){
@@ -677,7 +818,7 @@ loadtable6();
                             }
                                     $("#alertmodalcursos").html(str);
                     }
-                });
+                }); 
             }
             else
             {
@@ -688,11 +829,68 @@ loadtable6();
                 fd.append('id',id);
                 fd.append('_method','put');            
                
+                fd.append('_token', $('meta[name="csrf-token"]').attr('content'));              
                 fd.append('NombreCurso',$('#curso').val());
                 fd.append('categoria_id',$('#categoria').val());
-                fd.append('Desc_Publicidad',$('#descripcionpublidad').val());
+                
+                fd.append('Desc_Publicidad',$('#descripcionpublicidad').val());
                 fd.append('Desc_Introduccion',$('#descripcionintroduccion').val());
                 fd.append('InfoAdicional',$('#descripcionadicional').val());
+                fd.append('Precio',$('#precio').val());
+                var requisitos = tablerequisitos.rows().data().toArray()
+                
+                for (var i = 0; i < requisitos.length; i++) {
+                    fd.append('requisitos['+i+']',requisitos[i][1]);
+                  
+                }
+                var modalidades = tablemodalidades.rows().data().toArray()
+                
+                for (var i = 0; i < modalidades.length; i++) {
+                    fd.append('modalidades['+i+']',modalidades[i][1]);
+                 
+                }
+
+                for (var i = 0; i < modalidades.length; i++) {
+                    fd.append('horarios['+i+']',modalidades[i][2]);
+                 
+                }
+
+                var competencias = tablecompetencias.rows().data().toArray()
+                
+                for (var i = 0; i < competencias.length; i++) {
+                    fd.append('competencias['+i+']',competencias[i][1]);
+                    
+                }
+
+                var etiquetas = tableetiquetas.rows().data().toArray()
+                
+                for (var i = 0; i < etiquetas.length; i++) {
+                    fd.append('etiquetas['+i+']',etiquetas[i][0]);
+                   
+                }
+
+                var docentes = tabledocentes.rows().data().toArray()
+                
+                for (var i = 0; i < docentes.length; i++) {
+                    fd.append('docentes['+i+']',docentes[i][0]);
+                   
+                }
+
+                var tematicas = tabletematicas.rows().data().toArray()
+                
+                for (var i = 0; i < tematicas.length; i++) {
+                    fd.append('tematicas['+i+']',tematicas[i][1]);
+                   
+                }
+               
+                
+                for (var i = 0; i < tematicas.length; i++) {
+                    fd.append('duracion['+i+']',tematicas[i][2]);
+                   
+                }
+
+              
+                
 
                if(images==null){
                 fd.append('Image_URL', img_url);
@@ -702,7 +900,7 @@ loadtable6();
                }
 
                if(files==null){
-                fd.append('Temario_URL', img_url);
+                fd.append('Temario_URL', temario_url);
                }else{
                 fd.append('Temario_URL', "");
                 fd.append('Temario',files);
@@ -807,7 +1005,7 @@ loadtable6();
                     },
                     
                     success: function(response){
-                    console.log(response.message);
+                   
                     if(response.message=="exito"){
                         table.ajax.reload();
                     } $("#modaldelete").modal('hide');
@@ -895,6 +1093,7 @@ loadtable6();
                 $('#tablecompetencias').DataTable().clear().draw(); 
                 $('#tableetiquetas').DataTable().clear().draw(); 
                 $('#tabledocentes').DataTable().clear().draw();         
+                $('#tabletematicas').DataTable().clear().draw();         
 
            
             }); 
@@ -937,17 +1136,18 @@ loadtable6();
                  img_url = table.row(this ).data().Image_URL ;
                  temario_url = table.row(this ).data().Temario_URL ;
                  precio = table.row(this ).data().Precio ;
-                table2.destroy();
-                loadtable2();
-                table3.destroy();
-                loadtable3();
-                table4.destroy();
-                loadtable4();
-                table5.destroy();
-                loadtable5();
-                table6.destroy();
-                loadtable6();
-        
+                    table2.destroy();
+                    loadtable2();
+                    table3.destroy();
+                    loadtable3();
+                    table4.destroy();
+                    loadtable4();
+                    table5.destroy();
+                    loadtable5();
+                    table6.destroy();
+                    loadtable6();        
+                    table7.destroy();
+                    loadtable7();
         
 
     
@@ -991,6 +1191,14 @@ loadtable6();
                var txt2 = $("#docentes option:selected").text();
                 if(txt.length>0){
                     tabledocentes.row.add([txt,txt2]).draw();
+                }
+            }
+
+            function addtematica(){
+                var txt = $("#tematicas").val();
+               var txt2 = $("#duracion").val();
+                if(txt.length>0 && txt2.length>0){
+                    tabletematicas.row.add([0,txt,txt2]).draw();
                 }
             }
         

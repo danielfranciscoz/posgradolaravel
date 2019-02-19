@@ -22,7 +22,7 @@
                         <select class="browser-default custom-select mb-4" id="categoria">
 
                             <option value="-1" disabled>Seleccione una categoría</option>
-                            <option value="" disabled>Maestría</option>
+                            <option value="" >Maestría</option>
                         
                             @for($i=0;$i<count($categoriaselect);$i++)
                             <option value="{{$categoriaselect[$i]->id}}" >{{$categoriaselect[$i]->Categoria}}</option>                        
@@ -82,7 +82,7 @@
 
                          <img id="picturepreview" src="#" alt="Sin Imagen" class="img-fluid"  style="width:300; height:225;" />
 
-                        <input type="file" id="image" class="input-default-js" onchange="readURLimage(this);">
+                        <input type="file" id="image" class="input-default-js" onchange="readURLimage(this);"  accept="image/jpeg, image/png">
 
                         <label class="label-for-default-js rounded-right mb-3" for="image"><span class="span-choose-file btn btn-sm btn-primary">Subir Imagen</span>
 
@@ -236,18 +236,46 @@
                         <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
-                    <div class="table-responsive">
-                        <table id="tabledocentes" class="table" style="width:100%;heigth:500px">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>Docente</th>                                
+                        <div class="table-responsive">
+                            <table id="tabledocentes" class="table" style="width:100%;heigth:500px">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Docente</th>                                
 
-                                </tr>
-                            </thead>
-                            <tbody></tbody>                 
-                        </table>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>                 
+                            </table>
+                        </div>
                     </div>
+
+                        
+
+                </div>
+                <hr>
+                <h6 class="h6-responsive font-weight-bold">Tematicas</h6>
+                <div class="row mt-4">
+                    <div class="col-md-6 col-sm-12">
+                    <input type="text" id="tematicas" class="col-5 mb-4" placeholder="tematica">
+                    <input type="text" id="duracion" class="col-5 mb-4" placeholder="duracion">
+                        <a class="btn btn-sm green white-text font-weight-bold" onclick="addtematica()">Agregar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="table-responsive">
+                            <table id="tabletematicas" class="table" style="width:100%;heigth:500px">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Tematica</th>  
+                                        <th>Horario</th>                               
+
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>                 
+                            </table>
+                        </div>
                     </div>
 
                         

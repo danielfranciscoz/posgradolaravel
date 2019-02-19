@@ -141,6 +141,7 @@ Route::group(['prefix' => 'admin','middleware'=>'adminLogged'], function() {
             Route::post('/searchrequisitos','CursosController@searchcursosrequisitos')->name('admin.searchcursosrequisitos');
             Route::post('/searchmodalidades','CursosController@searchcursosmodalidades')->name('admin.searchcursosmodalidades');
             Route::post('/searchcompetencias','CursosController@searchcursoscompetencias')->name('admin.searchcursoscompetencias');
+            Route::post('/searchtematicas','CursosController@searchcursostematicas')->name('admin.searchcursostematicas');
             Route::post('/searchetiquetas','CursosController@searchcursosetiquetas')->name('admin.searchcursosetiquetas');
             Route::post('/searchdocentes','CursosController@searchcursodocentes')->name('admin.searchcursodocentes');
             Route::post('/save','CursosController@uploadphoto')->name('admin.uploadphotocursos'); 
