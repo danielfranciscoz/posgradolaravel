@@ -27,7 +27,7 @@ class CursoRequest extends FormRequest
             'categoria_id'=>'required',
             'NombreCurso'=>'required',
             'Imagen'=>'sometimes|required|image|mimes:jpeg,png,jpg|max:2048|dimensions:height=270,width=480',
-            'Temario'=>'required',
+            'Temario'=>'sometimes|required',
             'Desc_Publicidad'=>'required',
             'Desc_Introduccion'=>'required',
             'InfoAdicional'=>'required',

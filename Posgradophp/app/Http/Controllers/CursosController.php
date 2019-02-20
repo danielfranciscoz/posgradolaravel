@@ -553,8 +553,10 @@ class CursosController extends Controller
     public function store(CursoRequest $request)
     {
         DB::beginTransaction();
+        
+        $curso = new Curso();
+        
         try {
-            $curso = new Curso();
             $curso->NombreCurso = $request->input('NombreCurso');
             $curso->Image_URL = $this->uploadphoto($request);
             $curso->Temario_URL = $this->uploadpdf($request);
@@ -594,13 +596,9 @@ class CursosController extends Controller
             } else {
                 DB::rollback();
                 
-                if (file_exists(public_path($curso->Image_URL))) {
-                    unlink(public_path($curso->Image_URL));
-                }
-                if (file_exists(public_path($curso->Temario_URL))) {
-                    unlink(public_path($curso->Temario_URL));
-                }
-
+                $this->removeUpload($curso->Image_URL);
+                $this->removeUpload($curso->Temario_URL);
+                
                 return response()->json([
                     'error'=>'Se debe agregar al menos una competencia para el curso'
                 ]);
@@ -621,12 +619,8 @@ class CursosController extends Controller
             } else {
                 DB::rollback();
 
-                if (file_exists(public_path($curso->Image_URL))) {
-                    unlink(public_path($curso->Image_URL));
-                }
-                if (file_exists(public_path($curso->Temario_URL))) {
-                    unlink(public_path($curso->Temario_URL));
-                }
+                $this->removeUpload($curso->Image_URL);
+                $this->removeUpload($curso->Temario_URL);
                 
                 return response()->json([
                     'error'=>'Se debe agregar al menos una tematica para el curso'
@@ -648,12 +642,8 @@ class CursosController extends Controller
             } else {
                 DB::rollback();
 
-                if (file_exists(public_path($curso->Image_URL))) {
-                    unlink(public_path($curso->Image_URL));
-                }
-                if (file_exists(public_path($curso->Temario_URL))) {
-                    unlink(public_path($curso->Temario_URL));
-                }
+                $this->removeUpload($curso->Image_URL);
+                $this->removeUpload($curso->Temario_URL);
 
                 return response()->json([
                     'error'=>'Se debe agregar al menos una modalidad para el curso'
@@ -673,12 +663,8 @@ class CursosController extends Controller
             } else {
                 DB::rollback();
                 
-                if (file_exists(public_path($curso->Image_URL))) {
-                    unlink(public_path($curso->Image_URL));
-                }
-                if (file_exists(public_path($curso->Temario_URL))) {
-                    unlink(public_path($curso->Temario_URL));
-                }
+                $this->removeUpload($curso->Image_URL);
+                $this->removeUpload($curso->Temario_URL);
 
                 return response()->json([
                     'error'=>'Se debe agregar al menos un requisito para el curso'
@@ -693,19 +679,321 @@ class CursosController extends Controller
         } catch (Exception $e) {
             DB::rollback();
 
-            if (file_exists(public_path($curso->Image_URL))) {
-                unlink(public_path($curso->Image_URL));
-            }
-            if (file_exists(public_path($curso->Temario_URL))) {
-                unlink(public_path($curso->Temario_URL));
-            }
+            $this->removeUpload($curso->Image_URL);
+            $this->removeUpload($curso->Temario_URL);
 
             return report($e);
         }
     }
     public function update(CursoRequest $request, $id)
     {
-        
+        DB::beginTransaction();
+        $subioFoto =false;
+        $subioPDF =false;
+        $cursoprecio = CursoPrecio::find($id);
+        $original = $cursoprecio->curso;
+       
+        try {
+            if ($original == null) {
+                return response()->json([
+                    'error'=>'El curso no ha sido encontrada en la base de datos'
+                ]);
+            }
+
+            $curso = new Curso();
+            $curso->NombreCurso = $request->input('NombreCurso');
+            $curso->Desc_Publicidad = $request->input('Desc_Publicidad');
+            $curso->Desc_Introduccion = $request->input('Desc_Introduccion');
+            $curso->InfoAdicional = $request->input('InfoAdicional');
+            $curso->categoria_id = $request->input('categoria_id');
+           
+            $curso->Image_URL = $request->input('Image_URL');
+            $curso->Temario_URL = $request->input('Temario_URL');
+            
+            $original->NombreCurso = $curso->NombreCurso;
+            $original->Desc_Publicidad = $curso->Desc_Publicidad ;
+            $original->Desc_Introduccion = $curso->Desc_Introduccion;
+            $original->InfoAdicional = $curso->InfoAdicional;
+            $original->categoria_id =$curso->categoria_id;
+
+            if ($original->Image_URL != $request->input('Image_URL')) {
+                $this->removeUpload($original->Image_URL);
+                $original->Image_URL = $this->uploadphoto($request);
+                $subioFoto=true;
+            }
+
+            if ($original->Temario_URL != $request->input('Temario_URL')) {
+                $this->removeUpload($original->Temario_URL);
+                $original->Temario_URL = $this->uploadpdf($request);
+                $subioPDF =true;
+            }
+
+            $original->save();
+
+
+            $docentes = $request->input('docentes');
+            
+            $original->docentes()->sync($docentes);
+            
+            $etiquetas = $request->input('etiquetas');
+            
+            $original->etiquetas()->sync($etiquetas);
+            
+            if ($request->has('idcompetencias') == false) {
+                DB::rollback();
+                if ($subioFoto) {
+                    $this->removeUpload($original->Image_URL);
+                }
+
+                if ($subioPDF) {
+                    $this->removeUpload($original->Temario_URL);
+                }
+                return response()->json([
+                    'error'=>'Se debe agregar al menos una competencia para el curso'
+                ]);
+            }
+
+            $competencias = $request->input('competencias');
+            $idcompetencias = $request->input('idcompetencias');
+
+            Competenciacurso::where('curso_id', $original->id)->where('deleted_at', null)
+            ->whereNotIn('id', $idcompetencias)
+            ->update(array('deleted_at' => date('Y-m-d H:i:s')));
+            
+            if (Count($competencias)>0) {
+                for ($i=0; $i < Count($competencias); $i++) {
+                    $competenciacurso = new Competenciacurso();
+                    
+                    if ($idcompetencias[$i] == 0) {
+                        $competenciacurso->curso_id = $original->id;
+                    } else {
+                        $competenciacurso = Competenciacurso::find($idcompetencias[$i]);
+                    }
+
+                    $competenciacurso->Competencia = $competencias[$i];
+
+                    $competenciacurso->save();
+                }
+            } else {
+                DB::rollback();
+                if ($subioFoto) {
+                    $this->removeUpload($original->Image_URL);
+                }
+
+                if ($subioPDF) {
+                    $this->removeUpload($original->Temario_URL);
+                }
+
+                return response()->json([
+                    'error'=>'Se debe agregar al menos una competencia para el curso'
+                ]);
+            }
+
+            if ($request->has('idtematicas') == false) {
+                DB::rollback();
+                if ($subioFoto) {
+                    $this->removeUpload($original->Image_URL);
+                }
+
+                if ($subioPDF) {
+                    $this->removeUpload($original->Temario_URL);
+                }
+                return response()->json([
+                    'error'=>'Se debe agregar al menos una tematica para el curso'
+                ]);
+            }
+
+            $tematicas = $request->input('tematicas');
+            $tematicasduracion = $request->input('duracion');
+            $idtematicas = $request->input('idtematicas');
+            
+            //      $eliminatematicas = array_where($idtematicas, function ($key, $value) {
+            //     if ($value==0) {
+            //         return ($value);
+            //     }
+            // });
+   
+            Cursotematica::where('curso_id', $original->id)->where('deleted_at', null)
+                ->whereNotIn('id', $idtematicas)
+                ->update(array('deleted_at' => date('Y-m-d H:i:s')));
+            
+                
+            if (Count($tematicas)>0) {
+                for ($i=0; $i < Count($tematicas); $i++) {
+                    $tematica = new Cursotematica();
+                    
+                    if ($idtematicas[$i] == 0) {
+                        $tematica->curso_id = $original->id;
+                    } else {
+                        $tematica = Cursotematica::find($idtematicas[$i]);
+                    }
+                    
+                    $tematica->Tematica = $tematicas[$i];
+                    $tematica->Duracion = $tematicasduracion[$i];
+
+                    $tematica->save();
+                }
+            } else {
+                DB::rollback();
+
+                if (file_exists(public_path($curso->Image_URL))) {
+                    unlink(public_path($curso->Image_URL));
+                }
+                if (file_exists(public_path($curso->Temario_URL))) {
+                    unlink(public_path($curso->Temario_URL));
+                }
+                
+                return response()->json([
+                    'error'=>'Se debe agregar al menos una tematica para el curso'
+                ]);
+            }
+
+            if ($request->has('idmodalidades') == false) {
+                DB::rollback();
+                if ($subioFoto) {
+                    $this->removeUpload($original->Image_URL);
+                }
+
+                if ($subioPDF) {
+                    $this->removeUpload($original->Temario_URL);
+                }
+                return response()->json([
+                    'error'=>'Se debe agregar al menos una modalidad para el curso'
+                ]);
+            }
+
+            $modalidades = $request->input('modalidades');
+            $modalidadeshorario = $request->input('horarios');
+            $idmodalidades = $request->input('idmodalidades');
+
+            // $elimina = array_where($idmodalidades, function ($key, $value) {
+            //     if ($value>0) {
+            //         return ($value);
+            //     }
+            // });
+            // if (count($elimina)>0) {
+            Cursomodalidad::where('curso_id', $original->id)->where('deleted_at', null)
+                ->whereNotIn('id', $idmodalidades)
+                ->update(array('deleted_at' => date('Y-m-d H:i:s')));
+            // }
+
+
+            if (Count($modalidades)>0) {
+                for ($i=0; $i < Count($modalidades); $i++) {
+                    $modalidad = new Cursomodalidad();
+                    
+                    if ($idmodalidades[$i] == 0) {
+                        $modalidad->curso_id = $original->id;
+                    } else {
+                        $modalidad = Cursomodalidad::find($idmodalidades[$i]);
+                    }
+                    
+                    $modalidad->Horario = $modalidadeshorario[$i];
+                    $modalidad->Modalidad = $modalidades[$i];
+
+                    $modalidad->save();
+                }
+            } else {
+                DB::rollback();
+
+                if (file_exists(public_path($curso->Image_URL))) {
+                    unlink(public_path($curso->Image_URL));
+                }
+                if (file_exists(public_path($curso->Temario_URL))) {
+                    unlink(public_path($curso->Temario_URL));
+                }
+
+                return response()->json([
+                    'error'=>'Se debe agregar al menos una modalidad para el curso'
+                ]);
+            }
+
+            if ($request->has('idrequisitos') == false) {
+                DB::rollback();
+                if ($subioFoto) {
+                    $this->removeUpload($original->Image_URL);
+                }
+
+                if ($subioPDF) {
+                    $this->removeUpload($original->Temario_URL);
+                }
+                return response()->json([
+                    'error'=>'Se debe agregar al menos un requisito para el curso'
+                ]);
+            }
+
+            $requisitos = $request->input('requisitos');
+            $idrequisitos = $request->input('idrequisitos');
+
+            // $elimina = array_where($idrequisitos, function ($key, $value) {
+            //     if ($value>0) {
+            //         return ($value);
+            //     }
+            // });
+            // if (count($elimina)>0) {
+            Cursorequisito::where('curso_id', $original->id)->where('deleted_at', null)
+                ->whereNotIn('id', $idrequisitos)
+                ->update(array('deleted_at' => date('Y-m-d H:i:s')));
+            // }
+
+            if (Count($requisitos)>0) {
+                for ($i=0; $i < Count($requisitos); $i++) {
+                    $requisito = new Cursorequisito();
+                    
+                    if ($idrequisitos[$i] == 0) {
+                        $requisito->curso_id = $original->id;
+                    } else {
+                        $requisito = Cursorequisito::find($idrequisitos[$i]);
+                    }
+                    
+                    $requisito->Requisito = $requisitos[$i];
+
+                    $requisito->save();
+                }
+            } else {
+                DB::rollback();
+                
+                if (file_exists(public_path($curso->Image_URL))) {
+                    unlink(public_path($curso->Image_URL));
+                }
+                if (file_exists(public_path($curso->Temario_URL))) {
+                    unlink(public_path($curso->Temario_URL));
+                }
+
+                return response()->json([
+                    'error'=>'Se debe agregar al menos un requisito para el curso'
+                ]);
+            }
+
+
+            /*
+                $elimina = array_where($idrequisitos, function ($key, $value) {
+                if ($value>0) {
+                    return ($value);
+                }
+            });
+            if (count($elimina)>0) {
+
+            }
+            */
+            DB::commit();
+
+            return response()->json([
+                'message'=>'exito'
+            ]);
+        } catch (Exception $e) {
+            DB::rollback();
+
+            if ($subioFoto) {
+                $this->removeUpload($original->Image_URL);
+            }
+
+            if ($subioPDF) {
+                $this->removeUpload($original->Temario_URL);
+            }
+
+            return report($e);
+        }
     }
   
     public function destroy($id)
@@ -738,6 +1026,13 @@ class CursosController extends Controller
     public function uploadpdf(Request $request)
     {
         $f = new uploadPhoto();
-        return $f->uploadPDF($request, "temarios/");
+        return $f->uploadPDF($request, "temarios");
+    }
+
+    public function removeUpload(String $dir)
+    {
+        if (file_exists(public_path($dir))) {
+            unlink(public_path($dir));
+        }
     }
 }

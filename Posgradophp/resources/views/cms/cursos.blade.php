@@ -858,15 +858,19 @@ loadtable7();
                 fd.append('Desc_Introduccion',$('#descripcionintroduccion').val());
                 fd.append('InfoAdicional',$('#descripcionadicional').val());
                 fd.append('Precio',$('#precio').val());
+
                 var requisitos = tablerequisitos.rows().data().toArray()
                 
                 for (var i = 0; i < requisitos.length; i++) {
+                    fd.append('idrequisitos['+i+']',requisitos[i][0]);
                     fd.append('requisitos['+i+']',requisitos[i][1]);
+              
                   
                 }
                 var modalidades = tablemodalidades.rows().data().toArray()
                 
                 for (var i = 0; i < modalidades.length; i++) {
+                    fd.append('idmodalidades['+i+']',modalidades[i][0]);
                     fd.append('modalidades['+i+']',modalidades[i][1]);
                  
                 }
@@ -879,6 +883,7 @@ loadtable7();
                 var competencias = tablecompetencias.rows().data().toArray()
                 
                 for (var i = 0; i < competencias.length; i++) {
+                    fd.append('idcompetencias['+i+']',competencias[i][0]);
                     fd.append('competencias['+i+']',competencias[i][1]);
                     
                 }
@@ -886,6 +891,7 @@ loadtable7();
                 var etiquetas = tableetiquetas.rows().data().toArray()
                 
                 for (var i = 0; i < etiquetas.length; i++) {
+                   
                     fd.append('etiquetas['+i+']',etiquetas[i][0]);
                    
                 }
@@ -900,6 +906,7 @@ loadtable7();
                 var tematicas = tabletematicas.rows().data().toArray()
                 
                 for (var i = 0; i < tematicas.length; i++) {
+                    fd.append('idtematicas['+i+']',tematicas[i][0]);
                     fd.append('tematicas['+i+']',tematicas[i][1]);
                    
                 }
@@ -926,6 +933,8 @@ loadtable7();
                 fd.append('Temario_URL', "");
                 fd.append('Temario',files);
                }
+
+
                $.ajax({
                     url: "{{route('admin.cursosSave')}}/"+id,
                     type: 'post',
