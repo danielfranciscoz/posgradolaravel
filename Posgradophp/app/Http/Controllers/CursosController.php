@@ -243,7 +243,7 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $idcurso = $request->input("id");
+        $id = $request->input("id");
         $searchv = $request->input("search.value");
         $pagesize = $lenght != null ? $lenght : 0;
         $skip = $start != null ? $start : 0;
@@ -251,7 +251,7 @@ class CursosController extends Controller
         $totalRecords = 0;
 
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
-
+        $idcurso = Cursoprecio::find($id)->curso_id;
         $v = Cursorequisito::where('deleted_at',null)->where('curso_id',$idcurso);
         
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
@@ -287,7 +287,7 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $idcurso = $request->input("id");
+        $id = $request->input("id");
         $searchv = $request->input("search.value");
         $pagesize = $lenght != null ? $lenght : 0;
         $skip = $start != null ? $start : 0;
@@ -295,7 +295,7 @@ class CursosController extends Controller
         $totalRecords = 0;
 
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
-
+        $idcurso = Cursoprecio::find($id)->curso_id;
         $v = Cursomodalidad::where('deleted_at',null)->where('curso_id',$idcurso);
         
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
@@ -331,7 +331,7 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $idcurso = $request->input("id");
+        $id = $request->input("id");
         $searchv = $request->input("search.value");
         $pagesize = $lenght != null ? $lenght : 0;
         $skip = $start != null ? $start : 0;
@@ -339,7 +339,7 @@ class CursosController extends Controller
         $totalRecords = 0;
 
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
-
+        $idcurso = Cursoprecio::find($id)->curso_id;
         $v = CompetenciaCurso::where('deleted_at',null)->where('curso_id',$idcurso);
         
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
@@ -375,7 +375,7 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $idcurso = $request->input("id");
+        $id = $request->input("id");
         $searchv = $request->input("search.value");
         $pagesize = $lenght != null ? $lenght : 0;
         $skip = $start != null ? $start : 0;
@@ -383,7 +383,7 @@ class CursosController extends Controller
         $totalRecords = 0;
 
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
-
+        $idcurso = Cursoprecio::find($id)->curso_id;
         $v = Cursotematica::where('deleted_at',null)->where('curso_id',$idcurso);
         
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
@@ -419,7 +419,7 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $idcurso = $request->input("id");
+        $id = $request->input("id");
         $searchv = $request->input("search.value");
         $pagesize = $lenght != null ? $lenght : 0;
         $skip = $start != null ? $start : 0;
@@ -429,7 +429,7 @@ class CursosController extends Controller
         // $v = Etiqueta::rightJoin('curso_etiqueta', 'curso_etiqueta.etiqueta_id', '=', 'etiquetas.id')->
         // select('curso_etiqueta.id','curso_etiqueta.etiqueta_id','curso_etiqueta.deleted_at','etiqueta')->
         // where('curso_etiqueta.deleted_at',null)->where('curso_id',$idcurso);
-
+        $idcurso = Cursoprecio::find($id)->curso_id;
         $v = Etiqueta::where('deleted_at',null)
                 ->wherehas('cursos',function($sql) use ($idcurso) {
                         $sql->where('curso_id',$idcurso);
@@ -477,13 +477,13 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $idcurso = $request->input("id");
+        $id = $request->input("id");
         $searchv = $request->input("search.value");
         $pagesize = $lenght != null ? $lenght : 0;
         $skip = $start != null ? $start : 0;
         
         $totalRecords = 0;
-
+        $idcurso = Cursoprecio::find($id)->curso_id;
         $v = Docente::where('deleted_at',null)
         ->wherehas('cursos',function($sql) use ($idcurso) {
                 $sql->where('curso_id',$idcurso);
@@ -526,48 +526,123 @@ class CursosController extends Controller
             
             $cursoprecio->save();
 
+            $docentes = $request->input('docentes');
+            if (count($docentes)>0) {
+                $curso->docentes()->attach($docentes);
+            }
+
+            $etiquetas = $request->input('etiquetas');
+            if (count($etiquetas)>0) {
+                $curso->etiquetas()->attach($etiquetas);
+            }
+
             $competencias = $request->input('competencias');
             
-            for ($i=0; $i < Count($competencias); $i++) { 
-                $competenciacurso = new Competenciacurso();
-                $competenciacurso->curso_id = $curso->id;
-                $competenciacurso->Competencia = $competencias[$i];
+            if (Count($competencias)>0) {
+                for ($i=0; $i < Count($competencias); $i++) { 
+                    $competenciacurso = new Competenciacurso();
+                    $competenciacurso->curso_id = $curso->id;
+                    $competenciacurso->Competencia = $competencias[$i];
+                    
+                    $competenciacurso->save();
+                }                                       
+            }else{
+                DB::rollback();
                 
-                $competenciacurso->save();
-            }                       
+                if(file_exists(public_path($curso->Image_URL))){
+                    unlink(public_path($curso->Image_URL));
+                }
+                if(file_exists(public_path($curso->Temario_URL))){
+                    unlink(public_path($curso->Temario_URL));
+                }
 
-            $tematicas = $request->input('tematicas.Tematica');
-            $tematicasduracion = $request->input('tematicas.Duracion');
-
-            for ($i=0; $i < Count($tematicas); $i++) { 
-                $tematicas = new Cursotematica();
-                $tematicas->curso_id = $curso->id;
-                $tematicas->Tematica = $tematicas[$i];
-                $tematicas->Duracion = $tematicasduracion[$i];
-                
-                $tematicas->save();
+                return response()->json([
+                    'error'=>'Se debe agregar al menos una competencia para el curso'
+                ]);
+ 
             }
 
-            $modalidades = $request->input('modalidades.Modalidad');
-            $modalidadeshorario = $request->input('modalidades.Horario');
+            $tematicas = $request->input('tematicas');
+            $tematicasduracion = $request->input('duracion');
 
-            for ($i=0; $i < Count($modalidades); $i++) { 
-                $modalidades = new Cursomodalidad();
-                $modalidades->curso_id = $curso->id;
-                $modalidades->Tematica = $modalidades[$i];
-                $modalidades->Horario = $modalidadeshorario[$i];
+            if (Count($tematicas)>0) {
                 
-                $modalidades->save();
+                for ($i=0; $i < Count($tematicas); $i++) { 
+                    $tematica = new Cursotematica();
+                    $tematica->curso_id = $curso->id;
+                    $tematica->Tematica = $tematicas[$i];
+                    $tematica->Duracion = $tematicasduracion[$i];
+                    
+                    $tematica->save();
+                }
+            }else{
+                DB::rollback();
+
+                if(file_exists(public_path($curso->Image_URL))){
+                    unlink(public_path($curso->Image_URL));
+                }
+                if(file_exists(public_path($curso->Temario_URL))){
+                    unlink(public_path($curso->Temario_URL));
+                }
+                
+                return response()->json([
+                    'error'=>'Se debe agregar al menos una tematica para el curso'
+                ]);
+
             }
 
-            $requisitos = $request->input('requisitos.Requisito');
+            $modalidades = $request->input('modalidades');
+            $modalidadeshorario = $request->input('horarios');
+
+            if (Count($modalidades)>0) {
+                for ($i=0; $i < Count($modalidades); $i++) { 
+                    $modalidad = new Cursomodalidad();
+                    $modalidad->curso_id = $curso->id;
+                    $modalidad->Modalidad = $modalidades[$i];
+                    $modalidad->Horario = $modalidadeshorario[$i];
+                    
+                    $modalidad->save();
+                }
+
+            }else{
+                DB::rollback();
+
+                if(file_exists(public_path($curso->Image_URL))){
+                    unlink(public_path($curso->Image_URL));
+                }
+                if(file_exists(public_path($curso->Temario_URL))){
+                    unlink(public_path($curso->Temario_URL));
+                }
+
+                return response()->json([
+                    'error'=>'Se debe agregar al menos una modalidad para el curso'
+                ]);
+
+            }    
+
+            $requisitos = $request->input('requisitos');
        
-            for ($i=0; $i < Count($requisitos); $i++) { 
-                $requisitos = new Cursorequisito();
-                $requisitos->curso_id = $curso->id;
-                $requisitos->Tematica = $requisitos[$i];
+            if (Count($requisitos)>0) {
+                for ($i=0; $i < Count($requisitos); $i++) { 
+                    $requisito = new Cursorequisito();
+                    $requisito->curso_id = $curso->id;
+                    $requisito->Requisito = $requisitos[$i];
+                    
+                    $requisito->save();
+                }
+            }else{
+                DB::rollback();
                 
-                $requisitos->save();
+                if(file_exists(public_path($curso->Image_URL))){
+                    unlink(public_path($curso->Image_URL));
+                }
+                if(file_exists(public_path($curso->Temario_URL))){
+                    unlink(public_path($curso->Temario_URL));
+                }
+
+                return response()->json([
+                    'error'=>'Se debe agregar al menos un requisito para el curso'
+                ]);
             }
 
             DB::commit();
@@ -577,6 +652,14 @@ class CursosController extends Controller
             ]);
         } catch (Exception $e) {
             DB::rollback();
+
+            if(file_exists(public_path($curso->Image_URL))){
+                unlink(public_path($curso->Image_URL));
+            }
+            if(file_exists(public_path($curso->Temario_URL))){
+                unlink(public_path($curso->Temario_URL));
+            }
+
             return report($e);     
         }
 
