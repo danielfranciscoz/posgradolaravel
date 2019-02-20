@@ -22,7 +22,7 @@
                         <select class="browser-default custom-select mb-4" id="categoria">
 
                             <option value="-1" disabled>Seleccione una categoría</option>
-                            <option value="" >Maestría</option>
+                            <option value="0" >Maestría</option>
                         
                             @for($i=0;$i<count($categoriaselect);$i++)
                             <option value="{{$categoriaselect[$i]->id}}" >{{$categoriaselect[$i]->Categoria}}</option>                        
@@ -106,7 +106,7 @@
                     <div class="col-md-6 col-sm-12">
                          <input type="text" id="requisitos" class="col-12 mb-4">
                         <a class="btn btn-sm green white-text font-weight-bold" onclick="addrequisito()">Agregar</a>
-                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold"  onclick="delrequisito()">Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
                     <div class="table-responsive">
@@ -134,7 +134,7 @@
                     <input type="text" id="modalidades" class="col-6 mb-4"  placeholder="Modalidad">
                     <input type="text" id="horarios" class="col-6 mb-4"  placeholder="Horario">
                         <a class="btn btn-sm green white-text font-weight-bold" onclick="addmodalidad()">Agregar</a>
-                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold"  onclick="delmodalidad()" > Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
                     <div class="table-responsive">
@@ -162,7 +162,7 @@
                     <div class="col-md-6 col-sm-12">
                         <input type="text" id="competencias" class="col-12 mb-4">
                         <a class="btn btn-sm green white-text font-weight-bold" onclick="addcompetencia()">Agregar</a>
-                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold" onclick="delcompetencia()" >Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
                     <div class="table-responsive">
@@ -197,7 +197,7 @@
 
                         </select> 
                         <a class="btn btn-sm green white-text font-weight-bold" onclick="addetiqueta()">Agregar</a>
-                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold"  onclick="deletiqueta()" >Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
                     <div class="table-responsive">
@@ -233,7 +233,7 @@
 
                         </select> 
                         <a class="btn btn-sm green white-text font-weight-bold" onclick="adddocente()">Agregar</a>
-                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold"  onclick="deldocente()" >Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="table-responsive">
@@ -260,7 +260,7 @@
                     <input type="text" id="tematicas" class="col-5 mb-4" placeholder="tematica">
                     <input type="text" id="duracion" class="col-5 mb-4" placeholder="duracion">
                         <a class="btn btn-sm green white-text font-weight-bold" onclick="addtematica()">Agregar</a>
-                        <a class="btn btn-sm red white-text font-weight-bold">Eliminar</a>
+                        <a class="btn btn-sm red white-text font-weight-bold"  onclick="deltematica()" >Eliminar</a>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="table-responsive">

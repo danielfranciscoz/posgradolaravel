@@ -22,50 +22,49 @@ use Illuminate\Support\Facades\Auth;
 class CursosController extends Controller
 {
     public function index()
-    {   
-        $categoriaselect = Categoria::select(DB::raw("CONCAT(CASE WHEN (isCursoPosgrado=0) THEN 'Curso: ' ELSE 'Posgrado: ' END,Categoria) AS Categoria,id"))->where('deleted_at',null)->orderby('isCursoPosgrado')->get();
+    {
+        $categoriaselect = Categoria::select(DB::raw("CONCAT(CASE WHEN (isCursoPosgrado=0) THEN 'Curso: ' ELSE 'Posgrado: ' END,Categoria) AS Categoria,id"))->where('deleted_at', null)->orderby('isCursoPosgrado')->get();
         
-        $etiquetasselect = Etiqueta::where('deleted_at',null)->get();        
-        $docentesselect = Docente::where('deleted_at',null)->get();
-        return view('cms.cursos') 
+        $etiquetasselect = Etiqueta::where('deleted_at', null)->get();
+        $docentesselect = Docente::where('deleted_at', null)->get();
+        return view('cms.cursos')
             ->with(compact('categoriaselect'))
             ->with(compact('docentesselect'))
             ->with(compact('etiquetasselect'));
     }
   
-    public function categories($categoria,$orden=null)
-    { 
-
+    public function categories($categoria, $orden=null)
+    {
         $sort=['created_at','DESC'];
         
-        if($orden != null){
+        if ($orden != null) {
             switch ($orden) {
                 case 'precio_asc':
-                $sort=['Precio','ASC']; 
+                $sort=['Precio','ASC'];
                     break;
 
                 case 'precio_desc':
-                $sort=['Precio','DESC']; 
+                $sort=['Precio','DESC'];
                     break;
                 
                 default:
                 // $sort=['created_at','DESC'];
                     break;
-            }  
+            }
         }
         $categoria_id = Categoria::where('Categoria', $categoria)->first();
         
-        if($categoria_id==null){
+        if ($categoria_id==null) {
             return response()->json([
                 'message'=>'La categoría no existe'
             ]);
         }
-      //  dd($categoria_id);
+        //  dd($categoria_id);
         $cursos_id = Curso::where('Categoria_Id', $categoria_id->id)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
         
-        $cursos = Cursoprecio::where('deleted_at','=',null)
-        ->whereIn('curso_id',$cursos_id)
-        ->orderBy($sort[0],$sort[1]);
+        $cursos = Cursoprecio::where('deleted_at', '=', null)
+        ->whereIn('curso_id', $cursos_id)
+        ->orderBy($sort[0], $sort[1]);
              
        
         $cursos=  $cursos->paginate(5);
@@ -73,122 +72,120 @@ class CursosController extends Controller
         // dd($cursos);
 
         return view("cursos.cursoscategoria")
-         ->with('categoria',$categoria_id)
-        ->with('cursos',$cursos);
+         ->with('categoria', $categoria_id)
+        ->with('cursos', $cursos);
     }
 
-    public function search($search_value,$orden=null)
-    { 
-
+    public function search($search_value, $orden=null)
+    {
         $sort=['created_at','DESC'];
-        if($orden != null){
+        if ($orden != null) {
             switch ($orden) {
                 case 'precio_asc':
-                $sort=['Precio','ASC']; 
+                $sort=['Precio','ASC'];
                 break;
                 
                 case 'precio_desc':
-                $sort=['Precio','DESC']; 
+                $sort=['Precio','DESC'];
                 break;
                 
                 default:
                 // $sort=['created_at','DESC'];
                 break;
-            }  
+            }
         }
        
         // divide la frase mediante cualquier número de comas o caracteres de espacio,
         // lo que incluye " ", \r, \t, \n y \f
-        $data = preg_split("/[\s,]+/", $search_value);   
+        $data = preg_split("/[\s,]+/", $search_value);
         $etiquetas = collect();
         $curso_name = collect();
 
-        for ($i=0; $i < Count($data); $i++) { 
-            $e =Etiqueta::where('Etiqueta','Like','%'.$data[$i].'%')->get();
-            $etiquetas = $etiquetas->merge($e);   
+        for ($i=0; $i < Count($data); $i++) {
+            $e =Etiqueta::where('Etiqueta', 'Like', '%'.$data[$i].'%')->get();
+            $etiquetas = $etiquetas->merge($e);
         }
 
-        for ($i=0; $i < Count($data); $i++) { 
-            $e =Curso::where('NombreCurso','Like','%'.$data[$i].'%')->get();
-            $curso_name = $curso_name->merge($e);   
+        for ($i=0; $i < Count($data); $i++) {
+            $e =Curso::where('NombreCurso', 'Like', '%'.$data[$i].'%')->get();
+            $curso_name = $curso_name->merge($e);
         }
        
         $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($etiquetas) {
             $sql->WhereIn('etiqueta_id', $etiquetas->pluck('id'));
         })
-        ->orWhereIn('id',$curso_name->pluck('id'))
+        ->orWhereIn('id', $curso_name->pluck('id'))
         ->pluck('id')->toArray();
        
         if (Count($etiquetas)==0 && Count($cursos)>0) {
-            
             $etiquetas=Etiqueta::with('cursos')->wherehas('cursos', function ($sql) use ($curso_name) {
                 $sql->WhereIn('curso_id', $curso_name->pluck('id'));
-            })->get();           
+            })->get();
         }
 
         $c = Cursoprecio::with('curso')
-            ->where('deleted_at','=',null)
-            ->whereIn('curso_id',$cursos)
-            ->orderBy($sort[0],$sort[1]);
+            ->where('deleted_at', '=', null)
+            ->whereIn('curso_id', $cursos)
+            ->orderBy($sort[0], $sort[1]);
         
         $c = $c->paginate(5);
         
         return view("cursos.search")
-        ->with('search_value',$search_value)
-        ->with('cursos',$c)
+        ->with('search_value', $search_value)
+        ->with('cursos', $c)
         ->with(compact('etiquetas'));
     }
    
     public function maestrias($orden=null)
-    { 
+    {
         $sort=['created_at','DESC'];
         
-        if($orden != null){
+        if ($orden != null) {
             switch ($orden) {
                 case 'precio_asc':
-                $sort=['Precio','ASC']; 
+                $sort=['Precio','ASC'];
                     break;
 
                 case 'precio_desc':
-                $sort=['Precio','DESC']; 
+                $sort=['Precio','DESC'];
                     break;
                 
                 default:
                 // $sort=['created_at','DESC'];
                     break;
-            }  
+            }
         }
               
         $cursos_id = Curso::where('Categoria_Id', null)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
         
-        $cursos = Cursoprecio::where('deleted_at','=',null)
-        ->whereIn('curso_id',$cursos_id)
-        ->orderBy($sort[0],$sort[1]);
+        $cursos = Cursoprecio::where('deleted_at', '=', null)
+        ->whereIn('curso_id', $cursos_id)
+        ->orderBy($sort[0], $sort[1]);
              
        
         $cursos=  $cursos->paginate(5);
 
         return view("cursos.maestria")
-         ->with('cursos',$cursos);
+         ->with('cursos', $cursos);
     }
 
     public function curso($curso_name)
-    { 
-        $precio = Cursoprecio::where('deleted_at','=',null)
+    {
+        $precio = Cursoprecio::where('deleted_at', '=', null)
         ->wherehas('curso', function ($sql) use ($curso_name) {
-            $sql ->where('NombreCurso','like',$curso_name);
+            $sql ->where('NombreCurso', 'like', $curso_name);
         })->firstorfail();
         
-        $curso =  $precio->curso()   
-            ->first();         
+        $curso =  $precio->curso()
+            ->first();
 
-        return view("cursos.curso")        
+        return view("cursos.curso")
             ->with(compact('curso'))
             ->with(compact('precio'));
     }
 
-    public function searchcursos(Request $request){
-
+    public function searchcursos(Request $request)
+    {
         $draw = $request->input("draw");
         $start = $request->input("start");
        
@@ -206,36 +203,35 @@ class CursosController extends Controller
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
 
         $v = Curso::leftJoin('cursoprecios', 'cursos.id', '=', 'cursoprecios.curso_id')
-        ->leftJoin('categorias', 'categorias.id', '=', 'cursos.categoria_id')       
-        ->select('cursoprecios.id','cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad','cursos.Desc_Introduccion','cursos.InfoAdicional','Categorias.Categoria' )
-        ->where('cursoprecios.deleted_at',null);
+        ->leftJoin('categorias', 'categorias.id', '=', 'cursos.categoria_id')
+        ->select('cursoprecios.id', 'cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad', 'cursos.Desc_Introduccion', 'cursos.InfoAdicional', 'Categorias.Categoria')
+        ->where('cursoprecios.deleted_at', null);
 
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
         
         if (strlen($searchv) !=0) {
-            $v = $v          
-            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
-        }else{
+            $v = $v
+            ->Where('cursos.NombreCurso', 'LIKE', '%'.$searchv.'%');
+        } else {
             $v = $v->getQuery();
         }
         
-        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
-        {          
-            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0) {
+            $v = $v->orderBy($sortColumn, $sortColumnDir);
         }
         
         $totalRecords = Count($v->get());
         $data = $v->Skip($skip)->Take($pagesize)->get();
         
         return response()->Json([
-                'draw' => $draw, 
-                'recordsFiltered' => $totalRecords, 
-                'recordsTotal' => $totalRecords, 
+                'draw' => $draw,
+                'recordsFiltered' => $totalRecords,
+                'recordsTotal' => $totalRecords,
                 'data' => $data ]);
     }
 
-    public function searchcursosrequisitos(Request $request){
-
+    public function searchcursosrequisitos(Request $request)
+    {
         $draw = $request->input("draw");
         $start = $request->input("start");
        
@@ -243,43 +239,51 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $id = $request->input("id");
+        
         $searchv = $request->input("search.value");
         $pagesize = $lenght != null ? $lenght : 0;
         $skip = $start != null ? $start : 0;
         
         $totalRecords = 0;
 
-        //$v = Cursoprecio::with('curso')->where('deleted_at',null);
-        $idcurso = Cursoprecio::find($id)->curso_id;
-        $v = Cursorequisito::where('deleted_at',null)->where('curso_id',$idcurso);
-        
-        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
-        
-        if (strlen($searchv) !=0) {
-            $v = $v          
-            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
-        }else{
-            $v = $v->getQuery();
+        if ($request->has('id')) {
+            $id = $request->input("id");
+            //$v = Cursoprecio::with('curso')->where('deleted_at',null);
+            $idcurso = Cursoprecio::find($id)->curso_id;
+            $v = Cursorequisito::where('deleted_at', null)->where('curso_id', $idcurso);
+            
+            // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+            
+            if (strlen($searchv) !=0) {
+                $v = $v
+                ->Where('cursos.NombreCurso', 'LIKE', '%'.$searchv.'%');
+            } else {
+                $v = $v->getQuery();
+            }
+            
+            if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0) {
+                $v = $v->orderBy($sortColumn, $sortColumnDir);
+            }
+            
+            $totalRecords = Count($v->get());
+            $data = $v->Skip($skip)->Take($pagesize)->get();
+            
+            return response()->Json([
+                    'draw' => $draw,
+                    'recordsFiltered' => $totalRecords,
+                    'recordsTotal' => $totalRecords,
+                    'data' => $data ]);
+        } else {
+            return response()->Json([
+                'draw' => $draw,
+                'recordsFiltered' => 0,
+                'recordsTotal' => 0,
+                'data' => '']);
         }
-        
-        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
-        {          
-            $v = $v->orderBy($sortColumn,$sortColumnDir);
-        }
-        
-        $totalRecords = Count($v->get());
-        $data = $v->Skip($skip)->Take($pagesize)->get();
-        
-        return response()->Json([
-                'draw' => $draw, 
-                'recordsFiltered' => $totalRecords, 
-                'recordsTotal' => $totalRecords, 
-                'data' => $data ]);
     }
 
-    public function searchcursosmodalidades(Request $request){
-
+    public function searchcursosmodalidades(Request $request)
+    {
         $draw = $request->input("draw");
         $start = $request->input("start");
        
@@ -287,43 +291,103 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $id = $request->input("id");
-        $searchv = $request->input("search.value");
-        $pagesize = $lenght != null ? $lenght : 0;
-        $skip = $start != null ? $start : 0;
         
-        $totalRecords = 0;
-
-        //$v = Cursoprecio::with('curso')->where('deleted_at',null);
-        $idcurso = Cursoprecio::find($id)->curso_id;
-        $v = Cursomodalidad::where('deleted_at',null)->where('curso_id',$idcurso);
-        
-        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
-        
-        if (strlen($searchv) !=0) {
-            $v = $v          
-            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
-        }else{
-            $v = $v->getQuery();
-        }
-        
-        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
-        {          
-            $v = $v->orderBy($sortColumn,$sortColumnDir);
-        }
-        
-        $totalRecords = Count($v->get());
-        $data = $v->Skip($skip)->Take($pagesize)->get();
-        
-        return response()->Json([
-                'draw' => $draw, 
-                'recordsFiltered' => $totalRecords, 
-                'recordsTotal' => $totalRecords, 
+        if ($request->has('id')) {
+            $id = $request->input("id");
+            $searchv = $request->input("search.value");
+            $pagesize = $lenght != null ? $lenght : 0;
+            $skip = $start != null ? $start : 0;
+            
+            $totalRecords = 0;
+            
+            //$v = Cursoprecio::with('curso')->where('deleted_at',null);
+            $idcurso = Cursoprecio::find($id)->curso_id;
+            $v = Cursomodalidad::where('deleted_at', null)->where('curso_id', $idcurso);
+            
+            // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+            
+            if (strlen($searchv) !=0) {
+                $v = $v
+                ->Where('cursos.NombreCurso', 'LIKE', '%'.$searchv.'%');
+            } else {
+                $v = $v->getQuery();
+            }
+            
+            if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0) {
+                $v = $v->orderBy($sortColumn, $sortColumnDir);
+            }
+            
+            $totalRecords = Count($v->get());
+            $data = $v->Skip($skip)->Take($pagesize)->get();
+            
+            return response()->Json([
+                'draw' => $draw,
+                'recordsFiltered' => $totalRecords,
+                'recordsTotal' => $totalRecords,
                 'data' => $data ]);
+        } else {
+            return response()->Json([
+                'draw' => $draw,
+                'recordsFiltered' => 0,
+                'recordsTotal' => 0,
+                'data' => '']);
+        }
     }
 
-    public function searchcursoscompetencias(Request $request){
+    public function searchcursoscompetencias(Request $request)
+    {
+        $draw = $request->input("draw");
+        $start = $request->input("start");
+                
+        $lenght = $request->input("length");
 
+        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
+        $sortColumnDir = $request->input("order.0.dir");
+        
+        if ($request->has('id')) {
+            $id = $request->input("id");
+            $searchv = $request->input("search.value");
+            $pagesize = $lenght != null ? $lenght : 0;
+            $skip = $start != null ? $start : 0;
+            
+            $totalRecords = 0;
+            
+            //$v = Cursoprecio::with('curso')->where('deleted_at',null);
+            $idcurso = Cursoprecio::find($id)->curso_id;
+            $v = CompetenciaCurso::where('deleted_at', null)->where('curso_id', $idcurso);
+            
+            // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+            
+            if (strlen($searchv) !=0) {
+                $v = $v
+                ->Where('cursos.NombreCurso', 'LIKE', '%'.$searchv.'%');
+            } else {
+                $v = $v->getQuery();
+            }
+            
+            if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0) {
+                $v = $v->orderBy($sortColumn, $sortColumnDir);
+            }
+            
+            $totalRecords = Count($v->get());
+            $data = $v->Skip($skip)->Take($pagesize)->get();
+            
+            return response()->Json([
+                'draw' => $draw,
+                'recordsFiltered' => $totalRecords,
+                'recordsTotal' => $totalRecords,
+                'data' => $data ]);
+        } else {
+            return response()->Json([
+        'draw' => $draw,
+        'recordsFiltered' => 0,
+        'recordsTotal' => 0,
+        'data' => '']);
+        }
+    }
+            
+    public function searchcursostematicas(Request $request)
+    {
         $draw = $request->input("draw");
         $start = $request->input("start");
        
@@ -331,43 +395,51 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $id = $request->input("id");
-        $searchv = $request->input("search.value");
-        $pagesize = $lenght != null ? $lenght : 0;
-        $skip = $start != null ? $start : 0;
         
-        $totalRecords = 0;
-
-        //$v = Cursoprecio::with('curso')->where('deleted_at',null);
-        $idcurso = Cursoprecio::find($id)->curso_id;
-        $v = CompetenciaCurso::where('deleted_at',null)->where('curso_id',$idcurso);
-        
-        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
-        
-        if (strlen($searchv) !=0) {
-            $v = $v          
-            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
-        }else{
-            $v = $v->getQuery();
-        }
-        
-        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
-        {          
-            $v = $v->orderBy($sortColumn,$sortColumnDir);
-        }
-        
-        $totalRecords = Count($v->get());
-        $data = $v->Skip($skip)->Take($pagesize)->get();
-        
-        return response()->Json([
-                'draw' => $draw, 
-                'recordsFiltered' => $totalRecords, 
-                'recordsTotal' => $totalRecords, 
+        if ($request->has('id')) {
+            $id = $request->input("id");
+            $searchv = $request->input("search.value");
+            $pagesize = $lenght != null ? $lenght : 0;
+            $skip = $start != null ? $start : 0;
+            
+            $totalRecords = 0;
+            
+            //$v = Cursoprecio::with('curso')->where('deleted_at',null);
+            $idcurso = Cursoprecio::find($id)->curso_id;
+            $v = Cursotematica::where('deleted_at', null)->where('curso_id', $idcurso);
+            
+            // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
+            
+            if (strlen($searchv) !=0) {
+                $v = $v
+                ->Where('cursos.NombreCurso', 'LIKE', '%'.$searchv.'%');
+            } else {
+                $v = $v->getQuery();
+            }
+            
+            if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0) {
+                $v = $v->orderBy($sortColumn, $sortColumnDir);
+            }
+            
+            $totalRecords = Count($v->get());
+            $data = $v->Skip($skip)->Take($pagesize)->get();
+            
+            return response()->Json([
+                'draw' => $draw,
+                'recordsFiltered' => $totalRecords,
+                'recordsTotal' => $totalRecords,
                 'data' => $data ]);
+        } else {
+            return response()->Json([
+        'draw' => $draw,
+        'recordsFiltered' => 0,
+        'recordsTotal' => 0,
+        'data' => '']);
+        }
     }
-
-    public function searchcursostematicas(Request $request){
-
+            
+    public function searchcursosetiquetas(Request $request)
+    {
         $draw = $request->input("draw");
         $start = $request->input("start");
        
@@ -375,90 +447,55 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $id = $request->input("id");
-        $searchv = $request->input("search.value");
-        $pagesize = $lenght != null ? $lenght : 0;
-        $skip = $start != null ? $start : 0;
         
-        $totalRecords = 0;
-
-        //$v = Cursoprecio::with('curso')->where('deleted_at',null);
-        $idcurso = Cursoprecio::find($id)->curso_id;
-        $v = Cursotematica::where('deleted_at',null)->where('curso_id',$idcurso);
-        
-        // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
-        
-        if (strlen($searchv) !=0) {
-            $v = $v          
-            ->Where('cursos.NombreCurso','LIKE','%'.$searchv.'%');
-        }else{
-            $v = $v->getQuery();
-        }
-        
-        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
-        {          
-            $v = $v->orderBy($sortColumn,$sortColumnDir);
-        }
-        
-        $totalRecords = Count($v->get());
-        $data = $v->Skip($skip)->Take($pagesize)->get();
-        
-        return response()->Json([
-                'draw' => $draw, 
-                'recordsFiltered' => $totalRecords, 
-                'recordsTotal' => $totalRecords, 
+        if ($request->has('id')) {
+            $id = $request->input("id");
+            $searchv = $request->input("search.value");
+            $pagesize = $lenght != null ? $lenght : 0;
+            $skip = $start != null ? $start : 0;
+            
+            $totalRecords = 0;
+            
+            // $v = Etiqueta::rightJoin('curso_etiqueta', 'curso_etiqueta.etiqueta_id', '=', 'etiquetas.id')->
+            // select('curso_etiqueta.id','curso_etiqueta.etiqueta_id','curso_etiqueta.deleted_at','etiqueta')->
+            // where('curso_etiqueta.deleted_at',null)->where('curso_id',$idcurso);
+            $idcurso = Cursoprecio::find($id)->curso_id;
+            $v = Etiqueta::where('deleted_at', null)
+            ->wherehas('cursos', function ($sql) use ($idcurso) {
+                $sql->where('curso_id', $idcurso);
+            });
+            
+            if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0) {
+                $v = $v->orderBy($sortColumn, $sortColumnDir);
+            }
+            
+            $totalRecords = Count($v->get());
+            $data = $v->Skip($skip)->Take($pagesize)->get();
+            
+            return response()->Json([
+                'draw' => $draw,
+                'recordsFiltered' => $totalRecords,
+                'recordsTotal' => $totalRecords,
                 'data' => $data ]);
-    }
-
-    public function searchcursosetiquetas(Request $request){
-
-        $draw = $request->input("draw");
-        $start = $request->input("start");
-       
-        $lenght = $request->input("length");
-
-        $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
-        $sortColumnDir = $request->input("order.0.dir");
-        $id = $request->input("id");
-        $searchv = $request->input("search.value");
-        $pagesize = $lenght != null ? $lenght : 0;
-        $skip = $start != null ? $start : 0;
-        
-        $totalRecords = 0;
-
-        // $v = Etiqueta::rightJoin('curso_etiqueta', 'curso_etiqueta.etiqueta_id', '=', 'etiquetas.id')->
-        // select('curso_etiqueta.id','curso_etiqueta.etiqueta_id','curso_etiqueta.deleted_at','etiqueta')->
-        // where('curso_etiqueta.deleted_at',null)->where('curso_id',$idcurso);
-        $idcurso = Cursoprecio::find($id)->curso_id;
-        $v = Etiqueta::where('deleted_at',null)
-                ->wherehas('cursos',function($sql) use ($idcurso) {
-                        $sql->where('curso_id',$idcurso);
-                    }); 
-                    
-        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
-        {          
-            $v = $v->orderBy($sortColumn,$sortColumnDir);
+        } else {
+            return response()->Json([
+        'draw' => $draw,
+        'recordsFiltered' => 0,
+        'recordsTotal' => 0,
+        'data' => '']);
         }
-        
-        $totalRecords = Count($v->get());
-        $data = $v->Skip($skip)->Take($pagesize)->get();
-        
-        return response()->Json([
-                'draw' => $draw, 
-                'recordsFiltered' => $totalRecords, 
-                'recordsTotal' => $totalRecords, 
-                'data' => $data ]);
     }
-
-    public function searchRelacionesCurso($idcurso){
+            
+    public function searchRelacionesCurso($idcurso)
+    {
         $id = Cursoprecio::find($idcurso);
         $curso = Curso::
-            with('competencias')
-            ->with('tematicas')
-            ->with('modalidades')
-            ->with('requisitos')
-            ->with('docentes')
-            ->with('etiquetas')
+                with('competencias')
+                ->with('tematicas')
+                ->with('modalidades')
+                ->with('requisitos')
+                ->with('docentes')
+                ->with('etiquetas')
             ->find($id->curso_id);
 
         dd($curso);
@@ -468,8 +505,8 @@ class CursosController extends Controller
         ]);
     }
 
-    public function searchcursodocentes(Request $request){
-
+    public function searchcursodocentes(Request $request)
+    {
         $draw = $request->input("draw");
         $start = $request->input("start");
        
@@ -477,38 +514,46 @@ class CursosController extends Controller
 
         $sortColumn = $request->input("columns." . $request->input("order.0.column") . ".name");
         $sortColumnDir = $request->input("order.0.dir");
-        $id = $request->input("id");
-        $searchv = $request->input("search.value");
-        $pagesize = $lenght != null ? $lenght : 0;
-        $skip = $start != null ? $start : 0;
         
-        $totalRecords = 0;
-        $idcurso = Cursoprecio::find($id)->curso_id;
-        $v = Docente::where('deleted_at',null)
-        ->wherehas('cursos',function($sql) use ($idcurso) {
-                $sql->where('curso_id',$idcurso);
-            }); 
-
-        if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0)
-        {          
-            $v = $v->orderBy($sortColumn,$sortColumnDir);
-        }
-        
-        $totalRecords = Count($v->get());
-        $data = $v->Skip($skip)->Take($pagesize)->get();
-        
-        return response()->Json([
-                'draw' => $draw, 
-                'recordsFiltered' => $totalRecords, 
-                'recordsTotal' => $totalRecords, 
-                'data' => $data ]);
-    }
-
-
-    public function store(CursoRequest $request){
-        DB::beginTransaction();   
-        try {
+        if ($request->has('id')) {
+            $id = $request->input("id");
+            $searchv = $request->input("search.value");
+            $pagesize = $lenght != null ? $lenght : 0;
+            $skip = $start != null ? $start : 0;
             
+            $totalRecords = 0;
+            $idcurso = Cursoprecio::find($id)->curso_id;
+            $v = Docente::where('deleted_at', null)
+            ->wherehas('cursos', function ($sql) use ($idcurso) {
+                $sql->where('curso_id', $idcurso);
+            });
+            
+            if (strlen($sortColumn) !=0 && strlen($sortColumnDir) !=0) {
+                $v = $v->orderBy($sortColumn, $sortColumnDir);
+            }
+        
+            $totalRecords = Count($v->get());
+            $data = $v->Skip($skip)->Take($pagesize)->get();
+        
+            return response()->Json([
+            'draw' => $draw,
+            'recordsFiltered' => $totalRecords,
+                'recordsTotal' => $totalRecords,
+                'data' => $data ]);
+        } else {
+            return response()->Json([
+        'draw' => $draw,
+        'recordsFiltered' => 0,
+        'recordsTotal' => 0,
+        'data' => '']);
+        }
+    }
+            
+
+    public function store(CursoRequest $request)
+    {
+        DB::beginTransaction();
+        try {
             $curso = new Curso();
             $curso->NombreCurso = $request->input('NombreCurso');
             $curso->Image_URL = $this->uploadphoto($request);
@@ -539,35 +584,33 @@ class CursosController extends Controller
             $competencias = $request->input('competencias');
             
             if (Count($competencias)>0) {
-                for ($i=0; $i < Count($competencias); $i++) { 
+                for ($i=0; $i < Count($competencias); $i++) {
                     $competenciacurso = new Competenciacurso();
                     $competenciacurso->curso_id = $curso->id;
                     $competenciacurso->Competencia = $competencias[$i];
                     
                     $competenciacurso->save();
-                }                                       
-            }else{
+                }
+            } else {
                 DB::rollback();
                 
-                if(file_exists(public_path($curso->Image_URL))){
+                if (file_exists(public_path($curso->Image_URL))) {
                     unlink(public_path($curso->Image_URL));
                 }
-                if(file_exists(public_path($curso->Temario_URL))){
+                if (file_exists(public_path($curso->Temario_URL))) {
                     unlink(public_path($curso->Temario_URL));
                 }
 
                 return response()->json([
                     'error'=>'Se debe agregar al menos una competencia para el curso'
                 ]);
- 
             }
 
             $tematicas = $request->input('tematicas');
             $tematicasduracion = $request->input('duracion');
 
             if (Count($tematicas)>0) {
-                
-                for ($i=0; $i < Count($tematicas); $i++) { 
+                for ($i=0; $i < Count($tematicas); $i++) {
                     $tematica = new Cursotematica();
                     $tematica->curso_id = $curso->id;
                     $tematica->Tematica = $tematicas[$i];
@@ -575,27 +618,26 @@ class CursosController extends Controller
                     
                     $tematica->save();
                 }
-            }else{
+            } else {
                 DB::rollback();
 
-                if(file_exists(public_path($curso->Image_URL))){
+                if (file_exists(public_path($curso->Image_URL))) {
                     unlink(public_path($curso->Image_URL));
                 }
-                if(file_exists(public_path($curso->Temario_URL))){
+                if (file_exists(public_path($curso->Temario_URL))) {
                     unlink(public_path($curso->Temario_URL));
                 }
                 
                 return response()->json([
                     'error'=>'Se debe agregar al menos una tematica para el curso'
                 ]);
-
             }
 
             $modalidades = $request->input('modalidades');
             $modalidadeshorario = $request->input('horarios');
 
             if (Count($modalidades)>0) {
-                for ($i=0; $i < Count($modalidades); $i++) { 
+                for ($i=0; $i < Count($modalidades); $i++) {
                     $modalidad = new Cursomodalidad();
                     $modalidad->curso_id = $curso->id;
                     $modalidad->Modalidad = $modalidades[$i];
@@ -603,40 +645,38 @@ class CursosController extends Controller
                     
                     $modalidad->save();
                 }
-
-            }else{
+            } else {
                 DB::rollback();
 
-                if(file_exists(public_path($curso->Image_URL))){
+                if (file_exists(public_path($curso->Image_URL))) {
                     unlink(public_path($curso->Image_URL));
                 }
-                if(file_exists(public_path($curso->Temario_URL))){
+                if (file_exists(public_path($curso->Temario_URL))) {
                     unlink(public_path($curso->Temario_URL));
                 }
 
                 return response()->json([
                     'error'=>'Se debe agregar al menos una modalidad para el curso'
                 ]);
-
-            }    
+            }
 
             $requisitos = $request->input('requisitos');
        
             if (Count($requisitos)>0) {
-                for ($i=0; $i < Count($requisitos); $i++) { 
+                for ($i=0; $i < Count($requisitos); $i++) {
                     $requisito = new Cursorequisito();
                     $requisito->curso_id = $curso->id;
                     $requisito->Requisito = $requisitos[$i];
                     
                     $requisito->save();
                 }
-            }else{
+            } else {
                 DB::rollback();
                 
-                if(file_exists(public_path($curso->Image_URL))){
+                if (file_exists(public_path($curso->Image_URL))) {
                     unlink(public_path($curso->Image_URL));
                 }
-                if(file_exists(public_path($curso->Temario_URL))){
+                if (file_exists(public_path($curso->Temario_URL))) {
                     unlink(public_path($curso->Temario_URL));
                 }
 
@@ -653,22 +693,23 @@ class CursosController extends Controller
         } catch (Exception $e) {
             DB::rollback();
 
-            if(file_exists(public_path($curso->Image_URL))){
+            if (file_exists(public_path($curso->Image_URL))) {
                 unlink(public_path($curso->Image_URL));
             }
-            if(file_exists(public_path($curso->Temario_URL))){
+            if (file_exists(public_path($curso->Temario_URL))) {
                 unlink(public_path($curso->Temario_URL));
             }
 
-            return report($e);     
+            return report($e);
         }
-
     }
-    public function update(CursoRequest $request,$id){
-
+    public function update(CursoRequest $request, $id)
+    {
+        
     }
   
-    public function destroy($id){
+    public function destroy($id)
+    {
         $original = Cursoprecio::find($id);
 
         if ($original == null) {
@@ -677,25 +718,26 @@ class CursosController extends Controller
             ]);
         }
         try {
-            $original->deleted_at =date('Y-m-d H:i:s');            
+            $original->deleted_at =date('Y-m-d H:i:s');
             $original->save();
 
             return response()->json([
                 'message'=>'exito'
             ]);
-            
         } catch (Exception $e) {
             return report($e);
         }
     }
 
-    public function uploadphoto(Request $request){
+    public function uploadphoto(Request $request)
+    {
         $f = new uploadPhoto();
-        return $f->upload($request,"img/Resources/cursos");
+        return $f->upload($request, "img/Resources/cursos");
     }
 
-    public function uploadpdf(Request $request){
+    public function uploadpdf(Request $request)
+    {
         $f = new uploadPhoto();
-        return $f->uploadPDF($request,"temarios/");
+        return $f->uploadPDF($request, "temarios/");
     }
 }

@@ -291,6 +291,12 @@ loadtable7();
     var tabledocentes;
     var tabletematicas;
 
+    var idrequisitos;
+    var idetiquetas;
+    var idmodalidades;
+    var iddocentes;
+    var idtematicas;
+
 
 
     var table = $('#table1').DataTable( {
@@ -670,6 +676,10 @@ loadtable7();
 
         $("#but_upload").click(function(){
             if(nuevo){
+
+               
+            
+
                 var fd = new FormData();
                 var files = $('#file')[0].files[0]; 
                 var images = $('#image')[0].files[0];          
@@ -677,12 +687,20 @@ loadtable7();
                 fd.append('Imagen',images);
                 fd.append('Temario',files);
                 fd.append('NombreCurso',$('#curso').val());
-                fd.append('categoria_id',$('#categoria').val());
+                if($('#categoria').val()==0){
+                    fd.append('categoria_id',NULL);
+                }else{
+                    fd.append('categoria_id',$('#categoria').val());
+                }
                 
                 fd.append('Desc_Publicidad',$('#descripcionpublicidad').val());
                 fd.append('Desc_Introduccion',$('#descripcionintroduccion').val());
                 fd.append('InfoAdicional',$('#descripcionadicional').val());
                 fd.append('Precio',$('#precio').val());
+
+
+
+
                 var requisitos = tablerequisitos.rows().data().toArray()
                 
                 for (var i = 0; i < requisitos.length; i++) {
@@ -831,8 +849,11 @@ loadtable7();
                
                 fd.append('_token', $('meta[name="csrf-token"]').attr('content'));              
                 fd.append('NombreCurso',$('#curso').val());
-                fd.append('categoria_id',$('#categoria').val());
-                
+                if($('#categoria').val()==0){
+                    fd.append('categoria_id',NULL);
+                }else{
+                    fd.append('categoria_id',$('#categoria').val());
+                }   
                 fd.append('Desc_Publicidad',$('#descripcionpublicidad').val());
                 fd.append('Desc_Introduccion',$('#descripcionintroduccion').val());
                 fd.append('InfoAdicional',$('#descripcionadicional').val());
@@ -1162,6 +1183,15 @@ loadtable7();
                 }
             }
 
+            $('#tablerequisitos tbody').on( 'click', 'tr', function () {
+                    idrequisitos = this ;
+                  
+                });
+
+            function delrequisito(){
+                tablerequisitos.row(idrequisitos).remove().draw();
+            }
+
             
             function addmodalidad(){
                var txt = $("#modalidades").val();
@@ -1170,12 +1200,30 @@ loadtable7();
                     tablemodalidades.row.add([0,txt,txt2]).draw();
                 }
             }
+
+            $('#tablemodalidades tbody').on( 'click', 'tr', function () {
+                    idmodalidades = this ;
+                  
+                });
+
+            function delmodalidad(){
+                tablemodalidades.row(idmodalidades).remove().draw();
+            }
             
             function addcompetencia(){
                var txt = $("#competencias").val();
                 if(txt.length>0){
                     tablecompetencias.row.add([0,txt]).draw();
                 }
+            }
+
+            $('#tablecompetencias tbody').on( 'click', 'tr', function () {
+                    idcompetencias = this ;
+                  
+                });
+
+            function delcompetencia(){
+                tablecompetencias.row(idcompetencias).remove().draw();
             }
 
             function addetiqueta(){
@@ -1186,12 +1234,30 @@ loadtable7();
                 }
             }
 
+            $('#tableetiquetas tbody').on( 'click', 'tr', function () {
+                    idetiquetas = this ;
+                  
+                });
+
+            function deletiqueta(){
+                tableetiquetas.row(idetiquetas).remove().draw();
+            }
+
             function adddocente(){
                var txt = $("#docentes").val();
                var txt2 = $("#docentes option:selected").text();
                 if(txt.length>0){
                     tabledocentes.row.add([txt,txt2]).draw();
                 }
+            }
+
+            $('#tabledocentes tbody').on( 'click', 'tr', function () {
+                    iddocentes = this ;
+                  
+                });
+
+            function deldocente(){
+                tabledocentes.row(iddocentes).remove().draw();
             }
 
             function addtematica(){
@@ -1201,6 +1267,17 @@ loadtable7();
                     tabletematicas.row.add([0,txt,txt2]).draw();
                 }
             }
+
+            $('#tabletematicas tbody').on( 'click', 'tr', function () {
+                    idtematicas = this ;
+                  
+                });
+
+            function deltematica(){
+                tabletematicas.row(idtematicas).remove().draw();
+            }
+
+           
         
 </script>
 @endsection
