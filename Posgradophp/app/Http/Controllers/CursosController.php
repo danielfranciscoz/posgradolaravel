@@ -200,6 +200,8 @@ class CursosController extends Controller
         
         $totalRecords = 0;
 
+
+       
         //$v = Cursoprecio::with('curso')->where('deleted_at',null);
 
         $v = Curso::leftJoin('cursoprecios', 'cursos.id', '=', 'cursoprecios.curso_id')
@@ -549,6 +551,33 @@ class CursosController extends Controller
         }
     }
             
+    public function updatepreciocurso(Request $request)
+    {
+        try {
+            $id=$request->input('id');
+            $precio = CursoPrecio::find($id);
+            $precio->deleted_at=date('Y-m-d H:i:s');
+            $precio->save();
+
+            $cursoprecio = new CursoPrecio();
+            $cursoprecio->curso_id = $precio->curso_id;
+            $cursoprecio->Precio = $request->input('Precio');
+
+            
+            $cursoprecio->save();
+
+            return response()->json([
+                'message'=>'exito']);
+
+        } catch (Exception $e) {
+            DB::rollback();
+
+            $this->removeUpload($curso->Image_URL);
+            $this->removeUpload($curso->Temario_URL);
+
+            return report($e);
+        }
+    }
 
     public function store(CursoRequest $request)
     {
@@ -806,13 +835,7 @@ class CursosController extends Controller
             $tematicas = $request->input('tematicas');
             $tematicasduracion = $request->input('duracion');
             $idtematicas = $request->input('idtematicas');
-            
-            //      $eliminatematicas = array_where($idtematicas, function ($key, $value) {
-            //     if ($value==0) {
-            //         return ($value);
-            //     }
-            // });
-   
+             
             Cursotematica::where('curso_id', $original->id)->where('deleted_at', null)
                 ->whereNotIn('id', $idtematicas)
                 ->update(array('deleted_at' => date('Y-m-d H:i:s')));
@@ -866,16 +889,9 @@ class CursosController extends Controller
             $modalidadeshorario = $request->input('horarios');
             $idmodalidades = $request->input('idmodalidades');
 
-            // $elimina = array_where($idmodalidades, function ($key, $value) {
-            //     if ($value>0) {
-            //         return ($value);
-            //     }
-            // });
-            // if (count($elimina)>0) {
             Cursomodalidad::where('curso_id', $original->id)->where('deleted_at', null)
                 ->whereNotIn('id', $idmodalidades)
                 ->update(array('deleted_at' => date('Y-m-d H:i:s')));
-            // }
 
 
             if (Count($modalidades)>0) {
@@ -925,16 +941,9 @@ class CursosController extends Controller
             $requisitos = $request->input('requisitos');
             $idrequisitos = $request->input('idrequisitos');
 
-            // $elimina = array_where($idrequisitos, function ($key, $value) {
-            //     if ($value>0) {
-            //         return ($value);
-            //     }
-            // });
-            // if (count($elimina)>0) {
             Cursorequisito::where('curso_id', $original->id)->where('deleted_at', null)
                 ->whereNotIn('id', $idrequisitos)
                 ->update(array('deleted_at' => date('Y-m-d H:i:s')));
-            // }
 
             if (Count($requisitos)>0) {
                 for ($i=0; $i < Count($requisitos); $i++) {
@@ -965,17 +974,6 @@ class CursosController extends Controller
                 ]);
             }
 
-
-            /*
-                $elimina = array_where($idrequisitos, function ($key, $value) {
-                if ($value>0) {
-                    return ($value);
-                }
-            });
-            if (count($elimina)>0) {
-
-            }
-            */
             DB::commit();
 
             return response()->json([

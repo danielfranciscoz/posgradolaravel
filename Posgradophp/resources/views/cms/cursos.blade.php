@@ -110,7 +110,8 @@
             <a class="btn btn-sm green darken-4 white-text font-weight-bold" onclick="openmodal(true)"> <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Nuevo</a>
             <a class="btn btn-sm yellow darken-4 white-text font-weight-bold" onclick="openmodal(false)"><i class="fa fa-edit" aria-hidden="true">&nbsp; </i>Editar</a>
             <a class="btn btn-sm red darken-4 white-text font-weight-bold" onclick="opendelete()"><i class="fa fa-trash" aria-hidden="true"> </i>&nbsp;Eliminar</a>
-        
+            <a class="btn btn-sm yellow darken-4 white-text font-weight-bold" onclick="preciomodal(false)"><i class="fa fa-dollar" aria-hidden="true">&nbsp; </i>Actualizar Precio</a>
+            
             <div class="table-responsive px-4 mt-4 mb-4">
                 <table id="table1" class="table" style="width:100%">
                     <thead>
@@ -249,6 +250,55 @@
 </main>
 
 
+<div class="modal fade" id="modalprecio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+        <form id="loginForm" method="post" >
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100 font-weight-bold">Actualizar Precio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           
+                         
+            <div class=" ml-5 mr-5 mt-4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <i class="fa fa-dollar prefix grey-text"></i>
+                        <label>Precio</label>
+                        <input type="number" id="precioactualizar" class="form-control" >
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="d-flex justify-content-center">
+                
+                <div class="row d-flex justify-content-center">
+                
+                        <!--Grid column-->
+                        <div class="col-12 ">
+                        
+                            <div class="d-flex justify-content-center align-items-center text-justify row container ml-1">
+                                <div class="alert alert-danger col-12" role="alert" id="alertmodalprecio">
+                                
+                                </div>
+                                <a class="btn btn-sm btn-primary col-12 " id="but_upload_precio">Guardar</a>
+                            </div>
+                            
+                         
+                           
+                        </div>
+                        <!--Grid column-->
+
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 @include('cms.modalCursos')
 @include('cms.modaldelete')
@@ -260,6 +310,7 @@
 
 $("#alertmodalcursos").hide();
 $("#alertmodaldelete").hide();
+$("#alertmodalprecio").hide();
 loadtable2();
 loadtable3();
 loadtable4();
@@ -301,6 +352,7 @@ loadtable7();
 
     var table = $('#table1').DataTable( {
             select: true,
+            "order":[[1,"ASC"]],
             "processing": true,
             "serverSide": true,
             "orderMulti": false,
@@ -619,6 +671,11 @@ loadtable7();
             }
         }
 
+        function preciomodal(){
+            if(id>0){
+                $('#modalprecio').modal('show');
+            }
+        }
         function clear(){
             $('#curso').val("");
             $('#categoria').val("");
@@ -630,11 +687,14 @@ loadtable7();
             $('#image').val(null);
             $('#picturepreview').attr('src', '');      
             $('#filepreview').attr('src', '');  
+            $('#precio').prop('disabled', false);
                
            
         }
 
         function setedit(){
+
+            $('#precio').val(precio);
             $('#curso').val(curso);
             $('#categoria').val(categoria);
             $('#precio').val(precio);
@@ -644,6 +704,7 @@ loadtable7();
             //$('#file').val(null);
             $('#filepreview').attr('src','{{route('cursos.index')}}/'+temario_url);                      
             $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);
+            $('#precio').prop('disabled', true);
 
              
             setTimeout(function(){ 
@@ -1114,10 +1175,104 @@ loadtable7();
                 });
             });
 
+
+            
+            $("#but_upload_precio").click(function(){          
+             
+              $.ajax({
+                  url: "{{route('admin.updatepricecourse')}}",
+                  type: 'post',
+                  dataType: "JSON",
+                  data: {
+                      'id':id,
+                      'Precio':  $('#precioactualizar').val()        ,            
+                     '_token': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  
+                  success: function(response){
+                 
+                  if(response.message=="exito"){
+                      table.ajax.reload();
+                  } $("#modalprecio").modal('hide');
+                  
+                  },
+                  error: function(response){
+                  
+                      var str = "";
+                                  $("#alertmodalprecio").show();
+                                  if (typeof response.responseJSON.errors.NombreCurso != "undefined") {
+                                 
+                                  
+                                 for(var i=0;i<response.responseJSON.errors.NombreCurso.length;i++){
+                                     
+                                     str= str +'<b>'+response.responseJSON.errors.NombreCurso[i]+'</b><br></br>';                                  
+                                 }
+                             }
+                             
+                         
+                             if (typeof response.responseJSON.errors.categoria_id != "undefined") {
+                            
+                             
+                            for(var i=0;i<response.responseJSON.errors.categoria_id.length;i++){
+                                
+                                str= str +'<b>'+response.responseJSON.errors.categoria_id[i]+'</b><br></br>';                                  
+                            }
+                          }
+                        
+                          if (typeof response.responseJSON.errors.Desc_Publicidad != "undefined") {
+                            
+                             
+                            for(var i=0;i<response.responseJSON.errors.Desc_Publicidad.length;i++){
+                                
+                                str= str +'<b>'+response.responseJSON.errors.Desc_Publicidad[i]+'</b><br></br>';                                  
+                            }
+                          }
+                          
+                          if (typeof response.responseJSON.errors.Desc_Introduccion != "undefined") {
+                            
+                             
+                            for(var i=0;i<response.responseJSON.errors.Desc_Introduccion.length;i++){
+                                
+                                str= str +'<b>'+response.responseJSON.errors.Desc_Introduccion[i]+'</b><br></br>';                                  
+                            }
+                          }
+                             
+                          if (typeof response.responseJSON.errors.InfoAdicional != "undefined") {
+                            
+                             
+                            for(var i=0;i<response.responseJSON.errors.InfoAdicional.length;i++){
+                                
+                                str= str +'<b>'+response.responseJSON.errors.InfoAdicional[i]+'</b><br></br>';                                  
+                            }
+                          }
+                             
+                          if (typeof response.responseJSON.errors.Imagen != "undefined") {
+                            
+                             
+                            for(var i=0;i<response.responseJSON.errors.Imagen.length;i++){
+                                
+                                str= str +'<b>'+response.responseJSON.errors.Imagen[i]+'</b><br></br>';                                  
+                            }
+                          }
+
+                          if (typeof response.responseJSON.errors.Temario != "undefined") {
+                            
+                             
+                            for(var i=0;i<response.responseJSON.errors.Temario.length;i++){
+                                
+                                str= str +'<b>'+response.responseJSON.errors.Temario[i]+'</b><br></br>';                                  
+                            }
+                          }
+                                  
+                                  $("#alertmodalprecio").html(str);
+                  }
+              });
+          });
+
             $('#modalcursos').on('hidden.bs.modal', function (e) {
                 $("#alertmodalcursos").hide();
 
-              
+                
                 $('#tablerequisitos').DataTable().clear().draw(); 
                 $('#tablemodalidades').DataTable().clear().draw(); 
                 $('#tablecompetencias').DataTable().clear().draw(); 
@@ -1166,6 +1321,7 @@ loadtable7();
                  img_url = table.row(this ).data().Image_URL ;
                  temario_url = table.row(this ).data().Temario_URL ;
                  precio = table.row(this ).data().Precio ;
+                 $('#precioactualizar').val(precio);
                     table2.destroy();
                     loadtable2();
                     table3.destroy();
