@@ -22,6 +22,7 @@ class CheckisAdmin
             }
         }
 
-        return redirect('/Forbbiden');
+        // return redirect('/Forbbiden');
+        abort(403, 'Acceso denegado, Este contenido no se encuentra disponible.');
     }
 }
