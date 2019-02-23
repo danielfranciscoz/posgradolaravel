@@ -1,6 +1,8 @@
 
 
-
+@php
+   $colors = Array("primary","secondary","success","danger","warning","info","light","dark");
+@endphp
 @extends('layout.app')
 @section('title', 'Buscando '.$search_value)
 @section('content')
@@ -137,8 +139,11 @@
 
                 <div class="row">
                         <label class="col-12 font-weight-bold">Etiquetas:</label>
-                        
-                        <h2 class="mx-4"><span class="badge badge-secondary">New</span></h2>
+                        @for($i=0;$i<count($etiquetas);$i++)
+
+                        <h2 class="mx-4" onclick="searchetiqueta('{{$etiquetas[$i]->Etiqueta}}')" ><span class="badge badge-{{$colors[array_rand($colors)]}}">{{$etiquetas[$i]->Etiqueta}}</span></h2>
+                        @endfor
+                      
                     </div>
                 </div>
                 
@@ -207,6 +212,12 @@ if($seg == null){
  function curso(page)
  {
      window.location.href = "{{route('cursos.cursodetalle')}}/"+page;
+ }
+
+
+ function searchetiqueta(etiqueta)
+ {
+     window.location.href = "{{route('cursos.search')}}/"+etiqueta;
  }
 
    function addcart(id){
