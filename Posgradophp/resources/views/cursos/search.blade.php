@@ -134,6 +134,12 @@
 
                 </div>
                 <div class="col-md-3 mb-3  d-flex align-items-center ">
+
+                <div class="row">
+                        <label class="col-12 font-weight-bold">Etiquetas:</label>
+                        
+                        <h2 class="mx-4"><span class="badge badge-secondary">New</span></h2>
+                    </div>
                 </div>
                 
     </div>

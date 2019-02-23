@@ -153,25 +153,27 @@
              </div>
              </div >
              </section>
-             <section class="container pb-4">
-                <div class="d-flex align-items-center justify-content-center  flex-column blue darken-4" style="min-height:225px; ">
-                    <div class="row mb-4 " >
-                        <div class="col-sm-12 col-md-4 text-center white-text mt-4" >
-                        <i class="fa fa-graduation-cap fa-4x" aria-hidden="true"></i> <br> <br>
-                            +20.000 estudiantes
+             <div class="blue darken-4 ">
+                <section class="container pb-4">
+                    <div class="d-flex align-items-center justify-content-center  flex-column " style="min-height:225px; ">
+                        <div class="row mb-4 " >
+                            <div class="col-sm-12 col-md-4 text-center white-text mt-4" >
+                            <i class="fa fa-graduation-cap fa-4x" aria-hidden="true"></i> <br> <br>
+                                +20.000 estudiantes
+                            </div>
+                            <div class="col-sm-12 col-md-4 text-center white-text mt-4 ">
+                            <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i> <br> <br>
+                        Comprometidos con la Calidad de nuestra enseñanza
                         </div>
-                        <div class="col-sm-12 col-md-4 text-center white-text mt-4 ">
-                        <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i> <br> <br>
-                    Comprometidos con la Calidad de nuestra enseñanza
+                        <div class="col-sm-12 col-md-4 text-center white-text mt-4">
+                        <i class="fa fa-globe fa-4x" aria-hidden="true"></i> <br> <br>
+                        Líderes a nivel Centroamericano
+                        </div>
+                            
+                        </div>
                     </div>
-                    <div class="col-sm-12 col-md-4 text-center white-text mt-4">
-                    <i class="fa fa-globe fa-4x" aria-hidden="true"></i> <br> <br>
-                    Líderes a nivel Centroamericano
-                    </div>
-                        
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
             <section class="container pb-4">
              
                 <h2 class="h2-responsive mt-4 text-black-50"> Maestrías </h2>
@@ -305,8 +307,9 @@
         </section>
         <!--Section: Main features & Quick Start-->
 </div>
-       
-        <div class="container white pt-2">
+    
+    <div class="white">
+        <div class=" container pt-2 ">
         <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nuestro trabajo</h1>
             <div class="d-block d-sm-none">
                 <div class="d-flex align-items-center justify-content-center flex-column " >
@@ -336,6 +339,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <div class="grey lighten-4">
             <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:220px; ">
                     <h1 class="h1-responsive text-black-50 text-center ">Lo que opinan de nuestros estudiantes</h1>
