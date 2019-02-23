@@ -117,11 +117,11 @@ class CursosController extends Controller
         ->orWhereIn('id', $curso_name->pluck('id'))
         ->pluck('id')->toArray();
        
-        if (Count($etiquetas)==0 && Count($cursos)>0) {
-            $etiquetas=Etiqueta::with('cursos')->wherehas('cursos', function ($sql) use ($curso_name) {
-                $sql->WhereIn('curso_id', $curso_name->pluck('id'));
+        // if (Count($etiquetas)==0 && Count($cursos)>0) {
+            $etiquetas=Etiqueta::with('cursos')->wherehas('cursos', function ($sql) use ($cursos) {
+                $sql->WhereIn('curso_id', $cursos);
             })->get();
-        }
+        // }
 
         $c = Cursoprecio::with('curso')
             ->where('deleted_at', '=', null)
