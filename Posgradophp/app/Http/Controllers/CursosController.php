@@ -65,15 +65,19 @@ class CursosController extends Controller
         $cursos = Cursoprecio::where('deleted_at', '=', null)
         ->whereIn('curso_id', $cursos_id)
         ->orderBy($sort[0], $sort[1]);
-             
-       
+        
         $cursos=  $cursos->paginate(5);
 
-        // dd($cursos);
+        $etiquetas=Etiqueta::with('cursos')->wherehas('cursos', function ($sql) use ($cursos_id) {
+            $sql->WhereIn('curso_id', $cursos_id);
+        })->get();
+
+         //dd($etiquetas);
 
         return view("cursos.cursoscategoria")
          ->with('categoria', $categoria_id)
-        ->with('cursos', $cursos);
+        ->with('cursos', $cursos)
+        ->with(compact('etiquetas'));
     }
 
     public function search($search_value, $orden=null)
@@ -161,12 +165,16 @@ class CursosController extends Controller
         $cursos = Cursoprecio::where('deleted_at', '=', null)
         ->whereIn('curso_id', $cursos_id)
         ->orderBy($sort[0], $sort[1]);
-             
-       
+        
         $cursos=  $cursos->paginate(5);
 
+        $etiquetas=Etiqueta::with('cursos')->wherehas('cursos', function ($sql) use ($cursos_id) {
+            $sql->WhereIn('curso_id', $cursos_id);
+        })->get();
+
         return view("cursos.maestria")
-         ->with('cursos', $cursos);
+         ->with('cursos', $cursos)
+         ->with(compact('etiquetas'));;
     }
 
     public function curso($curso_name)

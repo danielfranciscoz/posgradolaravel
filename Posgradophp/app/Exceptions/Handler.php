@@ -46,6 +46,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($this->isHttpException($exception)) {
+            if ($exception->getStatusCode() == 403) {
+                return response()->view('Shared.forbidden');
+            } elseif ($exception->getStatusCode() == 404) {
+                return response()->view('Shared.notfound');
+            }
+        }
+     
         return parent::render($request, $exception);
     }
 }

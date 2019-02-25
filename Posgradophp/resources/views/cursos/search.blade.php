@@ -1,7 +1,7 @@
 
 
 @php
-   $colors = Array("primary","secondary","success","danger","warning","info","light","dark");
+   $colors = Array("primary","secondary","success","danger","warning","info","green","light","dark","morado","cyan");
 @endphp
 @extends('layout.app')
 @section('title', 'Buscando '.$search_value)
@@ -135,15 +135,16 @@
                 </div>
 
                 </div>
-                <div class="col-md-3 mb-3  d-flex align-items-center ">
+                <div class="col-md-3 col-sm-12 mb-4">
+                    <div class="card  white sticky-top px-4 " style="margin-top: 77 !important">
+                        <div class="row ">
+                                <label class="col-12  mt-2  mb-2 font-weight-bold">Búsquedas relacionadas</label>
+                                @for($i=0;$i<count($etiquetas);$i++)
 
-                <div class="row">
-                        <label class="col-12 font-weight-bold">Etiquetas:</label>
-                        @for($i=0;$i<count($etiquetas);$i++)
-
-                        <h2 class="mx-4" onclick="searchetiqueta('{{$etiquetas[$i]->Etiqueta}}')" ><span class="badge badge-{{$colors[array_rand($colors)]}}">{{$etiquetas[$i]->Etiqueta}}</span></h2>
-                        @endfor
-                      
+                                <h5 class="mx-1" onclick="searchetiqueta('{{$etiquetas[$i]->Etiqueta}}')" style="cursor: hand; "><span class="badge badge-{{$colors[array_rand($colors)]}}" style="font-weight:normal;">{{$etiquetas[$i]->Etiqueta}}</span></h5>
+                                @endfor
+                            
+                         </div>
                     </div>
                 </div>
                 

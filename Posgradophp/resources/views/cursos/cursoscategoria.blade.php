@@ -22,7 +22,7 @@
                 <div class="col-md-6 col-sm-12 mt-4">
                     <h6 class="h6-responsive font-weight-bold">Disponemos de {{$cursos->total()}}  
                                         @if($categoria->isCursoPosgrado)
-                                            Curso(s) de especialización
+                                            Curso(s)
                                         @else
                                             Posgrado(s)
                                         @endif 

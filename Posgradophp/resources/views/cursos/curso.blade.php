@@ -70,10 +70,14 @@
                             
                         </div>
                         <div class="card col-12 mb-4  white">
-
-                            <h4 class="h4-responsive mx-4 font-weight-bold mt-4">
+                            <div class="row mx-4">
+                            <h4 class="h4-responsive  font-weight-bold mt-4 float-left">
                                 
-                            Contenido </h4> </br>
+                            Contenido </h4>  
+                            <a class="btn btn-sm mt-4 ml-auto font-weight-bold  grey darken-2 text-white" onclick="temario();" >
+                                Temario 
+                            </a>
+                            </div></br> 
                                 <table class="table table-borderless table-hover mx-4">
                                     <thead>
                                         <tr>
@@ -218,6 +222,11 @@
             }
         });
 
+    }
+
+    function temario() {
+        window.open("{{route('cursos.index')}}/{{$curso->Temario_URL}}", '_blank');
+       
     }
 
     

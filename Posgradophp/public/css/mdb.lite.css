@@ -4254,6 +4254,19 @@ a.waves-effect, a.waves-light {
   background-color: #e0e0e0 !important;
   color: #000 !important; }
 
+  .badge-morado {
+    background-color: #4527A0 !important;
+    color: #000 !important; }
+
+    .badge-cyan {
+    background-color: #00838F !important;
+    color: #000 !important; }
+  
+    .badge-green {
+    background-color: #2E7D32 !important;
+    color: #000 !important; }
+  
+
 body.modal-open {
   overflow: auto;
   padding-right: 0 !important; }
