@@ -35,17 +35,17 @@ Route::group(['prefix' => 'oferta'], function () {
         //Informacion del curso
         Route::get('/{curso_name}', 'CursosController@curso')->name('cursos.curso');
 
-        Route::get('/')->name('cursos.cursodetalle');
+         Route::get('/','CursosController@notfound')->name('cursos.cursodetalle');
     });
 });
 
 Route::group(['prefix' => 'account'], function () {
     Route::get('/login', 'AccountController@loginUser')->name('process.login');
-    Route::get('/complete/{token}', 'AccountController@RegistroCompleto')->middleware('logged')->name('process.complete');
-    Route::get('/complete')->middleware('logged')->name('process.completeindex');
+    Route::get('/complete/{token}', 'AccountController@RegistroCompleto')->middleware('loggedOut')->name('process.complete');
+    Route::get('/complete')->middleware('loggedOut')->name('process.completeindex');
     Route::post('/remail', 'AccountController@ReEmail')->name('process.remail');
     
-    Route::get('/registro', 'AccountController@registro')->middleware('logged')->name('registro');
+    Route::get('/registro', 'AccountController@registro')->middleware('loggedOut')->name('registro');
     Route::post('/registro', 'AccountController@registrar')->name('registrar');
     
     Route::get('/verificar', 'AccountController@verificar')->name('verificar.url');
@@ -55,7 +55,7 @@ Route::group(['prefix' => 'account'], function () {
     Route::get('/pagarcarrito', 'AccountController@resumencarrito')->name('pagarcarrito');
 
     //'middleware'=>'logged'
-    Route::group(['prefix' => 'password','middleware'=>'logged'], function () {
+    Route::group(['prefix' => 'password','middleware'=>'loggedOut'], function () {
         Route::post('/reset', 'AccountController@sendEmailreset')->name('emailresetear');
         Route::get('/reset', 'AccountController@reset')->name('resetpassword');
         

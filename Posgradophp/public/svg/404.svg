@@ -1,87 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1024 1024" style="enable-background:new 0 0 1024 1024;" xml:space="preserve">
+	 viewBox="0 0 950 900" style="enable-background:new 0 0 950 900;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#81D4FA;}
-	.st1{fill:#F5F5F5;}
-	.st2{opacity:0.5;fill:#BDBDBD;}
-	.st3{fill:#3949AB;}
-	.st4{fill:#303F9F;}
-	.st5{fill:#7CB342;}
-	.st6{fill:#689F38;}
-	.st7{fill:#FB8C00;}
-	.st8{fill:#F57C00;}
-	.st9{fill:#039BE5;}
-	.st10{fill:#0288D1;}
-	.st11{fill:#6D4C41;}
-	.st12{fill:#5D4037;}
-	.st13{fill:#C0CA33;}
-	.st14{fill:#AFB42B;}
-	.st15{fill:#FFFFFF;}
-	.st16{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
-	.st17{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:9.5674,9.5674;}
-	.st18{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:11.7894,11.7894;}
-	.st19{fill:#E53935;}
-	.st20{fill:#D32F2F;}
-	.st21{fill:#BDBDBD;}
-	.st22{font-family:'MalayalamSangamMN';}
-	.st23{font-size:198.6304px;}
-	.st24{font-size:48.5541px;}
-	.st25{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:3;stroke-miterlimit:10;}
-	.st26{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:6;stroke-miterlimit:10;}
+	.st0{fill:none;}
+	.st1{fill:#EEEEEE;}
+	.st2{opacity:0.5;fill:#BDBDBD;enable-background:new    ;}
+	.st3{fill:#F5F5F5;}
+	.st4{fill:#3949AB;}
+	.st5{fill:#303F9F;}
+	.st6{fill:#7CB342;}
+	.st7{fill:#689F38;}
+	.st8{fill:#FB8C00;}
+	.st9{fill:#F57C00;}
+	.st10{fill:#039BE5;}
+	.st11{fill:#0288D1;}
+	.st12{fill:#6D4C41;}
+	.st13{fill:#5D4037;}
+	.st14{fill:#C0CA33;}
+	.st15{fill:#AFB42B;}
+	.st16{fill:#FFFFFF;}
+	.st17{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
+	.st18{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:9.5674,9.5674;}
+	.st19{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:11.7894,11.7894;}
+	.st20{fill:#E53935;}
+	.st21{fill:#D32F2F;}
+	.st22{fill:#BDBDBD;}
+	.st23{fill:#424242;}
+	.st24{font-family:'Calibri';}
+	.st25{font-size:198.6304px;}
+	.st26{font-size:48.5541px;}
+	.st27{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:3;stroke-miterlimit:10;}
+	.st28{fill:#FFFFFF;stroke:#424242;stroke-width:6;stroke-miterlimit:10;}
 </style>
-<rect x="0" class="st0" width="1024" height="1024"/>
+<rect class="st0" width="950" height="900"/>
+<polygon class="st1" points="900.9,734 49.1,734 115.7,690.5 834.3,690.5 "/>
+<polygon class="st2" points="792.8,720.6 163.9,720.6 213,690.6 743.7,690.6 "/>
+<path class="st3" d="M203.7,810.2L203.7,810.2c-9,0-16.3-7.3-16.3-16.3V734H220v59.9C219.9,802.9,212.7,810.2,203.7,810.2z"/>
+<path class="st3" d="M746.6,810.2L746.6,810.2c-9,0-16.3-7.3-16.3-16.3V734h32.6v59.9C762.9,802.9,755.6,810.2,746.6,810.2z"/>
+<polygon class="st2" points="730.1,799.1 219.9,799.1 49.1,734 900.9,734 "/>
+<rect x="303.9" y="476.3" class="st4" width="27.3" height="236"/>
+<rect x="303.9" y="476.3" class="st5" width="11.4" height="236"/>
+<rect x="333.7" y="434.1" class="st6" width="40.7" height="278.1"/>
+<rect x="333.7" y="434.1" class="st7" width="16.2" height="278.1"/>
+<rect x="376.7" y="521.9" class="st8" width="40.7" height="190.4"/>
+<rect x="376.7" y="521.9" class="st9" width="15.1" height="190.4"/>
+<rect x="420.1" y="476.3" class="st10" width="40.7" height="236"/>
+<rect x="420.1" y="476.3" class="st11" width="18.6" height="236"/>
+<rect x="513.5" y="636.1" class="st12" width="190.4" height="40.7"/>
+<rect x="513.5" y="656.4" class="st13" width="190.4" height="15.1"/>
+<rect x="513.5" y="671.6" class="st14" width="236" height="40.7"/>
+<rect x="513.5" y="695.6" class="st15" width="236" height="16.7"/>
 <g>
-	<polygon class="st1" points="937.9,816.6 86.1,816.6 152.7,773.1 871.3,773.1 	"/>
-	<polygon class="st2" points="829.8,803.2 200.9,803.2 250,773.2 780.7,773.2 	"/>
-	<path class="st1" d="M240.7,892.8L240.7,892.8c-9,0-16.3-7.3-16.3-16.3v-59.9h32.6v59.9C256.9,885.5,249.7,892.8,240.7,892.8z"/>
-	<path class="st1" d="M783.6,892.8L783.6,892.8c-9,0-16.3-7.3-16.3-16.3v-59.9h32.6v59.9C799.9,885.5,792.6,892.8,783.6,892.8z"/>
-	<polygon class="st2" points="767.1,881.7 256.9,881.7 86.1,816.6 937.9,816.6 	"/>
-	<rect x="340.9" y="558.9" class="st3" width="27.3" height="236"/>
-	<rect x="340.9" y="558.9" class="st4" width="11.4" height="236"/>
-	<rect x="370.7" y="516.7" class="st5" width="40.7" height="278.1"/>
-	<rect x="370.7" y="516.7" class="st6" width="16.2" height="278.1"/>
-	<rect x="413.7" y="604.5" class="st7" width="40.7" height="190.4"/>
-	<rect x="413.7" y="604.5" class="st8" width="15.1" height="190.4"/>
-	<rect x="457.1" y="558.9" class="st9" width="40.7" height="236"/>
-	<rect x="457.1" y="558.9" class="st10" width="18.6" height="236"/>
-	
-		<rect x="625.3" y="643.8" transform="matrix(4.486881e-11 1 -1 4.486881e-11 1384.7299 93.3361)" class="st11" width="40.7" height="190.4"/>
-	
-		<rect x="638.1" y="651.4" transform="matrix(1.207210e-10 1 -1 1.207210e-10 1392.2938 100.9001)" class="st12" width="15.1" height="190.4"/>
-	
-		<rect x="648.2" y="656.5" transform="matrix(4.486881e-11 1 -1 4.486881e-11 1443.0216 106.0025)" class="st13" width="40.7" height="236"/>
-	
-		<rect x="660.2" y="668.5" transform="matrix(1.092538e-10 1 -1 1.092538e-10 1455.0148 117.9956)" class="st14" width="16.7" height="236"/>
+	<rect x="465.8" y="476.3" class="st16" width="40.7" height="236"/>
 	<g>
-		<rect x="502.8" y="558.9" class="st15" width="40.7" height="236"/>
-		<g>
-			<polyline class="st16" points="543.5,788.9 543.5,794.9 537.5,794.9 			"/>
-			<line class="st17" x1="527.9" y1="794.9" x2="513.6" y2="794.9"/>
-			<polyline class="st16" points="508.8,794.9 502.8,794.9 502.8,788.9 			"/>
-			<line class="st18" x1="502.8" y1="777.1" x2="502.8" y2="570.8"/>
-			<polyline class="st16" points="502.8,564.9 502.8,558.9 508.8,558.9 			"/>
-			<line class="st17" x1="518.4" y1="558.9" x2="532.7" y2="558.9"/>
-			<polyline class="st16" points="537.5,558.9 543.5,558.9 543.5,564.9 			"/>
-			<line class="st18" x1="543.5" y1="576.7" x2="543.5" y2="783"/>
-		</g>
+		<polyline class="st17" points="506.5,706.3 506.5,712.3 500.5,712.3 		"/>
+		<line class="st18" x1="490.9" y1="712.3" x2="476.6" y2="712.3"/>
+		<polyline class="st17" points="471.8,712.3 465.8,712.3 465.8,706.3 		"/>
+		<line class="st19" x1="465.8" y1="694.5" x2="465.8" y2="488.2"/>
+		<polyline class="st17" points="465.8,482.3 465.8,476.3 471.8,476.3 		"/>
+		<line class="st18" x1="481.4" y1="476.3" x2="495.7" y2="476.3"/>
+		<polyline class="st17" points="500.5,476.3 506.5,476.3 506.5,482.3 		"/>
+		<line class="st19" x1="506.5" y1="494.1" x2="506.5" y2="700.4"/>
 	</g>
-	
-		<rect x="281.8" y="604.5" transform="matrix(0.9063 0.4226 -0.4226 0.9063 323.0486 -57.8253)" class="st19" width="20.4" height="190.4"/>
-	
-		<rect x="293.3" y="606.9" transform="matrix(0.9063 0.4226 -0.4226 0.9063 324.6068 -60.1193)" class="st20" width="9.1" height="190.4"/>
-	<rect x="86.1" y="816.6" class="st21" width="851.8" height="13"/>
 </g>
-<text transform="matrix(1 0 0 1 111.417 343.6136)"><tspan x="0" y="0" class="st15 st22 st23">OOPS!</tspan><tspan x="0" y="58.3" class="st15 st22 st24">No hay contenido que mostrar por aqui.</tspan></text>
-<path class="st25" d="M630.6,527"/>
-<path class="st25" d="M655.4,616.4"/>
+<rect x="159.8" y="606.9" transform="matrix(0.4226 -0.9063 0.9063 0.4226 -412.0822 587.4333)" class="st20" width="190.4" height="20.4"/>
+<rect x="165.6" y="614.9" transform="matrix(0.4226 -0.9063 0.9063 0.4226 -410.8397 594.0903)" class="st21" width="190.4" height="9.1"/>
+<rect x="49.1" y="734" class="st22" width="851.8" height="13"/>
+<text transform="matrix(1 0 0 1 74.417 261.0332)" class="st23 st24 st25">OOPS!</text>
+<text transform="matrix(1 0 0 1 74.417 319.3332)" class="st23 st24 st26">No hay contenido que mostrar por aqui.</text>
+<path class="st27" d="M593.6,444.4"/>
+<path class="st27" d="M618.4,533.8"/>
 <g>
-	<path class="st26" d="M866.8,465.1c0.2,0,5.6,45-13.4,79.1c-49.2,88.4-239.3,63.2-239.2,63.7c0,0.4,187.5,26.4,237.8-61.4
-		C872,511.6,866.6,465.1,866.8,465.1z"/>
+	<path class="st28" d="M822.2,381.4c0.2,0,5.6,45-13.4,79.1c-49.2,88.4-239.3,63.2-239.2,63.7c0,0.4,187.5,26.4,237.8-61.4
+		C827.4,427.9,822,381.4,822.2,381.4z"/>
 	<g>
-		<path class="st26" d="M665.5,651.2c-17.1-14.6-34.3-29.2-51.4-43.8"/>
-		<path class="st26" d="M614.1,607.4c17.1-14.6,34.3-29.2,51.4-43.8"/>
+		<path class="st28" d="M620.9,567.5c-17.1-14.6-34.3-29.2-51.4-43.8"/>
+		<path class="st28" d="M569.5,523.7c17.1-14.6,34.3-29.2,51.4-43.8"/>
 	</g>
 </g>
 </svg>

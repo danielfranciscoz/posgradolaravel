@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -46,7 +47,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($this->isHttpException($exception)) {
+        if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+            return response()->view('Shared.notfound');
+        }
+        if ($exception instanceof \Illuminate\Database\Eloquent\LogicException) {
+            return response()->view('Shared.notfound');
+        }
+        if ($this->isHttpException($exception)) {         
             if ($exception->getStatusCode() == 403) {
                 return response()->view('Shared.forbidden');
             } elseif ($exception->getStatusCode() == 404) {

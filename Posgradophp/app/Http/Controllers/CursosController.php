@@ -72,7 +72,7 @@ class CursosController extends Controller
             $sql->WhereIn('curso_id', $cursos_id);
         })->get();
 
-         //dd($etiquetas);
+        //dd($etiquetas);
 
         return view("cursos.cursoscategoria")
          ->with('categoria', $categoria_id)
@@ -122,9 +122,9 @@ class CursosController extends Controller
         ->pluck('id')->toArray();
        
         // if (Count($etiquetas)==0 && Count($cursos)>0) {
-            $etiquetas=Etiqueta::with('cursos')->wherehas('cursos', function ($sql) use ($cursos) {
-                $sql->WhereIn('curso_id', $cursos);
-            })->get();
+        $etiquetas=Etiqueta::with('cursos')->wherehas('cursos', function ($sql) use ($cursos) {
+            $sql->WhereIn('curso_id', $cursos);
+        })->get();
         // }
 
         $c = Cursoprecio::with('curso')
@@ -174,22 +174,29 @@ class CursosController extends Controller
 
         return view("cursos.maestria")
          ->with('cursos', $cursos)
-         ->with(compact('etiquetas'));;
+         ->with(compact('etiquetas'));
+        ;
     }
 
     public function curso($curso_name)
     {
-        $precio = Cursoprecio::where('deleted_at', '=', null)
-        ->wherehas('curso', function ($sql) use ($curso_name) {
-            $sql ->where('NombreCurso', 'like', $curso_name);
-        })->firstorfail();
-        
-        $curso =  $precio->curso()
+            $precio = Cursoprecio::where('deleted_at', '=', null)
+            ->wherehas('curso', function ($sql) use ($curso_name) {
+                $sql ->where('NombreCurso', 'like', $curso_name);
+            })->firstorfail();
+            
+            $curso =  $precio->curso()
             ->first();
-
-        return view("cursos.curso")
+            
+            return view("cursos.curso")
             ->with(compact('curso'))
-            ->with(compact('precio'));
+            ->with(compact('precio'));     
+    }
+
+    public function notfound(){
+        //Este metodo es creado debido a que se necesita la ruta limpia del controlador para hacer el ruteo desde otras partes de la aplicacion
+        //cuando algun usuario intente acceder a esta url se enviara el error
+        abort(404, 'El contenido de este sitio no se encuentra disponible.');
     }
 
     public function searchcursos(Request $request)
@@ -576,7 +583,6 @@ class CursosController extends Controller
 
             return response()->json([
                 'message'=>'exito']);
-
         } catch (Exception $e) {
             DB::rollback();
 
