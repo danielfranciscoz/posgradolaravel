@@ -123,15 +123,25 @@
                                             </div>
                                             <div class="col-md-9 col-sm-12">
                                                 <div class="font-weight-bold primary-text" >
-                                                    <h5 class="h5-responsive">{{$curso->docentes()->get()[$i]->Nombres}}</h5>
+                                                   
+                                                    <h5 class="h5-responsive"> 
+                                                       
+                                                        {{$curso->docentes()->get()[$i]->Nombres}}
+                                                     </h5>
+                                                    
                                                 </div>
                                                 <div class="font-weight-bold mb-2">
-                                                    {{$curso->docentes()->get()[$i]->Profesion}}
+                                                    {{$curso->docentes()->get()[$i]->Profesion}}  
+                                                    
                                                 </div>
-                                                <div class="text-justify mb-5 ">
+                                              
+                                                <div class="text-justify mb-2 ">
                                                 {{{$curso->docentes()->get()[$i]->Descripcion}}}
-
                                                 </div>
+
+                                                @if($curso->docentes()->get()[$i]->LinkedIn_URL)
+                                                            <a class="btn btn-sm btn-primary" href="{{$curso->docentes()->get()[$i]->LinkedIn_URL}}">Ver Perfil</a>                                                    
+                                                        @endif
                                         
                                             </div> 
                                         </div> 
