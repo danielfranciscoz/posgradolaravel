@@ -166,7 +166,7 @@
                 <div class="col-md-4  container mb-4  ">
                     <div class="card pt-2 white sticky-top">
                         <div class="card-body  px-4 pt-2">
-                            <span><strong  style="font-size:2em">$ {{$precio->Precio}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
+                            <span><strong  style="font-size:2em">$ {{ number_format($precio->Precio, 2)}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
                             <!-- <span class="grey-text"></br> 95 % de descuento</span>
  -->
                             <a class="btn btn-primary mt-4 w-100 mb-2" onclick="addcarrito({{$curso->id}})">Añadir al carrito</a>

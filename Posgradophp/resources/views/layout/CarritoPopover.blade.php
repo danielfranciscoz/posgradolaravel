@@ -11,7 +11,7 @@
                                 $totalcarrito = $totalcarrito+ Session::get('cartItems')[$i]['Precio'];
                         @endphp
                 @endfor
-                contentcarritosm = [contentcarritosm,'<p class="font-weight-bold col-12"> Total $ {{$totalcarrito}}   </p>', ].join('');
+                contentcarritosm = [contentcarritosm,'<p class="font-weight-bold col-12"> Total $ {{number_format($totalcarrito, 2)  }}   </p>', ].join('');
                 contentcarritosm = [contentcarritosm,'<a class="text-center col-12" href="{{route('carrito')}}">Ver Carrito</a></div>', ].join('');
                 
                 var contentcarritomd = '<div class="d-flex align-items-center row" id="carritodivmd">';
@@ -24,7 +24,7 @@
                                 $totalcarrito = $totalcarrito+ Session::get('cartItems')[$i]['Precio'];
                         @endphp
                 @endfor
-                contentcarritomd = [contentcarritomd,'<p class="font-weight-bold col-12"> Total $ {{$totalcarrito}}   </p>', ].join('');
+                contentcarritomd = [contentcarritomd,'<p class="font-weight-bold col-12"> Total $ {{number_format($totalcarrito, 2) }}   </p>', ].join('');
                 contentcarritomd = [contentcarritomd,'<a class="text-center col-12" href="{{route('carrito')}}">Ver Carrito</a></div>', ].join('');
                 
                 

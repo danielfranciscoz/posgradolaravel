@@ -106,13 +106,13 @@
                                 {{Session::get('cartItems')[$i]['curso']}}
                                 </div>
                                 <div class="col-3 d-flex justify-content-end align-items-end font-weight-bold " style="color:#b71c1c ">
-                                 $ {{Session::get('cartItems')[$i]['Precio']}}
+                                 $ {{ number_format(Session::get('cartItems')[$i]['Precio'] , 2)}}
                                 </div>
                             @endfor
                     </div>
                     <hr >
 
-                <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">Total ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
+                <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">Total ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h5>
                 
                 <button class="g-recaptcha btn btn-primary mt-2 w-95 mb-2 mx-4 mb-4" data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq" data-callback="transaccion" >Realizar Pago</button>
                            
@@ -154,7 +154,22 @@ function transaccion(e){
               type: 'POST'
                              ,
               success: function(response){
-                     
+                    var v =    response
+                     $.ajax( {
+                        data: v,
+                            url: "https://testsecureacceptance.cybersource.com/silent/pay",
+                            type: 'POST'
+                                          ,
+                            success: function(response){
+                                  console.log(response)
+                                },
+                            error: function(response){
+                          
+                            }
+                            
+                        
+                        }
+      );
                   },
               error: function(response){
               /*     $("#alertregistro").show();

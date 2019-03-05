@@ -53,7 +53,7 @@
                                     </p>
                                     
                                     <h5 class="font-weight-bold float-left "  style="color:#b71c1c "> 
-                                        $ {{Session::get('cartItems')[$i]['Precio'] }}
+                                        $ {{ number_format(Session::get('cartItems')[$i]['Precio'] , 2)  }}
                                    </h5> 
                                     <p class="btn btn-sm red darken-4 float-right" onclick='delcart({{Session::get("cartItems")[$i]["id"]}})' > Eliminar</p> 
                                     
@@ -69,7 +69,7 @@
             
                 @guest
                 <div class="card col-md-4 col-sm-12 white mb-4 mt-2  sticky-top" style="height:300px ">
-                <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
+                <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h5>
                 <a class="btn btn-primary mt-2 w-95 mb-2 disabled"> Proceder al Pago</a>
                 <a class="text-center red-text">Inicie sesión para proceder al pago</a>
                 <a class="btn text-white " data-toggle="modal" data-target="#modalLoginForm" style="background: #424242;"> Iniciar Sesíon</a>
@@ -84,7 +84,7 @@
                 
                @else
                <div class="card col-md-4 col-sm-12 white mb-4 mt-2  sticky-top" style="height:200px ">
-                <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
+                <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h5>
                
                <a class="btn btn-primary mt-2 w-95 mb-2" href="{{route('pagarcarrito')}}">Proceder al Pago</a>
                <div class="mt-2 d-flex justify-content-center grey-text">
@@ -101,7 +101,7 @@
     </div>
 
     
-    <h5 class="h5-responsive mt-4 text-center mb-5 font-weight-bold d-none d-md-block">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a style="color:#b71c1c ">$ {{$totalcarrito}}</a></h5>
+    <h5 class="h5-responsive mt-4 text-center mb-5 font-weight-bold d-none d-md-block">Subtotal ({{count(Session::get('cartItems'))}} Estudios): <a style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h5>
     @else
   
     <div class="container" >

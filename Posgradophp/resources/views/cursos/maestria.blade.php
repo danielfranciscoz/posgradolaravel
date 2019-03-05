@@ -51,7 +51,7 @@
                                         <hr>
                                        
                                         <span class="font-weight-bold float-right"  style="color:#b71c1c "> 
-                                            $ {{$curso->Precio}}
+                                            $ {{number_format($curso->Precio, 2)}}
                                         </span> 
                                         
                                     
