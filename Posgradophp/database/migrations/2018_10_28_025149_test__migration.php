@@ -31,6 +31,9 @@ class TestMigration extends Migration
             $table->unsignedInteger('categoria_id')->nullable(); //Si es null entonces se refiere a una Maestría
             $table->string('NombreCurso');
             $table->string('Image_URL');
+            $table->boolean('isVirtual'); 
+            $table->boolean('isPresencial'); 
+            $table->boolean('isSemiPresencial'); 
             $table->string('Temario_URL');
             $table->text('Desc_Publicidad');
             $table->text('Desc_Introduccion');

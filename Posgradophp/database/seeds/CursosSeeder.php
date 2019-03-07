@@ -25,8 +25,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Con este curso el estudiante podra realizar un sinnumero de estudios',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-            'categoria_id'=>'1'
-            
+            'categoria_id'=>'1',
+            'isVirtual'=>'0',
+            'isPresencial'=>'1',
+            'isSemiPresencial'=>'0'
         ]);
 
         Cursoprecio::create(['curso_id'=>'1','Precio'=>'8.1']);
@@ -58,7 +60,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-            'categoria_id'=>'3'
+            'categoria_id'=>'3',
+            'isVirtual'=>'1',
+            'isPresencial'=>'1',
+            'isSemiPresencial'=>'1'
         ]);
 
         Cursoprecio::create(['curso_id'=>'2','Precio'=>'5.2']);
@@ -89,7 +94,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba para el curso de laravel',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-        ]);
+            'isVirtual'=>'0',
+            'isPresencial'=>'0',
+            'isSemiPresencial'=>'1'
+            ]);
 
         Cursoprecio::create(['curso_id'=>'3','Precio'=>'11.5']);
 
@@ -119,7 +127,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Angular, como el futuro de la web',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-             'categoria_id'=>'2'
+             'categoria_id'=>'2',
+             'isVirtual'=>'1',
+             'isPresencial'=>'1',
+             'isSemiPresencial'=>'0'
         ]);
         
         Cursoprecio::create(['curso_id'=>'4','Precio'=>'10']);
@@ -151,7 +162,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Implementacion de nuevas tecnologias TIC para impartir clases',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-             'categoria_id'=>'1'
+             'categoria_id'=>'1',
+             'isVirtual'=>'1',
+             'isPresencial'=>'1',
+             'isSemiPresencial'=>'1'
         ]);
 
         Cursoprecio::create(['curso_id'=>'5','Precio'=>'1']);
@@ -182,6 +196,9 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
+            'isVirtual'=>'1',
+            'isPresencial'=>'1',
+            'isSemiPresencial'=>'0'
         ]);
         
         Cursoprecio::create(['curso_id'=>'6','Precio'=>'2']);
@@ -213,7 +230,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-            'categoria_id'=>'1'
+            'categoria_id'=>'1',
+            'isVirtual'=>'0',
+            'isPresencial'=>'1',
+            'isSemiPresencial'=>'0'
         ]);
 
         Cursoprecio::create(['curso_id'=>'7','Precio'=>'6']);
@@ -244,7 +264,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-             'categoria_id'=>'2'
+             'categoria_id'=>'2',
+             'isVirtual'=>'0',
+             'isPresencial'=>'1',
+             'isSemiPresencial'=>'1'
         ]);
         
         Cursoprecio::create(['curso_id'=>'8','Precio'=>'9.3']);
@@ -276,7 +299,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-            'categoria_id'=>'2'
+            'categoria_id'=>'2',
+            'isVirtual'=>'1',
+            'isPresencial'=>'1',
+            'isSemiPresencial'=>'1'
         ]);
 
         Cursoprecio::create(['curso_id'=>'9','Precio'=>'12']);
@@ -307,7 +333,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-            'categoria_id'=>'1'
+            'categoria_id'=>'1',
+            'isVirtual'=>'1',
+            'isPresencial'=>'1',
+            'isSemiPresencial'=>'0'
         ]);
 
         Cursoprecio::create(['curso_id'=>'10','Precio'=>'3']);
@@ -338,7 +367,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-            'categoria_id'=>'1'
+            'categoria_id'=>'1',
+            'isVirtual'=>'0',
+            'isPresencial'=>'1',
+            'isSemiPresencial'=>'0'
         ]);
 
         Cursoprecio::create(['curso_id'=>'11','Precio'=>'1.2']);
@@ -369,7 +401,10 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
-            'categoria_id'=>'3'
+            'categoria_id'=>'3',
+            'isVirtual'=>'0',
+            'isPresencial'=>'1',
+            'isSemiPresencial'=>'1'
         ]);
 
         Cursoprecio::create(['curso_id'=>'12','Precio'=>'20.2']);
@@ -400,6 +435,9 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
+            'isVirtual'=>'0',
+            'isPresencial'=>'0',
+            'isSemiPresencial'=>'1'
 
         ]);
 
@@ -431,6 +469,9 @@ class CursosSeeder extends Seeder
             'Desc_Publicidad'=>'Esta es una descripcion de prueba',
             'Desc_Introduccion'=>'Esta es la introduccion larga del curso, en donde se deberan especificar los elementos mas esenciales que se aprenderan, ademas debera ser un complemento para la introduccion publicitaria',
             'InfoAdicional'=>'Esta es la informacion adicional, se pondra algun parrafo con informacion a destacar, pueden ser avisso o algo por el estilo',
+            'isVirtual'=>'1',
+            'isPresencial'=>'0',
+            'isSemiPresencial'=>'0'
 
         ]);
 
@@ -454,5 +495,5 @@ class CursosSeeder extends Seeder
         Cursorequisito::create(['curso_id'=>'14','Requisito'=>'Buscar todas las cosas que se le piden']);
         Cursorequisito::create(['curso_id'=>'14','Requisito'=>'Informar de cualquier cosa con el superior']);
         Cursorequisito::create(['curso_id'=>'14','Requisito'=>'Tener en cuenta las labores que se le piden']);
-}
+    }
 }
