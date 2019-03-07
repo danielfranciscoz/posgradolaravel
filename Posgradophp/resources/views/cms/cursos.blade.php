@@ -126,6 +126,9 @@
                             <th>Precio</th>
                             <th>Imagen</th>
                             <th>Temario</th>
+                            <th>Virtual</th>
+                            <th>Presencial</th>
+                            <th>Semipresencial</th>
                             <!-- <th>Creado</th> -->
 
                         </tr>
@@ -327,6 +330,9 @@ loadtable7();
     var descripcionpublicidad = "";
     var descripcionintroduccion = "";
     var descripcionadicional = "";
+    var ispresencial = false;
+    var isvirtual = false;
+    var issemipresencial = false;
     var nuevo = true;
 
     var table2;
@@ -387,7 +393,30 @@ loadtable7();
                     { "data": "Temario_URL", "name": "Temario_URL", render: function (data) {
                         return  '<a  href= "{{route('cursos.index')}}/'+data+'" target="_blank"><i class="fa fa-file-pdf fa-2x grey"></i></a>'
                     }},                    
-                    //{ "data": "created_at", "name": "created_at" },
+                    { "data": "isVirtual", "name": "isVirtual", render: function (data) {
+                        if(data==true){
+                            return '<i class="fa fa-check green-text"></i>'
+                        }else{
+                            return '<i class="fa fa-close red-text"></i>'
+                        }
+                      
+                    }},
+                    { "data": "isPresencial", "name": "isPresencial", render: function (data) {
+                        if(data==true){
+                            return '<i class="fa fa-check green-text"></i>'
+                        }else{
+                            return '<i class="fa fa-close red-text"></i>'
+                        }
+                      
+                    }},
+                    { "data": "isSemiPresencial", "name": "isSemiPresencial", render: function (data) {
+                        if(data==true){
+                            return '<i class="fa fa-check green-text"></i>'
+                        }else{
+                            return '<i class="fa fa-close red-text"></i>'
+                        }
+                      
+                    }}
             ],
             @include('layout.lenguagetable')
             
@@ -1321,6 +1350,7 @@ loadtable7();
                  img_url = table.row(this ).data().Image_URL ;
                  temario_url = table.row(this ).data().Temario_URL ;
                  precio = table.row(this ).data().Precio ;
+
                  $('#precioactualizar').val(precio);
                     table2.destroy();
                     loadtable2();
