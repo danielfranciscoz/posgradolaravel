@@ -607,6 +607,9 @@ class CursosController extends Controller
             $curso->Desc_Introduccion = $request->input('Desc_Introduccion');
             $curso->InfoAdicional = $request->input('InfoAdicional');
             $curso->categoria_id = $request->input('categoria_id');
+            $curso->isVirtual = $request->input('isVirtual');
+            $curso->isPresencial = $request->input('isPresencial');
+            $curso->isSemiPresencial = $request->input('isSemiPresencial');
 
             $curso->save();
             
@@ -749,7 +752,10 @@ class CursosController extends Controller
             $curso->Desc_Introduccion = $request->input('Desc_Introduccion');
             $curso->InfoAdicional = $request->input('InfoAdicional');
             $curso->categoria_id = $request->input('categoria_id');
-           
+            $curso->isVirtual = $request->input('isVirtual');
+            $curso->isPresencial = $request->input('isPresencial');
+            $curso->isSemiPresencial = $request->input('isSemiPresencial');
+
             $curso->Image_URL = $request->input('Image_URL');
             $curso->Temario_URL = $request->input('Temario_URL');
             
@@ -758,6 +764,9 @@ class CursosController extends Controller
             $original->Desc_Introduccion = $curso->Desc_Introduccion;
             $original->InfoAdicional = $curso->InfoAdicional;
             $original->categoria_id =$curso->categoria_id;
+            $original->isVirtual =$curso->isVirtual;
+            $original->isPresencial =$curso->isPresencial;
+            $original->isSemiPresencial =$curso->isSemiPresencial;
 
             if ($original->Image_URL != $request->input('Image_URL')) {
                 $this->removeUpload($original->Image_URL);
