@@ -717,6 +717,11 @@ loadtable7();
             $('#picturepreview').attr('src', '');      
             $('#filepreview').attr('src', '');  
             $('#precio').prop('disabled', false);
+            $('#ispresencial').prop('checked', false);
+            $('#issemipresencial').prop('checked', false);
+            $('#isvirtual').prop('checked', false);
+
+             
                
            
         }
@@ -734,6 +739,10 @@ loadtable7();
             $('#filepreview').attr('src','{{route('cursos.index')}}/'+temario_url);                      
             $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);
             $('#precio').prop('disabled', true);
+            
+            $('#ispresencial').prop('checked', ispresencial);
+            $('#issemipresencial').prop('checked', issemipresencial);
+            $('#isvirtual').prop('checked', isvirtual);
 
              
             setTimeout(function(){ 
@@ -762,7 +771,16 @@ loadtable7();
 
         }
 
-        
+        $('#isvirtual').change(function() {
+        if($('#isvirtual').is(":checked") && ($('#ispresencial').is(":checked") || $('#issemipresencial').is(":checked") )) {
+            $("#divmodalidades").hide();
+          
+        }else{
+           
+            $("#divmodalidades").show();
+        }
+            
+        });
 
         $("#but_upload").click(function(){
             if(nuevo){
@@ -1031,8 +1049,7 @@ loadtable7();
                     data: fd,
                     contentType: false,
                     processData: false,
-                    success: function(response){
-                    console.log(response.message);
+                    success: function(response){                   
                     if(response.message=="exito"){
                         table.ajax.reload();
                     } $("#modalcursos").modal('hide');
@@ -1347,9 +1364,13 @@ loadtable7();
                  descripcionpublicidad = table.row(this ).data().Desc_Publicidad ;
                  descripcionintroduccion = table.row(this ).data().Desc_Introduccion ;
                  descripcionadicional = table.row(this ).data().InfoAdicional ;
-                 img_url = table.row(this ).data().Image_URL ;
-                 temario_url = table.row(this ).data().Temario_URL ;
-                 precio = table.row(this ).data().Precio ;
+                 img_url = table.row(this ).data().Image_URL;
+                 temario_url = table.row(this ).data().Temario_URL;
+                 precio = table.row(this ).data().Precio;
+                 isvirtual = table.row(this ).data().isVirtual;
+                 ispresencial = table.row(this ).data().isPresencial;
+                 issemipresencial = table.row(this ).data().isSemiPresencial;
+
 
                  $('#precioactualizar').val(precio);
                     table2.destroy();
