@@ -221,7 +221,7 @@ class CursosController extends Controller
 
         $v = Curso::leftJoin('cursoprecios', 'cursos.id', '=', 'cursoprecios.curso_id')
         ->leftJoin('categorias', 'categorias.id', '=', 'cursos.categoria_id')
-        ->select('cursoprecios.id', 'cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad', 'cursos.Desc_Introduccion', 'cursos.InfoAdicional', 'Categorias.Categoria')
+        ->select('cursoprecios.id', 'cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad', 'cursos.Desc_Introduccion', 'cursos.InfoAdicional', 'Categorias.Categoria','cursos.isPresencial','cursos.isVirtual','cursos.isSemiPresencial')
         ->where('cursoprecios.deleted_at', null);
 
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);

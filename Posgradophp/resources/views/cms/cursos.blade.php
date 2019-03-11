@@ -126,6 +126,9 @@
                             <th>Precio</th>
                             <th>Imagen</th>
                             <th>Temario</th>
+                            <th>Virtual</th>
+                            <th>Presencial</th>
+                            <th>Semipresencial</th>
                             <!-- <th>Creado</th> -->
 
                         </tr>
@@ -327,6 +330,9 @@ loadtable7();
     var descripcionpublicidad = "";
     var descripcionintroduccion = "";
     var descripcionadicional = "";
+    var ispresencial = false;
+    var isvirtual = false;
+    var issemipresencial = false;
     var nuevo = true;
 
     var table2;
@@ -387,7 +393,30 @@ loadtable7();
                     { "data": "Temario_URL", "name": "Temario_URL", render: function (data) {
                         return  '<a  href= "{{route('cursos.index')}}/'+data+'" target="_blank"><i class="fa fa-file-pdf fa-2x grey"></i></a>'
                     }},                    
-                    //{ "data": "created_at", "name": "created_at" },
+                    { "data": "isVirtual", "name": "isVirtual", render: function (data) {
+                        if(data==true){
+                            return '<i class="fa fa-check green-text"></i>'
+                        }else{
+                            return '<i class="fa fa-close red-text"></i>'
+                        }
+                      
+                    }},
+                    { "data": "isPresencial", "name": "isPresencial", render: function (data) {
+                        if(data==true){
+                            return '<i class="fa fa-check green-text"></i>'
+                        }else{
+                            return '<i class="fa fa-close red-text"></i>'
+                        }
+                      
+                    }},
+                    { "data": "isSemiPresencial", "name": "isSemiPresencial", render: function (data) {
+                        if(data==true){
+                            return '<i class="fa fa-check green-text"></i>'
+                        }else{
+                            return '<i class="fa fa-close red-text"></i>'
+                        }
+                      
+                    }}
             ],
             @include('layout.lenguagetable')
             
@@ -688,6 +717,11 @@ loadtable7();
             $('#picturepreview').attr('src', '');      
             $('#filepreview').attr('src', '');  
             $('#precio').prop('disabled', false);
+            $('#ispresencial').prop('checked', false);
+            $('#issemipresencial').prop('checked', false);
+            $('#isvirtual').prop('checked', false);
+
+             
                
            
         }
@@ -705,6 +739,10 @@ loadtable7();
             $('#filepreview').attr('src','{{route('cursos.index')}}/'+temario_url);                      
             $('#picturepreview').attr('src', "{{route('cursos.index')}}"+"/"+img_url);
             $('#precio').prop('disabled', true);
+            
+            $('#ispresencial').prop('checked', ispresencial);
+            $('#issemipresencial').prop('checked', issemipresencial);
+            $('#isvirtual').prop('checked', isvirtual);
 
              
             setTimeout(function(){ 
@@ -733,7 +771,16 @@ loadtable7();
 
         }
 
-        
+        $('#isvirtual').change(function() {
+        if($('#isvirtual').is(":checked") && ($('#ispresencial').is(":checked") || $('#issemipresencial').is(":checked") )) {
+            $("#divmodalidades").hide();
+          
+        }else{
+           
+            $("#divmodalidades").show();
+        }
+            
+        });
 
         $("#but_upload").click(function(){
             if(nuevo){
@@ -1002,8 +1049,7 @@ loadtable7();
                     data: fd,
                     contentType: false,
                     processData: false,
-                    success: function(response){
-                    console.log(response.message);
+                    success: function(response){                   
                     if(response.message=="exito"){
                         table.ajax.reload();
                     } $("#modalcursos").modal('hide');
@@ -1318,9 +1364,14 @@ loadtable7();
                  descripcionpublicidad = table.row(this ).data().Desc_Publicidad ;
                  descripcionintroduccion = table.row(this ).data().Desc_Introduccion ;
                  descripcionadicional = table.row(this ).data().InfoAdicional ;
-                 img_url = table.row(this ).data().Image_URL ;
-                 temario_url = table.row(this ).data().Temario_URL ;
-                 precio = table.row(this ).data().Precio ;
+                 img_url = table.row(this ).data().Image_URL;
+                 temario_url = table.row(this ).data().Temario_URL;
+                 precio = table.row(this ).data().Precio;
+                 isvirtual = table.row(this ).data().isVirtual;
+                 ispresencial = table.row(this ).data().isPresencial;
+                 issemipresencial = table.row(this ).data().isSemiPresencial;
+
+
                  $('#precioactualizar').val(precio);
                     table2.destroy();
                     loadtable2();

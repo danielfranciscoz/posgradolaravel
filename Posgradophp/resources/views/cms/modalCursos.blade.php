@@ -47,7 +47,23 @@
                         <label>Información Adicional</label>
                         <textarea type="text" id="descripcionadicional" class="md-textarea form-control" rows="3"></textarea>
                         
-                    
+
+                        <div class="custom-control custom-checkbox custom-control-inline mt-4">
+                            <input type="checkbox" class="custom-control-input" id="ispresencial">
+                            <label class="custom-control-label" for="ispresencial">Presencial</label>
+                        </div>
+
+                        <!-- Default inline 2-->
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" id="issemipresencial">
+                            <label class="custom-control-label" for="issemipresencial">Semi-presencial</label>
+                        </div>
+
+                        <!-- Default inline 3-->
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" id="isvirtual">
+                            <label class="custom-control-label" for="isvirtual">Virtual</label>
+                        </div>
                     </div>                    
 
                 </div>
@@ -128,32 +144,34 @@
                 </div>
 
                 <hr>
-                <h6 class="h6-responsive font-weight-bold">Modalidades</h6>
-                <div class="row mt-4">
-                    <div class="col-md-6 col-sm-12">
-                    <input type="text" id="modalidades" class="col-6 mb-4"  placeholder="Modalidad">
-                    <input type="text" id="horarios" class="col-6 mb-4"  placeholder="Horario">
-                        <a class="btn btn-sm green white-text font-weight-bold" onclick="addmodalidad()">Agregar</a>
-                        <a class="btn btn-sm red white-text font-weight-bold"  onclick="delmodalidad()" > Eliminar</a>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                    <div class="table-responsive">
-                        <table id="tablemodalidades" class="table" style="width:100%;heigth:500px">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>Modalidad</th> 
-                                    <th>Horario</th>                               
+                <div id="divmodalidades">
+                    <h6 class="h6-responsive font-weight-bold">Modalidades</h6>
+                    <div class="row mt-4">
+                        <div class="col-md-6 col-sm-12">
+                        <input type="text" id="modalidades" class="col-6 mb-4"  placeholder="Modalidad">
+                        <input type="text" id="horarios" class="col-6 mb-4"  placeholder="Horario">
+                            <a class="btn btn-sm green white-text font-weight-bold" onclick="addmodalidad()">Agregar</a>
+                            <a class="btn btn-sm red white-text font-weight-bold"  onclick="delmodalidad()" > Eliminar</a>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                        <div class="table-responsive">
+                            <table id="tablemodalidades" class="table" style="width:100%;heigth:500px">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Modalidad</th> 
+                                        <th>Horario</th>                               
 
-                                </tr>
-                            </thead>
-                            <tbody></tbody>                 
-                        </table>
-                    </div>
-                    </div>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>                 
+                            </table>
+                        </div>
+                        </div>
 
-                        
+                            
 
+                    </div>
                 </div>
 
                 <hr>
