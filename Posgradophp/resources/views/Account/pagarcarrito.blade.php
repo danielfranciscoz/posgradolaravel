@@ -40,10 +40,10 @@
   </a>
 </li>
 </ul>
-        <div class="row">
-            <div class="col-md-8 col-sm-12 row">
+        <div class="row ">
+            <div class="col-md-8 col-sm-12 ">
                 <div class="card grey lighten-4 mb-4 mt-2 col-12 ">
-                     <div class="card-body row mx-5">
+                     <div class="card-body row ">
                      <h5 class="h5-responsive font-weight-bold col-12 mb-4">Información de facturación</h5>
                      <label class="col-12">Nombres:</label>
                         <input type="text" id="nombres" class="form-control mb-3 col-12" placeholder="Nombres*" value="{{$estudiante[0]->Nombres}}" required />
@@ -79,7 +79,7 @@
           
             </div>
             <div class="card grey lighten-4 mb-4 mt-2 col-12 ">
-                     <div class="card-body row mx-5">
+                     <div class="card-body row mx-2">
                      <h5 class="h5-responsive font-weight-bold col-12 mb-4">Información de tarjeta de crédito o débito</h5>
                      <label class="col-12">Tarjeta de Credito:</label>
                      <input type="text" autocomplete="cc-number" id="tarjeta" class="form-control col-12" placeholder="Numero de Tarjeta*"  required />
@@ -97,7 +97,7 @@
              </div>
             
         </div>
-       <div class="col-md-4 col-sm-12 mb-4 mt-2 ml-2">
+       <div class="col-md-4 col-sm-12 mb-4 mt-2 ">
         <div class="card  white sticky-top" >
         <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Detalle de Pago</h5>
                     <div class="row mt-4 mx-2">
@@ -114,7 +114,7 @@
 
                 <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">Total ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h5>
                 
-                <button class="g-recaptcha btn btn-primary mt-2 w-95 mb-2 mx-4 mb-4" data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq" data-callback="transaccion" >Realizar Pago</button>
+                <button class="g-recaptcha btn btn-primary mt-2 w-95 mb-2 mx-4 mb-4 btn-sm" data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq" data-callback="transaccion" >Realizar Pago</button>
                            
             </div>
             </div>

@@ -1,6 +1,16 @@
 @extends('layout.app')
 @section('title', 'Categoria '.$categoria->Categoria)
 @section('content')
+@php
+   $colors = Array("primary","secondary","success","danger","warning","info","green","light","dark","morado","cyan");
+@endphp
+
+@php $totalcarrito=0
+             @endphp
+            @for($i=0;$i<count(Session::get('cartItems'));$i++)
+                @php $totalcarrito=$totalcarrito + Session::get('cartItems')[$i]['Precio']; 
+                @endphp
+@endfor
 <main class="">
     <div class="container" >
     
@@ -78,8 +88,8 @@
                         @Empty
                         <div class="container row" >
                        
-                       <div class="card   white  mb-4 px-4 " >
-                           <h6 class="h6-responsive font-weight-bold ml-4 mt-4">No tenemos una oferta académica disponible para esta categoria {{$categoria->Categoria}}</h6>
+                       <div class="card   white  mb-4 px-4 mx-4" >
+                           <h6 class="h6-responsive font-weight-bold mt-4">No tenemos una oferta académica disponible para esta categoria {{$categoria->Categoria}}</h6>
                            <div class="d-flex align-items-center justify-content-center text-center " style="height:300px">
                                <h6 class="h6-responsive ">Lamentablemente no hemos encontrado un Oferta académica con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
                            </div>
@@ -136,8 +146,34 @@
                 </div>
 
                 </div>
-                <div class="col-md-3 mb-3  d-flex align-items-center ">
-                  
+                <div class="col-md-3 col-sm-12 mb-3 ">
+                <div class="sticky-top">
+                @if(count($etiquetas)>0)
+                    <div class="card  white  px-4 mb-4" style="margin-top: 77 !important">
+                        <div class="row ">
+                                <label class="col-12  mt-2  mb-2 font-weight-bold">Búsquedas relacionadas</label>
+                                @for($i=0;$i<count($etiquetas);$i++)
+
+                                <h5 class="mx-1" onclick="searchetiqueta('{{$etiquetas[$i]->Etiqueta}}')" style="cursor: hand; "><span class="badge badge-{{$colors[array_rand($colors)]}}" style="font-weight:normal;">{{$etiquetas[$i]->Etiqueta}}</span></h5>
+                                @endfor
+                            
+                         </div>
+                    </div>
+                @endif
+                @if(Session::has('cartItems'))
+                        <div class="card  white  px-4 mb-5 sticky-top" style="height:200px ">
+                            <h6 class="h6-responsive mt-3 text-center  font-weight-bold ">Subtotal ({{count(Session::get('cartItems'))}} Estudio(s)): <a  style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h6>
+                        
+                        <a class="btn btn-primary mt-2 w-95 mb-2 btn-sm" href="{{route('pagarcarrito')}}">Proceder al Pago</a>
+                        <div class="mt-2 d-flex justify-content-center grey-text">
+                                            <i class="fa fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
+                                            <i class="fa fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
+                                            <i class="fa fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
+                            </div>
+                                
+                        </div>
+                @endif
+                </div>
                 </div>
     </div>
 

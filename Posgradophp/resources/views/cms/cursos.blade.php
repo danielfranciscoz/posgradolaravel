@@ -314,6 +314,7 @@
 $("#alertmodalcursos").hide();
 $("#alertmodaldelete").hide();
 $("#alertmodalprecio").hide();
+$("#divmodalidades").hide();
 loadtable2();
 loadtable3();
 loadtable4();
@@ -766,27 +767,59 @@ loadtable7();
                         tabletematicas.row.add([table7.row(i).data().id,table7.row(i).data().Tematica,table7.row(i).data().Duracion]).draw();
                     }                
             }, 300);   
+            boolmodalidades();
             $('#modalcursos').modal('show');
                      
 
         }
 
         $('#isvirtual').change(function() {
-        if($('#isvirtual').is(":checked") && ($('#ispresencial').is(":checked") || $('#issemipresencial').is(":checked") )) {
-            $("#divmodalidades").hide();
-          
-        }else{
-           
-            $("#divmodalidades").show();
-        }
-            
+            boolmodalidades();
         });
+
+        $('#ispresencial').change(function() {            
+             boolmodalidades();            
+        });
+
+        $('#issemipresencial').change(function() {            
+             boolmodalidades();            
+        });
+
+
+        function boolmodalidades(){
+            if($('#ispresencial').is(":checked") || $('#issemipresencial').is(":checked") ) {
+                $("#divmodalidades").show();
+            
+            }else{
+            
+                $("#divmodalidades").hide();
+            }           
+        }
 
         $("#but_upload").click(function(){
             if(nuevo){
 
                
+            var isv = 0;
+            var iss = 0;
+            var isp = 0;
+
+            if ($('#isvirtual').is(":checked"))
+            {
+                isv = 1;
+            }
+            if ($('#ispresencial').is(":checked"))
+            {
+                isp = 1;
+            }
             
+            if ($('#issemipresencial').is(":checked"))
+            {
+                iss = 1;
+            }
+            
+            
+
 
                 var fd = new FormData();
                 var files = $('#file')[0].files[0]; 
@@ -805,6 +838,9 @@ loadtable7();
                 fd.append('Desc_Introduccion',$('#descripcionintroduccion').val());
                 fd.append('InfoAdicional',$('#descripcionadicional').val());
                 fd.append('Precio',$('#precio').val());
+                fd.append('IsPresencial', isp);
+                fd.append('IsSemiPresencial',iss);
+                fd.append('IsVirtual',isv);
 
 
 
@@ -948,6 +984,24 @@ loadtable7();
             }
             else
             {
+                var isv = 0;
+                var iss = 0;
+                var isp = 0;
+
+                if ($('#isvirtual').is(":checked"))
+                {
+                    isv = 1;
+                }
+                if ($('#ispresencial').is(":checked"))
+                {
+                    isp = 1;
+                }
+                
+                if ($('#issemipresencial').is(":checked"))
+                {
+                    iss = 1;
+                }
+            
                 var fd = new FormData();
                 var files = $('#file')[0].files[0];     
                 var images = $('#image')[0].files[0];          
@@ -1041,6 +1095,10 @@ loadtable7();
                 fd.append('Temario_URL', "");
                 fd.append('Temario',files);
                }
+
+               fd.append('IsPresencial', isp);
+                fd.append('IsSemiPresencial',iss);
+                fd.append('IsVirtual',isv);
 
 
                $.ajax({
