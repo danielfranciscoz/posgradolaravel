@@ -42,7 +42,7 @@ class PaymentController extends Controller
         $access_key = env('BANK_ACCESS_KEY');
         $profile_id = env('BANK_PROFILE_ID');
         $transaction_type = 'authorization';
-        $reference_number = '1552336803066';
+        $reference_number = '1552455214216';
         $amount = '100.00';
         $currency = 'USD';
         $payment_method = 'card';
@@ -59,7 +59,7 @@ class PaymentController extends Controller
         $transaction_uuid = '5c86c54e0509a';//mt_rand( 1000000, 9999999 );
         $signed_field_names = 'access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,payment_method,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code';
         $unsigned_field_names = 'card_type,card_number,card_expiry_date';
-        $signed_date_time = '2019-03-11T20:30:06Z';//date('Y-m-d H:i:s');
+        $signed_date_time = '2019-03-13T05:33:31Z';//date('Y-m-d\TH:i:s\Z');
         $locale = 'en';
         $submit = 'Submit';
         
@@ -93,34 +93,34 @@ class PaymentController extends Controller
         );
 
 
-        // return response()->json([
-        //     'access_key'=>$access_key,
-        //     'profile_id'=>$profile_id ,
-        //     'transaction_uuid'=>$transaction_uuid ,
-        //     'signed_field_names'=>$signed_field_names ,
-        //     'unsigned_field_names'=>$unsigned_field_names,
-        //     'signed_date_time'=>$signed_date_time,
-        //     'locale'=>$locale,
-        //     'transaction_type'=>$transaction_type,
-        //     'reference_number'=>$reference_number,
-        //     'amount'=>$amount ,
-        //     'currency'=>$currency ,
-        //     'payment_method'=>$payment_method,
-        //     'bill_to_forename'=>$bill_to_forename ,
-        //     'bill_to_surname'=>$bill_to_surname ,
-        //     'bill_to_email'=>$bill_to_email ,
-        //     'bill_to_phone'=>$bill_to_phone ,
-        //     'bill_to_address_line1'=>$bill_to_address_line1,
-        //     'bill_to_address_city'=>$bill_to_address_city,
-        //     'bill_to_address_state'=>$bill_to_address_state,
-        //     'bill_to_address_country'=>$bill_to_address_country,
-        //     'bill_to_address_postal_code'=>$bill_to_address_postal_code,
-        //     'submit' => 'Submit',
-        //     'signature' => $signature,
-        //     'card_type'=>$card_type,
-        //     'card_number'=>$card_number,
-        //     'card_expiry_date'=>$card_expiry_date
-        // ]);
+        return response()->json([
+            'access_key'=>$access_key,
+                'profile_id'=>$profile_id ,
+                'transaction_uuid'=>$transaction_uuid ,
+                'signed_field_names'=>$signed_field_names ,
+                'unsigned_field_names'=>$unsigned_field_names,
+                'signed_date_time'=>$signed_date_time,
+                'locale'=>$locale,
+                'transaction_type'=>$transaction_type,
+                'reference_number'=>$reference_number,
+                'amount'=>$amount ,
+                'currency'=>$currency ,
+                'payment_method'=>$payment_method,
+                'bill_to_forename'=>$bill_to_forename ,
+                'bill_to_surname'=>$bill_to_surname ,
+                'bill_to_email'=>$bill_to_email ,
+                'bill_to_phone'=>$bill_to_phone ,
+                'bill_to_address_line1'=>$bill_to_address_line1,
+                'bill_to_address_city'=>$bill_to_address_city,
+                'bill_to_address_state'=>$bill_to_address_state,
+                'bill_to_address_country'=>$bill_to_address_country,
+                'bill_to_address_postal_code'=>$bill_to_address_postal_code,
+                'submit' => 'Submit',
+                'signature' => '9DAwEViNPDcfjictj/Xmn1NsTWoWTunbBn3D8mZ2ids=',//$this->sign($signature),
+                'card_type'=>$card_type,
+                'card_number'=>$card_number,
+                'card_expiry_date'=>$card_expiry_date
+        ]);
 
 
         //tc_ni_001287523
@@ -129,63 +129,63 @@ class PaymentController extends Controller
     
         $client = new Client();
 
-        $response = $client->post('https://ics2wsa.ic3.com/commerce/1.x/transactionProcessor', [
-            'headers' => ['Content-Type' => 'text/xml;charset=utf-8'],
-            'form_params' => [
-                'merchandID'=>'Foster City Flowers' ,
-                'merchantReferenceCode'=>'482046C3A7E94F5BD1' ,
-                'firstName'=>$bill_to_forename ,
-                'lastName'=>$bill_to_surname ,
-                'street1'=>$bill_to_address_line1,
-                'city'=>$bill_to_address_city,
-                'state'=>$bill_to_address_state,
-                'postalCode'=>$bill_to_address_postal_code,
-                'country'=>$bill_to_address_country,
-                'phoneNumber'=>$bill_to_phone ,
-                'email'=>$bill_to_email ,
-                'item id'=>'1',
-                'unitPrice'=>'1',
-                'quantity'=>'1',
-                'currency'=>$currency ,
-                'accountNumber'=>$card_number,
-                'expirationMonth'=>'12',
-                'expirationYear'=>'2015',
-                'card_type'=>$card_type,
-                'ccAuthService'=>'true',
-           ],
-        ]);
-
-        // $response = $client->post('https://testsecureacceptance.cybersource.com/silent/pay', [
-        //     'headers' => ['Content-Type' => 'text/html;charset=utf-8'],
+        // $response = $client->post('https://ics2wsa.ic3.com/commerce/1.x/transactionProcessor', [
+        //     'headers' => ['Content-Type' => 'text/xml;charset=utf-8'],
         //     'form_params' => [
-        //         'access_key'=>$access_key,
-        //         'profile_id'=>$profile_id ,
-        //         'transaction_uuid'=>$transaction_uuid ,
-        //         'signed_field_names'=>$signed_field_names ,
-        //         'unsigned_field_names'=>$unsigned_field_names,
-        //         'signed_date_time'=>$signed_date_time,
-        //         'locale'=>$locale,
-        //         'transaction_type'=>$transaction_type,
-        //         'reference_number'=>$reference_number,
-        //         'amount'=>$amount ,
+        //         'merchandID'=>'Foster City Flowers' ,
+        //         'merchantReferenceCode'=>'482046C3A7E94F5BD1' ,
+        //         'firstName'=>$bill_to_forename ,
+        //         'lastName'=>$bill_to_surname ,
+        //         'street1'=>$bill_to_address_line1,
+        //         'city'=>$bill_to_address_city,
+        //         'state'=>$bill_to_address_state,
+        //         'postalCode'=>$bill_to_address_postal_code,
+        //         'country'=>$bill_to_address_country,
+        //         'phoneNumber'=>$bill_to_phone ,
+        //         'email'=>$bill_to_email ,
+        //         'item id'=>'1',
+        //         'unitPrice'=>'1',
+        //         'quantity'=>'1',
         //         'currency'=>$currency ,
-        //         'payment_method'=>$payment_method,
-        //         'bill_to_forename'=>$bill_to_forename ,
-        //         'bill_to_surname'=>$bill_to_surname ,
-        //         'bill_to_email'=>$bill_to_email ,
-        //         'bill_to_phone'=>$bill_to_phone ,
-        //         'bill_to_address_line1'=>$bill_to_address_line1,
-        //         'bill_to_address_city'=>$bill_to_address_city,
-        //         'bill_to_address_state'=>$bill_to_address_state,
-        //         'bill_to_address_country'=>$bill_to_address_country,
-        //         'bill_to_address_postal_code'=>$bill_to_address_postal_code,
-        //         'submit' => 'Submit',
-        //         'signature' => 'kVNId76NJMwQzxBs4GTOx1nnZQXILD0wMvqwVk8jO9s',//$this->sign($signature),
+        //         'accountNumber'=>$card_number,
+        //         'expirationMonth'=>'12',
+        //         'expirationYear'=>'2015',
         //         'card_type'=>$card_type,
-        //         'card_number'=>$card_number,
-        //         'card_expiry_date'=>$card_expiry_date
-        //     ],
+        //         'ccAuthService'=>'true',
+        //    ],
         // ]);
+
+        $response = $client->post('https://testsecureacceptance.cybersource.com/silent/pay', [
+            'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
+            'form_params' => [
+                'access_key'=>$access_key,
+                'profile_id'=>$profile_id ,
+                'transaction_uuid'=>$transaction_uuid ,
+                'signed_field_names'=>$signed_field_names ,
+                'unsigned_field_names'=>$unsigned_field_names,
+                'signed_date_time'=>$signed_date_time,
+                'locale'=>$locale,
+                'transaction_type'=>$transaction_type,
+                'reference_number'=>$reference_number,
+                'amount'=>$amount ,
+                'currency'=>$currency ,
+                'payment_method'=>$payment_method,
+                'bill_to_forename'=>$bill_to_forename ,
+                'bill_to_surname'=>$bill_to_surname ,
+                'bill_to_email'=>$bill_to_email ,
+                'bill_to_phone'=>$bill_to_phone ,
+                'bill_to_address_line1'=>$bill_to_address_line1,
+                'bill_to_address_city'=>$bill_to_address_city,
+                'bill_to_address_state'=>$bill_to_address_state,
+                'bill_to_address_country'=>$bill_to_address_country,
+                'bill_to_address_postal_code'=>$bill_to_address_postal_code,
+                'submit' => 'Submit',
+                'signature' => '9DAwEViNPDcfjictj/Xmn1NsTWoWTunbBn3D8mZ2ids=',//$this->sign($signature),
+                'card_type'=>$card_type,
+                'card_number'=>$card_number,
+                'card_expiry_date'=>$card_expiry_date
+            ]
+        ]);
 
         return response()->json([
             'respuesta'=>$response->getBody()
