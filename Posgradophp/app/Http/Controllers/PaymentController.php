@@ -42,7 +42,7 @@ class PaymentController extends Controller
         $access_key = env('BANK_ACCESS_KEY');
         $profile_id = env('BANK_PROFILE_ID');
         $transaction_type = 'authorization';
-        $reference_number = '1552455214216';
+        $reference_number = '1552493950955';
         $amount = '100.00';
         $currency = 'USD';
         $payment_method = 'card';
@@ -56,10 +56,10 @@ class PaymentController extends Controller
         $bill_to_address_country = 'US';
         $bill_to_address_postal_code = '94043';
         
-        $transaction_uuid = '5c86c54e0509a';//mt_rand( 1000000, 9999999 );
+        $transaction_uuid = '5c892d78becb9';//mt_rand( 1000000, 9999999 );
         $signed_field_names = 'access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,payment_method,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code';
         $unsigned_field_names = 'card_type,card_number,card_expiry_date';
-        $signed_date_time = '2019-03-13T05:33:31Z';//date('Y-m-d\TH:i:s\Z');
+        $signed_date_time = '2019-03-13T16:54:00Z';//date('Y-m-d\TH:i:s\Z');
         $locale = 'en';
         $submit = 'Submit';
         
@@ -94,32 +94,33 @@ class PaymentController extends Controller
 
 
         return response()->json([
-            'access_key'=>$access_key,
-                'profile_id'=>$profile_id ,
-                'transaction_uuid'=>$transaction_uuid ,
-                'signed_field_names'=>$signed_field_names ,
-                'unsigned_field_names'=>$unsigned_field_names,
-                'signed_date_time'=>$signed_date_time,
-                'locale'=>$locale,
-                'transaction_type'=>$transaction_type,
-                'reference_number'=>$reference_number,
-                'amount'=>$amount ,
-                'currency'=>$currency ,
-                'payment_method'=>$payment_method,
-                'bill_to_forename'=>$bill_to_forename ,
-                'bill_to_surname'=>$bill_to_surname ,
-                'bill_to_email'=>$bill_to_email ,
-                'bill_to_phone'=>$bill_to_phone ,
-                'bill_to_address_line1'=>$bill_to_address_line1,
-                'bill_to_address_city'=>$bill_to_address_city,
-                'bill_to_address_state'=>$bill_to_address_state,
-                'bill_to_address_country'=>$bill_to_address_country,
-                'bill_to_address_postal_code'=>$bill_to_address_postal_code,
-                'submit' => 'Submit',
-                'signature' => '9DAwEViNPDcfjictj/Xmn1NsTWoWTunbBn3D8mZ2ids=',//$this->sign($signature),
-                'card_type'=>$card_type,
-                'card_number'=>$card_number,
-                'card_expiry_date'=>$card_expiry_date
+            // 'access_key'=>$access_key,
+            //     'profile_id'=>$profile_id ,
+            //     'transaction_uuid'=>$transaction_uuid ,
+            //     'signed_field_names'=>$signed_field_names ,
+            //     'unsigned_field_names'=>$unsigned_field_names,
+            //     'signed_date_time'=>$signed_date_time,
+            //     'locale'=>$locale,
+            //     'transaction_type'=>$transaction_type,
+            //     'reference_number'=>$reference_number,
+            //     'amount'=>$amount ,
+            //     'currency'=>$currency ,
+            //     'payment_method'=>$payment_method,
+            //     'bill_to_forename'=>$bill_to_forename ,
+            //     'bill_to_surname'=>$bill_to_surname ,
+            //     'bill_to_email'=>$bill_to_email ,
+            //     'bill_to_phone'=>$bill_to_phone ,
+            //     'bill_to_address_line1'=>$bill_to_address_line1,
+            //     'bill_to_address_city'=>$bill_to_address_city,
+            //     'bill_to_address_state'=>$bill_to_address_state,
+            //     'bill_to_address_country'=>$bill_to_address_country,
+            //     'bill_to_address_postal_code'=>$bill_to_address_postal_code,
+            //     'submit' => 'Submit',
+                'signature' => $this->sign($signature),
+                'data'=>'daniel/daniel'
+                // 'card_type'=>$card_type,
+                // 'card_number'=>$card_number,
+                // 'card_expiry_date'=>$card_expiry_date
         ]);
 
 
