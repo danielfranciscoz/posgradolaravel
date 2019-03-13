@@ -66,7 +66,7 @@
                 <input type="text" id="ciudad" autocomplete="address-level2" class="form-control" placeholder="Ciudad*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
                 
                 <label class="col-12">Estado:</label>
-                <input type="text" id="ciudad" autocomplete="address-level1" class="form-control" autocomplete="" placeholder="Provincia o estado*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
+                <input type="text" id="estado" autocomplete="address-level1" class="form-control" autocomplete="" placeholder="Provincia o estado*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
                
                 <label class="col-12">Pais:</label>
                 <input type="text" id="pais" autocomplete="country-name" class="form-control" autocomplete="country-name" placeholder="Pais*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
@@ -122,33 +122,33 @@
     </div>
     
     <form id="payment_confirmation" action="https://testsecureacceptance.cybersource.com/silent/pay" method="post">
-      <input type="" id="access_key" name="access_key" value="e9507abf9c1738e1a90162961d914987">
-      <input type="" id="profile_id" name="profile_id" value="B17CEE09-AA21-4C11-AD83-06CEA30FA859">
-      <input type="" id="transaction_uuid" name="transaction_uuid" value="5c892d78becb9">
-      <input type="" id="signed_field_names" name="signed_field_names" value="access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,payment_method,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code">
-      <input type="" id="unsigned_field_names" name="unsigned_field_names" value="card_type,card_number,card_expiry_date">
-      <input type="" id="signed_date_time" name="signed_date_time" value="2019-03-13T16:54:00Z">
-      <input type="" id="locale" name="locale" value="en">
-      <input type="" id="transaction_type" name="transaction_type" value="authorization">
-      <input type="" id="reference_number" name="reference_number" value="1552493950955">
-      <input type="" id="amount" name="amount" value="100.00">
-      <input type="" id="currency" name="currency" value="USD">
-      <input type="" id="payment_method" name="payment_method" value="card">
-      <input type="" id="bill_to_forename" name="bill_to_forename" value="John">
-      <input type="" id="bill_to_surname" name="bill_to_surname" value="Doe">
-      <input type="" id="bill_to_email" name="bill_to_email" value="null@cybersource.com">
-      <input type="" id="bill_to_phone" name="bill_to_phone" value="02890888888">
-      <input type="" id="bill_to_address_line1" name="bill_to_address_line1" value="1 Card Lane">
-      <input type="" id="bill_to_address_city" name="bill_to_address_city" value="My City">
-      <input type="" id="bill_to_address_state" name="bill_to_address_state" value="CA">
-      <input type="" id="bill_to_address_country" name="bill_to_address_country" value="US">
-      <input type="" id="bill_to_address_postal_code" name="bill_to_address_postal_code" value="94043">
-      <input type="" id="submit" name="submit" value="Submit">
-      <input type="" id="signature" name="signature" value="W1U38r7JxpaUojuoJ4wp0MZ3ujFfpXyqrXgu/RlIaYQ=">
-      <input type="text" name="card_type" value="001"><br>
-      <input type="text" name="card_number" value="4242424242424242"><br>
-      <input type="text" name="card_expiry_date" value="11-2020"><br>
-      <input type="submit" id="submit" value="Confirm "/>
+      <input type="hidden" id="access_key" name="access_key" value="e9507abf9c1738e1a90162961d914987">
+      <input type="hidden" id="profile_id" name="profile_id" value="B17CEE09-AA21-4C11-AD83-06CEA30FA859">
+      <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="5c892d78becb9">
+      <input type="hidden" id="signed_field_names" name="signed_field_names" value="access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,payment_method,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code">
+      <input type="hidden" id="unsigned_field_names" name="unsigned_field_names" value="card_type,card_number,card_expiry_date">
+      <input type="hidden" id="signed_date_time" name="signed_date_time" value="">
+      <input type="hidden" id="locale" name="locale" value="en">
+      <input type="hidden" id="transaction_type" name="transaction_type" value="authorization">
+      <input type="hidden" id="reference_number" name="reference_number" value="1552493950955">
+      <input type="hidden" id="amount" name="amount" value="100.00">
+      <input type="hidden" id="currency" name="currency" value="USD">
+      <input type="hidden" id="payment_method" name="payment_method" value="card">
+      <input type="hidden" id="bill_to_forename" name="bill_to_forename" value="John">
+      <input type="hidden" id="bill_to_surname" name="bill_to_surname" value="Doe">
+      <input type="hidden" id="bill_to_email" name="bill_to_email" value="null@cybersource.com">
+      <input type="hidden" id="bill_to_phone" name="bill_to_phone" value="02890888888">
+      <input type="hidden" id="bill_to_address_line1" name="bill_to_address_line1" value="1 Card Lane">
+      <input type="hidden" id="bill_to_address_city" name="bill_to_address_city" value="My City">
+      <input type="hidden" id="bill_to_address_state" name="bill_to_address_state" value="CA">
+      <input type="hidden" id="bill_to_address_country" name="bill_to_address_country" value="US">
+      <input type="hidden" id="bill_to_address_postal_code" name="bill_to_address_postal_code" value="94043">
+      <input type="hidden" id="submit" name="submit" value="Submit">
+      <input type="hidden" id="signature" name="signature" value="">
+      <input type="hidden" name="card_type" value="001"><br>
+      <input type="hidden" name="card_number" value="4242424242424242"><br>
+      <input type="hidden" name="card_expiry_date" value="11-2020"><br>
+      <input type="submit" id="setsubmit" value="Confirm" style="display:none"/>
 </form>
 </main>
 
@@ -165,11 +165,11 @@ function transaccion(e){
 
       $.ajax( {
               data: {
-                  "bill_to_forename:": $("#nombres").val(),
-                  "bill_to_surname:": $("#apellidos").val(),
-                  "bill_to_surname":$("email").val(),
+                  "bill_to_forename": $("#nombres").val(),
+                  "bill_to_surname": $("#apellidos").val(),
+                  "bill_to_email":$("#email").val(),
                   "bill_to_phone":$("#telefono").val(),
-                  "bill_to_address_linel" : $("#direccion").val(),
+                  "bill_to_address_line1" : $("#direccion").val(),
                   "bill_to_address_city": $("#ciudad").val(),
                   "bill_to_address_state": $("#estado").val(),
                   "bill_to_address_country":$("#pais").val(),
@@ -184,18 +184,36 @@ function transaccion(e){
               type: 'POST'
                              ,
               success: function(response){
-                    var v =    response
-                     $.ajax( {
+                    var v =    response;
+
+                    $("#transaction_uuid").val(response.transaction_uuid);
+                    $("#signed_date_time").val(response.signed_date_time);
+                    $("#reference_number").val(response.reference_number);                    
+                    $("#signature").val(response.signature);
+                    $("#amount").val(response.amount);
+                    $("#bill_to_forename").val(response.bill_to_forename);
+                  
+                   
+               
+                    $("#bill_to_surname").val(response.bill_to_surname);
+                    $("#bill_to_email").val(response.bill_to_email);
+                    $("#bill_to_phone").val(response.bill_to_phone);
+                    $("#bill_to_address_line1").val(response.bill_to_address_line1);
+                    $("#bill_to_address_city").val(response.bill_to_address_city);
+                    $("#bill_to_address_state").val(response.bill_to_address_state);
+                    $("#bill_to_address_country").val(response.bill_to_address_country);
+                    $("#bill_to_address_postal_code").val(response.bill_to_address_postal_code);
+
+                   /*  $("#card_type").val($("#card").val()),
+                    $("#card_number").val($("#tarjeta").val()),
+                    $("#card_expiry_date").val($("#mes").val() +"-"+ $("#año").val()),  */
+                    setTimeout(function(){  
+                      $("#setsubmit").click()
+                      }, 1500);
+                   
+                    /*  $.ajax( {
                         data: v,
-                        headers: {
-                            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-                            'Accept-Language': 'es-ES,es;q=0.9,de;q=0.8,en;q=0.7',
-                            'Cache-Control': 'max-age=0',
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'Access-Control-Allow-Origin':  'http://localhost:8000/',
-                            'Access-Control-Allow-Methods': 'POST',
-                            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-                        },
+                       
                             url: "https://testsecureacceptance.cybersource.com/silent/pay",
                             type: 'POST',
                             success: function(response){
@@ -207,7 +225,8 @@ function transaccion(e){
                             
                         
                         }
-      );
+                     ); */
+                   
                   },
               error: function(response){
               /*     $("#alertregistro").show();
