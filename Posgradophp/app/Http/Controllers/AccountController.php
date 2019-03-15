@@ -505,9 +505,12 @@ class AccountController extends Controller
         ->where('users.deleted_at',null);
         
         if (strlen($searchv) !=0) {
-            $v = $v->wherehas('estudiante', function ($sql) use ($searchv) {
-                $sql->Where('nombre_completo','LIKE','%'.$searchv.'%');
-            });
+            $v = $v->Where('PrimerNombre','LIKE','%'.$searchv.'%')
+                    ->orWhere('SegundoNombre','LIKE','%'.$searchv.'%')
+                    ->orWhere('PrimerApellido','LIKE','%'.$searchv.'%')
+                    ->orWhere('SegundoApellido','LIKE','%'.$searchv.'%')
+                    ->getQuery();
+            
         }else{
             $v = $v->getQuery();
         }

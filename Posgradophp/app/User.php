@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Estudiante;
 
 class User extends Authenticatable
 {
@@ -32,11 +33,11 @@ class User extends Authenticatable
 
 
     public function estudiante(){
-        return $this->hasOne(\App\Models\Estudiante::class);
+        return $this->hasOne(Estudiante::class);
     }
 
     public function getNombreCompletoAttribute(){
-        $a= $this-> estudiante()->first()->PrimerNombre ." ".estudiante()->first()->PrimerApellido;
+        $a= $this->estudiante()->first()->PrimerNombre ." ".$this->estudiante()->first()->PrimerApellido;
         return $a;
     }
 
