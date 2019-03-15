@@ -223,7 +223,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
 
 @media (max-width:576px) {
           
-            .comentariosnav {
-                min-height: 325px;
-            }
+    .comentariosnav {
+        min-height: 325px;
+    }
+
+    .registrer-img {
+        background-image: url('/img/register_backgroundr.jpg');
+    }
+    .registrer-img {
+        align-items: center;
+      
+        padding: 0;
+    }
+
+    .banner-index {
+        background-image: url('/img/register_backgroundr.jpg');
+    }
+    .banner-index {
+        align-items: center;
+      
+        padding: 0;
+    }
+}
+
+.registrer-img {
+    background-image: url('/img/register_background.jpg');}
+
+@media (min-width: 768px){
+    
+    .registrer-img {
+        margin-bottom: 0;
+    }
+}
+.registrer-img {
+    display: flex;
+    align-items: flex-end;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+
 }

@@ -47,14 +47,14 @@
                      <div class="card-body row ">
                      <h5 class="h5-responsive font-weight-bold col-12 mb-4">Información de facturación</h5>
                      <label class="col-12">Nombres:</label>
-                        <input type="text" id="nombres" class="form-control mb-3 col-12" placeholder="Nombres*" value="{{$estudiante[0]->Nombres}}" required />
+                        <input type="text" id="nombres" class="form-control mb-3 col-12" placeholder="Nombres*" value="{{$estudiante[0]->PrimerNombre.' '.$estudiante[0]->SegundoNombre}}" required />
                    
                         <label class="col-12">Apellidos:</label>
-                        <input type="text" id="apellidos" class="form-control mb-3 col-12" placeholder="Apellidos*" value="{{$estudiante[0]->Apellidos}}"  required /> 
+                        <input type="text" id="apellidos" class="form-control mb-3 col-12" placeholder="Apellidos*" value="{{$estudiante[0]->PrimerApellido.' '.$estudiante[0]->SegundoApellido}}"  required /> 
                         </br>
 
                 <label class="col-12">Correo Electrónico:</label>
-                <input type="email" id="email"  autocomplete="email" class="form-control mb-3 col-12" placeholder="Correo Electrónico*" value="{{Auth::user()->email}}" required/>
+                <input type="email" id="email"  autocomplete="email" class="form-control mb-3 col-12" placeholder="Correo Electrónico*" value="{{Auth::user()->email}}" required readOnly='readOnly'/>
 
                 <label class="col-12">Número Telefónico:</label>
                 <input type="tel" id="telefono" autocomplete="tel" class="form-control" placeholder="Número Telefónico*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required value="{{$estudiante[0]->Telefono}}" />

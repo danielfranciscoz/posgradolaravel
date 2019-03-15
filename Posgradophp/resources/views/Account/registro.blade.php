@@ -2,18 +2,31 @@
 @section('title', 'Registro nuevo usuario')
 @section('content')
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<main class="grey lighten-4">
-    <div class="container wow fadein">
-         <div class="row d-flex justify-content-center">
-        
-            <div class="col-md-8 col-sm-12" >
-                        </br>
-                 <div id="registernow" class="white">
+<main class="grey lighten-4 registrer-img" >
+    <div class="container wow fadein" >
+         <div class="row ">
+            <div class="col-md-6 col-sm-12  d-none d-md-block ">
+                <div class="d-flex justify-content-center align-items-center   "  style="height:500px" >
+                    <div class="row  ">
+                        <h4 class="h4-responsive mb-4 text-white font-weight-bold col-12 text-left ">¡Inscribete y comienza a aprender con nosotros!</h4>
+                        <br/>
+                        <h6 class="h6-responsive mb-4  text-white col-12">Esto solo tomará un par de minutos, por favor ten paciencia y completa toda la información.</h6>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12  d-block d-sm-none ">
+                
+
+            </div>
+            <div class="col-md-6 col-sm-12" >
+                        <br/>
+                 <div id="registernow" class="white ">
+                 <h4 class="h4-responsive mb-4  font-weight-bold text-center  pt-3">Inscripción</h4>
+                       
                     <form class="text-center border border-light p-5 white" id="registroform" method="post"> 
                     {{csrf_field()}}
-                    <h4 class="h4-responsive mb-4 text-primary">¡Inscribete y comienza a aprender con nosotros!</h4>
-                    <h6 class="h6-responsive mb-4">Esto solo tomará un par de minutos, por favor ten paciencia y completa toda la información.</h6>
-
+                    
                     <div class="form-row mb-4">
                         <div class="col">
                         

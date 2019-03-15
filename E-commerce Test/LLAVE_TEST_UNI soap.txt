@@ -1,0 +1,5 @@
+tc_ni_001287523
+
+https://ics2wstesta.ic3.com/commerce/1.x/transactionProcessor
+
+VnQNroLhF+XvSNsjDYs9EFKM8+G+e6nd9yougtT85s58aj6UKr+5fjT484H7V+dL+ZEFDoMyimyzKHJiC4+/+6+SLMoS8f1sXefyxP8vH2GCR2fAIvSNGqJky9An7RBpLsQgcu2DzkoJJpiwowz+t90HLcpX+GnkAzeYb1v9mDxASgB6dnO4HKp80umeznwQ8f3t4/oTpmNSzVjjSqC+MGaj7ovTQCSMN/Ot7O2KjOZxrzrW/UOvm8SMwHtFUDV2ok//fCJHFfvhuBcxlbaA/cOkamBUeTTOQBwRkYMBVQNx9wO8T3h4+pjU2c61LM/QJGSGFA8pAuHrn9Dmn/lPxg==

@@ -24,9 +24,12 @@
               
                
                 @if($cursos->isNotEmpty())
-                <h5 class="col-md-6 col-sm-12 mt-4 font-weight-bold">{{$cursos->total()}} resultado(s) para {{$search_value}} <strong> </strong></h5>
-             
-               
+                    @if($cursos->total() > 1)
+                    
+                        <h5 class="col-md-6 col-sm-12 mt-4 font-weight-bold">{{$search_value}} {{$cursos->total()}} elementos encontrados <strong> </strong></h5>
+                    @else
+                        <h5 class="col-md-6 col-sm-12 mt-4 font-weight-bold">{{$search_value}}: {{$cursos->total()}} elemento encontrado <strong> </strong></h5>
+                    @endif
                 <div class="col-md-6 col-sm-12 d-flex justify-content-end  align-items-center font-weight-bold">
                         <label>Ordenar por: </label>&nbsp
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="sorden">
@@ -68,10 +71,16 @@
                                             <span class=" float-left red darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
                                                 Curso Especializado
                                             </span> 
+                                            <span class=" float-left red darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                {{$curso->curso->categoria->Categoria}}
+                                            </span> 
                                         @elseif($curso->curso->categoria->isCursoPosgrado==0)
                                             <span class=" float-left blue darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" >                                        
                                                 Posgrado
-                                            </span>                                         
+                                            </span>    
+                                            <span class=" float-left blue darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                {{$curso->curso->categoria->Categoria}}
+                                            </span>                                      
                                         @endif                                      
                                             <span class="font-weight-bold float-right"  style="color:#b71c1c "> 
                                                 $ {{number_format($curso->Precio, 2)}}
@@ -87,9 +96,9 @@
                         <div class="container row" >
                        
                         <div class="card   white  mb-4 px-4 mx-4" >
-                           <h6 class="h6-responsive font-weight-bold mt-4">No tenemos una oferta académica disponible para esta categoria {{$categoria->Categoria}}</h6>
+                           <h6 class="h6-responsive font-weight-bold mt-4">No tenemos una oferta académica disponible para {{$search_value}}</h6>
                              <div class="d-flex align-items-center justify-content-center text-center " style="height:300px">
-                                    <h6 class="h6-responsive ">Lamentablemente no hemos encontrado un Oferta académica con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
+                                    <h6 class="h6-responsive ">Lamentablemente no hemos encontrado un Oferta académica con tus criterios de búsqueda, pero puedes seguir buscando lo que deseas estudiar.<strong> </strong></h6>                        
                                 </div>
                             </div>
                         </div>
