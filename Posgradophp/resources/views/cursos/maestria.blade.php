@@ -75,15 +75,16 @@
                       
                         
                         @Empty
-                        <div class="container row" >
+                      
+                        <div class="container " >
                        
-                       <div class="card   white  mb-4 px-4 " >
-                           <h6 class="h6-responsive font-weight-bold ml-4 mt-4">Aún no disponemos de una oferta académica disponible para maestrías</h6>
-                           <div class="d-flex align-items-center justify-content-center text-center " style="height:300px">
-                               <h6 class="h6-responsive ">Lamentablemente no hemos encontrado un Oferta académica con tus criterios de búsqueda, pero puedes seguir intentando buscar alguno.<strong> </strong></h6>                        
-                           </div>
-                       </div>
-                   </div>
+                            <div class="card   white  mb-4 px-4 mx-4" >
+                                <div class="d-flex align-items-center justify-content-center  row" style="height:300px">
+                                        <img src="{{route("cursos.index")}}/img/no_result.png" height="100"/>
+                                        <span class=" text-center col-12">Lamentablemente no disponemos de una oferta académica de maestrías</span>                        
+                                </div>
+                            </div>
+                        </div>
  
                         
                         @endforelse

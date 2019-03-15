@@ -93,12 +93,12 @@
                     </div>
                         @Empty
                        
-                        <div class="container row" >
+                        <div class="container " >
                        
-                        <div class="card   white  mb-4 px-4 mx-4" >
-                           <h6 class="h6-responsive font-weight-bold mt-4">No tenemos una oferta académica disponible para {{$search_value}}</h6>
-                             <div class="d-flex align-items-center justify-content-center text-center " style="height:300px">
-                                    <h6 class="h6-responsive ">Lamentablemente no hemos encontrado un Oferta académica con tus criterios de búsqueda, pero puedes seguir buscando lo que deseas estudiar.<strong> </strong></h6>                        
+                            <div class="card   white  mb-4 px-4 mx-4" >
+                                <div class="d-flex align-items-center justify-content-center  row" style="height:300px">
+                                        <img src="{{route("cursos.index")}}/img/no_result.png" height="100"/>
+                                        <span class=" text-center col-12">Lamentablemente no hemos encontrado un oferta académica para <strong>{{$search_value}}</strong>, prueba intentar con otras palabras.</span>                        
                                 </div>
                             </div>
                         </div>
