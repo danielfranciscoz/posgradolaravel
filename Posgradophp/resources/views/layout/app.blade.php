@@ -285,6 +285,7 @@ UNI-DEPEC</title>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mdb.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.expander.min.js') }}"></script>
   
    <!-- Modals -->
    @include('layout.ModalLogin')

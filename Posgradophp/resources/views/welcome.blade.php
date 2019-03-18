@@ -108,13 +108,16 @@
             @for ($i = 0; $i < count($categories); $i++)
            
                     @if($categories[$i]->isCursoPosgrado == 1)
-                       <div class="col-md-3 col-sm-12 mb-4 " style="max-height:350px;height: 75% !important;" >
+                       <div class="col-md-3 col-sm-12 mb-5 mt-5" style="max-height:350px;height: 75% !important;" >
                            <div class="card h-100 wow fadeIn"  >
                            <img class="card-img-top h-50 d-block d-sm-none px-4" style="width:100%" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">                               
                                <img class="card-img-top h-50 d-none d-md-block"  src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px "  >{{$categories[$i]['Categoria']}}</h5>
-                                   <p class="card-text mb-5 " style="height: 8% !important; font-size:0.75rem;">{{$categories[$i]['Descripcion']}}</p>
+                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px;font-size:1rem; "  >{{$categories[$i]['Categoria']}}</h5>
+                                   <div class="expandable card-text mb-5" style="height: 8% !important; font-size:0.75rem;min-height:30px;">
+                                        <p>{{$categories[$i]['Descripcion']}}</p>
+                                   </div>
+                                   
                                    <a class="card-text float-right  font-weight-bold " href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>                                
                                    <!-- <a class="btn blue darken-3 btn-sm float-right text-white">Conoce más</a> -->
                                </div>
@@ -128,7 +131,7 @@
 
             
 
-             <h2 class="h2-responsive mt-4 text-black-50"> Posgrados </h2>
+             <h2 class="h2-responsive mt-5 text-black-50"> Posgrados </h2>
                
                <hr class=" mb-4">
             <!--Grid row-->
@@ -137,12 +140,14 @@
             @for ($i = 0; $i < count($categories); $i++)
            
                     @if($categories[$i]->isCursoPosgrado == 0)
-                       <div class="col-md-3 col-sm-12 mb-4 " style="max-height:350px; height: 75% !important;" >
+                       <div class="col-md-3 col-sm-12 mb-5 mt-2" style="max-height:350px; height: 75% !important;" >
                            <div class="card h-100 wow fadeIn" >
                                <img class="card-img-top h-50" style="max-height:175px" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px" >{{$categories[$i]['Categoria']}}</h5>
-                                   <p class="card-text mb-5 text-justify" style="height: 8% !important; font-size:0.75rem;">{{$categories[$i]['Descripcion']}}</p>
+                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px;font-size:1rem;" >{{$categories[$i]['Categoria']}}</h5>
+                                   <div class="expandable card-text mb-5" style="height: 8% !important; font-size:0.75rem;min-height:30px;">
+                                        <p>{{$categories[$i]['Descripcion']}}</p>
+                                   </div>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.categorias',$categories[$i]['Categoria'])}}" >VER MAS</a>
     
                                </div>
@@ -184,12 +189,15 @@
                
             @for ($i = 0; $i < count($courses); $i++)
                              
-                         <div class="col-md-3 col-sm-12 mb-4"  style="max-height:350px;height: 75% !important;" >
+                         <div class="col-md-3 col-sm-12 mb-5 mt-2"  style="max-height:350px;height: 75% !important;" >
                            <div class="card h-100 wow fadeIn" >
                                <img class="card-img-top h-50" style="max-height:175px" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
                                <div class="card-body">
-                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px;"  >{{$courses[$i]->NombreCurso}}</h5>
-                                   <p class="card-text mb-5 "  style="height: 8% !important;font-size:0.75rem;">{{$courses[$i]->Desc_Publicidad}}</p>
+                                   <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px;font-size:1rem;"  >{{$courses[$i]->NombreCurso}}</h5>
+                     
+                                   <div class="expandable card-text mb-5" style="height: 8% !important; font-size:0.75rem;min-height:30px;">
+                                        <p>{{$courses[$i]->Desc_Publicidad}}</p>
+                                   </div>
                                    <a class="card-text float-right font-weight-bold" href="{{route('cursos.cursodetalle')}}/{{$courses[$i]->NombreCurso}}" >VER MAS</a>
                                   
 
@@ -553,6 +561,13 @@
             $('body,html').animate({
                 scrollTop: 0                       // Scroll to top of body
             }, 500);
+        });
+
+        $('div.expandable p').expander({
+            slicePoint: 70, // si eliminamos por defecto es 100 caracteres
+            expandText: '', // por defecto es 'read more...'
+            collapseTimer: 5000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
+            userCollapseText: '[Ocultar]' // por defecto es 'read less...'
         });
 
                     </script>
