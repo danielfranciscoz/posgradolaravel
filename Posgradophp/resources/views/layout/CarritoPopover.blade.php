@@ -6,11 +6,13 @@
                 @php
                                 $totalcarrito = 0;
                 @endphp
-                @for($i=0;$i<count(Session::get('cartItems'));$i++)
-                        @php 
-                                $totalcarrito = $totalcarrito+ Session::get('cartItems')[$i]['Precio'];
-                        @endphp
-                @endfor
+                @if(is_array(Session::get('cartItems')))
+                        @for($i=0;$i<count(Session::get('cartItems'));$i++)
+                                @php 
+                                        $totalcarrito = $totalcarrito+ Session::get('cartItems')[$i]['Precio'];
+                                @endphp
+                        @endfor
+                @endif
                 contentcarritosm = [contentcarritosm,'<p class="font-weight-bold col-12"> Total $ {{number_format($totalcarrito, 2)  }}   </p>', ].join('');
                 contentcarritosm = [contentcarritosm,'<a class="text-center col-12" href="{{route('carrito')}}">Ver Carrito</a></div>', ].join('');
                 
@@ -19,11 +21,13 @@
                 @php
                                 $totalcarrito = 0;
                 @endphp
-                @for($i=0;$i<count(Session::get('cartItems'));$i++)
-                        @php 
-                                $totalcarrito = $totalcarrito+ Session::get('cartItems')[$i]['Precio'];
-                        @endphp
-                @endfor
+                @if(is_array(Session::get('cartItems')))
+                        @for($i=0;$i<count(Session::get('cartItems'));$i++)
+                                @php 
+                                        $totalcarrito = $totalcarrito+ Session::get('cartItems')[$i]['Precio'];
+                                @endphp
+                        @endfor
+                @endif
                 contentcarritomd = [contentcarritomd,'<p class="font-weight-bold col-12"> Total $ {{number_format($totalcarrito, 2) }}   </p>', ].join('');
                 contentcarritomd = [contentcarritomd,'<a class="text-center col-12" href="{{route('carrito')}}">Ver Carrito</a></div>', ].join('');
                 

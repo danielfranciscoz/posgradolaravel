@@ -5,12 +5,14 @@
    $colors = Array("primary","secondary","success","danger","warning","info","green","light","dark","morado","cyan");
 @endphp
 
-@php $totalcarrito=0
-             @endphp
-            @for($i=0;$i<count(Session::get('cartItems'));$i++)
-                @php $totalcarrito=$totalcarrito + Session::get('cartItems')[$i]['Precio']; 
+@php $totalcarrito=0 @endphp
+     @if(is_array(Session::get('cartItems')))
+        @for($i=0;$i<count(Session::get('cartItems'));$i++)
+                 @php
+                     $totalcarrito=$totalcarrito + Session::get('cartItems')[$i]['Precio']; 
                 @endphp
-@endfor
+        @endfor
+    @endif
 <main class="">
     <div class="container" >
     
@@ -47,6 +49,24 @@
                             <option value="2">Precio Descedente</option>
                             <option value="3">Precio Ascendente</option>            
                         </select>             
+                </div>
+                <div class="col-md-12 col-sm-12  d-flex justify-content-start  align-items-center  mb-4 row">
+
+                    <div class="custom-control custom-checkbox mx-2">
+                                <input type="checkbox" class="custom-control-input" id="presencial">
+                                <label class="custom-control-label" for="presencial">Presencial</label>
+                                
+                    </div>
+                    <div class="custom-control custom-checkbox mx-2">
+                                <input type="checkbox" class="custom-control-input" id="semipresencial">
+                                <label class="custom-control-label" for="semipresencial">Semi-presencial</label>
+                                
+                    </div>
+                    <div class="custom-control custom-checkbox mx-2">
+                                <input type="checkbox" class="custom-control-input" id="virtual">
+                                <label class="custom-control-label" for="virtual">Virtual</label>
+                                
+                    </div>
                 </div>
                 @endif
                         @forelse($cursos as $curso)                        
@@ -217,6 +237,75 @@ if($seg == null){
 
 @endphp
   
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null) {
+       return null;
+    }
+    return decodeURI(results[1]) || 0;
+}
+
+var virtual;
+var semipresencial;
+var presencial;
+
+
+        if($.urlParam('v')!= 1 && $.urlParam('v')!= 0){
+        virtual = 1;   
+    }else{
+        virtual = parseInt($.urlParam('v'));
+    }
+
+    if($.urlParam('s')!= 1 && $.urlParam('s')!= 0){
+        semipresencial= 1
+    }else{
+        semipresencial = parseInt($.urlParam('s'));
+    }
+
+    if($.urlParam('p')!= 1 && $.urlParam('p')!= 0){
+        presencial = 1
+    }else{
+        presencial = parseInt($.urlParam('p'));
+    }
+    $("#presencial").prop("checked", presencial); 
+    $("#semipresencial").prop("checked", semipresencial);
+    $("#virtual").prop("checked", virtual);
+
+
+    function changemodalidad(){
+    
+
+    if ($('#presencial').is(":checked"))
+    {
+      presencial = 1
+    }else{
+        presencial = 0
+    }
+    if ($('#semipresencial').is(":checked"))
+    {
+        semipresencial = 1
+    }else{
+        semipresencial = 0
+    }
+    if ($('#virtual').is(":checked"))
+    {
+        virtual = 1
+    }else{
+        virtual = 0
+    }
+    orden({{$cursos->currentPage()}});
+    
+}
+
+    $('#virtual').change(function() {
+        changemodalidad();
+    });
+    $('#semipresencial').change(function() {
+        changemodalidad();
+    });
+    $('#presencial').change(function() {
+        changemodalidad();
+    });
 
  $( "#sorden" ).change(function() {
         orden({{$cursos->currentPage()}});
@@ -227,13 +316,13 @@ if($seg == null){
         id = parseInt($("#sorden").val());
         switch(id) {
             case 1:
-                window.location.href ="{{route('cursos.categoriadetalle')}}/{{$categoria->Categoria}}?page="+page;
+                window.location.href ="{{route('cursos.categoriadetalle')}}/{{$categoria->Categoria}}?page="+page+"&p="+presencial+"&s="+semipresencial+"&v="+virtual;
             break;
             case 2:
-                window.location.href ="{{route('cursos.categoriadetalle')}}/{{$categoria->Categoria}}/precio_desc?page="+page;
+                window.location.href ="{{route('cursos.categoriadetalle')}}/{{$categoria->Categoria}}/precio_desc?page="+page+"&p="+presencial+"&s="+semipresencial+"&v="+virtual;
             break;
             case 3:
-                window.location.href ="{{route('cursos.categoriadetalle')}}/{{$categoria->Categoria}}/precio_asc?page="+page;
+                window.location.href ="{{route('cursos.categoriadetalle')}}/{{$categoria->Categoria}}/precio_asc?page="+page+"&p="+presencial+"&s="+semipresencial+"&v="+virtual;
             break;
 
         }

@@ -1,11 +1,15 @@
 @extends('layout.app')
 @section('title', 'Pagando estudios...')
 @section('content')
+
 @php $totalcarrito=0;
+      if(is_array(Session::get('cartItems'))){
             for($i=0;$i<count(Session::get('cartItems'));$i++)
             {
                     $totalcarrito = $totalcarrito + (Session::get('cartItems')[$i]['Precio']);
             }
+      }
+        
             
 @endphp
 <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -102,7 +106,8 @@
         <div class="card  white sticky-top" >
         <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Detalle de Pago</h5>
                     <div class="row mt-4 mx-2">
-                            @for($i=0;$i<count(Session::get('cartItems'));$i++)
+                    @if(is_array(Session::get('cartItems')))
+                            @for($i=0;$i<n::get('cartItems'));$i++)
                                 <div class="col-8">
                                 {{Session::get('cartItems')[$i]['curso']}}
                                 </div>
@@ -110,6 +115,7 @@
                                  $ {{ number_format(Session::get('cartItems')[$i]['Precio'] , 2)}}
                                 </div>
                             @endfor
+                    @endif
                     </div>
                     <hr >
 

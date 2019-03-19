@@ -17,7 +17,8 @@
             <div class="" id="carrusel_Id">
                 <!--Mask-->
                 <div class="view">
-                  <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100"/>
+                  <img src="{{URL::asset('img/br.jpg')}}" class="w-100 h-100 d-block d-sm-none"/>
+               
                   <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
                         <div class="col-lg-4 col-md-12">
 
@@ -55,7 +56,7 @@
             <div class="" id="carrusel_Id">
                 <!--Mask-->
                 <div class="view">
-                  <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100"/>
+                <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100 d-none d-md-block"/>
                   <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
                         <div class="col-lg-4 col-md-12">
 

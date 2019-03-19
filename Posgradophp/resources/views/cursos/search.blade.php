@@ -8,12 +8,16 @@
 @section('content')
 <main >
 
-            @php $totalcarrito=0
-             @endphp
-            @for($i=0;$i<count(Session::get('cartItems'));$i++)
-                @php $totalcarrito=$totalcarrito + Session::get('cartItems')[$i]['Precio']; 
-                @endphp
-            @endfor
+ @php 
+    $totalcarrito=0
+ @endphp
+ @if(is_array(Session::get('cartItems')))
+     @for($i=0;$i<count(Session::get('cartItems'));$i++)
+         @php 
+            $totalcarrito=$totalcarrito + Session::get('cartItems')[$i]['Precio']; 
+         @endphp
+     @endfor
+@endif
     <div class="container" >
     <section class="mt-5 wow fadeIn">
             <!--Grid row-->
@@ -30,14 +34,37 @@
                     @else
                         <h5 class="col-md-6 col-sm-12 mt-4 font-weight-bold">{{$search_value}}: {{$cursos->total()}} elemento encontrado <strong> </strong></h5>
                     @endif
-                <div class="col-md-6 col-sm-12 d-flex justify-content-end  align-items-center font-weight-bold">
-                        <label>Ordenar por: </label>&nbsp
-                        <select class="mdb-select md-form colorful-select dropdown-primary" id="sorden">
-                            <option value="1">Más reciente</option>
-                            <option value="2">Precio Descendente</option>
-                            <option value="3">Precio Ascendente</option>            
-                        </select>             
+                            
+               
+                    <div class="col-md-6 col-sm-12 d-flex justify-content-end  align-items-center font-weight-bold">
+                    
+                          
+                            <label class="mx-2 mt-1 ">Orden: </label>&nbsp
+                            <select class="mdb-select md-form colorful-select dropdown-primary px-2" id="sorden">
+                                <option value="1">Más reciente</option>
+                                <option value="2">Precio Descendente</option>
+                                <option value="3">Precio Ascendente</option>            
+                                
+                            </select>             
+                    </div>
+                    <div class="col-md-12 col-sm-12  d-flex justify-content-start  align-items-center  mb-4 row">
+
+                        <div class="custom-control custom-checkbox mx-2">
+                                    <input type="checkbox" class="custom-control-input" id="presencial">
+                                    <label class="custom-control-label" for="presencial">Presencial</label>
+                                    
                         </div>
+                        <div class="custom-control custom-checkbox mx-2">
+                                    <input type="checkbox" class="custom-control-input" id="semipresencial">
+                                    <label class="custom-control-label" for="semipresencial">Semi-presencial</label>
+                                    
+                        </div>
+                        <div class="custom-control custom-checkbox mx-2">
+                                    <input type="checkbox" class="custom-control-input" id="virtual">
+                                    <label class="custom-control-label" for="virtual">Virtual</label>
+                                    
+                        </div>
+                    </div>
                 @endif
                         @forelse($cursos as $curso)                        
                             
@@ -54,34 +81,57 @@
                                         <p style="margin-bottom:0" class="mt-2"> 
                                         <p class="float-right " onclick='addcart({{$curso->curso->id}})' style="cursor: pointer;" ><i class="fa  fa-cart-plus  fa-2x" aria-hidden="true"></i></p> 
                                             <p class="h4-responsive font-weight-bold"  onclick='curso("{{$curso->curso->NombreCurso}}");' style="cursor: pointer; margin-bottom:0;"> {{$curso->curso->NombreCurso}}</p>
+                                                 @if($curso->curso->isPresencial)
+                                                    <span class=" float-left badge badge-pill blue darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                        Presencial
+                                                        </span>      
+                                                    @endif
+                                                    @if($curso->curso->isSemiPresencial)
+                                                    <span class=" float-left badge badge-pill blue darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                        Semi-presencial
+                                                        </span>      
+                                                    @endif
+                                                    
+                                                    @if($curso->curso->isVirtual)
+                                                    <span class=" float-left badge badge-pill blue lighten-1 white-text px-2 pt-1 pb-1 " style="font-size:0.7rem;" > 
+                                                        Virtual
+                                                        </span>      
+                                                    @endif
+                                             
+                                                    &nbsp
                                             
-                                            <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$curso->curso->HorasClase}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
-                                Certificación &nbsp <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>
-                                Recursos Descargables</p> 
+                                            <p class="h6-responsive " style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$curso->curso->HorasClase}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
+                                            Certificación &nbsp <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>
+                                            Recursos Descargables
+                                            </p> 
                                         </p>
+                                       
+                                                   
+                                               
                                           
                                         <p><span>{{$curso->curso->Desc_Publicidad}}</p>
                                         <hr>
                                         
                                         @if($curso->curso->categoria==null)
-                                            <span class=" float-left purple darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                            <span class=" float-left badge badge-pill  purple darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
                                             Maestría
                                             </span> 
                                         @elseif($curso->curso->categoria->isCursoPosgrado==1)
-                                            <span class=" float-left red darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                            <span class=" float-left badge badge-pill red darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
                                                 Curso Especializado
                                             </span> 
-                                            <span class=" float-left red darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                            <span class=" float-left badge badge-pill red darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
                                                 {{$curso->curso->categoria->Categoria}}
                                             </span> 
                                         @elseif($curso->curso->categoria->isCursoPosgrado==0)
-                                            <span class=" float-left blue darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" >                                        
+                                            <span class=" float-left badge badge-pill blue darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" >                                        
                                                 Posgrado
                                             </span>    
-                                            <span class=" float-left blue darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                            <span class=" float-left badge badge-pill blue darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
                                                 {{$curso->curso->categoria->Categoria}}
                                             </span>                                      
-                                        @endif                                      
+                                        @endif         
+                                                           
                                             <span class="font-weight-bold float-right"  style="color:#b71c1c "> 
                                                 $ {{number_format($curso->Precio, 2)}}
                                             </span> 
@@ -160,7 +210,7 @@
                                 <label class="col-12  mt-2  mb-2 font-weight-bold">Búsquedas relacionadas</label>
                                 @for($i=0;$i<count($etiquetas);$i++)
 
-                                <h5 class="mx-1" onclick="searchetiqueta('{{$etiquetas[$i]->Etiqueta}}')" style="cursor: hand; "><span class="badge badge-{{$colors[array_rand($colors)]}}" style="font-weight:normal;">{{$etiquetas[$i]->Etiqueta}}</span></h5>
+                                <h5 class="mx-1" onclick="searchetiqueta('{{$etiquetas[$i]->Etiqueta}}')" style="cursor: hand; "><span class="badge  badge-pill badge-{{$colors[array_rand($colors)]}}" style="font-weight:normal;">{{$etiquetas[$i]->Etiqueta}}</span></h5>
                                 @endfor
                             
                          </div>
@@ -209,18 +259,55 @@
 
 $seg = Request::segment(5);
 
-if($seg == null){
-    echo '$("#sorden").val("1");';
-}else{    
-    if($seg == "precio_desc"){
-        echo '$("#sorden").val("2");';
+    if($seg == null){
+        echo '$("#sorden").val("1");';
+    }else{    
+        if($seg == "precio_desc"){
+            echo '$("#sorden").val("2");';
+        }
+        if($seg == "precio_asc"){
+            echo '$("#sorden").val("3");';
+        }
+    
     }
-    if($seg == "precio_asc"){
-        echo '$("#sorden").val("3");';
+@endphp
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null) {
+       return null;
     }
+    return decodeURI(results[1]) || 0;
 }
 
-@endphp
+var virtual;
+var semipresencial;
+var presencial;
+
+
+        if($.urlParam('v')!= 1 && $.urlParam('v')!= 0){
+        virtual = 1;   
+    }else{
+        virtual = parseInt($.urlParam('v'));
+    }
+
+    if($.urlParam('s')!= 1 && $.urlParam('s')!= 0){
+        semipresencial= 1
+    }else{
+        semipresencial = parseInt($.urlParam('s'));
+    }
+
+    if($.urlParam('p')!= 1 && $.urlParam('p')!= 0){
+        presencial = 1
+    }else{
+        presencial = parseInt($.urlParam('p'));
+    }
+    $("#presencial").prop("checked", presencial); 
+    $("#semipresencial").prop("checked", semipresencial);
+    $("#virtual").prop("checked", virtual);
+
+
+
+
   
 
  $( "#sorden" ).change(function() {
@@ -232,18 +319,54 @@ if($seg == null){
         id = parseInt($("#sorden").val());
         switch(id) {
             case 1:
-                window.location.href ="{{route('cursos.cursodetalle')}}/find/{{$search_value}}?page="+page;
+                window.location.href ="{{route('cursos.cursodetalle')}}/find/{{$search_value}}?page="+page+"&p="+presencial+"&s="+semipresencial+"&v="+virtual;
             break;
             case 2:
-                window.location.href ="{{route('cursos.cursodetalle')}}/find/{{$search_value}}/precio_desc?page="+page;
+                window.location.href ="{{route('cursos.cursodetalle')}}/find/{{$search_value}}/precio_desc?page="+page+"&p="+presencial+"&s="+semipresencial+"&v="+virtual;
             break;
             case 3:
-                window.location.href ="{{route('cursos.cursodetalle')}}/find/{{$search_value}}/precio_asc?page="+page;
+                window.location.href ="{{route('cursos.cursodetalle')}}/find/{{$search_value}}/precio_asc?page="+page+"&p="+presencial+"&s="+semipresencial+"&v="+virtual;
             break;
 
         }
         
     }
+
+function changemodalidad(){
+    
+
+    if ($('#presencial').is(":checked"))
+    {
+      presencial = 1
+    }else{
+        presencial = 0
+    }
+    if ($('#semipresencial').is(":checked"))
+    {
+        semipresencial = 1
+    }else{
+        semipresencial = 0
+    }
+    if ($('#virtual').is(":checked"))
+    {
+        virtual = 1
+    }else{
+        virtual = 0
+    }
+    orden({{$cursos->currentPage()}});
+    
+}
+
+    $('#virtual').change(function() {
+        changemodalidad();
+    });
+    $('#semipresencial').change(function() {
+        changemodalidad();
+    });
+    $('#presencial').change(function() {
+        changemodalidad();
+    });
+        
  function curso(page)
  {
      window.location.href = "{{route('cursos.cursodetalle')}}/"+page;
@@ -276,6 +399,8 @@ if($seg == null){
      });
 
  }
+
+ 
 
 </script>
 @endsection

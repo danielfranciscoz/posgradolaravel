@@ -4,18 +4,22 @@
 @php
     $banner;
     $tipo;
+    $color_badge;
    
     if($curso->categoria==null){
             $banner = "banner-maestria";
             $tipo = "Maestría";
+            $color_badge = "purple";
     }else{
         if($curso->categoria->isCursoPosgrado==1){
             $banner = "banner-curso";
             $tipo = "Curso de Especialización";
+            $color_badge = "red";
         }
         if($curso->categoria->isCursoPosgrado==0){
             $banner = "banner-posgrado";
             $tipo = "Posgrado";
+            $color_badge = "blue";
         }
     }
 
@@ -24,12 +28,62 @@
 
 <main class="">
 
-<div class=" {{$banner}} " >
+<div class=" {{$banner}}" >
+<div class=" d-block d-sm-none">
+    <div class="d-flex align-items-center justify-content-center flex-column mx-4" style="min-height:425px;background: url('{{route('cursos.index')}}/img/Papel tapiz/t.svg');">
+            <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" />
+            
+            <h1 class="h1-responsive text-white text-left font-weight-bold mx-4 mt-4">{{$curso->NombreCurso}} </h1>
+                                            <div class="row mx-4">
+                                                    @if($curso->isPresencial)
+                                                    <span class=" float-left badge badge-pill {{$color_badge}} darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                        Presencial
+                                                        </span>      
+                                                    @endif
+                                                    @if($curso->isSemiPresencial)
+                                                    <span class=" float-left badge badge-pill {{$color_badge}} darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                        Semi-presencial
+                                                        </span>      
+                                                    @endif
+                                                    
+                                                    @if($curso->isVirtual)
+                                                    <span class=" float-left badge badge-pill {{$color_badge}} lighten-1 white-text px-2 pt-1 pb-1 " style="font-size:0.7rem;" > 
+                                                        Virtual
+                                                        </span>      
+                                                    @endif
+                                            </div>
+            <p class="text-white text-justify mx-4 mt-2">{{$curso->Desc_Publicidad}} </p>
 
-    <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:325px;background: url('{{route('cursos.index')}}/img/Papel tapiz/t.svg');">
-            <h1 class="h1-responsive text-white text-center font-weight-bold mx-4">{{$curso->NombreCurso}} </h1>
-            <p class="text-white text-justify mx-4">{{$curso->Desc_Publicidad}} </p>
+                                                   
     </div>
+ </div>
+ <div class="d-none d-md-block">
+   <div class="d-flex align-items-start justify-content-center flex-column mx-4  " style="min-height:325px;background: url('{{route('cursos.index')}}/img/Papel tapiz/t.svg');">
+            <h1 class="h1-responsive text-white text-left font-weight-bold mx-4">{{$curso->NombreCurso}} </h1>
+                                            <div class="row mx-4">
+                                                    @if($curso->isPresencial)
+                                                    <span class=" float-left badge badge-pill {{$color_badge}} darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                        Presencial
+                                                        </span>      
+                                                    @endif
+                                                    @if($curso->isSemiPresencial)
+                                                    <span class=" float-left badge badge-pill {{$color_badge}} darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                        Semi-presencial
+                                                        </span>      
+                                                    @endif
+                                                    
+                                                    @if($curso->isVirtual)
+                                                    <span class=" float-left badge badge-pill {{$color_badge}} lighten-1 white-text px-2 pt-1 pb-1 " style="font-size:0.7rem;" > 
+                                                        Virtual
+                                                        </span>      
+                                                    @endif
+                                            </div>
+            <p class="text-white text-justify mx-4 mt-2">{{$curso->Desc_Publicidad}} </p>
+
+                                                   
+    </div>
+</div>
+
 </div>
 
 <h5 class="">  </strong></h5>
@@ -163,8 +217,11 @@
                 
                 </div>
                
-                <div class="col-md-4  container mb-4  ">
-                    <div class="card pt-2 white sticky-top">
+                <div class="col-md-4 col-sm-12  container mb-4  ">
+                    <div class="card">
+                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="margin-top:-75%" class="d-none d-md-block "/>
+                     </div>
+                    <div class="card pt-2 white sticky-top" style="">
                         <div class="card-body  px-4 pt-2">
                             <span><strong  style="font-size:2em">$ {{ number_format($precio->Precio, 2)}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
                             <!-- <span class="grey-text"></br> 95 % de descuento</span>
@@ -173,25 +230,26 @@
                             <div class="alert alert-danger col-12" role="alert" id="alertaddcarrito">                            
                             </div>
                             <span class="black-text font-weight-bold"></br> Incluye</span>
-                            <span class=""></br> 
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            
+                            <span class="row "></br>                           
+                            <i class="fa fa-clock-o col-2" aria-hidden="true"></i>
                            
                                 {{$curso->horas_clase}} horas de Estudio
                             </span>
-                            <span class=""></br> 
-                                <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>
+                            <span class="row"></br> 
+                                <i class="fa fa-file-text-o grey-text  col-2" aria-hidden="true"></i>
                                 Recursos Descargables
                             </span>
-                            <span class=""></br> 
-                                <i class="fa fa-hand-o-right grey-text" aria-hidden="true"></i>
+                            <span class="row"></br> 
+                                <i class="fa fa-hand-o-right grey-text  col-2" aria-hidden="true"></i>
                                  Acceso de por vida
                             </span>
-                            <span class=""></br> 
-                                <i class="fa fa-mobile-phone grey-text" aria-hidden="true"></i>
+                            <span class="row"></br> 
+                                <i class="fa fa-mobile-phone grey-text  col-2" aria-hidden="true"></i>
                                 Acceso en dispositivos móviles y TV
                             </span>
-                            <span class=" "></br> 
-                                <i class="fa fa-certificate grey-text" aria-hidden="true"></i>
+                            <span class=" row"></br> 
+                                <i class="fa fa-certificate grey-text  col-2" aria-hidden="true"></i>
                                 Certificado
                                 </br>
                             </span>

@@ -38,6 +38,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-12">
             @php $totalcarrito=0 @endphp
+            @if(is_array(Session::get('cartItems')))
              @for($i=0;$i< count(Session::get('cartItems')) ;$i++)
             @php $totalcarrito=$totalcarrito + Session::get('cartItems')[$i]['Precio']; @endphp
             <div class="card white mb-4 mt-2">
@@ -65,6 +66,7 @@
                      </div>
             
             @endfor
+            @endif
             </div>
             
                 @guest

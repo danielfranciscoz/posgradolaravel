@@ -2,7 +2,8 @@
 @section('title', 'Registro nuevo usuario')
 @section('content')
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<main class="grey lighten-4 registrer-img" >
+<main class="grey lighten-4 registrer-img"  >
+
     <div class="container wow fadein" >
          <div class="row ">
             <div class="col-md-6 col-sm-12  d-none d-md-block ">
@@ -112,6 +113,42 @@
          </div>
     </div>
 </main>
+
+<style>
+@media (max-width:576px) {          
+        
+          .registrer-img {
+              background-image: url('{{route("cursos.index")}}/img/register_backgroundr.jpg');
+          }
+          .registrer-img {
+              align-items: center;
+            
+              padding: 0;
+          }
+      
+      }
+      
+     
+      
+      @media (min-width: 768px){
+          
+          .registrer-img {
+              margin-bottom: 0;
+         
+          background-image: url('{{route("cursos.index")}}/img/register_background.jpg');
+        }
+      }
+      .registrer-img {
+          display: flex;
+          align-items: flex-end;
+          background-position: top;
+          background-repeat: no-repeat;
+          background-size: cover;
+         
+      
+      }
+
+</style>
 @endsection
 
 
