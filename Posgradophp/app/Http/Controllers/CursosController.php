@@ -80,8 +80,16 @@ class CursosController extends Controller
         ->with(compact('etiquetas'));
     }
 
-    public function search($search_value, $orden=null)
+    public function search($search_value, $orden=null, Request $request)
     {
+        $p=$request->input('p');
+        $s=$request->input('s');
+        $v=$request->input('v');
+        
+        $p = $p==null?true:false;
+        $s = $s==null?true:false;
+        $v = $v==null?true:false;
+        
         $sort=['created_at','DESC'];
         if ($orden != null) {
             switch ($orden) {
@@ -117,10 +125,20 @@ class CursosController extends Controller
        
         $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($etiquetas) {
             $sql->WhereIn('etiqueta_id', $etiquetas->pluck('id'));
-        })
-        ->orWhereIn('id', $curso_name->pluck('id'))
-        ->pluck('id')->toArray();
-       
+        })->orWhereIn('id', $curso_name->pluck('id'));
+
+        if ($p) {
+            $cursos = $cursos->where('isPresencial', true);
+        }
+        if ($s) {
+            $cursos = $cursos->where('isSemiPresencial', true);
+        }
+        if ($v) {
+            $cursos = $cursos->where('isVirtual', true)  ;
+        }
+
+        $cursos = $cursos ->pluck('id')->toArray();
+        
         // if (Count($etiquetas)==0 && Count($cursos)>0) {
         $etiquetas=Etiqueta::with('cursos')->wherehas('cursos', function ($sql) use ($cursos) {
             $sql->WhereIn('curso_id', $cursos);
@@ -133,7 +151,7 @@ class CursosController extends Controller
             ->orderBy($sort[0], $sort[1]);
         
         $c = $c->paginate(5);
-        
+        // dd($c);
         return view("cursos.search")
         ->with('search_value', $search_value)
         ->with('cursos', $c)
@@ -180,20 +198,21 @@ class CursosController extends Controller
 
     public function curso($curso_name)
     {
-            $precio = Cursoprecio::where('deleted_at', '=', null)
+        $precio = Cursoprecio::where('deleted_at', '=', null)
             ->wherehas('curso', function ($sql) use ($curso_name) {
                 $sql ->where('NombreCurso', 'like', $curso_name);
             })->firstorfail();
             
-            $curso =  $precio->curso()
+        $curso =  $precio->curso()
             ->first();
             
-            return view("cursos.curso")
+        return view("cursos.curso")
             ->with(compact('curso'))
-            ->with(compact('precio'));     
+            ->with(compact('precio'));
     }
 
-    public function notfound(){
+    public function notfound()
+    {
         //Este metodo es creado debido a que se necesita la ruta limpia del controlador para hacer el ruteo desde otras partes de la aplicacion
         //cuando algun usuario intente acceder a esta url se enviara el error
         abort(404, 'El contenido de este sitio no se encuentra disponible.');
@@ -221,7 +240,7 @@ class CursosController extends Controller
 
         $v = Curso::leftJoin('cursoprecios', 'cursos.id', '=', 'cursoprecios.curso_id')
         ->leftJoin('categorias', 'categorias.id', '=', 'cursos.categoria_id')
-        ->select('cursoprecios.id', 'cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad', 'cursos.Desc_Introduccion', 'cursos.InfoAdicional', 'Categorias.Categoria','cursos.isPresencial','cursos.isVirtual','cursos.isSemiPresencial')
+        ->select('cursoprecios.id', 'cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad', 'cursos.Desc_Introduccion', 'cursos.InfoAdicional', 'Categorias.Categoria', 'cursos.isPresencial', 'cursos.isVirtual', 'cursos.isSemiPresencial')
         ->where('cursoprecios.deleted_at', null);
 
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
