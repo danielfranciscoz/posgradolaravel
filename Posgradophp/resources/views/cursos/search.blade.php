@@ -27,7 +27,7 @@
                 <div class="row">
               
                
-                @if($cursos->isNotEmpty())
+         
                     @if($cursos->total() > 1)
                     
                         <h5 class="col-md-6 col-sm-12 mt-4 font-weight-bold">{{$search_value}} {{$cursos->total()}} elementos encontrados <strong> </strong></h5>
@@ -65,7 +65,7 @@
                                     
                         </div>
                     </div>
-                @endif
+             
                         @forelse($cursos as $curso)                        
                             
                         <div class="col-12">
@@ -144,6 +144,7 @@
                         @Empty
                        
                         <div class="container " >
+                        
                        
                             <div class="card   white  mb-4 px-4 mx-4" >
                                 <div class="d-flex align-items-center justify-content-center  row" style="height:300px">

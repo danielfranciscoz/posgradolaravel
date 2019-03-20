@@ -26,7 +26,7 @@
                 <div class="col-md-9 col-sm-12 d-flex align-items-center font-weight-bold  ">
                 <div class="row">
             
-                @if($cursos->isNotEmpty())
+           
                 <div class="col-md-6 col-sm-12 mt-4">
                     <h6 class="h6-responsive font-weight-bold">Disponemos de {{$cursos->total()}}  
                                         Maestría(s) para ti.
@@ -59,7 +59,7 @@
                                 
                     </div>
                 </div>
-                @endif
+               
                         @forelse($cursos as $curso)                        
                  <div class="col-12 ">
                         <!-- Card content -->

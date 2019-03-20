@@ -229,3 +229,40 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
 
    
 }
+
+.btn-outline-maestria {
+    border: 2px solid #4a148c  !important;
+    background-color: transparent !important;
+    color: #4a148c   !important; 
+  }
+
+  .btn-outline-maestria {
+    border: 2px solid #4a148c  !important;
+    background-color: transparent !important;
+    color: #4a148c   !important; 
+  }
+
+  .btn-maestria {
+    background-color: #4a148c !important;
+    color: #fff !important; }
+    .btn-primary:hover {
+      background-color: #ab47bc ; }
+    .btn-primary:focus, .btn-primary.focus {
+      -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); }
+    .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+      background-color: #4a148c; }
+    .btn-primary.dropdown-toggle {
+      background-color: #ab47bc  !important; }
+      .btn-primary.dropdown-toggle:hover, .btn-primary.dropdown-toggle:focus {
+        background-color: #ab47bc  !important; }
+    .btn-primary:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active,
+    .show > .btn-primary.dropdown-toggle {
+      -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+      background-color: #4a148c !important; }
+    .btn-primary:not([disabled]):not(.disabled):active:focus, .btn-primary:not([disabled]):not(.disabled).active:focus,
+    .show > .btn-primary.dropdown-toggle:focus {
+      -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); }
+  

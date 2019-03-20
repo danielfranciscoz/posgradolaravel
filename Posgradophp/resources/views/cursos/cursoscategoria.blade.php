@@ -21,16 +21,15 @@
             <div class="row">
                 <!--Grid column-->
                
-                <div class="col-md-9 col-sm-12 d-flex align-items-center font-weight-bold  ">
+                <div class="col-md-9 col-sm-12 d-flex align-items-center  ">
                 <div class="row">
-                <nav aria-label="breadcrumb" class="col-12">
-                    <ol class="breadcrumb ">
-                    <li class="breadcrumb-item"><a class="black-text" href="#">Categoría</a></li>
-                    <li class="breadcrumb-item black-text"><a class="black-text" href="#">{{$categoria->Categoria}}</a></li>
-                    
-                    </ol>
-                </nav>
-                @if($cursos->isNotEmpty())
+                    <div class="col-md-12 col-sm-12">
+                    <span class="font-weight-bold col-1">
+                     {{$categoria->Categoria}}
+                     </span>
+                     {{$categoria->Descripcion_larga}}
+
+                    </div>
                 <div class="col-md-6 col-sm-12 mt-4">
                     <h6 class="h6-responsive font-weight-bold">Disponemos de {{$cursos->total()}}  
                                         @if($categoria->isCursoPosgrado)
@@ -68,7 +67,7 @@
                                 
                     </div>
                 </div>
-                @endif
+          
                         @forelse($cursos as $curso)                        
                  <div class="col-12 ">
                         <!-- Card content -->

@@ -838,9 +838,9 @@ loadtable7();
                 fd.append('Desc_Introduccion',$('#descripcionintroduccion').val());
                 fd.append('InfoAdicional',$('#descripcionadicional').val());
                 fd.append('Precio',$('#precio').val());
-                fd.append('IsPresencial', isp);
-                fd.append('IsSemiPresencial',iss);
-                fd.append('IsVirtual',isv);
+                fd.append('isPresencial', isp);
+                fd.append('isSemiPresencial',iss);
+                fd.append('isVirtual',isv);
 
 
 
@@ -1096,9 +1096,9 @@ loadtable7();
                 fd.append('Temario',files);
                }
 
-               fd.append('IsPresencial', isp);
-                fd.append('IsSemiPresencial',iss);
-                fd.append('IsVirtual',isv);
+               fd.append('isPresencial', isp);
+                fd.append('isSemiPresencial',iss);
+                fd.append('isVirtual',isv);
 
 
                $.ajax({
