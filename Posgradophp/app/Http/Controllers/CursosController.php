@@ -33,8 +33,17 @@ class CursosController extends Controller
             ->with(compact('etiquetasselect'));
     }
   
-    public function categories($categoria, $orden=null)
+    public function categories($categoria, $orden=null,Request $request)
     {
+
+        $p=$request->input('p');
+        $s=$request->input('s');
+        $v=$request->input('v');
+        
+        $p = $p==null?true:$p=='1'?true:false;
+        $s = $s==null?true:$s=='1'?true:false;
+        $v = $v==null?true:$v=='1'?true:false;
+
         $sort=['created_at','DESC'];
         
         if ($orden != null) {
@@ -59,9 +68,28 @@ class CursosController extends Controller
                 'message'=>'La categoría no existe'
             ]);
         }
+
+        $cursos = Curso::where('Categoria_Id', $categoria_id->id);
+
+        $cursosPresenciales=collect();
+        $cursosSemi=collect();
+        $cursosVirtuales=collect();
+
+        if ($p) {
+            $cursosPresenciales = $cursos->where('isPresencial', true)->get();
+        }
+        if ($s) {
+            $cursosSemi = $cursos->where('isSemiPresencial', true)->get();
+        }
+        if ($v) {
+            $cursosVirtuales = $cursos->where('isVirtual', true)->get();
+        }
+
         //  dd($categoria_id);
-        $cursos_id = Curso::where('Categoria_Id', $categoria_id->id)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
+        $cursos_id = $cursosPresenciales->merge($cursosSemi)->merge($cursosVirtuales)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
         
+
+
         $cursos = Cursoprecio::where('deleted_at', '=', null)
         ->whereIn('curso_id', $cursos_id)
         ->orderBy($sort[0], $sort[1]);
@@ -86,9 +114,9 @@ class CursosController extends Controller
         $s=$request->input('s');
         $v=$request->input('v');
         
-        $p = $p==null?true:false;
-        $s = $s==null?true:false;
-        $v = $v==null?true:false;
+        $p = $p==null?true:$p=='1'?true:false;
+        $s = $s==null?true:$s=='1'?true:false;
+        $v = $v==null?true:$v=='1'?true:false;
         
         $sort=['created_at','DESC'];
         if ($orden != null) {
@@ -127,18 +155,23 @@ class CursosController extends Controller
             $sql->WhereIn('etiqueta_id', $etiquetas->pluck('id'));
         })->orWhereIn('id', $curso_name->pluck('id'));
 
+        $cursosPresenciales=collect();
+        $cursosSemi=collect();
+        $cursosVirtuales=collect();
+
         if ($p) {
-            $cursos = $cursos->where('isPresencial', true);
+            $cursosPresenciales = $cursos->where('isPresencial', true)->get();
         }
         if ($s) {
-            $cursos = $cursos->where('isSemiPresencial', true);
+            $cursosSemi = $cursos->where('isSemiPresencial', true)->get();
         }
         if ($v) {
-            $cursos = $cursos->where('isVirtual', true)  ;
+            $cursosVirtuales = $cursos->where('isVirtual', true)->get();
         }
 
-        $cursos = $cursos ->pluck('id')->toArray();
         
+        $cursos = $cursosPresenciales->merge($cursosSemi)->merge($cursosVirtuales)->pluck('id')->toArray();
+      
         // if (Count($etiquetas)==0 && Count($cursos)>0) {
         $etiquetas=Etiqueta::with('cursos')->wherehas('cursos', function ($sql) use ($cursos) {
             $sql->WhereIn('curso_id', $cursos);
@@ -158,8 +191,16 @@ class CursosController extends Controller
         ->with(compact('etiquetas'));
     }
    
-    public function maestrias($orden=null)
+    public function maestrias($orden=null,Request $request)
     {
+        $p=$request->input('p');
+        $s=$request->input('s');
+        $v=$request->input('v');
+        
+        $p = $p==null?true:$p=='1'?true:false;
+        $s = $s==null?true:$s=='1'?true:false;
+        $v = $v==null?true:$v=='1'?true:false;
+
         $sort=['created_at','DESC'];
         
         if ($orden != null) {
@@ -178,8 +219,24 @@ class CursosController extends Controller
             }
         }
               
-        $cursos_id = Curso::where('Categoria_Id', null)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
+        $cursos = Curso::where('Categoria_Id', null);
         
+        $cursosPresenciales=collect();
+        $cursosSemi=collect();
+        $cursosVirtuales=collect();
+
+        if ($p) {
+            $cursosPresenciales = $cursos->where('isPresencial', true)->get();
+        }
+        if ($s) {
+            $cursosSemi = $cursos->where('isSemiPresencial', true)->get();
+        }
+        if ($v) {
+            $cursosVirtuales = $cursos->where('isVirtual', true)->get();
+        }
+
+        $cursos_id = $cursosPresenciales->merge($cursosSemi)->merge($cursosVirtuales)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
+     
         $cursos = Cursoprecio::where('deleted_at', '=', null)
         ->whereIn('curso_id', $cursos_id)
         ->orderBy($sort[0], $sort[1]);
