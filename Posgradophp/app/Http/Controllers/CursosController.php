@@ -69,20 +69,20 @@ class CursosController extends Controller
             ]);
         }
 
-        $cursos = Curso::where('Categoria_Id', $categoria_id->id);
+        $cursos = Curso::where('Categoria_Id', $categoria_id->id)->get();
 
         $cursosPresenciales=collect();
         $cursosSemi=collect();
         $cursosVirtuales=collect();
 
         if ($p) {
-            $cursosPresenciales = $cursos->where('isPresencial', true)->get();
+            $cursosPresenciales = $cursos->where('isPresencial', true);
         }
         if ($s) {
-            $cursosSemi = $cursos->where('isSemiPresencial', true)->get();
+            $cursosSemi = $cursos->where('isSemiPresencial', true);
         }
         if ($v) {
-            $cursosVirtuales = $cursos->where('isVirtual', true)->get();
+            $cursosVirtuales = $cursos->where('isVirtual', true);
         }
 
         //  dd($categoria_id);
@@ -153,20 +153,20 @@ class CursosController extends Controller
        
         $cursos = Curso::with('etiquetas')->wherehas('etiquetas', function ($sql) use ($etiquetas) {
             $sql->WhereIn('etiqueta_id', $etiquetas->pluck('id'));
-        })->orWhereIn('id', $curso_name->pluck('id'));
+        })->orWhereIn('id', $curso_name->pluck('id'))->get();
 
         $cursosPresenciales=collect();
         $cursosSemi=collect();
         $cursosVirtuales=collect();
 
         if ($p) {
-            $cursosPresenciales = $cursos->where('isPresencial', true)->get();
+            $cursosPresenciales = $cursos->where('isPresencial', true);
         }
         if ($s) {
-            $cursosSemi = $cursos->where('isSemiPresencial', true)->get();
+            $cursosSemi = $cursos->where('isSemiPresencial', true);
         }
         if ($v) {
-            $cursosVirtuales = $cursos->where('isVirtual', true)->get();
+            $cursosVirtuales = $cursos->where('isVirtual', true);
         }
 
         
@@ -219,24 +219,24 @@ class CursosController extends Controller
             }
         }
               
-        $cursos = Curso::where('Categoria_Id', null);
+        $cursos = Curso::where('categoria_id', null)->get();
         
         $cursosPresenciales=collect();
         $cursosSemi=collect();
         $cursosVirtuales=collect();
-
+        
         if ($p) {
-            $cursosPresenciales = $cursos->where('isPresencial', true)->get();
+            $cursosPresenciales = $cursos->where('isPresencial', true);
         }
         if ($s) {
-            $cursosSemi = $cursos->where('isSemiPresencial', true)->get();
+            $cursosSemi = $cursos->where('isSemiPresencial', true);
         }
         if ($v) {
-            $cursosVirtuales = $cursos->where('isVirtual', true)->get();
-        }
-
+            $cursosVirtuales = $cursos->where('isVirtual', true);
+        }       
+        
         $cursos_id = $cursosPresenciales->merge($cursosSemi)->merge($cursosVirtuales)->pluck('id')->toArray(); //Pluck retorna solo la columna que se menciona
-     
+       
         $cursos = Cursoprecio::where('deleted_at', '=', null)
         ->whereIn('curso_id', $cursos_id)
         ->orderBy($sort[0], $sort[1]);
