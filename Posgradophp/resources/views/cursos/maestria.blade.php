@@ -73,6 +73,25 @@
                                 <div class="col-md-8 col-sm-6 ">
                                         <p style="margin-bottom:0" class="mt-2"> 
                                         <p class="float-right " onclick='addcart({{$curso->id}})' style="cursor: pointer;" ><i class="fa  fa-cart-plus  fa-2x" aria-hidden="true"></i></p> 
+                                        @if($curso->curso->isPresencial)
+                                                    <span class=" float-left badge badge-pill blue darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                        Presencial
+                                                        </span>      
+                                                    @endif
+                                                    @if($curso->curso->isSemiPresencial)
+                                                    <span class=" float-left badge badge-pill blue darken-2 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
+                                                        Semi-presencial
+                                                        </span>      
+                                                    @endif
+                                                    
+                                                    @if($curso->curso->isVirtual)
+                                                    <span class=" float-left badge badge-pill blue lighten-1 white-text px-2 pt-1 pb-1 " style="font-size:0.7rem;" > 
+                                                        Virtual
+                                                        </span>      
+                                                    @endif
+                                             
+                                                    &nbsp
+                                            
                                             <p class="h4-responsive font-weight-bold"  onclick='curso("{{$curso->curso->NombreCurso}}");' style="cursor: pointer; margin-bottom:0;"> {{$curso->curso->NombreCurso}}</p>
                                             
                                             <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$curso->curso->HorasClase}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
@@ -166,7 +185,7 @@
                                 <label class="col-12  mt-2  mb-2 font-weight-bold">Búsquedas relacionadas</label>
                                 @for($i=0;$i<count($etiquetas);$i++)
 
-                                <h5 class="mx-1" onclick="searchetiqueta('{{$etiquetas[$i]->Etiqueta}}')" style="cursor: hand; "><span class="badge badge-{{$colors[array_rand($colors)]}}" style="font-weight:normal;">{{$etiquetas[$i]->Etiqueta}}</span></h5>
+                                <h5 class="mx-1" onclick="searchetiqueta('{{$etiquetas[$i]->Etiqueta}}')" style="cursor: hand; "><span class="badge badge-pill badge-{{$colors[array_rand($colors)]}}" style="font-weight:normal;">{{$etiquetas[$i]->Etiqueta}}</span></h5>
                                 @endfor
                             
                          </div>
