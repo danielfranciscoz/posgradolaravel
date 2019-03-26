@@ -107,7 +107,7 @@
         <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Detalle de Pago</h5>
                     <div class="row mt-4 mx-2">
                     @if(is_array(Session::get('cartItems')))
-                            @for($i=0;$i< Session::get('cartItems');$i++)
+                            @for($i=0;$i< count(Session::get('cartItems'));$i++)
                                 <div class="col-8">
                                 {{Session::get('cartItems')[$i]['curso']}}
                                 </div>

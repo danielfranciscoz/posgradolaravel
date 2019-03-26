@@ -85,6 +85,8 @@
                                 <div class="col-md-8 col-sm-6 ">
                                         <p style="margin-bottom:0" class="mt-2"> 
                                         <p class="float-right " onclick='addcart({{$curso->id}})' style="cursor: pointer;" ><i class="fa  fa-cart-plus  fa-2x" aria-hidden="true"></i></p> 
+                                        <p class="h4-responsive font-weight-bold"  onclick='curso("{{$curso->curso->NombreCurso}}");' style="cursor: pointer; margin-bottom:0;"> {{$curso->curso->NombreCurso}}</p>
+                                            
                                         @if($curso->curso->isPresencial)
                                                     <span class=" float-left badge badge-pill blue darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
                                                         Presencial
@@ -105,7 +107,6 @@
                                                     &nbsp
                                             
 
-                                            <p class="h4-responsive font-weight-bold"  onclick='curso("{{$curso->curso->NombreCurso}}");' style="cursor: pointer; margin-bottom:0;"> {{$curso->curso->NombreCurso}}</p>
                                             
                                             <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$curso->curso->HorasClase}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
                                 Certificación &nbsp <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>
@@ -113,6 +114,7 @@
                                         </p>
                                         <p><span>{{$curso->curso->Desc_Publicidad}}</p>
                                         <hr>
+                                      
                                        
                                         <span class="font-weight-bold float-right"  style="color:#b71c1c "> 
                                             $ {{number_format($curso->Precio, 2)}}
