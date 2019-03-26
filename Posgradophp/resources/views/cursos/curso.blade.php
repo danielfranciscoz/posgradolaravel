@@ -242,7 +242,7 @@
                             <a class="btn  btn-sm {{$colorbtn1}} mt-4 w-100 " onclick="addcarrito({{$curso->id}})">Añadir al carrito</a>
                             <a class="btn btn-sm  {{$colorbtn2}} w-100 mb-2 text-primary" style="border-color:#007bff" onclick="addandpay({{$curso->id}})">Comprar ahora</a>
                             
-                            <div class="alert alert-danger col-12" role="alert" id="alertaddcarrito">                            
+                            <div class="alert alert-danger col-12" role="alert" id="alertaddcarritomd">                            
                             </div>
                             <span class="black-text font-weight-bold"></br> Incluye</span>
                             
@@ -278,10 +278,10 @@
                 </div>
 
                 <div class="col-md-4 col-sm-12  container mb-4  d-none d-md-block ">
-                    <div class="card ">
-                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="margin-top:-300; height:200" class="white px-2 pt-2"/>
-                     </div>
-                    <div class=" pt-2 white sticky-top" style="margin-top:-100; border: 1px solid rgba(0, 0, 0, 0.125);  border-radius: 0 0 0.25rem 0.25rem;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);">
+                    <div class="card " >
+                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="margin-top:-70%; height:30%;" class="white px-2 pt-2 "/>
+                    
+                    <div class=" pt-2 white sticky-top" style="margin-top:-0%; border: 1px solid rgba(0, 0, 0, 0.125);  border-radius: 0 0 0.25rem 0.25rem;box-shadow: 0 2px 10 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); border-top: none  ">
                         <div class="card-body  px-4 pt-2">
                             <span><strong  style="font-size:2em">$ {{ number_format($precio->Precio, 2)}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
                             <!-- <span class="grey-text"></br> 95 % de descuento</span>
@@ -289,7 +289,8 @@
                             <a class="btn  btn-sm {{$colorbtn1}} mt-4 w-100 " onclick="addcarrito({{$curso->id}})">Añadir al carrito</a>
                             <a class="btn btn-sm  {{$colorbtn2}} w-100 mb-2 text-primary" style="border-color:#007bff" onclick="addandpay({{$curso->id}})">Comprar ahora</a>
                             
-                            <div class="alert alert-danger col-12" role="alert" id="alertaddcarrito">                            
+                            <div class="alert alert-danger col-12" role="alert" id="alertaddcarritosm">     
+
                             </div>
                             <span class="black-text font-weight-bold"></br> Incluye</span>
                             
@@ -330,9 +331,13 @@
 
 @section('endscript')
 <script>
+$(document).ready(function(){ 
+    $("#alertaddcarritosm").hide();
+    $("#alertaddcarritomd").hide();
+});
+
  
- 
- $( "#alertaddcarrito").hide();
+
     function addcarrito(id){
         $.ajax({
             url: "{{route('process.addcarrito')}}",
@@ -342,12 +347,14 @@
             },
             success: function(data) {  
                 if (data.message == "error") {
-                    $( "#alertaddcarrito").show();
-                    $( "#alertaddcarrito").html( "<p class='text-center'>"+data.error+"</p>" );
+                    $("#alertaddcarritosm").show();
+                    $("#alertaddcarritomd").show();
+                    $("#alertaddcarritosm").html( "<p class='text-center'>"+data.error+"</p>" );
+                    $("#alertaddcarritomd").html( "<p class='text-center'>"+data.error+"</p>" );
 
                 }else{
                    
-                    setTimeout(function(){ location.reload(); }, 00);
+                    setTimeout(function(){ location.reload(); }, 100);
                 }
             }
         });
@@ -364,7 +371,7 @@
             success: function(data) {  
                         setTimeout(function(){ 
                         window.location.href = "{{route('carrito')}}"
-                    }, 00);
+                    }, 100);
                     
                 
             }
@@ -382,7 +389,6 @@
        
     }
 
-    
 </script>
 
 @endsection
