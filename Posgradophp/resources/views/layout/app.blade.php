@@ -7,11 +7,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') - Dirección de Estudios de Posgrado y Educación Continua UNI-DEPEC</title>
+    <title>@yield('title') - Educando Online</title>
    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="icon" href="{{ URL::asset('img/logo_t.png') }}">
+    <link rel="icon" href="{{ URL::asset('img/icon.png') }}">
     <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('css/mdb.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css" >
@@ -24,7 +24,7 @@
   <nav class="navbar navbar-expand-lg navbar-light white lighten-5 h-auto" id="navbarsite">
 
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="{{route('cursos.index')}}">Posgrado</a>
+  <a class="navbar-brand" href="{{route('cursos.index')}}">Educando Online</a>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -223,7 +223,7 @@
 
                     <h6 class="h6-responsive font-weight-bold">Contacto</h6>
                     <p>
-                        <strong>Universidad Nacional de Ingeniería</strong><br>
+                        <!-- <strong>Universidad Nacional de Ingeniería</strong><br>
                         Dirección de Posgrado<br>
                         <i class="fa fa-phone" aria-hidden="true"></i>
                         2278-1457<br>
@@ -232,7 +232,7 @@
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <a href="mailto:dirposgrado@pstg.uni.edu.ni">dirposgrado@pstg.uni.edu.ni</a><br>
                         <i class="fa fa-envelope" aria-hidden="true"></i>
-                        <a href="mailto:dirposgrado@yahoo.com ">dirposgrado@yahoo.com</a>
+                        <a href="mailto:dirposgrado@yahoo.com ">dirposgrado@yahoo.com</a> -->
                     </p>
 
 
@@ -267,8 +267,8 @@
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">
 
-
-                Dirección De Estudios de Posgrado y Educación Continua © {{date('Y')}}
+            Estudios Online © {{date('Y')}}
+                <!-- Dirección De Estudios de Posgrado y Educación Continua © {{date('Y')}} -->
 
             </div>
 

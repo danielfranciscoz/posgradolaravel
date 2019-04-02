@@ -16,8 +16,10 @@ class CategoriasSeeder extends Seeder
             'Categoria'=>'Desarrollador Web',
             'Image_URL'=>'img/Resources/categorias/cat0.jpg',
             'Descripcion'=>'Este es ejemplo de la descripción de prueba larga, en donde solo se pueden incluir trescientos caracteres en donde seguimos, mostrando la información.',
+            'Descripcion_larga' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised',
             'isCursoPosgrado' => '0'
         ]);
+
         Categoria::create([
             'Categoria'=>'Inteligencia de Negocios',
             'Image_URL'=>'img/Resources/categorias/cat1.jpg',
@@ -40,30 +42,39 @@ class CategoriasSeeder extends Seeder
             'Categoria'=>'Medicina',
             'Image_URL'=>'img/Resources/categorias/cat3.jpg',
             'Descripcion'=>'Informacion y mas',
+            'Descripcion_larga' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ',
             'isCursoPosgrado' => '0'
             ]);
+
         Categoria::create([
             'Categoria'=>'Proyectos varios' ,
             'Image_URL'=>'img/Resources/categorias/cat4.jpg',
             'Descripcion'=>'Terminos a ver en la descripcion',
+            'Descripcion_larga' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been',
             'isCursoPosgrado' => '1'
             ]);
+
         Categoria::create([
             'Categoria'=>'Desarrollador Full Stack',
             'Image_URL'=>'img/Resources/categorias/cat5.jpg',
             'Descripcion'=>'No seguir viendo mas',
+            'Descripcion_larga' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised',
             'isCursoPosgrado' => '0'
             ]);
+
         Categoria::create([
             'Categoria'=>'Docente' ,
             'Image_URL'=>'img/Resources/categorias/cat6.jpg',
             'Descripcion'=>'Ultima de las descripciones de prueba',
+            'Descripcion_larga' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised',
             'isCursoPosgrado' => '1'
             ]);
+
         Categoria::create([
             'Categoria'=>'Finanzas',
             'Image_URL'=>'img/Resources/categorias/cat7.jpg',
             'Descripcion'=>'Aqui no hay texto, SI LO HAY',
+            'Descripcion_larga' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised',
             'isCursoPosgrado' => '1'
             ]);
     }

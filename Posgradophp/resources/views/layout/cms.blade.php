@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') - CMS/Dirección de Estudios de Posgrado y Educación Continua
-UNI-DEPEC</title>
+    <title>@yield('title') - Administración de Contenido</title>
    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
@@ -22,7 +21,7 @@ UNI-DEPEC</title>
 </head>
 <body class="grey lighten-4">
 <nav class="navbar navbar-expand-lg navbar-dark indigo darken-4">
-<a class="navbar-brand" href="{{route('admin.index')}}">Posgrado</a>
+<a class="navbar-brand" href="{{route('admin.index')}}">Educación Online</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
