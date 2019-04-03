@@ -30,13 +30,32 @@
          
                     @if($cursos->total() > 1)
                     
-                        <h5 class="col-md-6 col-sm-12 mt-4 font-weight-bold">{{$search_value}} {{$cursos->total()}} elementos encontrados <strong> </strong></h5>
+                        <h5 class="col-md-6 col-sm-12 mt-4">{{$search_value}} {{$cursos->total()}} elementos encontrados <strong> </strong></h5>
                     @else
-                        <h5 class="col-md-6 col-sm-12 mt-4 font-weight-bold">{{$search_value}}: {{$cursos->total()}} elemento encontrado <strong> </strong></h5>
+                        <h5 class="col-md-6 col-sm-12 mt-4">{{$search_value}}: {{$cursos->total()}} elemento encontrado <strong> </strong></h5>
                     @endif
                             
                
-                    <div class="col-md-6 col-sm-12 d-flex justify-content-end  align-items-center font-weight-bold">
+                    <div class="col-md-12 col-sm-12  d-flex justify-content-start  align-items-center  row">
+
+                        <div class="custom-control custom-checkbox mx-2 col-sm-12 col-md-3">
+                                    <input type="checkbox" class="custom-control-input" id="presencial">
+                                    <label class="custom-control-label" for="presencial">Presencial</label>
+                                    
+                        </div>
+                        <div class="custom-control custom-checkbox mx-2 col-sm-12 col-md-4">
+                                    <input type="checkbox" class="custom-control-input" id="semipresencial">
+                                    <label class="custom-control-label" for="semipresencial">Semi-presencial</label>
+                                    
+                        </div>
+                        <div class="custom-control custom-checkbox mx-2 col-sm-12 col-md-2">
+                                    <input type="checkbox" class="custom-control-input" id="virtual">
+                                    <label class="custom-control-label" for="virtual">Virtual</label>
+                                    
+                        </div>
+      
+                    </div>
+                    <div class="col-md-12 col-sm-12 d-flex justify-content-end  align-items-center font-weight-bold">
                     
                           
                             <label class="mx-2 mt-1 ">Orden: </label>&nbsp
@@ -47,24 +66,7 @@
                                 
                             </select>             
                     </div>
-                    <div class="col-md-12 col-sm-12  d-flex justify-content-start  align-items-center  mb-4 row">
-
-                        <div class="custom-control custom-checkbox mx-2">
-                                    <input type="checkbox" class="custom-control-input" id="presencial">
-                                    <label class="custom-control-label" for="presencial">Presencial</label>
-                                    
-                        </div>
-                        <div class="custom-control custom-checkbox mx-2">
-                                    <input type="checkbox" class="custom-control-input" id="semipresencial">
-                                    <label class="custom-control-label" for="semipresencial">Semi-presencial</label>
-                                    
-                        </div>
-                        <div class="custom-control custom-checkbox mx-2">
-                                    <input type="checkbox" class="custom-control-input" id="virtual">
-                                    <label class="custom-control-label" for="virtual">Virtual</label>
-                                    
-                        </div>
-                    </div>
+                 
              
                         @forelse($cursos as $curso)                        
                             

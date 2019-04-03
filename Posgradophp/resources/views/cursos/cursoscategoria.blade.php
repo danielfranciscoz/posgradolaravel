@@ -14,14 +14,16 @@
         @endfor
     @endif
 <main class="">
-<div class="col-md-12 col-sm-12 grey lighten-3 px-5 pt-4 pb-4">
-    <div class="mx-5 container row  d-flex align-items-center ">
-                    <h1 class="font-weight-bold col-sm-12 col-md-4  d-flex justify-content-center  align-items-center" style="color:#424242; ">
+<div class="col-md-12 col-sm-12 grey lighten-3 px-4 pt-4 pb-4">
+    <div class="mx-4 container d-flex align-items-center ">
+        <div class="row ">
+                    <h1 class=" font-weight-bold col-sm-12 col-md-4  d-flex justify-content-center  align-items-center" style="color:#424242; font-size:1.5rem ">
                      {{$categoria->Categoria}}
                      </h1>
-                     <p class="col-sm-12 col-md-8 text-justify" style="color:#757575 ; border: 1px; border-color:#bdbdbd  ;border-style:  none  none  none  solid; ">
+                     <p class="col-sm-12 col-md-8 text-justify d-none d-md-block" style="color:#757575 ; border: 1px; border-color:#bdbdbd  ;border-style:  none  none  none  solid; ">
                      {{$categoria->Descripcion_larga}}
                      </p>
+        </div> 
   </div>
  </div>
     <div class="container" >
@@ -44,8 +46,25 @@
                                         para ti.
                     </h6>
                     </div>
-              
-                <div class="col-md-6 col-sm-12 d-flex justify-content-end  align-items-center">
+                    <div class="col-md-12 col-sm-12  d-flex justify-content-start  align-items-center  mb-4 row">
+
+                        <div class="custom-control custom-checkbox mx-2 col-sm-12 col-md-3">
+                                    <input type="checkbox" class="custom-control-input" id="presencial">
+                                    <label class="custom-control-label" for="presencial">Presencial</label>
+                                    
+                        </div>
+                        <div class="custom-control custom-checkbox mx-2 col-sm-12 col-md-4">
+                                    <input type="checkbox" class="custom-control-input" id="semipresencial">
+                                    <label class="custom-control-label" for="semipresencial">Semi-presencial</label>
+                                    
+                        </div>
+                        <div class="custom-control custom-checkbox mx-2 col-sm-12 col-md-3">
+                                    <input type="checkbox" class="custom-control-input" id="virtual">
+                                    <label class="custom-control-label" for="virtual">Virtual</label>
+                                    
+                        </div>
+                    </div>
+                <div class="col-md-12 col-sm-12 d-flex justify-content-end  align-items-center">
                         <label>Ordenar por:</label> &nbsp
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="sorden">
                             <option value="1">Mas Reciente</option>
@@ -53,24 +72,7 @@
                             <option value="3">Precio Ascendente</option>            
                         </select>             
                 </div>
-                <div class="col-md-12 col-sm-12  d-flex justify-content-start  align-items-center  mb-4 row">
-
-                    <div class="custom-control custom-checkbox mx-2">
-                                <input type="checkbox" class="custom-control-input" id="presencial">
-                                <label class="custom-control-label" for="presencial">Presencial</label>
-                                
-                    </div>
-                    <div class="custom-control custom-checkbox mx-2">
-                                <input type="checkbox" class="custom-control-input" id="semipresencial">
-                                <label class="custom-control-label" for="semipresencial">Semi-presencial</label>
-                                
-                    </div>
-                    <div class="custom-control custom-checkbox mx-2">
-                                <input type="checkbox" class="custom-control-input" id="virtual">
-                                <label class="custom-control-label" for="virtual">Virtual</label>
-                                
-                    </div>
-                </div>
+                
           
                         @forelse($cursos as $curso)                        
                  <div class="col-12 ">

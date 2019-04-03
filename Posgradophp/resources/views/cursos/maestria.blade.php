@@ -32,8 +32,27 @@
                                         Maestría(s) para ti.
                     </h6>
                     </div>
+
+                    <div class="col-md-12 col-sm-12  d-flex justify-content-start  align-items-center  mb-4 row">
+
+                        <div class="custom-control custom-checkbox mx-2 col-sm-12 col-md-3">
+                                    <input type="checkbox" class="custom-control-input" id="presencial">
+                                    <label class="custom-control-label" for="presencial">Presencial</label>
+                                    
+                        </div>
+                        <div class="custom-control custom-checkbox mx-2 col-sm-12 col-md-4">
+                                    <input type="checkbox" class="custom-control-input" id="semipresencial">
+                                    <label class="custom-control-label" for="semipresencial">Semi-presencial</label>
+                                    
+                        </div>
+                        <div class="custom-control custom-checkbox mx-2 col-sm-12 col-md-3">
+                                    <input type="checkbox" class="custom-control-input" id="virtual">
+                                    <label class="custom-control-label" for="virtual">Virtual</label>
+                                    
+                        </div>
+                    </div>  
               
-                <div class="col-md-6 col-sm-12 d-flex justify-content-end  align-items-center">
+                <div class="col-md-12 col-sm-12 d-flex justify-content-end  align-items-center">
                         <label>Ordenar por:</label> &nbsp
                         <select class="mdb-select md-form colorful-select dropdown-primary"  id="sorden">
                             <option value="1">Mas Reciente</option>
@@ -41,24 +60,7 @@
                             <option value="3">Precio Ascendente</option>            
                         </select>             
                 </div>
-                <div class="col-md-12 col-sm-12  d-flex justify-content-start  align-items-center  mb-4 row">
-
-                    <div class="custom-control custom-checkbox mx-2">
-                                <input type="checkbox" class="custom-control-input" id="presencial">
-                                <label class="custom-control-label" for="presencial">Presencial</label>
-                                
-                    </div>
-                    <div class="custom-control custom-checkbox mx-2">
-                                <input type="checkbox" class="custom-control-input" id="semipresencial">
-                                <label class="custom-control-label" for="semipresencial">Semi-presencial</label>
-                                
-                    </div>
-                    <div class="custom-control custom-checkbox mx-2">
-                                <input type="checkbox" class="custom-control-input" id="virtual">
-                                <label class="custom-control-label" for="virtual">Virtual</label>
-                                
-                    </div>
-                </div>
+               
                
                         @forelse($cursos as $curso)                        
                  <div class="col-12 ">

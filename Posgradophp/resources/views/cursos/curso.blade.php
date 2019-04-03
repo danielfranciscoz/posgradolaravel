@@ -34,8 +34,8 @@
 
 <main class="">
 
-<div class=" {{$banner}}" >
-<div class=" d-block d-sm-none">
+<div class="{{$banner}}" >
+<div class="d-block d-sm-none">
     <div class="d-flex align-items-center justify-content-center flex-column mx-4" style="min-height:325px;background: url('{{route('cursos.index')}}/img/Papel tapiz/t.svg');">
            
             
@@ -232,14 +232,29 @@
                
                 <div class="col-md-4 col-sm-12  container mb-4  d-block d-sm-none ">
                     <div class="card ">
-                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="margin-top:-300; height:200" class="d-none d-md-block white px-2 pt-2"/>
+                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="margin-top:-70%; height:30%;"class="d-none d-md-block white px-2 pt-2"/>
                      </div>
                     <div class=" pt-2 white sticky-top" style=" border: 1px solid rgba(0, 0, 0, 0.125);  border-radius: 0 0 0.25rem 0.25rem;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);">
                         <div class="card-body  px-4 pt-2">
                             <span><strong  style="font-size:2em">$ {{ number_format($precio->Precio, 2)}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
                             <!-- <span class="grey-text"></br> 95 % de descuento</span>
+                            
  -->
+                            @php
+                                $exist = false;
+                                if(is_array(Session::get('cartItems'))){
+                                    for($i=0;$i< count(Session::get('cartItems')) ;$i++){
+                                         if( Session::get('cartItems')[$i]['id'] == $curso->id)
+                                         {
+                                            $exist =true;
+                                         } 
+                                        }
+                                    }                                    
+                            @endphp
+
+                            @if($exist==false)
                             <a class="btn  btn-sm {{$colorbtn1}} mt-4 w-100 " onclick="addcarrito({{$curso->id}})">Añadir al carrito</a>
+                            @endif
                             <a class="btn btn-sm  {{$colorbtn2}} w-100 mb-2 text-primary" style="border-color:#007bff" onclick="addandpay({{$curso->id}})">Comprar ahora</a>
                             
                             <div class="alert alert-danger col-12" role="alert" id="alertaddcarritomd">                            
@@ -261,7 +276,7 @@
                             </span>
                             <span class="row"></br> 
                                 <i class="fa fa-mobile-phone grey-text  col-2" aria-hidden="true"></i>
-                                Acceso en dispositivos móviles y TV
+                                Acceso en móviles y TV
                             </span>
                             <span class=" row"></br> 
                                 <i class="fa fa-certificate grey-text  col-2" aria-hidden="true"></i>
@@ -278,8 +293,8 @@
                 </div>
 
                 <div class="col-md-4 col-sm-12  container mb-4  d-none d-md-block ">
-                    <div class="card " >
-                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="margin-top:-70%; height:30%;" class="white px-2 pt-2 "/>
+                    <div class="card " style="height:70%;">
+                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="margin-top:-70%; " class="white px-2 pt-2 "/>
                     
                     <div class=" pt-2 white sticky-top" style="margin-top:-0%; border: 1px solid rgba(0, 0, 0, 0.125);  border-radius: 0 0 0.25rem 0.25rem;box-shadow: 0 2px 10 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); border-top: none  ">
                         <div class="card-body  px-4 pt-2">
@@ -294,24 +309,24 @@
                             </div>
                             <span class="black-text font-weight-bold"></br> Incluye</span>
                             
-                            <span class="row "></br>                           
+                            <span class="row " style="font-size:0.9rem">                         
                             <i class="fa fa-clock-o col-2" aria-hidden="true"></i>
                            
                                 {{$curso->horas_clase}} horas de Estudio
                             </span>
-                            <span class="row"></br> 
+                            <span class="row" style="font-size:0.9rem">
                                 <i class="fa fa-file-text-o grey-text  col-2" aria-hidden="true"></i>
                                 Recursos Descargables
                             </span>
-                            <span class="row"></br> 
+                            <span class="row" style="font-size:0.9rem">
                                 <i class="fa fa-hand-o-right grey-text  col-2" aria-hidden="true"></i>
                                  Acceso de por vida
                             </span>
-                            <span class="row"></br> 
+                            <span class="row" style="font-size:0.9rem">
                                 <i class="fa fa-mobile-phone grey-text  col-2" aria-hidden="true"></i>
-                                Acceso en dispositivos móviles y TV
+                                Acceso en móviles y TV 
                             </span>
-                            <span class=" row"></br> 
+                            <span class=" row" style="font-size:0.9rem">
                                 <i class="fa fa-certificate grey-text  col-2" aria-hidden="true"></i>
                                 Certificado
                                 </br>
