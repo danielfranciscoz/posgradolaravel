@@ -35,11 +35,11 @@
 <main class="">
 
 <div class="{{$banner}}" >
-<div class="d-block d-sm-none">
-    <div class="d-flex align-items-center justify-content-center flex-column mx-4" style="min-height:325px;background: url('{{route('cursos.index')}}/img/Papel tapiz/t.svg');">
+<div class="d-block d-sm-none ">
+    <div class="d-flex align-items-center justify-content-center flex-column mx-4  " style="min-height:325px;background: url('{{route('cursos.index')}}/img/Papel tapiz/t.svg');">
            
             
-            <h1 class="h1-responsive text-white text-left font-weight-bold mx-4 mt-4">{{$curso->NombreCurso}} </h1>
+            <h1 class="h1-responsive text-white text-left font-weight-bold mx-4 mt-4 ">{{$curso->NombreCurso}} </h1>
                                             <div class="row mx-4">
                                                     @if($curso->isPresencial)
                                                     <span class=" float-left badge badge-pill {{$color_badge}} darken-4 white-text px-2 pt-1 pb-1" style="font-size:0.7rem;" > 
@@ -64,9 +64,9 @@
     </div>
  </div>
  <div style="background: url('{{route('cursos.index')}}/img/Papel tapiz/t.svg');">
- <div class="d-none d-md-block container">
+ <div class="d-none d-md-block container ">
  
-   <div class="d-flex align-items-start justify-content-center flex-column  " style="min-height:325px;">
+   <div class="d-flex align-items-start justify-content-center flex-column col-md-8 " style="min-height:325px;">
             <h1 class="h1-responsive text-white text-left font-weight-bold ">{{$curso->NombreCurso}} </h1>
                                             <div class="row mx-1">
                                                     @if($curso->isPresencial)
@@ -95,31 +95,31 @@
 </div>
 
 <h5 class="">  </strong></h5>
-    <div class="mx-4" >
+    <div class="mx-2" >
     <section class="mt-3 wow fadeIn">
             <!--Grid row-->
-            <div class="row">
+            <div class="row mx-2">
                 <!--Grid column-->
                 <div class="col-md-8  container">
                 <div class="row">
                         
                             
-                        <div class="card col-12 mb-4  white">
+                        <div class="card col-12 mb-4 white">
                         <!-- Card content -->
                             <div class="card-body">
 
-                            <h4 class="h4-responsive mx-4 mt-4 "><strong>Descripción @if($tipo=='Maestría')de la @else del @endif{{$tipo}}</strong></h4> 
+                            <h4 class="h4-responsive mx-1 mt-4"><strong>Descripción @if($tipo=='Maestría')de la @else del @endif{{$tipo}}</strong></h4> 
                              </br>
-                                <div class="text-justify ml-5 mb-4">
+                                <div class="text-justify mx-1 mb-4">
                                 {{$curso->Desc_Introduccion}}
                                 </div>
-                             <h4 class="h4-responsive mx-4"><strong>Requisitos</strong></h4> </br>
-                                <div class="row mx-4">
+                             <h4 class="h4-responsive mx-1"><strong>Requisitos</strong></h4> </br>
+                                <div class="row mx-1">
                             
 
                                      @for($i=0;$i<count($curso->requisitos()->get());$i++)  
                                  
-                                    <div class="col-md-6 mb-2  ">
+                                    <div class="col-md-6 mb-2 ">
                                         <i class="fa fa-check grey-text" aria-hidden="true"></i>
                                         
                                         {{$curso->requisitos()->get()[$i]->Requisito}}                           
@@ -132,9 +132,8 @@
                             
                         </div>
                         <div class="card col-12 mb-4  white">
-                            <div class="row mx-4">
-                            <h4 class="h4-responsive  font-weight-bold mt-4 float-left">
-                                
+                            <div class="row mx-2">
+                            <h4 class="h4-responsive  font-weight-bold mt-4 float-left">                               
                             Contenido </h4>  
                             <a class="btn btn-sm mt-4 ml-auto font-weight-bold  grey darken-2 text-white" onclick="temario();" >
                                 Temario 
@@ -169,13 +168,13 @@
                      @if(count($curso->docentes()->get())>0)
                     <div class="card col-12 mb-4  white">
                        @if(count($curso->docentes()->get())==1)
-                        <h4 class="h4-responsive mx-4  mt-4 font-weight-bold mb-4">Acerca del instructor</h4> 
+                        <h4 class="h4-responsive mx-2  mt-4 font-weight-bold mb-4">Acerca del instructor</h4> 
                         @else
-                        <h4 class="h4-responsive mx-4  mt-4 font-weight-bold mb-4">Acerca de los instructores</h4> 
+                        <h4 class="h4-responsive mx-2  mt-4 font-weight-bold mb-4">Acerca de los instructores</h4> 
                         @endif
                      </br>
                     
-                     <div class="row mx-4">
+                     <div class="row mx-2">
                         
                       
                             @for($i=0;$i<count($curso->docentes()->get());$i++)  
@@ -293,16 +292,18 @@
                 </div>
 
                 <div class="col-md-4 col-sm-12  container mb-4  d-none d-md-block ">
-                    <div class="card " style="height:70%;">
-                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="margin-top:-70%; " class="white px-2 pt-2 "/>
+                    <div class="card white" style=" margin-top: -300;">
+                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="" class="px-2 pt-2 pb-2 w-100 h-100"/>
                     
                     <div class=" pt-2 white sticky-top" style="margin-top:-0%; border: 1px solid rgba(0, 0, 0, 0.125);  border-radius: 0 0 0.25rem 0.25rem;box-shadow: 0 2px 10 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); border-top: none  ">
                         <div class="card-body  px-4 pt-2">
                             <span><strong  style="font-size:2em">$ {{ number_format($precio->Precio, 2)}} </strong> <strike class="grey-text"  style="font-size:0.75em"> $ 12,45</strike></span>
                             <!-- <span class="grey-text"></br> 95 % de descuento</span>
  -->
+                            @if($exist==false)
                             <a class="btn  btn-sm {{$colorbtn1}} mt-4 w-100 " onclick="addcarrito({{$curso->id}})">Añadir al carrito</a>
-                            <a class="btn btn-sm  {{$colorbtn2}} w-100 mb-2 text-primary" style="border-color:#007bff" onclick="addandpay({{$curso->id}})">Comprar ahora</a>
+                            @endif
+                             <a class="btn btn-sm  {{$colorbtn2}} w-100 mb-2 text-primary" style="border-color:#007bff" onclick="addandpay({{$curso->id}})">Comprar ahora</a>
                             
                             <div class="alert alert-danger col-12" role="alert" id="alertaddcarritosm">     
 

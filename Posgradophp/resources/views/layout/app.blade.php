@@ -83,7 +83,7 @@
           </div>
         </div>
 
-             <div class="d-block d-sm-none font-weight-bold "><a id="carritosm" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 " style="min-width:70px;"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i>&nbsp;&nbsp;Inversion Total  @if(isset( $GLOBALS["totalcarrito"])) $ {{ $GLOBALS["totalcarrito"]}}@else $ 0 @endif</a></div>
+             <div class="d-block d-sm-none font-weight-bold "><a id="carritosm" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 " style="min-width:70px;"  onclick="window.location.href = '{{route("carrito")}}';"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i>&nbsp;&nbsp;Inversion Total  @if(isset( $GLOBALS["totalcarrito"])) $ {{ $GLOBALS["totalcarrito"]}}@else $ 0 @endif</a></div>
       
              <div class="d-none d-md-block font-weight-bold "><a id="carritomd" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 " style="min-width:70px;"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i></a></div>
       
