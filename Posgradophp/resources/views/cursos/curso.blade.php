@@ -293,7 +293,7 @@
 
                 <div class="col-md-4 col-sm-12  container mb-4  d-none d-md-block ">
                     <div class="card white" style=" margin-top: -300;">
-                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="" class="px-2 pt-2 pb-2 w-100 h-100"/>
+                         <img src ="{{route('cursos.index')}}/{{$curso->Image_URL}}" style="max-height:300px;" class="px-2 pt-2 pb-2 w-100 h-100"/>
                     
                     <div class=" pt-2 white sticky-top" style="margin-top:-0%; border: 1px solid rgba(0, 0, 0, 0.125);  border-radius: 0 0 0.25rem 0.25rem;box-shadow: 0 2px 10 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); border-top: none  ">
                         <div class="card-body  px-4 pt-2">
