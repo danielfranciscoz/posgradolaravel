@@ -38,7 +38,7 @@ class CategoriasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CategoriaRequest $request)
-    {
+    { 
         try {
             $categoria = $this->AsignarData($request);
             $categoria->Image_URL = $this->uploadphoto($request);
@@ -102,7 +102,7 @@ class CategoriasController extends Controller
             $original->Descripcion_larga = $categoria->Descripcion_larga;
             
             if($original->Image_URL != $request->input('Image_URL'))
-            {
+            { 
                 if(file_exists(public_path($original->Image_URL))){
                     unlink(public_path($original->Image_URL));
                 }

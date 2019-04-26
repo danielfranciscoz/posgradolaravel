@@ -24,7 +24,7 @@
   <nav class="navbar navbar-expand-lg navbar-light white lighten-5 h-auto" id="navbarsite">
 
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="{{route('cursos.index')}}">Educando Online</a>
+  <a class="navbar-brand" href="{{route('cursos.index')}}">Posgrado</a>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
