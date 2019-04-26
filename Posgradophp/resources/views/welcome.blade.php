@@ -112,7 +112,7 @@
                        <div class="col-md-3 col-sm-12 mb-5 mt-5" style="max-height:350px;height: 75% !important;" >
                            <div class="card h-100 wow fadeIn"  >
                            <img class="card-img-top h-50 d-block d-sm-none px-4" style="width:100%" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">                               
-                               <img class="card-img-top h-50 d-none d-md-block"  src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
+                               <img class="card-img-top  d-none d-md-block"  src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px;font-size:1rem; "  >{{$categories[$i]['Categoria']}}</h5>
                                    <div class="expandable card-text mb-5" style="height: 8% !important; font-size:0.75rem;min-height:30px;">
