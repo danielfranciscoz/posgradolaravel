@@ -102,7 +102,8 @@ class ComentariosController extends Controller
             $original->Profesion = $comentario->Profesion;
             $original->Desc_Pais = $comentario->Desc_Pais;
             $original->Comentario = $comentario->Comentario;
-
+            $original->updated_at =date('Y-m-d H:i:s');  
+            
             if($original->Image_URL != $request->input('Image_URL'))
             {
                 if(file_exists(public_path($original->Image_URL))){

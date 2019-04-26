@@ -7,7 +7,7 @@ use App\Models\Curso;
 use App\Models\Cursoprecio;
 use App\Models\Cursotematica;
 use App\Models\Cursomodalidad;
-use App\Models\CompetenciaCurso;
+use App\Models\Competenciacurso;
 use App\Models\Cursorequisito;
 use App\Models\Etiqueta;
 use App\Models\Categoria;
@@ -297,7 +297,7 @@ class CursosController extends Controller
 
         $v = Curso::leftJoin('cursoprecios', 'cursos.id', '=', 'cursoprecios.curso_id')
         ->leftJoin('categorias', 'categorias.id', '=', 'cursos.categoria_id')
-        ->select('cursoprecios.id', 'cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad', 'cursos.Desc_Introduccion', 'cursos.InfoAdicional', 'Categorias.Categoria', 'cursos.isPresencial', 'cursos.isVirtual', 'cursos.isSemiPresencial')
+        ->select('cursoprecios.id', 'cursoprecios.Precio', 'cursos.NombreCurso', 'cursos.categoria_id', 'cursos.Image_URL', 'cursos.Temario_URL', 'cursos.Desc_Publicidad', 'cursos.Desc_Introduccion', 'cursos.InfoAdicional', 'categorias.Categoria', 'cursos.isPresencial', 'cursos.isVirtual', 'cursos.isSemiPresencial')
         ->where('cursoprecios.deleted_at', null);
 
         // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
@@ -447,7 +447,7 @@ class CursosController extends Controller
             
             //$v = Cursoprecio::with('curso')->where('deleted_at',null);
             $idcurso = Cursoprecio::find($id)->curso_id;
-            $v = CompetenciaCurso::where('deleted_at', null)->where('curso_id', $idcurso);
+            $v = Competenciacurso::where('deleted_at', null)->where('curso_id', $idcurso);
             
             // return  response()->Json(['sortColumn'=> $sortColumn,'sortColumnDir'=>$sortColumnDir]);
             
@@ -839,10 +839,21 @@ class CursosController extends Controller
             $original->Desc_Publicidad = $curso->Desc_Publicidad ;
             $original->Desc_Introduccion = $curso->Desc_Introduccion;
             $original->InfoAdicional = $curso->InfoAdicional;
-            $original->categoria_id =$curso->categoria_id;
+            
+            if (is_null($curso->categoria_id) || $curso->categoria_id=='null') {
+                $original->categoria_id =null;                
+            } else {
+                $original->categoria_id =$curso->categoria_id;                
+            }
+            // return response()->json([
+            //     'completo'=>$original,
+            //     'categoria'=>$curso->categoria_id
+            // ]);
             $original->isVirtual =$curso->isVirtual;
             $original->isPresencial =$curso->isPresencial;
             $original->isSemiPresencial =$curso->isSemiPresencial;
+
+            $original->updated_at = date('Y-m-d H:i:s');            
 
             if ($original->Image_URL != $request->input('Image_URL')) {
                 $this->removeUpload($original->Image_URL);

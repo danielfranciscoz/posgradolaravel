@@ -100,7 +100,7 @@ class DocentesController extends Controller
             $original->Profesion = $docente->Profesion;
             $original->Descripcion = $docente->Descripcion;
             $original->LinkedIn_URL = $docente->LinkedIn_URL;
-
+            $original->updatet_at =date('Y-m-d H:i:s');            
             if($original->Image_URL != $request->input('Image_URL'))
             {
                 if(file_exists(public_path($original->Image_URL))){
