@@ -56,18 +56,20 @@
             <div class="" id="carrusel_Id">
                 <!--Mask-->
                 <div class="view">
-                <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100 d-none d-md-block"/>
+              <!--   <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100 d-none d-md-block"/> -->
+                <video src="{{URL::asset('video/main.webm')}}" autoplay  loop class="w-100 d-none d-md-block"></video>
+               
                   <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
                         <div class="col-lg-4 col-md-12">
 
             <!--Panel-->
-                            <div class="card card-body white-text" style=" background-color:rgba( 255, 255,255, 0.1)">  
-                                <h4 class="card-text black-text text-justify  white-text"  > "La enseñanza que deja huella no es la que se hace de cabeza a cabeza, sino de corazón a corazón" </h4>                          
+                            <div class="card card-body white-text" style=" background-color:rgba( 0, 0,0, 0.3)">  
+                                <h4 class="card-text black-text text-justify  white-text"> "La enseñanza que deja huella no es la que se hace de cabeza a cabeza, sino de corazón a corazón" </h4>                          
                               <p class="card-text white-text"> 
                                   Howard G. Hendricks
                               </p>
                               <div class="input-group md-form form-sm form-2 pl-0">
-                              <input class="form-control my-0 py-1 red-border" id="searchcarruselinputmd" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
+                              <input class="form-control my-0 py-1 red-border white-text" id="searchcarruselinputmd" type="text" placeholder="¿Qué deseas Aprender?" aria-label="Search">
                               <div class="input-group-append" id="btnsearchcarruselmd" >
                                 <a class="input-group-text btn-primary white-text"  ><i class="fa fa-search white-text"  aria-hidden="true"></i></a>
                               </div>

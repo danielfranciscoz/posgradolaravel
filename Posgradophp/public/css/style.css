@@ -266,3 +266,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
       -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); }
   
+      .navbar-black{
+        background-color: rgba(0, 0, 0, 0.9) !important;
+        color: white;
+       
+      }
+      .navbar-black .navbar-brand {
+        color:white !important;
+      }
+
+      .navbar-black .collapse .navbar-nav .dropdown{       
+        color:white !important;
+      }
+
+      
+      .navbar-black .navbar-toggler{       
+        color:white !important;
+      }
