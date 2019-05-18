@@ -15,16 +15,17 @@
     <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('css/mdb.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+    
 
 </head>
 <body class="grey lighten-4">
    
 
 
-  <nav class="navbar  fixed-top navbar-expand-lg navbar-light white lighten-5 h-auto" id="navbarsite">
+  <nav class="navbar  fixed-top navbar-expand-lg navbar-light white lighten-5 h-auto " id="navbarsite">
 
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="{{route('cursos.index')}}">Educando Online</a>
+  <a class="navbar-brand wow pulse" data-wow-delay="0s" href="{{route('cursos.index')}} ">Educando Online</a>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -34,13 +35,16 @@
 
   <!-- Collapsible content -->
   <div class="collapse navbar-collapse text-nav" style="height: 50px" id="basicExampleNav">
-
+  <!-- 
+  <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold" style="min-width: 150px; background: #424242; "  >Oferta Academica</button>
+   -->              
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       
-    <li class="nav-item dropdown" style="min-width: 150px">
+    <li class="nav-item dropdown wow pulse" data-wow-delay="0.33s" style="min-width: 150px" >
        <a class="nav-link dropdown-toggle text-muted " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false" ><i class="fa fa-folder-open-o fa-1x text-muted" aria-hidden="true"></i> Oferta Académica</a>
+          aria-expanded="false">
+          <i class="fa fa-folder-open-o fa-1x text-muted" aria-hidden="true"></i> Oferta Académica</a>
          <div class="dropdown">
          <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu" >
             <li class="dropdown-submenu">
@@ -76,25 +80,25 @@
     <!-- Links -->
 
         
-       <div class="input-group md-form form-sm form-2 pl-0 "  >
+       <div class="input-group md-form form-sm form-2 pl-0 wow pulse" data-wow-delay="0.66s"  >
           <input class="form-control my-0 py-1  waves-effect" type="text" placeholder="Buscar cursos..." aria-label="Search" id="searchinput" style="cursor: text;" >
           <div class="input-group-append ">
             <span class="input-group-text btn-primary waves-effect " id="buttonsearch" onclick="searchnav();"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>      
 
-             <div class="d-block d-sm-none font-weight-bold "><a id="carritosm" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 " style="min-width:70px;"  onclick="window.location.href = '{{route("carrito")}}';"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i>&nbsp;&nbsp;Inversion Total  @if(isset( $GLOBALS["totalcarrito"])) $ {{ $GLOBALS["totalcarrito"]}}@else $ 0 @endif</a></div>
+             <div class="d-block d-sm-none font-weight-bold "><a id="carritosm" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 wow pulse" data-wow-delay="1s" style="min-width:70px;"  onclick="window.location.href = '{{route("carrito")}}';"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i>&nbsp;&nbsp;Inversion Total  @if(isset( $GLOBALS["totalcarrito"])) $ {{ $GLOBALS["totalcarrito"]}}@else $ 0 @endif</a></div>
       
-             <div class="d-none d-md-block font-weight-bold "><a id="carritomd" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 " style="min-width:70px;"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i></a></div>
+             <div class="d-none d-md-block font-weight-bold "><a id="carritomd" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 wow pulse" data-wow-delay="1.33s" style="min-width:70px;"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i></a></div>
       
              
             @guest        
-                <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold" style="min-width: 150px; background: #424242; " data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
-                <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect font-weight-bold" style="min-width: 150px">Registrate</button>
+                <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold btn-change wow pulse" data-wow-delay="4s" style="min-width: 150px; background: #424242; " data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
+                <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect font-weight-bold wow pulse" data-wow-delay="1.66s" style="min-width: 150px">Registrate</button>
             @else
          
             @if(Auth::user()->isAdmin)
-            <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold" style="min-width: 150px; background: #424242; " onclick="window.location.href='{{route('admin.index')}}'"  >Administracion</button>
+            <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold btn-change"  style="min-width: 150px; background: #424242; "  onclick="window.location.href='{{route('admin.index')}}'"  >Administracion</button>
               @endif
             <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{ Auth::user()->estudiante->PrimerNombre . ' '. Auth::user()->estudiante->PrimerApellido}} &nbsp;</a> 
                 <a class="" style="width:80px" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  <i class="fa fa-sign-out fa-1x red-text text-right" aria-hidden="true"></i> </a>
@@ -109,6 +113,21 @@
 
 </nav>
 
+<!-- <ul class="nav" style="margin-top:70px">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">Disabled</a>
+  </li>
+</ul>
+ -->
 <div id="mainpage"> 
             @yield('content')
 
@@ -325,9 +344,14 @@
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 console.log("-50");
                 $('#navbarsite').addClass('navbar-black');
+                $('#navbarsite').removeClass('navbar-light');
+                $('#navbarsite').addClass('navbar-dark');
+                
             } else {
                 console.log("+50");
                  $('#navbarsite').removeClass('navbar-black');
+                 $('#navbarsite').addClass('navbar-light');
+                 $('#navbarsite').removeClass('navbar-dark');
             }
         });
      

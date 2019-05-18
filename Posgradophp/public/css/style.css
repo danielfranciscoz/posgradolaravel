@@ -279,7 +279,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
         color:white !important;
       }
 
+      .navbar-black .collapse .navbar-nav .dropdown a{       
+        color:white !important;
+      }
+      .navbar-black .collapse .navbar-nav .dropdown i{       
+        color:white !important;
+      }
+
       
       .navbar-black .navbar-toggler{       
         color:white !important;
       }
+
+      .navbar-black #searchinput::placeholder{       
+        color:white !important;
+      }
+      .navbar-black #searchinput:focus{       
+        color:white !important;
+      }
+      .navbar-black .btn-change{       
+        background:white !important;
+        color:black !important;
+      }
+
+     
+      .navbar-black .fa-shopping-cart{       
+        color:white !important;
+       
+      }
+      .navbar-black .navbar-toggler{       
+        color:white !important;
+       
+      }
+      

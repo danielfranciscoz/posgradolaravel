@@ -20,10 +20,10 @@
                   <img src="{{URL::asset('img/br.jpg')}}" class="w-100 h-100 d-block d-sm-none"/>
                
                   <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-4 col-md-12 wow zoomIn">
 
             <!--Panel-->
-                            <div class="card card-body white-text" style=" background-color:rgba( 255, 255,255, 0.1)">  
+                            <div class="card card-body white-text " style=" background-color:rgba( 255, 255,255, 0.1)">  
                                 <h4 class="card-text black-text text-justify  white-text"  > "La enseñanza que deja huella no es la que se hace de cabeza a cabeza, sino de corazón a corazón" </h4>                          
                               <p class="card-text white-text"> 
                                   Howard G. Hendricks
@@ -57,7 +57,9 @@
                 <!--Mask-->
                 <div class="view">
               <!--   <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100 d-none d-md-block"/> -->
-                <video src="{{URL::asset('video/main.webm')}}" autoplay  loop class="w-100 d-none d-md-block"></video>
+                <video  autoplay  mute loop class="w-100 d-none d-md-block">
+                     <source src="{{URL::asset('video/main.webm')}}" type="video/webm"></source>
+                </video>
                
                   <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
                         <div class="col-lg-4 col-md-12">
@@ -94,7 +96,7 @@
 
 <main>
           
-<div class="d-flex align-items-center justify-content-center  flex-column mx-4 mt-5 " style="min-height:200px; ">
+<div class="d-flex align-items-center justify-content-center  flex-column mx-4 mt-5  wow zoomIn" data-wow-delay="1s" style="min-height:200px; ">
         <h1 class="h1-responsive text-center">Nuestra Oferta Academica</h1>
         <p class="text-center">  Conviértete en un experto en tu área de interés.</p>
 </div>
@@ -102,17 +104,17 @@
 <div >
    
         <section class="container pb-4">
-        <h2 class="h2-responsive text-black-50"> Cursos especializados </h2>
+        <h2 class="h2-responsive text-black-50 wow pulse"> Cursos especializados </h2>
                
                <hr class=" mb-4">
             <!--Grid row-->
             <div class="row wow fadeIn">
-               
+            @php $delay=0; @endphp
             @for ($i = 0; $i < count($categories); $i++)
            
                     @if($categories[$i]->isCursoPosgrado == 1)
                        <div class="col-md-3 col-sm-12 mb-5 mt-5" style="max-height:350px;height: 75% !important;" >
-                           <div class="card h-100 wow fadeIn"  >
+                           <div class="card h-100 wow bounceInLeft"  data-wow-delay="{{$delay}}s">
                            <img class="card-img-top h-50 d-block d-sm-none px-4" style="width:100%" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">                               
                                <img class="card-img-top  d-none d-md-block"  src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
@@ -127,24 +129,25 @@
                            </div>
                        </div>
 
-                      
+                       @php $delay=$delay+1; @endphp
                       @endif                     
             @endfor               
              </div>
 
             
 
-             <h2 class="h2-responsive mt-5 text-black-50"> Posgrados </h2>
+             <h2 class="h2-responsive mt-5 text-black-50 wow pulse"> Posgrados </h2>
                
                <hr class=" mb-4">
             <!--Grid row-->
             <div class="row wow fadeIn">
-               
+            @php $delay=0; @endphp
             @for ($i = 0; $i < count($categories); $i++)
            
                     @if($categories[$i]->isCursoPosgrado == 0)
+                   
                        <div class="col-md-3 col-sm-12 mb-5 mt-2" style="max-height:350px; height: 75% !important;" >
-                           <div class="card h-100 wow fadeIn" >
+                           <div class="card h-100 wow bounceInLeft" data-wow-delay="{{$delay}}s">
                                <img class="card-img-top h-50" style="max-height:175px" src="{{$categories[$i]['Image_URL']}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px;font-size:1rem;" >{{$categories[$i]['Categoria']}}</h5>
@@ -156,6 +159,7 @@
                                </div>
                            </div>
                        </div>
+                       @php $delay=$delay+1; @endphp
                       @endif                     
             @endfor               
              </div>
@@ -163,7 +167,7 @@
              </section>
              <div class="blue darken-4 ">
                 <section class="container pb-4">
-                    <div class="d-flex align-items-center justify-content-center  flex-column " style="min-height:225px; ">
+                    <div class="d-flex align-items-center justify-content-center  flex-column wow zoomIn"    style="min-height:225px; ">
                         <div class="row mb-4 " >
                             <div class="col-sm-12 col-md-4 text-center white-text mt-4" >
                             <i class="fa fa-graduation-cap fa-4x" aria-hidden="true"></i> <br> <br>
@@ -184,16 +188,16 @@
             </div>
             <section class="container pb-4">
              
-                <h2 class="h2-responsive mt-4 text-black-50"> Maestrías </h2>
+                <h2 class="h2-responsive mt-4 text-black-50 wow pulse"> Maestrías </h2>
                
             <hr class=" mb-4">
             <!--Grid row-->
-            <div class="row wow fadeIn">
-               
+            <div class="row wow fadeIn" data-wow-duration="3s">
+            @php $delay=0; @endphp
             @for ($i = 0; $i < count($courses); $i++)
                              
                          <div class="col-md-3 col-sm-12 mb-5 mt-2"  style="max-height:350px;height: 75% !important;" >
-                           <div class="card h-100 wow fadeIn" >
+                           <div class="card h-100 wow bounceInLeft"  data-wow-delay="{{$delay}}s" >
                                <img class="card-img-top h-50" style="max-height:175px" src="{{$courses[$i]->Image_URL}}" alt="Card image cap">
                                <div class="card-body">
                                    <h5 class="card-title primary-text h5-responsive" style="height: 12% !important; min-height:30px;font-size:1rem;"  >{{$courses[$i]->NombreCurso}}</h5>
@@ -208,7 +212,7 @@
                                </div>
                            </div>
                        </div>
-                      
+                       @php $delay=$delay+1; @endphp
             @endfor               
              </div>
 
@@ -218,8 +222,8 @@
         
 </div>
 
-<div class="d-flex align-items-center justify-content-center flex-column " style="min-height:575px; background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('{{route('cursos.index')}}/img/b_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-
+<div class="d-flex align-items-center justify-content-center flex-column "  style="min-height:575px; background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('{{route('cursos.index')}}/img/b_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="wow zoomIn">
         <!-- <img src="/img/b.jpg" class="w-md-100 h-100"/>         -->
         <h1 class="h1-responsive text-white text-center mt-4">¿Por qué estudiar con nosotros?</h1>
         <p class="text-white text-center">Contamos con las mejores metodologías de enseñanza virtual, docentes calificados y una amplia gama de recursos mediáticos para facilitar el proceso enseñanza-aprendizaje</p>
@@ -227,7 +231,7 @@
         <section class="container pt-4">
            
             <!--Grid row-->
-            <div class="row wow fadeIn ">
+            <div class="row wow fadeIn " data-wow-duration="3s">
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 px-4">
                     <!--First row-->
@@ -312,7 +316,7 @@
                     </div>
                     <!--/Third row-->
                 </div>
-               
+                </div>
             </div>
             <!--/Grid row-->
         </section>
@@ -321,45 +325,45 @@
     
     <div class="white">
         <div class=" container pt-2 ">
-        <h1 class=" h1-responsive  pt-5 w-100 text-center ">Empresas que confían en nuestro trabajo</h1>
+        <h1 class=" h1-responsive  pt-5 w-100 text-center wow zoomIn">Empresas que confían en nuestro trabajo</h1>
             <div class="d-block d-sm-none">
                 <div class="d-flex align-items-center justify-content-center flex-column " >
 
-                    <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" />       
-                    <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" />                       
-                    <img src="{{URL::asset('img/Resources/empresas/CARGILL.jpg')}}" />                       
-                    <img src="{{URL::asset('img/Resources/empresas/CEMEX.jpg')}}" />                       
-                    <img src="{{URL::asset('img/Resources/empresas/LA-PRENSA.jpg')}}" />                       
-                    <img src="{{URL::asset('img/Resources/empresas/MINED.jpg')}}" />                       
-                    <img src="{{URL::asset('img/Resources/empresas/MTI.jpg')}}" />                       
-                    <img src="{{URL::asset('img/Resources/empresas/NIMAC.jpg')}}" />                       
+                    <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" class="wow jackInTheBox"/>       
+                    <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/CARGILL.jpg')}}" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/CEMEX.jpg')}}" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/LA-PRENSA.jpg')}}" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/MINED.jpg')}}" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/MTI.jpg')}}" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/NIMAC.jpg')}}" class="wow jackInTheBox"/>                       
                 
                 </div>
              </div>
              <div class="d-none d-md-block">
-                <div class=" d-flex align-items-center justify-content-center row" >
+                <div class=" d-flex align-items-center justify-content-center row wow fadeIn" >
 
-                    <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" style="width:200px"/>       
-                    <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" style="width:200px"/>                       
-                    <img src="{{URL::asset('img/Resources/empresas/CARGILL.jpg')}}" style="width:200px"/>                       
-                    <img src="{{URL::asset('img/Resources/empresas/CEMEX.jpg')}}" style="width:200px"/>                       
-                    <img src="{{URL::asset('img/Resources/empresas/LA-PRENSA.jpg')}}" style="width:200px"/>                       
-                    <img src="{{URL::asset('img/Resources/empresas/MINED.jpg')}}" style="width:200px"/>                       
-                    <img src="{{URL::asset('img/Resources/empresas/MTI.jpg')}}" style="width:200px"/>                       
-                    <img src="{{URL::asset('img/Resources/empresas/NIMAC.jpg')}}" style="width:200px"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/BAC.jpg')}}" style="width:200px" class="wow jackInTheBox"/>       
+                    <img src="{{URL::asset('img/Resources/empresas/BDF.jpg')}}" style="width:200px" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/CARGILL.jpg')}}" style="width:200px" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/CEMEX.jpg')}}" style="width:200px" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/LA-PRENSA.jpg')}}" style="width:200px" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/MINED.jpg')}}" style="width:200px" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/MTI.jpg')}}" style="width:200px" class="wow jackInTheBox"/>                       
+                    <img src="{{URL::asset('img/Resources/empresas/NIMAC.jpg')}}" style="width:200px" class="wow jackInTheBox"/>                       
                 </div>
             </div>
         </div>
     </div>
         <div class="grey lighten-4">
-            <div class="d-flex align-items-center justify-content-center flex-column " style="min-height:220px; ">
+            <div class="d-flex align-items-center justify-content-center flex-column wow zoomIn" style="min-height:220px; ">
                     <h1 class="h1-responsive text-black-50 text-center ">Lo que opinan de nuestros estudiantes</h1>
                     <p class="text-black-50 text-center">Se parte de nuestra comunidad, y logra el éxito a través del aprendizaje en línea</p>
             </div>
             <div class="container ">
                 <section>
                     <!--First row-->
-                    <div class="row features-small pb-3 wow fadeIn">
+                    <div class="row features-small pb-3 wow fadeIn" data-wow-duration="3s">
                                     <section class="carousel slide col-12 d-block d-sm-none" data-ride="carousel" id="carousel-cursossm">
                                         <div class="container" style="position: absolute; z-index: 99998; margin-top:15%">
                                             <div class="d-flex " >
