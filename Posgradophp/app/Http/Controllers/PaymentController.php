@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PaymentRequest;
 use GuzzleHttp\Client;
-
+use lawiet\src\NuSoapClient;
 class PaymentController extends Controller
 {
     public function index()
@@ -194,17 +194,22 @@ class PaymentController extends Controller
     }
 
     public function pagarws(Request $request){
+       
+        /*//url del webservice
+        $wsdl="https://servicios.bcn.gob.ni/Tc_Servicio/ServicioTC.asmx?wsdl";
 
-        $client = new Client([
-            'base_uri' => 'https://google.com/recaptcha/api/'
-        ]);
+        //instanciando un nuevo objeto cliente para consumir el webservice
+        $client=new NuSoapClient($wsdl,'wsdl');
 
-        $response = $client->post('siteverify', [
-            'query' => [
-                'secret' => env('GOOGLE_RECAPTCHA'),
-                'response' => $value
-            ]
-        ]);
+        //pasando los parámetros a un array
+        $param=array('Ano'=>2019,'Mes'=>2,'Dia'=>1);
+
+        //llamando al método y pasándole el array con los parámetros
+        $resultado = $client->call('RecuperaTC_Dia', $param);*/
+
+
+        
+        return $resultado;
     }
 }
 
