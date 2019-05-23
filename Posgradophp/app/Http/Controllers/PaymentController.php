@@ -192,6 +192,20 @@ class PaymentController extends Controller
         ]);
         return json_decode($response->getBody())->success;
     }
+
+    public function pagarws(Request $request){
+
+        $client = new Client([
+            'base_uri' => 'https://google.com/recaptcha/api/'
+        ]);
+
+        $response = $client->post('siteverify', [
+            'query' => [
+                'secret' => env('GOOGLE_RECAPTCHA'),
+                'response' => $value
+            ]
+        ]);
+    }
 }
 
 /*

@@ -70,7 +70,8 @@ Route::group(['prefix' => 'process'], function () {
 
     Route::group(['prefix'=>'payment','middleware'=>'logged'],function(){
         Route::get('/', 'PaymentController@index')->name('pay.index');
-        Route::post('/pay', 'PaymentController@pagar')->name('pay.pagar');
+        // Route::post('/pay', 'PaymentController@pagar')->name('pay.pagar');
+        Route::post('/pay', 'PaymentController@pagarws')->name('pay.pagar');
     });
 });
 
