@@ -214,7 +214,7 @@ function transaccion(e){
                     $("#card_number").val($("#tarjeta").val()),
                     $("#card_expiry_date").val($("#mes").val() +"-"+ $("#año").val()),  */
                     setTimeout(function(){  
-                      $("#setsubmit").click()
+                      // $("#setsubmit").click()
                       }, 1500);
                    
                     /*  $.ajax( {
@@ -235,19 +235,7 @@ function transaccion(e){
                    
                   },
               error: function(response){
-              /*     $("#alertregistro").show();
-                  var str = "";
-
-              for(x in response.responseJSON.errors){
-                  var d = response.responseJSON.errors[x];
-                  
-                  for(var i=0;i<d.length;i++){                
-                      str= str +'<b>'+d[i]+'</b><br></br>';               
-                  }
-              }
- */
-                  
-                      //$("#alertregistro").html(str);
+                console.log(response);
               }
               
           

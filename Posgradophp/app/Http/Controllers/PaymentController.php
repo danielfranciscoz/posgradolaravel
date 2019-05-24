@@ -206,10 +206,69 @@ class PaymentController extends Controller
 
         //llamando al método y pasándole el array con los parámetros
         $resultado = $client->call('RecuperaTC_Dia', $param);*/
-
-
+        try {
         
-        return $resultado;
+        ini_set('memory_limit', -1);
+        $request->attributes->merchantID = env('SOAP_MERCHANTID');
+
+        $wsdl="https://ics2wstesta.ic3.com/commerce/1.x/transactionProcessor/CyberSourceTransaction_1.155.wsdl";
+
+        //instanciando un nuevo objeto cliente para consumir el webservice
+        $client=new NuSoapClient($wsdl,'wsdl');
+        $request->headers = "<SOAP-ENV:Header xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"><wsse:Security SOAP-ENV:mustUnderstand=\"1\"><wsse:UsernameToken><wsse:Username>".env('SOAP_MERCHANTID')."</wsse:Username><wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">".env('SOAP_KEY')."</wsse:Password></wsse:UsernameToken></wsse:Security></SOAP-ENV:Header>";
+        $ccAuthService = new \stdClass();
+        $ccAuthService->run = "true";
+        $request->attributes->ccAuthService = $ccAuthService;
+    
+        $billTo = new \stdClass();
+        $billTo->firstName = "John";
+        $billTo->lastName = "Doe";
+        $billTo->street1 = "1295 Charleston Road";
+        $billTo->city = "Mountain View";
+        $billTo->state = "CA";
+        $billTo->postalCode = "94043";
+        $billTo->country = "US";
+        $billTo->email = "null@cybersource.com";
+        $billTo->ipAddress = "10.7.111.111";
+        $request->attributes->billTo = $billTo;
+    
+        $card = new \stdClass();
+        $card->accountNumber = "4111111111111111";
+        $card->expirationMonth = "12";
+        $card->expirationYear = "2020";
+        $request->attributes->card = $card;
+    
+        $purchaseTotals = new \stdClass();
+        $purchaseTotals->currency = "USD";
+        $request->attributes->purchaseTotals = $purchaseTotals;
+    
+        $item0 = new \stdClass();
+        $item0->unitPrice = "12.34";
+        $item0->quantity = "2";
+        $item0->id = "0";	
+    
+        $item1 = new \stdClass();
+        $item1->unitPrice = "56.78";
+        $item1->id = "1";
+    
+	    $request->attributes->item = array($item0, $item1);
+        // $client->item = array($item0, $item1);
+    
+        // $reply = $soapClient->runTransaction($request);
+        
+        // This section will show all the reply fields.
+        // var_dump($reply);
+
+        //llamando al método y pasándole el array con los parámetros
+        $resultado = $client->call('runTransaction', $request);
+        // $resultado = $request;
+           
+
+    } catch (Exception $e) {
+        return report($e);
+    }
+    
+        return response()->json(["resultado"=>$resultado]);
     }
 }
 
