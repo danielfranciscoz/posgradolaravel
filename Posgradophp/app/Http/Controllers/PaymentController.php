@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PaymentRequest;
 use GuzzleHttp\Client;
-use lawiet\src\NuSoapClient;
+use CybsSoapClient;
+
 class PaymentController extends Controller
 {
     public function index()
@@ -209,13 +210,56 @@ class PaymentController extends Controller
         try {
         
         ini_set('memory_limit', -1);
+
+        $referenceCode = 'your_merchant_reference_code';
+
+        $client = new CybsSoapClient();  
+        $request = $client->createRequest($referenceCode);
+
+// Build a sale request (combining an auth and capture). In this example only
+// the amount is provided for the purchase total.
+$ccAuthService = new \stdClass();
+$ccAuthService->run = 'true';
+$request->ccAuthService = $ccAuthService;
+
+$ccCaptureService = new \stdClass();
+$ccCaptureService->run = 'true';
+$request->ccCaptureService = $ccCaptureService;
+
+$billTo = new \stdClass();
+$billTo->firstName = 'John';
+$billTo->lastName = 'Doe';
+$billTo->street1 = '1295 Charleston Road';
+$billTo->city = 'Mountain View';
+$billTo->state = 'CA';
+$billTo->postalCode = '94043';
+$billTo->country = 'US';
+$billTo->email = 'null@cybersource.com';
+$billTo->ipAddress = '10.7.111.111';
+$request->billTo = $billTo;
+
+$card = new \stdClass();
+$card->accountNumber = '4111111111111111';
+$card->expirationMonth = '12';
+$card->expirationYear = '2020';
+$request->card = $card;
+
+$purchaseTotals = new \stdClass();
+$purchaseTotals->currency = 'USD';
+$purchaseTotals->grandTotalAmount = '90.01';
+$request->purchaseTotals = $purchaseTotals;
+
+$reply = $client->runTransaction($request);
+
+       /*
         $request->attributes->merchantID = env('SOAP_MERCHANTID');
 
         $wsdl="https://ics2wstesta.ic3.com/commerce/1.x/transactionProcessor/CyberSourceTransaction_1.155.wsdl";
 
         //instanciando un nuevo objeto cliente para consumir el webservice
-        $client=new NuSoapClient($wsdl,'wsdl');
-        $request->headers = "<SOAP-ENV:Header xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"><wsse:Security SOAP-ENV:mustUnderstand=\"1\"><wsse:UsernameToken><wsse:Username>".env('SOAP_MERCHANTID')."</wsse:Username><wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">".env('SOAP_KEY')."</wsse:Password></wsse:UsernameToken></wsse:Security></SOAP-ENV:Header>";
+        $client=new CybsSoapClient($wsdl,'wsdl');
+        // $request->headers = "<SOAP-ENV:Header xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"><wsse:Security SOAP-ENV:mustUnderstand=\"1\"><wsse:UsernameToken><wsse:Username>".env('SOAP_MERCHANTID')."</wsse:Username><wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">".env('SOAP_KEY')."</wsse:Password></wsse:UsernameToken></wsse:Security></SOAP-ENV:Header>";
+        
         $ccAuthService = new \stdClass();
         $ccAuthService->run = "true";
         $request->attributes->ccAuthService = $ccAuthService;
@@ -236,6 +280,7 @@ class PaymentController extends Controller
         $card->accountNumber = "4111111111111111";
         $card->expirationMonth = "12";
         $card->expirationYear = "2020";
+        $card->cardType = "001";
         $request->attributes->card = $card;
     
         $purchaseTotals = new \stdClass();
@@ -247,11 +292,12 @@ class PaymentController extends Controller
         $item0->quantity = "2";
         $item0->id = "0";	
     
-        $item1 = new \stdClass();
-        $item1->unitPrice = "56.78";
-        $item1->id = "1";
+        // $item1 = new \stdClass();
+        // $item1->unitPrice = "56.78";
+        // $item1->id = "1";
     
-	    $request->attributes->item = array($item0, $item1);
+        $request->attributes->item = $item0;
+
         // $client->item = array($item0, $item1);
     
         // $reply = $soapClient->runTransaction($request);
@@ -260,7 +306,7 @@ class PaymentController extends Controller
         // var_dump($reply);
 
         //llamando al método y pasándole el array con los parámetros
-        $resultado = $client->call('runTransaction', $request);
+        $resultado = $client->call('runTransaction', $request);*/
         // $resultado = $request;
            
 
@@ -268,7 +314,7 @@ class PaymentController extends Controller
         return report($e);
     }
     
-        return response()->json(["resultado"=>$resultado]);
+        return response()->json(["resultado"=>$reply]);
     }
 }
 
