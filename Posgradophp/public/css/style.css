@@ -267,7 +267,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
       box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); }
   
       .navbar-black{
-        background-color: rgba(0, 0, 0, 0.9) !important;
+        background-color: rgba(13,	71,	161,0.95)  !important;        
         color: white;
        
       }
@@ -298,8 +298,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
         color:white !important;
       }
       .navbar-black .btn-change{       
-        background:white !important;
+        background:#EEEEEE !important;
         color:black !important;
+      }
+      
+
+      .navbar-black .btn-change2{       
+        background:#ff3547  !important;
+        color: white  !important;
       }
 
      
@@ -311,4 +317,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
         color:white !important;
        
       }
-      
+
+      .navbar-black .navbar-toggler a{       
+        color:white !important;
+       
+      }

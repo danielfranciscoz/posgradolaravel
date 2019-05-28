@@ -129,7 +129,7 @@
                            </div>
                        </div>
 
-                       @php $delay=$delay+1; @endphp
+                       @php $delay=$delay+0.5; @endphp
                       @endif                     
             @endfor               
              </div>
@@ -159,7 +159,7 @@
                                </div>
                            </div>
                        </div>
-                       @php $delay=$delay+1; @endphp
+                       @php $delay=$delay+0.5; @endphp
                       @endif                     
             @endfor               
              </div>
@@ -212,7 +212,7 @@
                                </div>
                            </div>
                        </div>
-                       @php $delay=$delay+1; @endphp
+                       @php $delay=$delay+0.5; @endphp
             @endfor               
              </div>
 

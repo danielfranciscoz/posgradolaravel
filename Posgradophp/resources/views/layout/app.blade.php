@@ -9,8 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') - Educando Online</title>
    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
     <link rel="icon" href="{{ URL::asset('img/icon.png') }}">
     <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ URL::asset('css/mdb.css') }}" rel="stylesheet" type="text/css" >
@@ -22,10 +22,10 @@
    
 
 
-  <nav class="navbar  fixed-top navbar-expand-lg navbar-light white lighten-5 h-auto " id="navbarsite">
+  <nav class="navbar  fixed-top navbar-expand-lg navbar-light white lighten-5 h-auto wow bounceInDown " id="navbarsite">
 
   <!-- Navbar brand -->
-  <a class="navbar-brand wow pulse" data-wow-delay="0s" href="{{route('cursos.index')}} ">Educando Online</a>
+  <a class="navbar-brand"  href="{{route('cursos.index')}} ">Educando Online</a>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -41,7 +41,7 @@
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       
-    <li class="nav-item dropdown wow pulse" data-wow-delay="0.33s" style="min-width: 150px" >
+    <li class="nav-item dropdown "  style="min-width: 150px" >
        <a class="nav-link dropdown-toggle text-muted " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           <i class="fa fa-folder-open-o fa-1x text-muted" aria-hidden="true"></i> Oferta Académica</a>
@@ -80,28 +80,28 @@
     <!-- Links -->
 
         
-       <div class="input-group md-form form-sm form-2 pl-0 wow pulse" data-wow-delay="0.66s"  >
+       <div class="input-group md-form form-sm form-2 pl-0 "   >
           <input class="form-control my-0 py-1  waves-effect" type="text" placeholder="Buscar cursos..." aria-label="Search" id="searchinput" style="cursor: text;" >
           <div class="input-group-append ">
             <span class="input-group-text btn-primary waves-effect " id="buttonsearch" onclick="searchnav();"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>      
 
-             <div class="d-block d-sm-none font-weight-bold "><a id="carritosm" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 wow pulse" data-wow-delay="1s" style="min-width:70px;"  onclick="window.location.href = '{{route("carrito")}}';"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i>&nbsp;&nbsp;Inversion Total  @if(isset( $GLOBALS["totalcarrito"])) $ {{ $GLOBALS["totalcarrito"]}}@else $ 0 @endif</a></div>
+             <div class="d-block d-sm-none font-weight-bold "><a id="carritosm" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 "  style="min-width:70px;"  onclick="window.location.href = '{{route("carrito")}}';"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i>&nbsp;&nbsp;Inversion Total  @if(isset( $GLOBALS["totalcarrito"])) $ {{ $GLOBALS["totalcarrito"]}}@else $ 0 @endif</a></div>
       
-             <div class="d-none d-md-block font-weight-bold "><a id="carritomd" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 wow pulse" data-wow-delay="1.33s" style="min-width:70px;"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i></a></div>
+             <div class="d-none d-md-block font-weight-bold "><a id="carritomd" class="nav-item nav-link waves-light waves-effect w-sm-100 w-md-100 "  style="min-width:70px;"><i class="fa fa-shopping-cart text-primary fa-2x  " aria-hidden="true"></i></a></div>
       
              
             @guest        
-                <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold btn-change wow pulse" data-wow-delay="4s" style="min-width: 150px; background: #424242; " data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
-                <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-primary waves-effect font-weight-bold wow pulse" data-wow-delay="1.66s" style="min-width: 150px">Registrate</button>
+                <button type="button" class="btn btn-sm btn-primary text-white  waves-effect font-weight-bold btn-change"  style="min-width: 150px; " data-toggle="modal" data-target="#modalLoginForm" >Iniciar sesion</button>
+                <button type="button" onclick="window.location.href='{{route('registro')}}'" class="btn btn-sm btn-danger waves-effect font-weight-bold "  style="min-width: 150px">Registrate</button>
             @else
          
             @if(Auth::user()->isAdmin)
-            <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold btn-change"  style="min-width: 150px; background: #424242; "  onclick="window.location.href='{{route('admin.index')}}'"  >Administracion</button>
+            <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold btn-change"  style="min-width: 150px;"  onclick="window.location.href='{{route('admin.index')}}'"  >Administracion</button>
               @endif
-            <a style="min-width: 250px;" class="d-md-block d-sm-none text-right"><i class="fa fa-user-o" aria-hidden="true"> </i>&nbsp;Hola,    &nbsp;{{ Auth::user()->estudiante->PrimerNombre . ' '. Auth::user()->estudiante->PrimerApellido}} &nbsp;</a> 
-                <a class="" style="width:80px" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  <i class="fa fa-sign-out fa-1x red-text text-right" aria-hidden="true"></i> </a>
+            <a style="min-width: 250px;" class="d-md-block d-sm-none text-right">&nbsp;¡Hola     &nbsp;{{ Auth::user()->estudiante->PrimerNombre.'!'}} &nbsp;</a> 
+                <a class="" style="width:80px" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  <i class="fas fa-sign-in-alt fa-2x grey-text text-right" aria-hidden="true"></i> </a>
                 
                 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -128,7 +128,7 @@
   </li>
 </ul>
  -->
-<div id="mainpage"> 
+<div id="mainpage " class="mt-4 pt-5"> 
             @yield('content')
 
 </div>
@@ -152,27 +152,27 @@
              <ul class="list-unstyled list-inline text-center">
                 <li class="list-inline-item" >
                     <a class="btn-floating btn-fb mx-1" href="https://www.facebook.com/UNI.Direccion.Posgrados">
-                        <i class="fa fa-facebook  fa-2x"> </i>
+                        <i class="fab fa-facebook-f  fa-2x"> </i>
                     </a>
                 </li>
                 <li class="list-inline-item">
                     <a class="btn-floating btn-tw mx-1" href="https://twitter.com/UNI_POSGRADO">
-                        <i class="fa fa-twitter  fa-2x"> </i>
+                        <i class="fab fa-twitter  fa-2x"> </i>
                     </a>
                 </li>
                 <li class="list-inline-item">
                     <a class="btn-floating btn-gplus mx-1" href="https://www.linkedin.com/company/universidad-nacional-de-ingenieria-%C2%B7-direcci%C3%B3n-de-posgrado" >
-                        <i class="fa fa-linkedin-square  fa-2x"> </i>
+                        <i class="fab fa-linkedin-in  fa-2x"> </i>
                     </a>
                 </li>
                 <li class="list-inline-item">
                     <a class="btn-floating btn-gplus mx-1"  href="https://www.instagram.com/unidepec/">
-                        <i class="fa fa-instagram  fa-2x"> </i>
+                        <i class="fab fa-instagram  fa-2x"> </i>
                     </a>
                 </li>
                 <li class="list-inline-item">
                     <a class="btn-floating btn-gplus mx-1" href="https://www.youtube.com/channel/UC-xl0Fx7MgbntmHuq99SJ3g">
-                        <i class="fa fa-youtube-square  fa-2x"> </i>
+                        <i class="fab fa-youtube-square  fa-2x"> </i>
                     </a>
                 </li>
 
