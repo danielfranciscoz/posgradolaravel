@@ -274,10 +274,9 @@ class AccountController extends Controller
 
     public function resumencarrito(){
 
-        //   dd($estudiante[0]->Nombres);
         if(Session::has('cartItems') && Auth::guard(null)->check()){
-            $user= Auth::user()->with('estudiante')->first();
-            $estudiante = $user->estudiante()->get();
+   
+            $estudiante = Auth::user()->estudiante;
             return view("Account/pagarcarrito")->with(compact('estudiante'));
         }
         else{

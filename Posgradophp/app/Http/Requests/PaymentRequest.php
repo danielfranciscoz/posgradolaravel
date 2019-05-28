@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\ValidRecaptcha;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentRequest extends FormRequest
 {
@@ -14,7 +15,13 @@ class PaymentRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if (Auth::guard(null)->check()) {
+            // return !Auth::user()->isAdmin;
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     /**
@@ -36,6 +43,9 @@ class PaymentRequest extends FormRequest
             'bill_to_address_country' =>'required',
             'bill_to_address_postal_code' => 'required|email|unique:users',
             'amount' => 'required',
+            'car_number' => 'required',
+            'expirationMonth' => 'required',
+            'expirationYear' => 'required',
             // 'currency' => 'required|min:6',
             'g-recaptcha-response' => ['required', new ValidRecaptcha]
         ];
@@ -53,7 +63,10 @@ class PaymentRequest extends FormRequest
             'bill_to_address_country.required'=>'Ingrese el estado',
             'bill_to_address_postal_code.required'=>'Ingrese el código postal',
             'amount.required'=>'No se ha especificado la cantidad a cobrar',
-            'g-recaptcha-response.required' => 'Por favor demuestra que eres un humano'
+            'car_number.required'=>'No se ha especificado la cantidad a cobrar',
+            'expirationMonth.required'=>'No se ha especificado el número de tarjeta',
+            'expirationYear.required'=>'Debe ingresar el mes en que expira la tarjeta',
+            'g-recaptcha-response.required' => 'Debe ingresar el año en que expira la tarjeta'
         ];
     }
 }

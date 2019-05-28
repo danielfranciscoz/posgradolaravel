@@ -33,7 +33,7 @@ class ResetPassword extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.ResetPassword')->with(compact('user'))
+        return $this->view('emails.ResetPassword')->with(['user'=>$this->user])
         ->subject('Cambio de contraseña');
     }
 }

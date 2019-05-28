@@ -38,7 +38,10 @@ class ConfirmationUser extends Mailable
     {
 
         return $this
-            ->view('emails.confirmation')->with(compact('user'))->with(compact('estudiante'))
+            ->view('emails.confirmation')->with([
+                'user'=>$this->user,
+                'estudiante'=>$this->estudiante
+            ])
             ->subject('Verifica tu cuenta');
       
     }
