@@ -48,9 +48,9 @@
                                 </div>
                                 <div class="col-md-8 col-sm-6 ">
                                     <p style="margin-bottom:0"> <p class="h4-responsive font-weight-bold"  onclick='curso("{{Session::get('cartItems')[$i]['curso']}}");' style="cursor: pointer; margin-bottom:0;"> {{Session::get('cartItems')[$i]['curso'] }}</p>
-                                    <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{Session::get('cartItems')[$i]['horas']}} Horas Clase &nbsp <br class="d-block d-sm-none">
+                                    <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fas fa-clock" aria-hidden="true"></i> {{Session::get('cartItems')[$i]['horas']}} Horas Clase &nbsp <br class="d-block d-sm-none">
                                     <i class="fa fa-certificate grey-text" aria-hidden="true">  </i>                               Certificación &nbsp <br class="d-block d-sm-none">
-                                    <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>                                Recursos Descargables</p>
+                                    <i class="fas fa-file-alt grey-text" aria-hidden="true"></i>                                Recursos Descargables</p>
                                     </p>
                                     
                                     <h5 class="font-weight-bold float-left "  style="color:#b71c1c "> 
@@ -77,9 +77,9 @@
                 <a class="btn text-white " data-toggle="modal" data-target="#modalLoginForm" style="background: #424242;"> Iniciar Sesíon</a>
                 
                 <div class="mt-2 d-flex justify-content-center grey-text">
-                                <i class="fa fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
-                                <i class="fa fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
-                                <i class="fa fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
+                                <i class="fab fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
+                                <i class="fab fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
+                                <i class="fab fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
                 </div>
                            
             </div>
@@ -90,9 +90,9 @@
                 
                 <a class="btn btn-primary mt-2 w-95 mb-2" href="{{route('pagarcarrito')}}">Proceder al Pago</a>
                 <div class="mt-2 d-flex justify-content-center grey-text">
-                                    <i class="fa fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
-                                    <i class="fa fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
-                                    <i class="fa fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
+                                    <i class="fab fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
+                                    <i class="fab fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
+                                    <i class="fab fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
                     </div>
                            
                  </div>

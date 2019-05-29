@@ -74,7 +74,7 @@ $("#alertmodaldelete").hide();
                     { "data": "id", "name": "id" ,"visible":false},
                     { "data": "Nombres", "name": "Nombres" },
                     { "data": "LinkedIn_URL", "name": "LinkedIn_URL" , render: function (data) {
-                           return  '<a  href= "http://'+data+'" target="_blank   "><i class="fa fa-linkedin-in fa-2x grey"></i></a>'
+                           return  '<a  href= "http://'+data+'" target="_blank"><i class="fa fa-linkedin-in fa-2x grey"></i></a>'
                     }},                    
                     { "data": "Profesion", "name": "Profesion" },
                     { "data": "Descripcion", "name": "Descripcion" },

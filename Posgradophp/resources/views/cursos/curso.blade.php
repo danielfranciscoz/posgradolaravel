@@ -142,9 +142,9 @@
                                 <table class="table table-borderless table-hover mx-4">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="font-weight-bold"><i class="fa fa-hashtag" aria-hidden="true"></i></th>
-                                            <th scope="col" class="font-weight-bold"><i class="fa fa-pencil" aria-hidden="true"></i> Tema</th>
-                                            <th scope="col" class="font-weight-bold"><i class="fa fa-clock-o" aria-hidden="true"></i> Horas</th>
+                                            <th scope="col" class="font-weight-bold"><i class="fas fa-hashtag" aria-hidden="true"></i></th>
+                                            <th scope="col" class="font-weight-bold"><i class="fas fa-pencil-ruler " aria-hidden="true"></i> Tema</th>
+                                            <th scope="col" class="font-weight-bold"><i class="fas fa-clock" aria-hidden="true"></i> Horas</th>
                                        
                                         </tr>
                                     </thead>
@@ -261,20 +261,20 @@
                             <span class="black-text font-weight-bold"></br> Incluye</span>
                             
                             <span class="row "></br>                           
-                            <i class="fa fa-clock-o col-2" aria-hidden="true"></i>
+                            <i class="fas fa-clock col-2" aria-hidden="true"></i>
                            
                                 {{$curso->horas_clase}} horas de Estudio
                             </span>
                             <span class="row"></br> 
-                                <i class="fa fa-file-text-o grey-text  col-2" aria-hidden="true"></i>
+                                <i class="fas fa-file-alt grey-text  col-2" aria-hidden="true"></i>
                                 Recursos Descargables
                             </span>
                             <span class="row"></br> 
-                                <i class="fa fa-hand-o-right grey-text  col-2" aria-hidden="true"></i>
+                                <i class="fas fa-hand-point-right grey-text  col-2" aria-hidden="true"></i>
                                  Acceso de por vida
                             </span>
                             <span class="row"></br> 
-                                <i class="fa fa-mobile-phone grey-text  col-2" aria-hidden="true"></i>
+                                <i class="fas fa-mobile-alt grey-text  col-2" aria-hidden="true"></i>
                                 Acceso en móviles y TV
                             </span>
                             <span class=" row"></br> 
@@ -283,9 +283,9 @@
                                 </br>
                             </span>
                             <div class="mt-4 d-flex justify-content-center grey-text">
-                                <i class="fa fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
-                                <i class="fa fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
-                                <i class="fa fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
+                                <i class="fab fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
+                                <i class="fab fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
+                                <i class="fab fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
                             </div>
                         </div>
                    </div>
@@ -310,32 +310,32 @@
                             </div>
                             <span class="black-text font-weight-bold"></br> Incluye</span>
                             
-                            <span class="row " style="font-size:0.9rem">                         
-                            <i class="fa fa-clock-o col-2" aria-hidden="true"></i>
+                            <span class="row "></br>                           
+                            <i class="fas fa-clock col-2" aria-hidden="true"></i>
                            
                                 {{$curso->horas_clase}} horas de Estudio
                             </span>
-                            <span class="row" style="font-size:0.9rem">
-                                <i class="fa fa-file-text-o grey-text  col-2" aria-hidden="true"></i>
+                            <span class="row"></br> 
+                                <i class="fas fa-file-alt grey-text  col-2" aria-hidden="true"></i>
                                 Recursos Descargables
                             </span>
-                            <span class="row" style="font-size:0.9rem">
-                                <i class="fa fa-hand-o-right grey-text  col-2" aria-hidden="true"></i>
+                            <span class="row"></br> 
+                                <i class="fas fa-hand-point-right grey-text  col-2" aria-hidden="true"></i>
                                  Acceso de por vida
                             </span>
-                            <span class="row" style="font-size:0.9rem">
-                                <i class="fa fa-mobile-phone grey-text  col-2" aria-hidden="true"></i>
-                                Acceso en móviles y TV 
+                            <span class="row"></br> 
+                                <i class="fas fa-mobile-alt grey-text  col-2" aria-hidden="true"></i>
+                                Acceso en móviles y TV
                             </span>
-                            <span class=" row" style="font-size:0.9rem">
+                            <span class=" row"></br> 
                                 <i class="fa fa-certificate grey-text  col-2" aria-hidden="true"></i>
                                 Certificado
                                 </br>
                             </span>
                             <div class="mt-4 d-flex justify-content-center grey-text">
-                                <i class="fa fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
-                                <i class="fa fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
-                                <i class="fa fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
+                                <i class="fab fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
+                                <i class="fab fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
+                                <i class="fab fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
                             </div>
                         </div>
                    </div>
