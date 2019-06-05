@@ -52,7 +52,7 @@ class PaymentController extends Controller
             $bill_to_address_postal_code = $request->input('bill_to_address_postal_code');
             $amount = $request->input('amount');
             
-            $cardNumber = $request->input('car_number');
+            $cardNumber = $request->input('card_number');
             $expirationMonth = $request->input('expirationMonth');
             $expirationYear = $request->input('expirationYear');
 

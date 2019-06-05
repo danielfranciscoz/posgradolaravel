@@ -63,17 +63,23 @@
                 <label class="col-12">Número Telefónico:</label>
                 <input type="tel" id="telefono" autocomplete="tel" class="form-control" placeholder="Número Telefónico*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required value="{{$estudiante->Telefono}}" />
                
-                <label class="col-12">Dirección:</label>
-                <input type="text" id="direccion" autocomplete="street-address" class="form-control" placeholder="Dirección de Facturación*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
-                
+                <label class="col-12">Pais:</label>
+                <select class="browser-default custom-select " id="pais" required >
+                        <option value="" disabled>Seleccione un pais</option>
+                    </select>      
+                <!-- <input type="text" id="pais" autocomplete="country-name" class="form-control" autocomplete="country-name" placeholder="Pais*" aria-describedby="defaultRegisterFormPhoneHelpBlock"   />
+                -->                
+                <label class="col-12">Estado:</label>
+                <select class="browser-default custom-select " id="estado" required >
+                        <option value="" disabled>Seleccione un estado</option>
+                    </select>  
+               <!--  <input type="text" id="estado" autocomplete="address-level1" class="form-control" autocomplete="" placeholder="Provincia o estado*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
+ -->
                 <label class="col-12">Ciudad:</label>
                 <input type="text" id="ciudad" autocomplete="address-level2" class="form-control" placeholder="Ciudad*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
-                
-                <label class="col-12">Estado:</label>
-                <input type="text" id="estado" autocomplete="address-level1" class="form-control" autocomplete="" placeholder="Provincia o estado*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
+                <label class="col-12">Dirección:</label>
+                <input type="text" id="direccion" autocomplete="street-address" class="form-control" placeholder="Dirección de Facturación*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
                
-                <label class="col-12">Pais:</label>
-                <input type="text" id="pais" autocomplete="country-name" class="form-control" autocomplete="country-name" placeholder="Pais*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
                
                 <label class="col-12">Codigo Postal:</label>
                 <input type="text" id="postal"   autocomplete="postal-code" class="form-control" autocomplete="postal-code" placeholder="Codigo Apostal*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
@@ -85,8 +91,14 @@
             </div>
             <div class="card grey lighten-4 mb-4 mt-2 col-12 ">
                      <div class="card-body row mx-2">
-                     <h5 class="h5-responsive font-weight-bold col-12 mb-4">Información de tarjeta de crédito o débito</h5>
+                     <h5 class="h5-responsive font-weight-bold col-6 mb-4">Información de tarjeta de crédito o débito</h5>
                      <label class="col-12">Tarjeta de Credito:</label>
+                     <!-- <select class="browser-default custom-select " id="tipotarjeta" required >
+                        <option value="" disabled>**Tipo de tarjeta </option>
+                        <option value="01" disabled>Visa </option>
+                        <option value="" disabled>MasterCard</option>
+                        <option value="" disabled>Dinner Club </option>
+                     </select>   -->
                      <input type="text" autocomplete="cc-number" id="tarjeta" class="form-control col-12" placeholder="Numero de Tarjeta*"  required />
                      <label class="col-12">Nombre del Titular:</label>
                      <input type="text" id="nombre"  autocomplete="cc-name" class="form-control col-12" placeholder="Nombres y apellidos*"  required />
@@ -127,7 +139,7 @@
             </div>
     </div>
     
-    <form id="payment_confirmation" action="https://testsecureacceptance.cybersource.com/silent/pay" method="post">
+    <!-- <form id="payment_confirmation" action="https://testsecureacceptance.cybersource.com/silent/pay" method="post">
       <input type="hidden" id="access_key" name="access_key" value="e9507abf9c1738e1a90162961d914987">
       <input type="hidden" id="profile_id" name="profile_id" value="B17CEE09-AA21-4C11-AD83-06CEA30FA859">
       <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="5c892d78becb9">
@@ -155,19 +167,20 @@
       <input type="hidden" name="card_number" value="4242424242424242"><br>
       <input type="hidden" name="card_expiry_date" value="11-2020"><br>
       <input type="submit" id="setsubmit" value="Confirm" style="display:none"/>
-</form>
+</form> -->
 </main>
 
 @endsection
 @section('endscript')
 <script>
+paises();
 function transaccion(e){
       
     //  $("#alertregistro").hide();
      
       var pasa = true;
       var mserror = "";    
-
+  
 
       $.ajax( {
               data: {
@@ -180,6 +193,11 @@ function transaccion(e){
                   "bill_to_address_state": $("#estado").val(),
                   "bill_to_address_country":$("#pais").val(),
                   "bill_to_address_postal_code":$("#postal").val(), 
+                  "card_name":$("#nombre").val(),
+                  "card_type":$("#tipotarjeta").val(),
+                    "card_number":$("#tarjeta").val(),
+                    "expirationMonth":$("#mes").val(), 
+                    "expirationYear": $("#año").val(), 
                   "amount":"{{$totalcarrito}}",      
                   "currency":"USD",              
                   "g-recaptcha-response": e,
@@ -190,7 +208,7 @@ function transaccion(e){
               type: 'POST'
                              ,
               success: function(response){
-                    var v =    response;
+                    /* var v =    response;
 
                     $("#transaction_uuid").val(response.transaction_uuid);
                     $("#signed_date_time").val(response.signed_date_time);
@@ -209,13 +227,13 @@ function transaccion(e){
                     $("#bill_to_address_state").val(response.bill_to_address_state);
                     $("#bill_to_address_country").val(response.bill_to_address_country);
                     $("#bill_to_address_postal_code").val(response.bill_to_address_postal_code);
-
+ */
                    /*  $("#card_type").val($("#card").val()),
                     $("#card_number").val($("#tarjeta").val()),
                     $("#card_expiry_date").val($("#mes").val() +"-"+ $("#año").val()),  */
-                    setTimeout(function(){  
-                      // $("#setsubmit").click()
-                      }, 1500);
+                  /*   setTimeout(function(){   
+                       $("#setsubmit").click()
+                      }, 1500); */
                    
                     /*  $.ajax( {
                         data: v,
@@ -244,6 +262,77 @@ function transaccion(e){
       grecaptcha.reset();
      
   }
+  function paises(){
+            $.ajax(
+                        {
+                            
+                            url: "https://restcountries.eu/rest/v2/",
+                            type: 'get',
+                            success: function(response){                             
+
+                                response.forEach(function(element) {
+                                    $('#pais').append($('<option>', { 
+                                        value: element.alpha2Code,
+                                        text : element.name 
+                                        }));
+                                    });
+                                  
+                            }                                                       
+                        
+                        }
+                    );
+        }
+
+
+        async function ciudades(codigo){
+          $('option', '#estado').remove();
+          var dd =  await totalciudad(codigo);
+          var total = dd.metadata.totalCount   ;                                  
+                                        
+          var coeficient =  Math.ceil(total/10) ;            
+          console.log(coeficient);
+          for(var i=0;i<coeficient;i++){
+
+              await busquedaciudad(codigo,i);
+          }
+        }
+                 function  totalciudad(codigo){
+                                    return $.ajax(
+                                      {   url: "http://geodb-free-service.wirefreethought.com/v1/geo/countries/"+codigo+"/regions?offset=0&limit=10&languageCode=es",
+                                          type: 'get',
+                                          success: function(response){     
+                                                                              
+                                          }                                                       
+                                      }
+                                  );   
+                   }
+
+                   function  busquedaciudad(codigo,i){
+                      $.ajax( {                           
+                        url: "http://geodb-free-service.wirefreethought.com/v1/geo/countries/"+codigo+"/regions?offset="+(i*10)+"&limit=10&languageCode=es",
+                            type: 'get',
+                            success: function(responsee){                             
+                              
+                                responsee.data.forEach(function(elemente) {
+                                    $('#estado').append($('<option>', { 
+                                        value: elemente.isoCode,
+                                        text : elemente.name 
+                                        }));
+                                    });                               
+                            }                                                  
+                        }
+                      );
+                    }
+
+                   
+        
+
+
+$('#pais').on('change', function() {
+  ciudades( this.value );
+});
+
+
 
 </script>
 @endsection
