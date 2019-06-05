@@ -22,7 +22,7 @@
    
 
 
-  <nav class="navbar  fixed-top navbar-expand-lg navbar-light white lighten-5 h-auto wow bounceInDown " id="navbarsite">
+  <nav class="navbar  fixed-top navbar-expand-lg navbar-light white lighten-5 h-auto wow bounceInDown " id="navbarsite" style="z-index: 999999  !important;">
 
   <!-- Navbar brand -->
   <a class="navbar-brand"  href="{{route('cursos.index')}} ">Educando Online</a>
@@ -83,7 +83,7 @@
        <div class="input-group md-form form-sm form-2 pl-0 "   >
           <input class="form-control my-0 py-1  waves-effect" type="text" placeholder="Buscar cursos..." aria-label="Search" id="searchinput" style="cursor: text;" >
           <div class="input-group-append ">
-            <span class="input-group-text btn-primary waves-effect " id="buttonsearch" onclick="searchnav();"><i class="fa fa-search " aria-hidden="true"></i></span>
+            <span class="input-group-text btn-primary waves-effect" id="buttonsearch" onclick="searchnav();"><i class="fa fa-search " aria-hidden="true"></i></span>
           </div>
         </div>      
 
@@ -98,10 +98,10 @@
             @else
          
             @if(Auth::user()->isAdmin)
-            <button type="button" class="btn btn-sm text-white  waves-effect font-weight-bold btn-change"  style="min-width: 150px;"  onclick="window.location.href='{{route('admin.index')}}'"  >Administracion</button>
+            <button type="button" class="btn btn-sm btn-primary text-white  waves-effect font-weight-bold btn-change"  style="min-width: 150px;"  onclick="window.location.href='{{route('admin.index')}}'"  >Administracion</button>
               @endif
-            <a style="min-width: 250px;" class="d-md-block d-sm-none text-right">&nbsp;¡Hola     &nbsp;{{ Auth::user()->estudiante->PrimerNombre.'!'}} &nbsp;</a> 
-                <a class="" style="width:80px" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  <i class="fas fa-sign-in-alt fa-2x grey-text text-right" aria-hidden="true"></i> </a>
+            <a style="min-width: 250px;" class="d-md-block d-sm-none text-right text-changenav">&nbsp;¡Hola     &nbsp;{{ Auth::user()->estudiante->PrimerNombre.'!'}} &nbsp;</a> 
+                <a class="" style="width:80px" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  <i class="fas fa-sign-in-alt fa-2x grey-text text-right text-changenav" aria-hidden="true"></i> </a>
                 
                 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -128,7 +128,7 @@
   </li>
 </ul>
  -->
-<div id="mainpage " class="mt-4 pt-5"> 
+<div id="mainpage " class=" pt-5" style="margin-top:19px"> 
             @yield('content')
 
 </div>

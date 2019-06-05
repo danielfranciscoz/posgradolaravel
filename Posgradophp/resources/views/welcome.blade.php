@@ -56,10 +56,10 @@
             <div class="" id="carrusel_Id">
                 <!--Mask-->
                 <div class="view">
-              <!--   <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100 d-none d-md-block"/> -->
-                <video  autoplay  mute loop class="w-100 d-none d-md-block">
+                <img src="{{URL::asset('img/b.jpg')}}" class="w-100 h-100 d-none d-md-block"/>
+              <!--   <video  autoplay  mute loop class="w-100 d-none d-md-block">
                      <source src="{{URL::asset('video/main.webm')}}" type="video/webm"></source>
-                </video>
+                </video> -->
                
                   <div class=" d-flex justify-content-start align-items-center mask  white-text" style="max-height:600px">
                         <div class="col-lg-4 col-md-12">
@@ -96,7 +96,7 @@
 
 <main>
           
-<div class="d-flex align-items-center justify-content-center  flex-column mx-4 mt-5  wow zoomIn" data-wow-delay="1s" style="min-height:200px; ">
+<div class="d-flex align-items-center justify-content-center  flex-column mx-4 mt-5  wow zoomIn"  style="min-height:200px; ">
         <h1 class="h1-responsive text-center">Nuestra Oferta Academica</h1>
         <p class="text-center">  Conviértete en un experto en tu área de interés.</p>
 </div>

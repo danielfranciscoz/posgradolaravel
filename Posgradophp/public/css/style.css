@@ -113,6 +113,7 @@ body,
     -webkit-border-radius: 50%;
     border-radius: 50%; 
     margin-bottom: 2px;
+    z-index: 10 !important;
   }
 
   .center-ico-button {
@@ -279,7 +280,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
         color:white !important;
       }
 
-      .navbar-black .collapse .navbar-nav .dropdown a{       
+      .navbar-black .text-muted{       
         color:white !important;
       }
       .navbar-black .collapse .navbar-nav .dropdown i{       
@@ -322,3 +323,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
         color:white !important;
        
       }
+
+      .navbar-black .text-changenav{       
+        
+        color:white !important;
+      }
+      
