@@ -38,6 +38,22 @@ class PaymentController extends Controller
         return implode(",", $dataToSign);
     }
 
+    private function GetCardType($card){
+
+
+        if (substr($card, 0, 1 ) === "4") {
+            return '001'; //VISA
+        } elseif(substr($card, 0, 2 ) === "51" || substr($card, 0, 2 ) === "52" || substr($card, 0, 2 ) === "53" || substr($card, 0, 2 ) === "54" || substr($card, 0, 2 ) === "55") {
+            return '002'; //MASTERCARD
+        }elseif (substr($card, 0, 2 ) === "34" || substr($card, 0, 2 ) === "37") {
+            return '003'; //American Express   
+        }elseif(substr($card, 0, 4 ) === "6011" || substr($card, 0, 3 ) === "644" || substr($card, 0, 2 ) === "65"){
+            return '004'; //Discover
+        }elseif (substr($card, 0, 2 ) === "35" || substr($card, 0, 4 ) === "1800" || substr($card, 0, 4 ) === "2131") {
+            return '007';
+        }
+    }
+
     public function pagar(PaymentRequest $request)
     {
         try {
@@ -85,6 +101,7 @@ class PaymentController extends Controller
             $card->accountNumber = $cardNumber;
             $card->expirationMonth = $expirationMonth;
             $card->expirationYear = $expirationYear;
+            $card->cardType=$this->GetCardType($cardNumber);
             $request->card = $card;
 
             $purchaseTotals = new \stdClass();
@@ -95,10 +112,11 @@ class PaymentController extends Controller
 
             $reply = $client->runTransaction($request);
 
+            // return response()->json(["resultado"=>$reply]);             
             if ($reply->decision != 'ACCEPT') {
-                return response()->json(["resultado"=>$reply]);             
+                return response()->json(["resultado"=>'Error']);             
             }else{
-                return response()->json(["resultado"=>$reply]);
+                return response()->json(["resultado"=>'Exito']);
             }
 
         } catch (Exception $e) {
