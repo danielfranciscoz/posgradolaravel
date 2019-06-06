@@ -249,7 +249,7 @@ function transaccion(e){
                
 
                   if(response.resultado="Exito"){
-                   /*  window.location.href = "{{route('cursos.index')}}/account/pagocarrito"; */
+                     window.location.href = "{{route('cursos.index')}}/account/pagocarrito/"+response.transactionCode; 
                   }else{
                     var str = "<b> Hubo un error en la transacción por favor intente de nuevo. </b>";
                   }

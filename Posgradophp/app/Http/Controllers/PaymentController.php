@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PaymentRequest;
 use GuzzleHttp\Client;
 use App\Models\Pago;
+use App\Models\Detallepago;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\PaymentConfirmation;
@@ -61,6 +62,7 @@ class PaymentController extends Controller
     public function pagar(PaymentRequest $request)
     {
         try {
+            $idcursos = $request->input('curso');
             $bill_to_forename = $request->input('bill_to_forename');
             $bill_to_surname = $request->input('bill_to_surname');
             $bill_to_email = $request->input('bill_to_email');
@@ -116,6 +118,7 @@ class PaymentController extends Controller
 
             $reply = $client->runTransaction($request);
 
+
             // return response()->json(["resultado"=>$reply]);
             if ($reply->decision != 'ACCEPT') {
                 return response()->json(["resultado"=>'Error']);
@@ -136,7 +139,14 @@ class PaymentController extends Controller
 
                     $pago->save();
                     
-                    
+                    for ($i=0; $i <count($idcursos) ; $i++) { 
+                        $detallepago = new Detallepago();
+                        $detallepago->pago_id=$pago->id;
+                        $detallepago->cursoprecio_id=$idcursos[$i];
+
+                        $detallepago->save();
+                    }
+
                     Mail::to($user->email)
                             ->send((new PaymentConfirmation($user,$user->estudiante))->locale('es'));
                     

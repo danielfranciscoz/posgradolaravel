@@ -49,7 +49,7 @@
             <div class="col-md-8 col-sm-12 ">
                 <div class="card white lighten-4 mb-4 mt-2 col-12 ">
                      <div class="card-body row mx-4">
-                     <h3 class="h3-responsives mt-2 col-md-12 col-sm-12">Felicitaciones</h3>
+                     <h3 class="h3-responsives mt-2 col-md-12 col-sm-12">¡Compra exitosa!</h3>
                      <div class="d-flex justify-content-center col-12">
                         <img  src="{{route('cursos.index')}}/img/compraexitosa.png" class="img-fluid " style="width:200px; height:200px;"/>
                      </div>
@@ -64,6 +64,7 @@
             <div class="card white sticky-top" >
             <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Detalle de Pago</h5>
                         <div class="row mt-4 mx-2">
+                        {{dd($detallePago->get()[0])}}
                         @if(is_array(Session::get('cartItems')))
                                 @for($i=0;$i< count(Session::get('cartItems'));$i++)
                                     <div class="col-8">

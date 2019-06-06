@@ -9,6 +9,7 @@ use App\User;
 use App\Models\Estudiante;
 use App\Models\Pago;
 use App\Models\Detallepago;
+use App\Models\Curso;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -290,11 +291,15 @@ class AccountController extends Controller
             $pago = Pago::where('reference_code', $Referencecode)->where('user_id', $user->id)->first();
             
             if ($pago != null) {
-                $detallePago = Detallepago::where('pago_id', $pago->id);
+              
+                $curso = Curso::join('cursoprecios', 'cursos.id', '=', 'cursoprecios.curso_id')
+                ->join('detallepagos', 'cursoprecios.id','=','detallepagos.cursoprecio_id')
+                ->where('detallepagos.pago_id',$pago->id)->get();
+  
                 return view("Account/pagocarrito")
                             ->with(compact('user'))
                             ->with(compact('estudiante'))
-                            ->with(compact('detallePago'))
+                            ->with(compact('curso'))
                             ->with(compact('pago'));
             } else {
                 abort(403, 'Acceso denegado, Este contenido no se encuentra disponible.');
@@ -405,7 +410,7 @@ class AccountController extends Controller
     {
         $id= $request->input('curso');
         // $request->session()->flush();
-        $curso = Cursoprecio::with('curso')->where('id', $id)->get();
+        $curso = Cursoprecio::with('curso')->where('curso_id', $id)->where('deleted_at',null)->get();
         
         if (count($curso) == 0) {
             return response()->json([
