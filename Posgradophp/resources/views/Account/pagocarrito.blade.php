@@ -79,7 +79,7 @@
 
                     <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">Total ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h5>
                     
-                           
+                    <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">!Compra Exitosa¡</h5>
                 </div>
             </div>
     </div>
@@ -87,3 +87,12 @@
 
 
 @endsection
+
+
+
+@php 
+
+Session::forget('cartItems')
+        
+            
+@endphp

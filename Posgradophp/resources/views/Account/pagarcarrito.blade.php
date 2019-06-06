@@ -148,7 +148,7 @@
                     <button id="btn-pago" class="g-recaptcha btn btn-primary mt-2 w-95 mb-2 mx-4 mb-4 btn-sm" data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq" data-callback="transaccion" >Realizar Pago</button>
                            
 
-                    <img  src="{{route('cursos.index')}}/img/ssl.jpg" class="img-fluid " style="width:150; height:50;"/>
+                  <!--   <img  src="{{route('cursos.index')}}/img/ssl.jpg" class="img-fluid " style="width:150; height:50;"/> -->
                   
                 </div>
 
@@ -200,12 +200,15 @@ $("#formpago").submit(function(e){
         e.preventDefault();
     });
 
+
+
 function transaccion(e){
   $( "#formpago" ).submit();
     //  $("#alertregistro").hide();
      
       var pasa = true;
-      var mserror = "";    
+      var mserror = "";  
+      var str  = "";  
       $("#alertpago").hide();
       $("#spinner").show();
       $("#btn-pago").hide();
@@ -225,7 +228,14 @@ function transaccion(e){
                     "card_number":$("#tarjeta").val(),
                     "expirationMonth":$("#mes").val(), 
                     "expirationYear": $("#año").val(), 
-                  "amount":"{{$totalcarrito}}",      
+                  "amount":"{{$totalcarrito}}", 
+                 
+                 @php
+                    for($i=0;$i<count(Session::get('cartItems'));$i++){
+                            echo('"curso['.$i.']":'.Session::get('cartItems')[$i]['id'].',');
+                    }
+                 @endphp
+
                   "currency":"USD",              
                   "g-recaptcha-response": e,
                   '_token': $('meta[name="csrf-token"]').attr('content')
@@ -236,9 +246,13 @@ function transaccion(e){
                              ,
               success: function(response){
               
-                console.log(response)
+               
 
-                  
+                  if(response.resultado="Exito"){
+                   /*  window.location.href = "{{route('cursos.index')}}/account/pagocarrito"; */
+                  }else{
+                    var str = "<b> Hubo un error en la transacción por favor intente de nuevo. </b>";
+                  }
 
                     /* var v =    response;
 
@@ -288,7 +302,7 @@ function transaccion(e){
               error: function(response){
                 console.log(response);
 
-                var str = "";
+                 str = "";
                                     $("#alertpago").show();
                                     if (typeof response.responseJSON.errors.bill_to_forename != "undefined") {
                                    
