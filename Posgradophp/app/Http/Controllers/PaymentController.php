@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PaymentRequest;
 use GuzzleHttp\Client;
+use App\Models\Pago;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Mail\PaymentConfirmation;
 use CybsSoapClient;
 
 class PaymentController extends Controller
@@ -38,18 +42,17 @@ class PaymentController extends Controller
         return implode(",", $dataToSign);
     }
 
-    private function GetCardType($card){
-
-
-        if (substr($card, 0, 1 ) === "4") {
+    private function GetCardType($card)
+    {
+        if (substr($card, 0, 1) === "4") {
             return '001'; //VISA
-        } elseif(substr($card, 0, 2 ) === "51" || substr($card, 0, 2 ) === "52" || substr($card, 0, 2 ) === "53" || substr($card, 0, 2 ) === "54" || substr($card, 0, 2 ) === "55") {
+        } elseif (substr($card, 0, 2) === "51" || substr($card, 0, 2) === "52" || substr($card, 0, 2) === "53" || substr($card, 0, 2) === "54" || substr($card, 0, 2) === "55") {
             return '002'; //MASTERCARD
-        }elseif (substr($card, 0, 2 ) === "34" || substr($card, 0, 2 ) === "37") {
-            return '003'; //American Express   
-        }elseif(substr($card, 0, 4 ) === "6011" || substr($card, 0, 3 ) === "644" || substr($card, 0, 2 ) === "65"){
+        } elseif (substr($card, 0, 2) === "34" || substr($card, 0, 2) === "37") {
+            return '003'; //American Express
+        } elseif (substr($card, 0, 4) === "6011" || substr($card, 0, 3) === "644" || substr($card, 0, 2) === "65") {
             return '004'; //Discover
-        }elseif (substr($card, 0, 2 ) === "35" || substr($card, 0, 4 ) === "1800" || substr($card, 0, 4 ) === "2131") {
+        } elseif (substr($card, 0, 2) === "35" || substr($card, 0, 4) === "1800" || substr($card, 0, 4) === "2131") {
             return '007';
         }
     }
@@ -112,16 +115,55 @@ class PaymentController extends Controller
 
             $reply = $client->runTransaction($request);
 
-            // return response()->json(["resultado"=>$reply]);             
+            // return response()->json(["resultado"=>$reply]);
             if ($reply->decision != 'ACCEPT') {
-                return response()->json(["resultado"=>'Error']);             
-            }else{
+                return response()->json(["resultado"=>'Error']);
+            } else {
+                DB::beginTransaction();
+                try {
+                    $user = Auth::user();
+
+                    $pago = new Pago();
+                    $pago->user_id=$user->user_id;
+                    $pago->reference_code=$referenceCode;
+                    $pago->bill_to_address_line1=$bill_to_address_line1;
+                    $pago->bill_to_address_state=$bill_to_address_state;
+                    $pago->bill_to_address_city=$bill_to_address_city;
+                    $pago->bill_to_address_country=$bill_to_address_country;
+                    $pago->bill_to_address_postal_code=$bill_to_address_postal_code;
+                    $pago->card=substr($cardNumber, strlen($cardNumber)-1, 4);
+
+                    // $pago->save();
+                    
+                    
+                    // Mail::to($user->email)
+                    //         ->send((new PaymentConfirmation($user,$estudent))->locale('es'));
+                    
+                    
+                    //La línea de abajo funciona para visualizar lo que será enviado por correo
+                    
+                    // return response()->json([
+                        //     'user'=>$user,
+                        //     'estudiante'=>$user->estudiante
+                        // ]);
+                        // return (new PaymentConfirmation($user, $user->estudiante))->render();
+                        
+                        // DB::commit();
+                      
+                    //'Te hemos enviado un correo, por favor revisa tu bandeja de entrada para verificar tu cuenta, sino lo encuentras prueba buscar en los correos no deseados.'
+                    return response()->json(["resultado"=>'Exito']);
+                } catch (Exception $e) {
+                    DB::rollback();
+                    return response()->json([
+                        'resultado'=>'El pago fue realizado sin embargo, no pudo ser almacenado en la base de datos.'
+                    ]);
+                }
+
+
                 return response()->json(["resultado"=>'Exito']);
             }
-
         } catch (Exception $e) {
             return report($e);
         }
-    
     }
 }

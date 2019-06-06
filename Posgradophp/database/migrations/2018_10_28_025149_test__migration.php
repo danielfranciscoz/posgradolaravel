@@ -153,7 +153,13 @@ class TestMigration extends Migration
         schema::create('pagos',function(BluePrint $table){
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->Integer('trx_number');
+            $table->Integer('reference_code');
+            $table->string('bill_to_address_line1');
+            $table->string('bill_to_address_state');
+            $table->string('bill_to_address_city');
+            $table->string('bill_to_address_country');
+            $table->string('bill_to_address_postal_code');
+            $table->string('card',4);
             $table->timestamps();
             $table->softDeletes();
 
@@ -195,5 +201,7 @@ class TestMigration extends Migration
         schema::dropIfExists('etiquetas');
         schema::dropIfExists('curso_etiqueta');
         schema::dropIfExists('comentarios');
+        schema::dropIfExists('pagos');
+        schema::dropIfExists('detallepagos');
     }
 }
