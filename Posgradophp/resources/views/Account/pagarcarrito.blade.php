@@ -15,7 +15,10 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <style>
 </style>
+<form id="formpago">
 <main class=" mx-4">
+
+
     <div class="container ">
     <ul class="stepper stepper-horizontal">
 
@@ -47,49 +50,49 @@
 
         <div class="row ">
             <div class="col-md-8 col-sm-12 ">
-                <div class="card grey lighten-4 mb-4 mt-2 col-12 ">
+                <div class="card white lighten-4 mb-4 mt-2 col-12 ">
                      <div class="card-body row ">
                      <h5 class="h5-responsive font-weight-bold col-12 mb-4">Información de facturación</h5>
                      <label class="col-12">Nombres:</label>
-                        <input type="text" id="nombres" class="form-control mb-3 col-12" placeholder="Nombres*" value="{{$estudiante->PrimerNombre.' '.$estudiante->SegundoNombre}}" required />
+                        <input type="text" id="nombres" class="form-control mb-3 col-12 grey lighten-4  " placeholder="Nombres*" value="{{$estudiante->PrimerNombre.' '.$estudiante->SegundoNombre}}" required />
                    
                         <label class="col-12">Apellidos:</label>
-                        <input type="text" id="apellidos" class="form-control mb-3 col-12" placeholder="Apellidos*" value="{{$estudiante->PrimerApellido.' '.$estudiante->SegundoApellido}}"  required /> 
+                        <input type="text" id="apellidos" class="form-control mb-3 col-12 grey lighten-4" placeholder="Apellidos*" value="{{$estudiante->PrimerApellido.' '.$estudiante->SegundoApellido}}"  required /> 
                         </br>
 
                 <label class="col-12">Correo Electrónico:</label>
-                <input type="email" id="email"  autocomplete="email" class="form-control mb-3 col-12" placeholder="Correo Electrónico*" value="{{Auth::user()->email}}" required readOnly='readOnly'/>
+                <input type="email" id="email"  autocomplete="email" class="form-control mb-3 col-12 grey lighten-4" placeholder="Correo Electrónico*" value="{{Auth::user()->email}}" required readOnly='readOnly'/>
 
                 <label class="col-12">Número Telefónico:</label>
-                <input type="tel" id="telefono" autocomplete="tel" class="form-control" placeholder="Número Telefónico*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required value="{{$estudiante->Telefono}}" />
+                <input type="tel" id="telefono" autocomplete="tel" class="form-control grey lighten-4" placeholder="Número Telefónico*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required value="{{$estudiante->Telefono}}" />
                
                 <label class="col-12">Pais:</label>
-                <select class="browser-default custom-select " id="pais" required >
+                <select class="browser-default custom-select grey lighten-4 " id="pais" required >
                         <option value="" disabled>Seleccione un pais</option>
                     </select>      
                 <!-- <input type="text" id="pais" autocomplete="country-name" class="form-control" autocomplete="country-name" placeholder="Pais*" aria-describedby="defaultRegisterFormPhoneHelpBlock"   />
                 -->                
                 <label class="col-12">Estado:</label>
-                <select class="browser-default custom-select " id="estado" required >
+                <select class="browser-default custom-select grey lighten-4" id="estado" required >
                         <option value="" disabled>Seleccione un estado</option>
                     </select>  
                <!--  <input type="text" id="estado" autocomplete="address-level1" class="form-control" autocomplete="" placeholder="Provincia o estado*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
  -->
                 <label class="col-12">Ciudad:</label>
-                <input type="text" id="ciudad" autocomplete="address-level2" class="form-control" placeholder="Ciudad*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
+                <input type="text" id="ciudad" autocomplete="address-level2" class="form-control grey lighten-4" placeholder="Ciudad*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
                 <label class="col-12">Dirección:</label>
-                <input type="text" id="direccion" autocomplete="street-address" class="form-control" placeholder="Dirección de Facturación*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
+                <input type="text" id="direccion" autocomplete="street-address" class="form-control grey lighten-4" placeholder="Dirección de Facturación*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
                
                
                 <label class="col-12">Codigo Postal:</label>
-                <input type="text" id="postal"   autocomplete="postal-code" class="form-control" autocomplete="postal-code" placeholder="Codigo Apostal*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
+                <input type="text" id="postal"   autocomplete="postal-code" class="form-control grey lighten-4" autocomplete="postal-code" placeholder="Codigo Apostal*" aria-describedby="defaultRegisterFormPhoneHelpBlock" required  />
                
             <a class="col-12 mt-2 text-right">Los campos indicados con (*) son obligatorios</a>
 
             </div>
           
             </div>
-            <div class="card grey lighten-4 mb-4 mt-2 col-12 ">
+            <div class="card white mb-4 mt-2 col-12 ">
                      <div class="card-body row mx-2">
                      <h5 class="h5-responsive font-weight-bold col-6 mb-4">Información de tarjeta de crédito o débito</h5>
                      <label class="col-12">Tarjeta de Credito:</label>
@@ -99,16 +102,16 @@
                         <option value="" disabled>MasterCard</option>
                         <option value="" disabled>Dinner Club </option>
                      </select>   -->
-                     <input type="text" autocomplete="cc-number" id="tarjeta" class="form-control col-12" placeholder="Numero de Tarjeta*"  required />
+                     <input type="text" autocomplete="cc-number" id="tarjeta" class="form-control col-12 grey lighten-4" placeholder="Numero de Tarjeta*"  required />
                      <label class="col-12">Nombre del Titular:</label>
-                     <input type="text" id="nombre"  autocomplete="cc-name" class="form-control col-12" placeholder="Nombres y apellidos*"  required />
+                     <input type="text" id="nombre"  autocomplete="cc-name" class="form-control col-12 grey lighten-4" placeholder="Nombres y apellidos*"  required />
                      <label class="col-12">Fecha de Vencimiento:</label>
-                     <input type="text" autocomplete="cc-exp-month" id="mes" class="form-control col-6" placeholder="Mes de vencimiento/MM*"  required />
+                     <input type="text" autocomplete="cc-exp-month" id="mes" class="form-control col-6   grey lighten-4" placeholder="Mes de vencimiento/MM*"  required />
          
-                     <input type="text" autocomplete="cc-exp-year" id="año" class="form-control col-6" placeholder="Año de vencimiento/YYYY*"  required />
-                     <label class="col-12">CVC:</label>
-                     <input type="text" id="tarjeta" class="form-control  col-12" placeholder="Codigo de Seguridad*"  required />
-
+                     <input type="text" autocomplete="cc-exp-year" id="año" class="form-control col-6 grey lighten-4" placeholder="Año de vencimiento/YYYY*"  required />
+                     <!-- <label class="col-12">CVC:</label>
+                     <input type="text" id="tarjeta" class="form-control  col-12 grey lighten-2" placeholder="Codigo de Seguridad*"  required />
+ -->
 
                      </div>
              </div>
@@ -133,8 +136,24 @@
 
                 <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">Total ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h5>
                 
-                <button class="g-recaptcha btn btn-primary mt-2 w-95 mb-2 mx-4 mb-4 btn-sm" data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq" data-callback="transaccion" >Realizar Pago</button>
+                <div class="d-flex justify-content-center align-items-center text-justify row container ml-1 mb-4">
+                        
+                    <div class="spinner-border text-primary " role="status" id="spinner">
+                        <span class="sr-only">Cargando...</span>
+                    </div>
+
+                    <div class="alert alert-danger col-12 px-4" role="alert" id="alertpago">
+                            
+                    </div>
+                    <button id="btn-pago" class="g-recaptcha btn btn-primary mt-2 w-95 mb-2 mx-4 mb-4 btn-sm" data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq" data-callback="transaccion" >Realizar Pago</button>
                            
+
+                    <img  src="{{route('cursos.index')}}/img/ssl.jpg" class="img-fluid " style="width:150; height:50;"/>
+                  
+                </div>
+
+
+                
             </div>
             </div>
     </div>
@@ -169,19 +188,27 @@
       <input type="submit" id="setsubmit" value="Confirm" style="display:none"/>
 </form> -->
 </main>
-
+<form>
 @endsection
 @section('endscript')
 <script>
+$("#alertpago").hide();
+$("#spinner").hide();
 paises();
+
+$("#formpago").submit(function(e){
+        e.preventDefault();
+    });
+
 function transaccion(e){
-      
+  $( "#formpago" ).submit();
     //  $("#alertregistro").hide();
      
       var pasa = true;
       var mserror = "";    
-  
-
+      $("#alertpago").hide();
+      $("#spinner").show();
+      $("#btn-pago").hide();
       $.ajax( {
               data: {
                   "bill_to_forename": $("#nombres").val(),
@@ -208,6 +235,11 @@ function transaccion(e){
               type: 'POST'
                              ,
               success: function(response){
+              
+                console.log(response)
+
+                  
+
                     /* var v =    response;
 
                     $("#transaction_uuid").val(response.transaction_uuid);
@@ -250,10 +282,141 @@ function transaccion(e){
                         
                         }
                      ); */
-                   
+                     $("#spinner").hide();
+                     $("#btn-pago").show();
                   },
               error: function(response){
                 console.log(response);
+
+                var str = "";
+                                    $("#alertpago").show();
+                                    if (typeof response.responseJSON.errors.bill_to_forename != "undefined") {
+                                   
+                                    
+                                        for(var i=0;i<response.responseJSON.errors.bill_to_forename.length;i++){
+                                            
+                                            str= str +'<b>'+response.responseJSON.errors.bill_to_forename[i]+'</b><br></br>';                                  
+                                        }
+                                    }
+
+                                    if (typeof response.responseJSON.errors.bill_to_surname != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.bill_to_surname.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.bill_to_surname[i]+'</b><br></br>';                                  
+                                   }
+                               }
+
+                               if (typeof response.responseJSON.errors.bill_to_email != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.bill_to_email.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.bill_to_email[i]+'</b><br></br>';                                  
+                                   }
+                               }
+
+                               if (typeof response.responseJSON.errors.bill_to_phone != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.bill_to_phone.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.bill_to_phone[i]+'</b><br></br>';                                  
+                                   }
+                               }
+
+                               if (typeof response.responseJSON.errors.bill_to_address_line1 != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.bill_to_address_line1.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.bill_to_address_line1[i]+'</b><br></br>';                                  
+                                   }
+                               }
+
+                               if (typeof response.responseJSON.errors.bill_to_address_city != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.bill_to_address_city.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.bill_to_address_city[i]+'</b><br></br>';                                  
+                                   }
+                               }
+
+                               if (typeof response.responseJSON.errors.bill_to_address_state != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.bill_to_address_state.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.bill_to_address_state[i]+'</b><br></br>';                                  
+                                   }
+                               }
+
+                               if (typeof response.responseJSON.errors.bill_to_address_country != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.bill_to_address_country.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.bill_to_address_country[i]+'</b><br></br>';                                  
+                                   }
+                               }
+
+                               if (typeof response.responseJSON.errors.bill_to_address_postal_code != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.bill_to_address_postal_code.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.bill_to_address_postal_code[i]+'</b><br></br>';                                  
+                                   }
+                               }
+
+                               if (typeof response.responseJSON.errors.amount != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.amount.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.amount[i]+'</b><br></br>';                                  
+                                   }
+                               }
+                               if (typeof response.responseJSON.errors.card_number != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.card_number.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.card_number[i]+'</b><br></br>';                                  
+                                   }
+                               }
+                               if (typeof response.responseJSON.errors.expirationMonth != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.expirationMonth.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.expirationMonth[i]+'</b><br></br>';                                  
+                                   }
+                               }
+                               if (typeof response.responseJSON.errors.expirationYear != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.expirationYear.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.expirationYear[i]+'</b><br></br>';                                  
+                                   }
+                               }
+                               if (typeof response.responseJSON.errors.expirationYear != "undefined") {
+                                   
+                                    
+                                   for(var i=0;i<response.responseJSON.errors.expirationYear.length;i++){
+                                       
+                                       str= str +'<b>'+response.responseJSON.errors.expirationYear[i]+'</b><br></br>';                                  
+                                   }
+                               }
+                               
+
+                  $("#alertpago").html(str);
+                  $("#spinner").hide();
+                  $("#btn-pago").show();
+                           
               }
               
           

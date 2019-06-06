@@ -362,6 +362,10 @@ var presencial;
     {
         window.location.href = "{{route('cursos.cursodetalle')}}/"+page;
     }
+    function searchetiqueta(etiqueta)
+ {
+     window.location.href = "{{route('cursos.search')}}/"+etiqueta;
+ }
 
       function addcart(id){
         $.ajax({

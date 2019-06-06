@@ -56,7 +56,7 @@
                                     <h5 class="font-weight-bold float-left "  style="color:#b71c1c "> 
                                         $ {{ number_format(Session::get('cartItems')[$i]['Precio'] , 2)  }}
                                    </h5> 
-                                    <p class="btn btn-sm red darken-4 float-right" onclick='delcart({{Session::get("cartItems")[$i]["id"]}})' > Eliminar</p> 
+                                    <p class="btn btn-sm btn-danger float-right" onclick='delcart({{Session::get("cartItems")[$i]["id"]}})' > Eliminar</p> 
                                     
                                 
 

@@ -53,7 +53,7 @@ Route::group(['prefix' => 'account'], function () {
     
     Route::get('/carrito', 'AccountController@carrito')->name('carrito');
     Route::get('/pagarcarrito', 'AccountController@resumencarrito')->name('pagarcarrito');
-
+    Route::get('/pagocarrito', 'AccountController@PagarCarrito')->name('pagocarrito');
     //'middleware'=>'logged'
     Route::group(['prefix' => 'password','middleware'=>'loggedOut'], function () {
         Route::post('/reset', 'AccountController@sendEmailreset')->name('emailresetear');

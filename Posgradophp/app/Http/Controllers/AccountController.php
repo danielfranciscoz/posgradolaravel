@@ -286,7 +286,15 @@ class AccountController extends Controller
     }
 
     public function PagarCarrito(){
-    
+        if(Session::has('cartItems') && Auth::guard(null)->check()){
+   
+            $estudiante = Auth::user()->estudiante;
+            return view("Account/pagocarrito")->with(compact('estudiante'));
+        }
+        else{
+            return view("Account/carrito");
+        }
+
     }
 
     public function loginUser(Request $request){

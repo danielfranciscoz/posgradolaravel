@@ -329,3 +329,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
         color:white !important;
       }
       
+
+      .btn-primary{
+        background: #0d47a1  !important;
+      }
+
+      .text-primary {
+        color: #0d47a1 !important; 
+      }
+
+        
+      .primary-color-dark {
+        background-color: #0d47a1 !important; 
+      }
+      .badge-morado {
+        background-color: rgb(41, 24, 90) !important;
+        color: #fff !important; }
+    
+        .badge-cyan {
+        background-color: #00838F !important;
+        color: #fff !important; }
+      
+        .badge-green {
+        background-color: #2E7D32 !important;
+        color: #fff !important; }

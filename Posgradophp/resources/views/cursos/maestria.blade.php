@@ -97,8 +97,8 @@
                                             
 
                                             
-                                            <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$curso->curso->HorasClase}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
-                                Certificación &nbsp <i class="fa fa-file-text-o grey-text" aria-hidden="true"></i>
+                                            <p class="h6-responsive" style="color:#616161; margin-bottom:0"><i class="fa fa-clock" aria-hidden="true"></i> {{$curso->curso->HorasClase}} Horas Clase &nbsp<i class="fa fa-certificate grey-text" aria-hidden="true">  </i>
+                                Certificación &nbsp <i class="fa fa-file grey-text" aria-hidden="true"></i>
                                 Recursos Descargables</p> 
                                         </p>
                                         <p><span>{{$curso->curso->Desc_Publicidad}}</p>
@@ -202,9 +202,9 @@
                         
                         <a class="btn btn-primary mt-2 w-95 mb-2 btn-sm" href="{{route('pagarcarrito')}}">Proceder al Pago</a>
                         <div class="mt-2 d-flex justify-content-center grey-text">
-                                            <i class="fa fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
-                                            <i class="fa fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
-                                            <i class="fa fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
+                                            <i class="fab fa-cc-visa fa-3x mx-1" aria-hidden="true"></i>
+                                            <i class="fab fa-cc-amex fa-3x mx-1" aria-hidden="true"></i>
+                                            <i class="fab fa-cc-mastercard fa-3x mx-1" aria-hidden="true"></i>
                             </div>
                                 
                         </div>
@@ -348,6 +348,11 @@ var presencial;
     {
         window.location.href = "{{route('cursos.cursodetalle')}}/"+page;
     }
+
+    function searchetiqueta(etiqueta)
+ {
+     window.location.href = "{{route('cursos.search')}}/"+etiqueta;
+ }
 
       function addcart(id){
         $.ajax({
