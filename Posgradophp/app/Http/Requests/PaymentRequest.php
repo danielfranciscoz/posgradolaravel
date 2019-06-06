@@ -61,13 +61,14 @@ class PaymentRequest extends FormRequest
             'bill_to_phone.required'=>'Ingrese un número telefónico',
             'bill_to_address_line1.required'=>'Ingrese la dirección de facuración',
             'bill_to_address_city.required'=>'Ingrese la ciudad de facturación',
+            'bill_to_address_state.required'=>'Ingrese la dirección de facturación',
             'bill_to_address_country.required'=>'Ingrese el estado',
             'bill_to_address_postal_code.required'=>'Ingrese el código postal',
             'amount.required'=>'No se ha especificado la cantidad a cobrar',
             'card_number.required'=>'No se ha especificado el número de tarjeta',
             'expirationMonth.required'=>'Debe ingresar el mes en que expira la tarjeta',
             'expirationYear.required'=>'Debe ingresar el año en que expira la tarjeta',
-            'g-recaptcha-response.required' => 'Debe ingresar el año en que expira la tarjeta'
+            'g-recaptcha-response.required' => 'Por favor demuestra que eres un humano'
         ];
     }
 }

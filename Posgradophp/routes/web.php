@@ -53,7 +53,7 @@ Route::group(['prefix' => 'account'], function () {
     
     Route::get('/carrito', 'AccountController@carrito')->name('carrito');
     Route::get('/pagarcarrito', 'AccountController@resumencarrito')->name('pagarcarrito');
-    Route::get('/pagocarrito', 'AccountController@PagarCarrito')->name('pagocarrito');
+    Route::get('/pagocarrito/{Referencecode}', 'AccountController@PagarCarrito')->name('pagocarrito');
     //'middleware'=>'logged'
     Route::group(['prefix' => 'password','middleware'=>'loggedOut'], function () {
         Route::post('/reset', 'AccountController@sendEmailreset')->name('emailresetear');
@@ -70,7 +70,6 @@ Route::group(['prefix' => 'process'], function () {
 
     Route::group(['prefix'=>'payment','middleware'=>'logged'],function(){
         Route::get('/', 'PaymentController@index')->name('pay.index');
-        // Route::post('/pay', 'PaymentController@pagar')->name('pay.pagar');
         Route::post('/pay', 'PaymentController@pagar')->name('pay.pagar');
     });
 });

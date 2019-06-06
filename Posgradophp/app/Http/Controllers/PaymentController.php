@@ -9,6 +9,7 @@ use App\Models\Pago;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\PaymentConfirmation;
+use Illuminate\Support\Facades\Mail;
 use CybsSoapClient;
 
 class PaymentController extends Controller
@@ -124,7 +125,7 @@ class PaymentController extends Controller
                     $user = Auth::user();
 
                     $pago = new Pago();
-                    $pago->user_id=$user->user_id;
+                    $pago->user_id=$user->id;
                     $pago->reference_code=$referenceCode;
                     $pago->bill_to_address_line1=$bill_to_address_line1;
                     $pago->bill_to_address_state=$bill_to_address_state;
@@ -133,11 +134,11 @@ class PaymentController extends Controller
                     $pago->bill_to_address_postal_code=$bill_to_address_postal_code;
                     $pago->card=substr($cardNumber, strlen($cardNumber)-1, 4);
 
-                    // $pago->save();
+                    $pago->save();
                     
                     
-                    // Mail::to($user->email)
-                    //         ->send((new PaymentConfirmation($user,$estudent))->locale('es'));
+                    Mail::to($user->email)
+                            ->send((new PaymentConfirmation($user,$user->estudiante))->locale('es'));
                     
                     
                     //La línea de abajo funciona para visualizar lo que será enviado por correo
@@ -148,10 +149,10 @@ class PaymentController extends Controller
                         // ]);
                         // return (new PaymentConfirmation($user, $user->estudiante))->render();
                         
-                        // DB::commit();
+                    DB::commit();
                       
                     //'Te hemos enviado un correo, por favor revisa tu bandeja de entrada para verificar tu cuenta, sino lo encuentras prueba buscar en los correos no deseados.'
-                    return response()->json(["resultado"=>'Exito']);
+                    return response()->json(['resultado'=>'Exito', 'transactionCode'=>$referenceCode]);
                 } catch (Exception $e) {
                     DB::rollback();
                     return response()->json([
@@ -166,4 +167,6 @@ class PaymentController extends Controller
             return report($e);
         }
     }
+
+    public function pagocompleto(){}
 }
