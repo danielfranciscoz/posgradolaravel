@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use App\Models\Pago;
 use App\Models\Detallepago;
 use App\Models\Cursoprecio;
+use App\Models\Errorpago;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\PaymentConfirmation;
@@ -117,55 +118,63 @@ class PaymentController extends Controller
             
             $request->purchaseTotals = $purchaseTotals;
 
-            $reply = $client->runTransaction($request);
-
-
             // return response()->json(["resultado"=>$reply]);
-            if ($reply->decision != 'ACCEPT') {
-                return abort(500,'No se pudo procesar el pago');
-            } else {
-                DB::beginTransaction();
-                try {
-                    $user = Auth::user();
+            DB::beginTransaction();
+            try {
+                $user = Auth::user();
 
-                    $pago = new Pago();
-                    $pago->user_id=$user->id;
-                    $pago->reference_code=$referenceCode;
-                    $pago->bill_to_address_line1=$bill_to_address_line1;
-                    $pago->bill_to_address_state=$bill_to_address_state;
-                    $pago->bill_to_address_city=$bill_to_address_city;
-                    $pago->bill_to_address_country=$bill_to_address_country;
-                    $pago->bill_to_address_postal_code=$bill_to_address_postal_code;
-                    $pago->card=substr($cardNumber, strlen($cardNumber)-5, 4);
+                $pago = new Pago();
+                $pago->user_id=$user->id;
+                $pago->reference_code=$referenceCode;
+                $pago->bill_to_address_line1=$bill_to_address_line1;
+                $pago->bill_to_address_state=$bill_to_address_state;
+                $pago->bill_to_address_city=$bill_to_address_city;
+                $pago->bill_to_address_country=$bill_to_address_country;
+                $pago->bill_to_address_postal_code=$bill_to_address_postal_code;
+                $pago->card=substr($cardNumber, strlen($cardNumber)-5, 4);
 
-                    $pago->save();
-                    
-                    for ($i=0; $i <count($idcursos) ; $i++) {
-                        $detallepago = new Detallepago();
-                        $detallepago->pago_id=$pago->id;
-                        $detallepago->cursoprecio_id=$idcursos[$i];
+                $pago->save();
+                
+                for ($i=0; $i <count($idcursos) ; $i++) {
+                    $detallepago = new Detallepago();
+                    $detallepago->pago_id=$pago->id;
+                    $detallepago->cursoprecio_id=$idcursos[$i];
 
-                        $detallepago->save();
-                    }
-
-                    $curso = Cursoprecio::wherein('id', $idcursos)->get();
-                  
-                    Mail::to($user->email)
-                            ->send((new PaymentConfirmation($user, $user->estudiante, $curso))->locale('es'));
-                                     
-                    DB::commit();
-                      
-                    //'Te hemos enviado un correo, por favor revisa tu bandeja de entrada para verificar tu cuenta, sino lo encuentras prueba buscar en los correos no deseados.'
-                    return response()->json(['resultado'=>'Exito', 'transactionCode'=>$referenceCode]);
-                } catch (Exception $e) {
-                    DB::rollback();
-                    return response()->json([
-                        'resultado'=>'El pago fue realizado sin embargo, no pudo ser almacenado en la base de datos.'
-                    ]);
+                    $detallepago->save();
                 }
 
-
-                return response()->json(["resultado"=>'Exito']);
+                $curso = Cursoprecio::wherein('id', $idcursos)->get();
+                
+                $reply = $client->runTransaction($request);
+                
+                
+                if ($reply->decision != 'ACCEPT') {
+                    DB::rollback();
+                    $error = new Errorpago();
+                    $error->invalidField =$reply->invalidField;
+                    $error->requestToken =$reply->requestToken;
+                    $error->requestID =$reply->requestID;
+                    $error->reasonCode =$reply->reasonCode;
+                    $error->user_id=$user->id;
+                    $error->save();
+                    return abort(500, 'No se pudo procesar el pago');
+                } else {
+                    DB::commit();
+                }
+                
+                try {
+                    Mail::to($user->email)
+                            ->send((new PaymentConfirmation($user, $user->estudiante, $curso))->locale('es'));
+                } catch (Exception $e) {
+                    return response()->json(['resultado'=>'Exito','email'=>'No enviado', 'transactionCode'=>$referenceCode]);
+                }
+                
+                return response()->json(['resultado'=>'Exito', 'transactionCode'=>$referenceCode]);
+            } catch (Exception $e) {
+                DB::rollback();
+                return response()->json([
+                    'resultado'=>'No fue posible realizar el pago, por favor verifique sus datos e intente nuevamente.'
+                ]);
             }
         } catch (Exception $e) {
             return report($e);

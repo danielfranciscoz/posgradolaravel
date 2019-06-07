@@ -177,6 +177,18 @@ class TestMigration extends Migration
             $table->foreign('cursoprecio_id')->references('id')->on('cursoprecios');
         });
 
+        schema::create('errorpagos',function(BluePrint $table){
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->string('requestID');         
+            $table->string('requestToken');         
+            $table->string('reasonCode');         
+            $table->string('invalidField');         
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
         
 
 
