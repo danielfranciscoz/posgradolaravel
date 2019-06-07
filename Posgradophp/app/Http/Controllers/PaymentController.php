@@ -122,7 +122,7 @@ class PaymentController extends Controller
 
             // return response()->json(["resultado"=>$reply]);
             if ($reply->decision != 'ACCEPT') {
-                return response()->json(["resultado"=>'Error']);
+                return abort(500,'No se pudo procesar el pago');
             } else {
                 DB::beginTransaction();
                 try {
