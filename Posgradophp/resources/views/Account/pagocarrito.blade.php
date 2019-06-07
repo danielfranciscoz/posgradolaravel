@@ -2,13 +2,16 @@
 @section('title', 'Pago de Carrito de compra')
 @section('content')
 
+
+
 @php $totalcarrito=0;
-      if(is_array(Session::get('cartItems'))){
-            for($i=0;$i<count(Session::get('cartItems'));$i++)
+
+
+            for($i=0;$i<count($cursos);$i++)
             {
-                    $totalcarrito = $totalcarrito + (Session::get('cartItems')[$i]['Precio']);
+                    $totalcarrito = $totalcarrito + ($cursos[$i]->Precio);
             }
-      }
+    
         
             
 @endphp
@@ -64,23 +67,24 @@
             <div class="card white sticky-top" >
             <h5 class="h5-responsive mt-3 text-center  font-weight-bold ">Detalle de Pago</h5>
                         <div class="row mt-4 mx-2">
-                        {{dd($detallePago->get()[0])}}
-                        @if(is_array(Session::get('cartItems')))
-                                @for($i=0;$i< count(Session::get('cartItems'));$i++)
+                      
+                     
+                                @for($i=0;$i< count($cursos);$i++)
+                               
                                     <div class="col-8">
-                                    {{Session::get('cartItems')[$i]['curso']}}
+                                    {{$cursos[$i]->NombreCurso}}
                                     </div>
                                     <div class="col-3 d-flex justify-content-end align-items-end font-weight-bold " style="color:#b71c1c ">
-                                    $ {{ number_format(Session::get('cartItems')[$i]['Precio'] , 2)}}
+                                    $ {{ number_format($cursos[$i]->Precio , 2)}}
                                     </div>
                                 @endfor
-                        @endif
+                     
                         </div>
                         <hr >
 
-                    <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">Total ({{count(Session::get('cartItems'))}} Estudios): <a  style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h5>
+                    <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">Total ({{count($cursos)}} Estudios): <a  style="color:#b71c1c ">$ {{number_format($totalcarrito, 2) }}</a></h5>
                     
-                    <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">!Compra Exitosa¡</h5>
+                    <h5 class="h5-responsive mb-3 text-center  font-weight-bold ">¡Compra Exitosa!</h5>
                 </div>
             </div>
     </div>

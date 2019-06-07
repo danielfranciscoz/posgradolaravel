@@ -18,7 +18,7 @@
                                 <input type="email" id="email" class="form-control mb-2" placeholder="Correo Electrónico" required/>
                                 <div class="d-flex justify-content-center">
                                 <button
-                                    class="g-recaptcha btn btn-primary btn-block w-25 text-center"
+                                    class="g-recaptcha btn  btn-sm btn-primary btn-block w-25 text-center"
                                     data-sitekey="6Lfd-H8UAAAAACqXYzpPOjM_9UpJkBaqnbsvikfq"
                                     data-callback="submite">
                                     Recuperar

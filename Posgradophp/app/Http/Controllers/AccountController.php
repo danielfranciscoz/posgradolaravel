@@ -292,14 +292,14 @@ class AccountController extends Controller
             
             if ($pago != null) {
               
-                $curso = Curso::join('cursoprecios', 'cursos.id', '=', 'cursoprecios.curso_id')
+                $cursos = Curso::join('cursoprecios', 'cursos.id', '=', 'cursoprecios.curso_id')
                 ->join('detallepagos', 'cursoprecios.id','=','detallepagos.cursoprecio_id')
                 ->where('detallepagos.pago_id',$pago->id)->get();
   
                 return view("Account/pagocarrito")
                             ->with(compact('user'))
                             ->with(compact('estudiante'))
-                            ->with(compact('curso'))
+                            ->with(compact('cursos'))
                             ->with(compact('pago'));
             } else {
                 abort(403, 'Acceso denegado, Este contenido no se encuentra disponible.');
@@ -376,11 +376,11 @@ class AccountController extends Controller
     {
         $user = User::where('token', $token)->first();
         if ($user == null) {
-            return response()->json([
-                'error'=>'El identificador no es válido, es probable que se esté intentando acceder a una URL antígua, o exista otra petición de cambio de contraseña mas reciente.'
-                ]);
+            $error = "El identificador no es válido, es probable que se esté intentando acceder a una URL antígua, o exista otra petición de cambio de contraseña mas reciente.";
+            return view('Account.resetpassword.changepass')->with(compact('error'))->with(compact('user'))->with(compact('token'));
+           
         }
-        return view('Account.resetpassword.changepass')->with(compact('user'));
+        return view('Account.resetpassword.changepass')->with(compact('user'))->with(compact('token'));
     }
 
     public function resetpassword(Request $request)
@@ -409,10 +409,11 @@ class AccountController extends Controller
     public function addcarrito(Request $request)
     {
         $id= $request->input('curso');
+
         // $request->session()->flush();
-        $curso = Cursoprecio::with('curso')->where('curso_id', $id)->where('deleted_at',null)->get();
+        $curso = Cursoprecio::with('curso')->where('curso_id', $id)->where('deleted_at',null)->first();
         
-        if (count($curso) == 0) {
+        if ($curso == null) {
             return response()->json([
                 'error' => 'Se encuentra intentando agregar un curso que no existe',
                 'message' => 'error'
@@ -430,7 +431,7 @@ class AccountController extends Controller
         }
 
         for ($i=0;$i<$count;$i++) {
-            if (Session::get('cartItems')[$i]['id']== $id) {
+            if (Session::get('cartItems')[$i]['id']== $curso->id) {
                 return response()->json([
                 'error' => 'Ya fue agregado al carrito',
                 'message' => 'error'
@@ -441,18 +442,18 @@ class AccountController extends Controller
     
         if ($existid == false) {
             Session::push('cartItems', [
-            'id' => $curso->get(0)->id, //Tabla precioCurso
-            'curso' => $curso->get(0)->Curso()->get()[0]->NombreCurso, //tabla curso
-            'Image_URL'=> $curso->get(0)->Curso()->get()[0]->Image_URL,
-            'horas' =>  $curso->get(0)->Curso()->get()[0]->HorasClase,
-            'Precio' => $curso->get(0)->Precio
+            'id' => $curso->id, //Tabla precioCurso
+            'curso' => $curso->curso->NombreCurso, //tabla curso
+            'Image_URL'=> $curso->curso->Image_URL,
+            'horas' =>  $curso->curso->HorasClase,
+            'Precio' => $curso->Precio
             
             ]);
         }
 
         return response()->json([
             'message' => Session::get('cartItems')]);
-    }
+    } 
 
     public function delcarrito(Request $request)
     {

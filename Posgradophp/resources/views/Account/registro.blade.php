@@ -188,7 +188,7 @@ $("#alertregistro").hide();
                 type: 'POST'
                                ,
                 success: function(response){
-                        window.location.href = "{{route('process.completeindex')}}"+response.message;
+                        window.location.href = "{{route('process.completeindex')}}/"+response.message;
                     },
                 error: function(response){
                     $("#alertregistro").show();
