@@ -7,6 +7,7 @@ use App\Http\Requests\PaymentRequest;
 use GuzzleHttp\Client;
 use App\Models\Pago;
 use App\Models\Detallepago;
+use App\Models\Cursoprecio;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\PaymentConfirmation;
@@ -135,11 +136,11 @@ class PaymentController extends Controller
                     $pago->bill_to_address_city=$bill_to_address_city;
                     $pago->bill_to_address_country=$bill_to_address_country;
                     $pago->bill_to_address_postal_code=$bill_to_address_postal_code;
-                    $pago->card=substr($cardNumber, strlen($cardNumber)-1, 4);
+                    $pago->card=substr($cardNumber, strlen($cardNumber)-5, 4);
 
                     $pago->save();
                     
-                    for ($i=0; $i <count($idcursos) ; $i++) { 
+                    for ($i=0; $i <count($idcursos) ; $i++) {
                         $detallepago = new Detallepago();
                         $detallepago->pago_id=$pago->id;
                         $detallepago->cursoprecio_id=$idcursos[$i];
@@ -147,18 +148,11 @@ class PaymentController extends Controller
                         $detallepago->save();
                     }
 
+                    $curso = Cursoprecio::wherein('id', $idcursos)->get();
+                  
                     Mail::to($user->email)
-                            ->send((new PaymentConfirmation($user,$user->estudiante))->locale('es'));
-                    
-                    
-                    //La línea de abajo funciona para visualizar lo que será enviado por correo
-                    
-                    // return response()->json([
-                        //     'user'=>$user,
-                        //     'estudiante'=>$user->estudiante
-                        // ]);
-                        // return (new PaymentConfirmation($user, $user->estudiante))->render();
-                        
+                            ->send((new PaymentConfirmation($user, $user->estudiante, $curso))->locale('es'));
+                                     
                     DB::commit();
                       
                     //'Te hemos enviado un correo, por favor revisa tu bandeja de entrada para verificar tu cuenta, sino lo encuentras prueba buscar en los correos no deseados.'
@@ -178,5 +172,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function pagocompleto(){}
+    public function pagocompleto()
+    {
+    }
 }
