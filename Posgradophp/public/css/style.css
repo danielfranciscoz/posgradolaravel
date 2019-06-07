@@ -353,3 +353,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d48a1', end
         .badge-green {
         background-color: #2E7D32 !important;
         color: #fff !important; }
+
+
+        .modal {
+          margin-top:100px !important ;
+          z-index: 999999!important ;
+        }
+
+        .popover{
+          z-index: 999999!important ;
+        }

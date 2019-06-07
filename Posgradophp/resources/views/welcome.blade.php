@@ -1,5 +1,5 @@
 
-
+<div style="margin-top:-35px;">
 
 @extends('layout.app')
 @section('title', 'Inicio')
@@ -501,7 +501,7 @@
             </div>
         </div>
 </main>
-
+</div>
 <a id="return-to-top" class="" style="display:none">
         <i class="fa fa-angle-up fa-2x white-text"></i>
     </a>

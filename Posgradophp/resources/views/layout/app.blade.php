@@ -128,7 +128,7 @@
   </li>
 </ul>
  -->
-<div id="mainpage " class=" pt-5" style="margin-top:19px"> 
+<div id="mainpage " class="" style="margin-top:100px;"> 
             @yield('content')
 
 </div>

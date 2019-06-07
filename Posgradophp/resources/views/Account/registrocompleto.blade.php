@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('title', 'Registro nuevo usuario')
 @section('content')
+
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <main class="grey lighten-4">
     <div class="container wow fadein">

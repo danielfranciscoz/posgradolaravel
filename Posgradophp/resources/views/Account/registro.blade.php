@@ -1,6 +1,9 @@
 @extends('layout.app')
 @section('title', 'Registro nuevo usuario')
 @section('content')
+
+
+<div style="margin-top:-35px;">
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <main class="grey lighten-4 registrer-img"  >
 
@@ -113,7 +116,7 @@
          </div>
     </div>
 </main>
-
+</div>
 <style>
 @media (max-width:576px) {          
         
